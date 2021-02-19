@@ -1,0 +1,65 @@
+﻿<li class="">
+    <a href="/Admin" aria-expanded="false">
+        <i class="fas fa-people-carry"></i><span class="hide-menu">
+            My Desk 
+        </span>
+    </a>
+</li>
+<li class="divider"><br /></li>
+<hr />
+
+<li class="nav-label">Application</li>
+<li>
+    <a data-toggle="collapse" href="#submenu1" aria-expanded="false">
+        <i class="far fa-folder-open text-warning"> </i>
+        <span class="nav-label ">
+            Application (s)
+        </span>
+    </a>
+    <ul id="submenu1" class="collapse"  data-toggle="collapse"  aria-expanded="False">
+        <li>
+            <a href="@Url.Content("~/Company")">
+                <i class="far fa-clone"> </i> 
+                <span class="nav-label"> My Applications</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Content("~/Application")">
+                <i class="far fa-circle"> </i>
+                <span class="nav-label"> New Application</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<hr />
+
+<li class="nav-label">My Account</li>
+<li>
+    <a data-toggle="collapse" href="#myaccount" aria-expanded="false">
+        <i class="far fa-user text-warning"> </i>
+        <span class="hide-menu">Account</span>
+    </a>
+    <ul aria-expanded="false"  data-toggle="collapse" class="collapse" id="myaccount">
+        <li>
+            <a href="/Company/DocumentLibrary">
+                <i class="far fa-clone"> </i>
+                <span class="nav-label"> Document Library</span>
+            </a>
+        </li>
+    
+        <li>
+            <a href="/Dashboard/CompanyProfile">
+                <i class="far fa-building"> </i> <span>Profile</span>
+            </a>
+        </li>
+    </ul>
+</li>
+<hr />
+<li class="nav-label">My Permit(s)</li>
+<li>
+    <a href="/Company/Permits" aria-expanded="false">
+        <i class="far fa-clone text-warning"> </i>
+        <span class="hide-menu">My Permits</span>
+    </a>
+</li>
+<hr/>

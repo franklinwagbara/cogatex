@@ -1,0 +1,436 @@
+﻿@using Microsoft.EntityFrameworkCore
+@model GOTEX.Core.BusinessObjects.CompanyInformation
+@inject IAppConfiguration<Configuration> _appConfig
+@{
+    ViewBag.Title = "Profile";
+    
+}
+
+<div class="card">
+        
+    <div style="padding: 1em; color: yellow;background-color: green;">
+        <h2>
+            Company Profile
+        </h2>
+            
+    </div>
+    <hr/>
+    @if (!ViewBag.ProfileComplete && User.IsInRole("Company"))
+    {
+        
+        <div id="success" class="alert alert-info alert-mini alert-dismissable" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign"></span> Please update your Company Profile, Company Address and upload at least a Director's signature before applying For License.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div role="tabpanel">
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" id="liProfile" class=""><a href="#Profile" aria-controls="Profile" role="tab" data-toggle="tab"><i class="fa fa-home"> </i> Company Profile</a></li>
+            <li role="presentation" id="liAddress" class=""><a href="#Address" aria-controls="Address" role="tab" data-toggle="tab"><i class="fa fa-location-arrow"> </i> Company Address</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane" id="Profile">
+            <br/>
+            <form action="@Url.Action("CompanyProfile")" enctype="multipart/form-data" method="post" id="profileform">
+                @Html.AntiForgeryToken()
+                <div style="margin-left: 5px; margin-bottom: 15px;">
+                    <p>Fields with <span class="req">*</span> are required</p>
+                </div>
+                <input type="hidden" name="oldemail" value="@Model.Company.user_Id"/>
+                
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="user_Id">Company Email</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="">
+                                @if (!User.IsInRole("Company"))
+                                {
+                                    <input name="Email" value="@ViewBag.Email" class="form-control"/>
+                                }
+                                else
+                                {
+                                    <input name="Email" value="@ViewBag.Email" class="form-control" readonly/>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Company_Contact_FirstName">Contact Person&#39;s First Name</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="">
+                                @Html.TextBoxFor(model => model.Company.contact_FirstName, new {@class = "form-control", required = "required", @readonly = "readonly"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Company_Nationality">Nationality</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="">
+                        
+                                <select id="company_nationality" name="company.nationality" class="form-control select2" required="required">
+                                    @if (ViewBag.Nationality != null)
+                                    {
+                                        foreach (var item in ViewBag.Nationality)
+                                        {
+                                            <option value="@item.Value" selected="@item.Selected">@item.Text</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label" for="Company_Contact_Phone">Contact Person&#39;s Telephone</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="">
+                                @Html.TextBoxFor(model => model.Company.contact_Phone, new {@class = "form-control", required = "required"})
+                            </div>
+                        </div>
+                        
+                    </div>
+               
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="Company_Name">Company Name</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="">
+                             @if (User.IsInRole("Company"))
+                             {
+                                 @Html.TextBoxFor(model => model.Company.name, new {@class = "form-control", @readonly = "readonly"})
+                             }
+                             else
+                             {
+                                 @Html.TextBoxFor(model => model.Company.name, new {@class = "form-control"})
+                             }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Company_Year_Incorporated">Year Incorporated</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="input-group">
+                                @Html.TextBoxFor(model => model.Company.year_Incorporated, new {@class = "form-control", required = "required"})
+                                <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="Company_Tin_Number">TIN</label>
+                            &nbsp;<span class="req">*</span>
+                            <small><i>(Tax Identification Number)</i></small>
+                            <div class="">
+                                @Html.TextBoxFor(model => model.Company.tin_Number, new {@class = "form-control", required = "required"})
+                            </div>
+                        </div>
+                        @if (User.IsInRole("Company"))
+                        {
+                                <div class="form-group">
+                                    <label class="control-label" for="CEOSignature">CEO's Signature<small> (Only PDF and Image (jpg/png) is allowed with white background)</small> Max size: <small>4mb</small></label>
+                                    @{
+                                        var baseDocUpload = _appConfig.GetElpsUrl() + "/api/Company/UploadFile";
+                                    }
+                                    <input type="hidden" id="CEOSignature" name="Company.CEOSignature" />
+                                    @if (string.IsNullOrEmpty(ViewBag.DirSignature))
+                                    {
+                                        <input type="file" name="CEOSignatureFile" id="CEOSignatureFile" class="docUpload form-control" accept="image/png, image/jpeg"
+                                               data-i="1" data-location="@baseDocUpload"/>
+                                    }
+                                    else
+                                    {
+                                        <img style="max-height:50px" src="@ViewBag.DirSignature" alt="CEO Signature"/>
+                                        <input type="file" name="CEOSignatureFile" id="CEOSignatureFile" class="docUpload form-control" accept="image/png, image/jpeg"
+                                               data-i="1" data-location="@baseDocUpload"/>
+                                    }
+                                </div>
+                        }
+                    </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="Company_Contact_LastName">Contact Person&#39;s Last Name</label>
+                        &nbsp;<span class="req">*</span>
+                        <div class="">
+                            @Html.TextBoxFor(model => model.Company.contact_LastName, new {@class = "form-control", required = "required", @readonly = "readonly"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Company_Business_Type">Business Type</label>
+                        &nbsp;<span class="req">*</span>
+                        <div class="">
+                            @if (User.IsInRole("Company"))
+                            {
+                                @Html.TextBoxFor(model => model.Company.business_Type, new {@class = "form-control", @readonly = "readonly"})
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(model => model.Company.business_Type, new {@class = "form-control"})
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="Company_RC_Number">Registration Number</label>
+                        &nbsp;<span class="req">*</span>
+                        <div class="">
+                            @Html.TextBoxFor(model => model.Company.rC_Number, new {@class = "form-control", required = "required"})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="CEOSignatureFileName" class="files"></div>
+                        <label>Upload progress</label>
+                        <div id="CEOSignatureProgress" class="progress form-group">
+                            <div class="progress-bar progress-bar-success progress-bar-striped"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <br/>
+                <div class="col-md-6" style="float: left; margin-top: 3em;">
+                    @* <input value="Update Profile" id="updateProfile" class="btn btn-primary" style="width: 200px;" /> *@
+                    <div class="form-group">
+                        <a href="#" id="updateProfile" class="btn btn-primary">Update Profile</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+            <div role="tabpanel" class="tab-pane" id="Address">
+            <div class="p-20">
+                <br/>
+                <form action="@Url.Action("CompanyProfile")" enctype="multipart/form-data" method="post" id="addressform">
+                    @Html.AntiForgeryToken()
+                    <div style="margin-left: 5px; margin-bottom: 15px;">
+                        <p>Fields with <span class="req">*</span> are required</p>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label class="control-label">Street Address</label>&nbsp;<span class="req">*</span>
+                            <div class="">
+                                @Html.TextBoxFor(model => model.RegisteredAddress.address_1, new {@class = "form-control", required = "required", @id = "mymap"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="float: left">
+
+                        <div class="form-group">
+                            <label class="control-label">City</label>&nbsp;<span class="req">*</span>
+                            <div class="">
+                                @Html.TextBoxFor(model => model.RegisteredAddress.city, new {@class = "form-control", required = "required"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="float: right">
+                        <div class="form-group">
+                            <label class="control-label">Postal Code</label>
+                            <div class="">
+                                @Html.TextBoxFor(model => model.RegisteredAddress.postal_code, new {@class = "form-control", required = "required"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="float: right">
+                        <div class="form-group">
+                            <label class="control-label">Nationality</label>
+                            &nbsp;<span class="req">*</span>
+                            <div class="">
+
+                                <select id="RegisteredAddress_country_id" name="RegisteredAddress.country_id" class="form-control select2" required="required">
+                                    @if (ViewBag.Nationality != null)
+                                    {
+                                        foreach (var item in ViewBag.Nationality)
+                                        {
+                                            if (@item.Selected)
+                                            {
+                                                <option value="@item.Value" selected>@item.Text</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-mf-6">
+                        <div class="form-group" style="float: left">
+                            <div class="txtcenter">
+                                <input type="submit" value="Update Address" id="updateAddress" class="btn btn-success" style="width: 200px;" tabindex="14"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="@Url.Content("/Scripts/js/vendor/jquery.ui.widget.js")" type="text/javascript"></script>
+<script src="@Url.Content("/Scripts/js/jquery.iframe-transport.js")" type="text/javascript"></script>
+<script src="@Url.Content("/Scripts/js/jquery.fileupload.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#updateProfile').click(function (e) {
+            e.preventDefault();
+            $("#profileform").submit();
+        });
+
+        $('#updateAddress').submit(function (e) {
+            e.preventDefault();
+            if ($(this).valid()) {
+
+                var r = confirm("Are you sure the Profile Informations are Correct ?");
+                if (r === true) {
+                    $.post($("#addressform").attr('action'), $("#addressform").serialize())
+                        .done(function (data) {
+                            if (data.Status === "success")
+                            {
+                                alert("Profile update was Successful");                                    
+                                window.location.href = "/Dashboard/CompanyProfile";    
+                            }
+                            else {
+                                alert(data.Status);
+                            }
+                        })
+                        .fail(function (data) {
+                            alert('Network Communication Error, Restore Connection and Try again');
+                        })
+                        .always(function (data) {
+                        });
+                }
+            }
+        });
+        
+        $(".docUpload").click(function(e){
+            $(this).fileupload({
+                dataType: 'json',
+                url: $(this).attr("data-location"),
+                done: function (e, data) {
+                    var file = data.result
+                   $('#CEOSignature').val(file.source.replace("https://celps.blob.core.windows.net",""));
+                   $(this).removeAttr( "required" ).css("display", "none");
+                   
+                   $.get('/Dashboard/SaveCeoSignature?email=@User.Identity.Name&source=' + file.source);
+                   var str = file.source.replace("~", "");
+
+                   var src = str.match('.pdf$') ? '/Content/Images/pdf-icon.png' : str;
+                   var respContent = '<div style="float: left; width: 48%;"><img src="' + src + '" class="thumbnail" style="height: 80px;" />';
+                   respContent += '</div><br />';
+                   respContent += '<a href="#" class="btn btn-xs btn-danger delFile" data-i="1"  data-fileid="' + file.FileId + '"><i class="fa fa-times"></i> Delete</a>';
+                   respContent += '</div><div class="clearfix"></div>';
+                   $("#CEOSignatureFileName").html(respContent);
+                },
+                fail: function (e, data) {
+                    $(this).css("display", "block");
+                    $.each(data.messages, function (index, error) {
+                        console.log(error);
+                        if (error && error.toLowerCase().indexOf('bytes exceed file size' > -1)) {
+                            //$('#extFileName-' + i).html('<p style="color: red; font-style: italics; font-size: 12px;">Upload file error: Max. File size (4MB) Exceeded OR Invalid file type was selected (only pdf, jpg or png)<i class="elusive-remove" style="padding-left:10px;" /></p>');
+                            $('<p style="color: red; font-style: italic; font-size: 12px;">Upload file error: Max. File size (4MB) Exceeded OR Invalid file type was selected (only pdf, jpg or png)<i class="elusive-remove" style="padding-left:10px;" /></p>')
+                                .appendTo('#CEOSignatureFileName');
+                        }
+                        else {
+                            $('<p style="color: red; font-style: italic; font-size: 12px;">Upload file error: ' + error + '<i class="elusive-remove" style="padding-left:10px;" /></p>')
+                                .appendTo('#CEOSignatureFileName');
+                        }
+                    });
+
+                    var progBox = '#CEOSignatureProgress' + ' .progress-bar';
+                    $(progBox).css(
+                        'width',
+                        0 + '%'
+                    ).text("");
+                },
+                progressall: function (e, data) {
+                    //alert(uid);
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                   var progBox = '#CEOSignatureProgress' + ' .progress-bar';
+
+                   $(progBox).css(
+                       'width',
+                       progress + '%'
+                   ).text(progress + '%');
+                }
+            });
+        });
+    });
+    
+    $(function () {
+                if (''.length > 0) {
+                    $("ul.nav-tabs > li").addClass("disabled").find("a").attr("disabled", "disabled");
+                    if ('Directors'.length > 0) {
+                        //Remove all active views 1st
+    
+                        $(".tab-content div").each(function () {
+                            $(this).removeClass("active");
+                        });
+    
+                        $("ul.nav-tabs li").each(function () {
+                            $(this).removeClass("active");
+                        });
+    
+                        var view = 'div#Directors';
+                        var lnk = '#li' + 'Directors';
+                        $(lnk).addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
+                        $(view).addClass("active");
+    
+                        switch ('Directors') {
+                            case "Profile":
+                                break;
+                            case "Address":
+                                $("#liProfile").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                                break;
+                            case "KeyStaffs":
+                                $("#liProfile").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                                $("#liAddress").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                                $("#liDirectors").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                                break;
+                            default:
+    
+                        }
+                    }
+                    else {
+                        $("div#Profile").addClass("active");
+                        $("#liProfile").addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
+                    }
+                }
+                else {
+                    $("div#Profile").addClass("active");
+                    $("#liProfile").addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
+                }
+    
+                $("ul.nav-tabs > li > a[disabled='disabled']").click(function (e) {
+                    e.preventDefault();
+                    if ($(this).parent("li").hasClass("tab-done")) {
+                        //Do nothing
+                    }
+                    else {
+                        $("#modalPopup").on('show.bs.modal', function () {
+                            var modal = $(this);
+                            modal.find('.modal-title').text('Alert');
+                            modal.find('.modal-body').text('Please Complete this step before proceeding. Use the button(s) below to Proceed.');
+                            modal.find('.modal-footer').html('<button class="btn btn-default" data-dismiss="modal">Close</button>');
+                        });
+                        $("#modalPopup").modal('show');
+    
+                        return false;
+                    }
+                });
+    
+    
+                $(".imgSilent").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).data("url");
+    
+                    $(".modal-content").html(Loading());
+                    $.get(url, function (data) {
+                        $(".modal-content").html(data);
+                    });
+                });
+    
+            });
+</script>
+

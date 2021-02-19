@@ -1,0 +1,204 @@
+﻿@model Application
+@using Microsoft.AspNetCore.Components
+@{
+    ViewData["Title"] = "Apply";
+}
+<div>
+    <center>
+        <div class="text-left">
+            <form method="post" role="form">
+
+                <div style="color: yellow; padding: 1em;background-color: green;">
+                    <h2> Gas Export Application </h2>
+                    <small style="color: white;"> Kindly note that field with (<i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>) are required.</small>
+                   
+                </div>
+                
+                <hr />
+                    
+                @if (ViewBag.Error != null)
+                {
+                    <div class="col-md-12">
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>Application Error!</strong> @ViewBag.Error
+                        </div>
+                    </div>
+                }
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="@Model.ApplicationTypeId" style="font-size: large;" class="control-label">
+                                Application Type 
+                                <i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>
+                            </label>
+                            <div>
+                                @foreach (var item in ViewBag.ApplicationTypes)
+                                {
+                                    <label title="@item.Id">@item.Name</label>
+                                    <input type="radio" style="margin-right: 2em;" value="@item.Id" asp-for="ApplicationTypeId"/>
+                                }
+                            </div>
+                            <span asp-validation-for="ApplicationTypeId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: large;" class="control-label" for="@Model.TerminalId">
+                                Terminal (Port of Export)
+                                <i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>
+                            </label>
+                            <select class="form-control" asp-for="TerminalId">
+                                @foreach (var item in ViewBag.Terminals)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="TerminalId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: large;" class="control-label" for="@Model.Quantity">
+                                Quantity
+                                <i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>
+                            </label>
+                            <input class="form-control" asp-for="Quantity" required />
+                       
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label  style="font-size: large;" class="control-label" for="@Model.GasStream">Measurement</label>
+                             <select class="form-control" asp-for="TerminalId">
+                                 <option value="tons">Metric Tonnnes</option>
+                                 <option value="Barrels">Barrels</option>
+                            </select>
+                            <span asp-validation-for="GasStream" class="text-danger"></span>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="@Model.QuarterId" style="font-size: large;" class="control-label">
+                                Quarter Registration 
+                                <i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>
+                            </label>
+                            <div>
+                                @foreach (var item in ViewBag.Quarters)
+                                {
+                                    var month = DateTime.Now;
+                                    if (item.Name.Contains("$1000.00"))
+                                    {
+                                        if (month.Month > 6 && item.Name.Contains("First") || item.Name.Contains("Second"))
+                                        {
+                                            <label title="@item.Title" class="control-label alert alert-warning">@item.Name</label>
+                                            <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                        }
+                                        else
+                                        {
+                                            <label title="@item.Title" class="control-label alert alert-warning">@item.Name</label>
+                                            <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (month.Month > 9)
+                                        {
+                                            <label title="@item.Title" class="control-label">
+                                                @item.Name
+                                            </label>
+                                            if (item.Id == 2 || item.Id == 3)
+                                            {
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                            }
+                                            else
+                                            {
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                            }
+                                        }
+                                        else if (month.Month > 6)
+                                        {
+                                            <label title="@item.Title" class="control-label">@item.Name</label>
+                                            if(item.Id == 1 || item.Id == 2)
+                                            {
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                            }
+                                            else
+                                            {
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                            }
+                                        }
+                                        else if(month.Month > 3)
+                                        {
+                                            <label title="@item.Title" class="control-label">@item.Name</label>
+                                           if(item.Id == 1)
+                                           {
+                                               <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                           }
+                                           else
+                                           {
+                                               <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                           }
+                                        }
+                                        else
+                                        {
+                                            <label title="@item.Title" class="control-labelg">@item.Name</label>
+                                            <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                        }
+                                    }
+                                }
+                                <span asp-validation-for="QuarterId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label style="font-size: large;" class="control-label" for="@Model.ProductId">
+                                Product Type
+                                <i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>
+                            </label>
+                            <select class="form-control" asp-for="ProductId">
+                                @foreach (var item in ViewBag.Products)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ProductId" class="text-danger"></span>                  
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label style="font-size: large;" class="control-label" for="@Model.ProductAmount">
+                                Equivalent Value ($)
+                            </label>
+                            <input class="form-control" asp-for="ProductAmount" autocomplete="off" />
+                        </div>
+                        <span asp-validation-for="ProductAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="col-md-6">
+                    <div>
+                        <input type="submit" class="btn btn-primary" value="Submit and Continue"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </center>
+</div>
+@section Scripts {
+   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script src="~/_framework/blazor.server.js"></script>
+@functions{
+    private int month = DateTime.Now.Month;
+    public string myval { get; set; }
+
+    private string DisableBox()
+    {
+        myval = "";
+        if (month > 9)
+            myval = "disabled";
+        else if(month > 6)
+            myval = "disabled";
+        return myval;    
+    }
+}

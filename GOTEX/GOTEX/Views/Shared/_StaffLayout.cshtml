@@ -1,0 +1,90 @@
+﻿<li class="nav-label">Permit Approval(s)</li>
+<li>
+    <a href="/Admin/Permits">
+        <i class="fa fa-file-archive-o text-warning"> </i>
+        <span class="hide-menu">All Approvals</span>
+    </a>
+</li>
+<hr />
+@if (!User.IsInRole("Inspector"))
+{
+    <li class="nav-label">Report</li>
+    <li>
+        <a data-toggle="collapse" href="#myaccount" aria-expanded="false">
+            <i class="fa fa-chart-bar text-warning"> </i>
+            <span class="hide-menu">Report</span>
+        </a>
+        <ul aria-expanded="false"  data-toggle="collapse" class="collapse" id="myaccount">
+            <li>
+                <a href="@Url.Action("ApplicationReport", "Admin")">
+                    <i class="fa fa-chart-line"> </i>
+                    <span class="nav-label"> Application Report</span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("PaymentReport", "Admin")">
+                    <i class="fa fa-chart-line"> </i>
+                    <span class="nav-label"> Payment Report</span>
+                </a>
+            </li>
+            
+            @* <li> *@
+            @*     <a href="@Url.Action("PermitReport", "Admin")"> *@
+            @*         <i class="fa fa-chart-pie"> </i> <span>Approval Report</span> *@
+            @*     </a> *@
+            @* </li> *@
+        </ul>
+    </li>
+    <hr />
+}
+@if (User.IsInRole("Admin") || User.IsInRole("ICT") || User.IsInRole("Support"))
+{
+    <li class="nav-label">Staff Management</li>
+    <li>
+        <a data-toggle="collapse" href="#staff" aria-expanded="false">
+            <i class="fa fa-user-check text-warning"> </i>
+            <span class="hide-menu"> Staff Management</span>
+        </a>
+        <ul aria-expanded="false"  data-toggle="collapse" class="collapse" id="staff">
+            <li>
+                <a href="/Staff/All">
+                    <i class="fa fa-users text-success"> </i>
+                    <span class="nav-label"> All Users</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <hr />
+    <li class="nav-label">Application Document(s)</li>
+    <li>
+        <a data-toggle="collapse" href="#doc" aria-expanded="false">
+            <i class="fa fa-book text-warning"> </i>
+            <span class="hide-menu"> Application Document(s)</span>
+        </a>
+        <ul aria-expanded="false"  data-toggle="collapse" class="collapse" id="doc">
+            <li>
+                <a href="/Admin/ApplicationTypes">
+                    <i class="fa fa-file text-success"> </i>
+                    <span class="nav-label"> Application Types</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <hr />
+    <li class="nav-label">Settings</li>
+    <li>
+        <a data-toggle="collapse" href="#setting" aria-expanded="false">
+            <i class="fa fa-gear text-warning"> </i>
+            <span class="hide-menu"> Settings</span>
+        </a>
+        <ul aria-expanded="false"  data-toggle="collapse" class="collapse" id="setting">
+            <li>
+                <a href="/Admin/ApplicationFlow">
+                    <i class="fa fa-file text-gray"> </i>
+                    <span class="nav-label"> Application Flow</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <hr />
+}

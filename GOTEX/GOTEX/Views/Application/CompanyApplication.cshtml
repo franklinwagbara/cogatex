@@ -1,0 +1,46 @@
+﻿@model List<Application>
+
+@{
+    ViewBag.Title = "Company Applications";
+    int count = 0;
+}
+
+<center>
+    <div class="box-shadow" style="margin-top: 2em; padding: 2em;">
+        <h2 class="card">@ViewBag.ComapnyName Application(s)</h2>
+        <table class="table table-bordered dataTable">
+            <thead>
+            <tr>
+                <th>#</th>
+                @* ~<th>Company Name</th> *@
+                <th>Reference</th>
+                <th>Application Type</th>
+                <th>Status</th>
+                <th>Date Applied</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    @* <td>@item.User.Company.Name</td> *@
+                    <td>@item.Reference</td>
+                    <td>@item.ApplicationType.Name</td>
+                    <td>@item.Status</td>
+                    <td>@item.Date</td>
+                    <td><a href="/Application/ApplicationDetail/@item.Id" class="btn btn-sm btn-success">View</a> </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</center>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.dataTable').DataTable();
+    });
+</script>

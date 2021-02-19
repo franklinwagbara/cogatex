@@ -1,0 +1,70 @@
+﻿@model List<ApplicationUser>
+@inject IApplication<Application> _application
+@inject UserManager<ApplicationUser> _userManager
+
+@{
+    ViewBag.Title = "Applications on STaff Desk";
+    int count = 0;
+}
+
+<center>
+    <div class=" card" style="margin-top: 2em; padding: 1em;">
+        <h2 class="card btn btn-warning col-md-5" style="font-size: x-large;">
+            <b>Application(s) on Staff Desk</b>
+        </h2>
+        <table class="table table-striped dataTable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>User Role</th>
+                <th>Desk Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model)
+            {
+                if (!_userManager.IsInRoleAsync(user, "Company").Result)
+                {
+                   
+                    count++;
+                    var apps = GetDeskCount(user.Email);
+                    <tr>
+                        <td>@count</td>
+                        <td>@user.LastName @user.FirstName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @GetUserRole(user.Email)
+                        </td>
+                        <td class="text-center">@GetDeskCount(user.Email)</td>
+                    </tr> 
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</center>
+@functions{
+
+    private string GetUserRole(string email)
+    {
+        var user = _userManager.FindByEmailAsync(email).Result;
+        return _userManager.GetRolesAsync(user).Result.FirstOrDefault();
+    }
+
+    private int GetDeskCount(string email) => _application.GetAll().Count(x => x.LastAssignedUserId == email);
+
+    private List<ApplicationUser> GetStaffRoleList(string email)
+    {
+        var role = GetUserRole(email);
+        return _userManager.GetUsersInRoleAsync(role).Result.ToList();
+    }
+
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.dataTable').DataTable();
+    });
+</script>

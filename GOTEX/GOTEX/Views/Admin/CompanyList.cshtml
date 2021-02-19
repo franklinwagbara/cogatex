@@ -1,0 +1,71 @@
+﻿@model List<ApplicationUser>
+
+@{
+    ViewBag.Title = "Company List";
+    int count = 0;
+}
+
+<center>
+    <div class="card" style="margin-top: 2em; padding: 1em;">
+        @if (ViewData["Message"] != null)
+        {
+            <div class="col-md-12">
+                <div class="alert alert-info alert-dismissible center-block" role="alert" id="welcomealert" align="center">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                    <strong>@ViewData["Message"]</strong>
+                </div>
+            </div>
+        }
+        <h2 class="btn btn-success col-md-3">All Registered Companies</h2>
+        <table class="table table-bordered dataTable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Company Name</th>
+                <th>Company Email</th>
+                <th>Contact Person</th>
+                <td>Business Type</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var company in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@company.Company.Name</td>
+                    <td>@company.Email</td>
+                    <td>@company.FirstName @company.LastName</td>
+                    <td>@company.Company.TinNumber</td>
+                    <td>
+                        @if (User.IsInRole("ICT") || User.IsInRole("Support") || User.IsInRole("Admin"))
+                        {
+                            <a href="/Dashboard/CompanyProfile?userid=@company.Email" class="btn btn-sm btn-danger">Edit</a>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Company/DocumentLibrary?email=@company.Email" class="btn btn-sm btn-primary">Docs</a>
+                    </td>
+                    <td>                        
+                        <a href="/Application/CompanyApplication?email=@company.Email" class="btn btn-sm btn-success">Apps</a>
+                    </td>
+                    <td>
+                        <a href="/Company/Permits?email=@company.Email" class="btn btn-sm btn-warning">Permits</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</center>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.dataTable').DataTable();
+    });
+</script>

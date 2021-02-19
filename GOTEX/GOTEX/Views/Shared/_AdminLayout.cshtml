@@ -1,0 +1,409 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Cache-Control" content="no-cache">
+    <meta name="Pragma" content="no-cache">
+    <meta name="Expires" content="0">
+    <title>Admin Dashboard - DPR</title>
+
+    <link rel="stylesheet" href="~/Content/dataTables.checkboxes.css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Images/coat-of-arm.jpg")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
+
+    <link href="~/Scripts/multipleselect/css/jquery.multiselect.css" rel="stylesheet" />
+    <link href="~/Scripts/multipleselect/css/prettify.css" rel="stylesheet" />
+    <link href="~/Scripts/multipleselect/css/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="@Url.Content("~/Fonts/font-awesome.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/select2.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/MainStyle.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/otherStyle.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datetimepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/jquery.timepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/jquery.dataTables.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/fullcalendar.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/fullcalendar.print.min.css")" media="print" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/gps-coordinates.css" )" />
+
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Datatablecss/editor.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/Datatablecss/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/Datatablecss/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/themes/base/all.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.checkboxes.css" rel="stylesheet" />
+    <link href="~/themes/base/autocomplete.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Scripts/DateTimePicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" />
+    
+    <style>
+        .datepicker {
+            z-index: 1600 !important; /* has to be larger than 1050 */
+        }
+
+        .ui-autocomplete {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1510 !important;
+            float: left;
+            /*display: none;*/
+            padding: 4px 0;
+            margin: 2px 0 0 0;
+            list-style: none;
+            background-color: #ffffff;
+            border-color: #ccc;
+            border-color: rgba(0, 0, 0, 0.2);
+            border-style: solid;
+            border-width: 1px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+            *border-right-width: 2px;
+            *border-bottom-width: 2px;
+        }
+
+        .ui-multiselect {
+            min-width: 93%
+        }
+
+        .ui-widget {
+            position: absolute;
+            z-index: 9600
+        }
+
+        .pac-container {
+            background-color: #FFF;
+            z-index: 20;
+            position: fixed;
+            display: inline-block;
+            float: left;
+        }
+
+        .modal {
+            z-index: 20;
+            margin-top: 20px;
+        }
+
+        .modal-backdrop {
+            z-index: 10;
+        }
+
+        fieldset.scheduler-border {
+            border: 1px groove #ddd !important;
+            padding: 0 1.4em 1.4em 1.4em !important;
+            margin: 0 0 1.5em 0 !important;
+            -webkit-box-shadow: 0px 0px 0px 0px #000;
+            box-shadow: 0px 0px 0px 0px #000;
+        }
+
+        legend.scheduler-border {
+            width: inherit; /* Or auto */
+            padding: 0 10px; /* To give a bit of padding on the left and right */
+            border-bottom: none;
+        }
+
+        .btn-md.round {
+            border-radius: 60px;
+        }
+
+        .btn.round {
+            border-radius: 60px;
+        }
+
+        .btn-glow {
+            box-shadow: 1px 1px 12px #720000;
+        }
+
+        .mandatory {
+            color: red;
+        }
+
+        dt {
+            float: left;
+            clear: left;
+            width: 20em;
+        }
+
+        dd {
+            margin: 0 0 0 5em;
+            padding: 0 0 0.8em 0;
+        }
+
+
+        .label-medium {
+            vertical-align: super;
+            font-size: medium;
+        }
+
+        .label-large {
+            vertical-align: super;
+            font-size: large;
+        }
+
+        .label-bs {
+            vertical-align: super;
+        }
+    </style>
+
+    @RenderSection("css", false)
+</head>
+<body>
+
+    <div id="loading" style="width: 100%; height: 100%; top:0; left:0; position:fixed; display:block; opacity:0.7; background-color:#fff; z-index:99; text-align:center">
+        <img id="loading-image" style="position:absolute; top:100px; left:50%; z-index:100" src="~/Images/spinning.gif" />
+    </div>
+
+    <div class="navbar navbar-fixed-top og_Head" role="navigation">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <a href="#">
+                    <img src="@Url.Content("~/Images/lpgplant.PNG")" />
+                </a>
+            </div>
+            <div class="navbar-left">
+                <form class="navbar-form navbar-left" role="search" action="" method="get">
+                    <div class="form-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search for Application">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="top-nav">
+            <form class="navbar-right" onsubmit="return confirm('Are you sure you want to log out ?');" id="logoutForm" method="post" action="@Url.Action("LogOff", "Account")">
+                <ul class="nav navbar-nav pull-right">
+                    
+                    <li>
+                        <a title="Manage" href=""> &nbsp;<strong style="color:white;"></strong></a>
+                    </li>
+                    <li>
+                        <button type="submit" class="initLogoff"><span class="glyphicon glyphicon-log-out" title="logOut" style="color:white; font-size:15px"></span></button>
+                    </li>
+                </ul>
+                @Html.AntiForgeryToken()
+            </form>
+            
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sapn class="glyphicon glyphicon-transfer"></sapn> AGS Portal Navigation<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                        <li>
+                            @* <a href="#" id="Compression" onclick="CNGCompression('@userMaster.UserId')" >CNG Compression Station</a> *@
+                            <a href="#" id="Compression" onclick="CNGCompression('')" >CNG Compression Station</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @* <a href="#" id="CNGRefueling" onclick="CNGRefueling('@userMaster.UserId')">CNG Refueling</a> *@
+                            <a href="#" id="CNGRefueling" onclick="CNGRefueling('')">CNG Refueling</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @* <a href="#" id="Downloading" onclick="CNGDownloading('@userMaster.UserId')" >CNG Downloading Station</a> *@
+                            <a href="#" id="Downloading" onclick="CNGDownloading('')" >CNG Downloading Station</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @* <a href="#" id="Storage" onclick="LPGStorage('@userMaster.UserId')" >LPG Storage (Category A)</a> *@
+                            <a href="#" id="Storage" onclick="LPGStorage('')" >LPG Storage (Category A)</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @* <a href="#" id="Depot" onclick="LPGDepot('@userMaster.UserId')" >LPG Depot</a> *@
+                            <a href="#" id="Depot" onclick="LPGDepot('')" >LPG Depot</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @* <a href="#" onclick="LPGPlant('@userMaster.UserId')" id="Plant">LPG Refilling Plant</a> *@
+                            <a href="#" onclick="LPGPlant('')" id="Plant">LPG Refilling Plant</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="Retailers" onclick="LPGRetailer('')" >LPG Retailer (Category D)</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="" id="appContainer">
+        <div class="ctrl-sidebar">
+
+            <div class="collapse navbar-collapse sidebar">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span>Control Panel Admin</span>
+                            <br />
+                            @* <small>@userMaster.UserRoles</small> *@
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="ctrl-content">
+            @RenderBody()
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="" style="color: #f7f7f7;">
+        <hr style="margin:10px; padding:0px">
+    </div>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    
+    <script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/select2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/fullcalendar.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ui.widget.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.iframe-transport.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.fileupload.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-notify.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/admin.js")"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/multipleselect/js/prettify.js"></script>
+    <script src="~/Scripts/multipleselect/js/jquery.multiselect.js"></script>
+    <script src="~/Scripts/multipleselect/js/prettify.js"></script>
+    <script src="~/Scripts/multipleselect/js/jquery.multiselect.js"></script>
+    <script src="~/Scripts/DatatableJS/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DatatableJS/dataTables.editor.min.js"></script>
+    <script src="~/Scripts/DatatableJS/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DatatableJS/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/DatatableJS/jszip.min.js"></script>
+    <script src="~/Scripts/DatatableJS/pdfmake.min.js"></script>
+    <script src="~/Scripts/DatatableJS/vfs_fonts.js"></script>
+    <script src="~/Scripts/DatatableJS/buttons.html5.min.js"></script>
+    <script src="~/Scripts/DatatableJS/buttons.print.min.js"> </script>
+
+
+                    <script src="~/Scripts/lpgscript.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/dataTables.checkboxes.min.js"></script>
+
+    <script>
+            $(document).ready(function () {
+                console.log("About to Call SetTimeout with Zero timeout");
+                var url = "";
+                setTimeout(function () {
+                    $.get(url, function (data) {
+                        var status = data.Status;
+                        if (status == 'success') {
+
+                            document.getElementById("totalPendingCount").innerHTML = data.Message;
+                            if (document.getElementById("totalPendingCountH1") != null) {
+                                document.getElementById("totalPendingCountH1").innerHTML = data.Message;
+                            }
+                        }
+                        else {
+                            console.log(data.Message);
+                        }
+                    })
+
+                }, 0);
+
+                console.log("Done with SetTimeout with Zero timeout");
+
+                @*var requestTimeout = '@System.Configuration.ConfigurationManager.AppSettings["PendingReqTimeout"].ToString()';
+                console.log("requestTimeout =>" + requestTimeout);
+
+                var timeoutID = window.setInterval(function () {
+                    $.get(url, function (data) {
+                        var status = data.Status;
+                        if (status == 'success') {
+                            document.getElementById("totalPendingCount").innerHTML = data.Message;
+                            if (document.getElementById("totalPendingCountH1") != null) {
+                                document.getElementById("totalPendingCountH1").innerHTML = data.Message;
+                            }
+                        }
+                        else {
+                            console.log(data.Message);
+                        }
+                    })
+
+                }, Number(requestTimeout) * 1000);
+                console.log("Done with Interval Call");*@
+        });
+        function CNGCompression(email) {
+            var msg = confirm("Are you sure you want to navigate to CNG compression portal?");
+            if (msg === true) {
+                window.location.href = "https://cngcompression.dpr.gov.ng/Account/Login?Email=" + email;
+
+            } else { return false }
+        }
+        function CNGDownloading(email) {
+            var msg = confirm("Are you sure you want to navigate to CNG downloading portal?");
+            if (msg === true) {
+                window.location.href = "https://cngdownloading.dpr.gov.ng/Account/Login?Email=" + email;
+
+            } else { return false }
+        }
+        function CNGRefueling(email) {
+            var msg = confirm("Are you sure you want to navigate to CNG refueling portal?");
+            if (msg === true) {
+                window.location.href = "https://cngrefueling.dpr.gov.ng/Account/Login?Email=" + email;
+
+            } else { return false }
+        }
+        function LPGStorage(email) {
+            var msg = confirm("Are you sure you want to navigate to LPG storage (category A) portal?");
+            if (msg === true) {
+                window.location.href = "https://lpgstorage.dpr.gov.ng/Account/Login?Email=" + email;
+
+            } else { return false }
+        }
+        function LPGPlant(email) {
+            var msg = confirm("Are you sure you want to navigate to LPG refilling plant portal?");
+            if (msg === true) {
+                window.location.href = "https://lpgplant.dpr.gov.ng/Account/Login?Email=" + email;
+
+            } else { return false }
+        }
+        function LPGDepot(email) {
+            var msg = confirm("Are you sure you want to navigate to LPG depot portal?");
+            if (msg === true) {
+                window.location.href = "https://lpgdepot.dpr.gov.ng/Auth/UserAuth?email=" + email;
+
+            } else { return false}
+        }
+        function LPGRetailer(email) {
+            var msg = confirm("Are you sure you want to navigate to LPG retailer (Category D) portal?");
+            if (msg === true) {
+                window.location.href = "https://lpgretailer.dpr.gov.ng/Account/Login?Email=" + email;
+
+            } else { return false }
+        }
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

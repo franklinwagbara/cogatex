@@ -1,0 +1,239 @@
+﻿@inject IAppConfiguration<Configuration> _appConfiguration
+@{
+    ViewData["Title"] = "Home Page";
+    
+    string VerifyPermitLink = _appConfiguration.GetElpsUrl() + "/Permit/VerifyPermit?appId=" + _appConfiguration.GetAppId();
+    string ResendEmailActivationLink = _appConfiguration.GetElpsUrl() + "/Account/ResendEmailActivation?appId=" + _appConfiguration.GetAppId();
+
+    string AccountLoginLink = _appConfiguration.GetElpsUrl() + "/Account/Login?appId=" + _appConfiguration.GetAppId();
+    string AccountRegisterLink = _appConfiguration.GetElpsUrl() + "/Account/Register?appId=" + _appConfiguration.GetAppId();
+    string ForgetPasswordLink = _appConfiguration.GetElpsUrl() + "/Account/ForgotPassword?appId=" + _appConfiguration.GetAppId();
+}
+
+<div class="col-md-12">
+    <div class="col-md-5 form-signin extForm">
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <div class="col-md-12">
+                <div class="alert alert-danger alert-dismissible center-block" role="alert" id="welcomealert" align="center">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                    <strong>@ViewBag.ErrorMessage</strong>
+                </div>
+            </div>
+        }
+        <div class="padd">
+            <h1 class="form-signin-heading text-center">DPR</h1>
+            <h4 class="txtcenter">CRUDE OIL/GAS EXPORT PERMIT PORTAL (COGATEX)</h4>
+
+            <a class=" btn btn-md btn-info btn-block textUpper buttonRadius1 round" href="/validate/">Click here to Verify Permit</a>
+            <br/>
+            <a href="@AccountLoginLink" class=" btn btn-md btn-success btn-block textUpper buttonRadius1 round">LOGIN</a>
+            <br/>
+            <a href="@AccountRegisterLink" class=" btn btn-md btn-success btn-block textUpper buttonRadius1 round">REGISTER</a>
+            <br/>
+            <p class="txtcenter">
+                <a href="@ForgetPasswordLink" class="btn-link">Forgot Password</a>
+            </p>
+
+            <br/>
+            <strong>Payment Processor:</strong>
+            <br/>
+            <div class="">
+                <img src="@Url.Content("/Images/remita-logo.png")" alt="Remita" title="REMITA" style=""/>
+            </div>
+            <br/><br/>
+            <strong>Payment Options:</strong>
+            <br/>
+            <ul class="paymentOptions">
+                <li><i class="fa fa-check"></i> &nbsp; Cash Deposit</li>
+                <li><i class="fa fa-check"></i> &nbsp; Bank Draft</li>
+                <li><i class="fa fa-check"></i> &nbsp; Card Payment: MasterCard, Verve Card</li>
+                <li><i class="fa fa-check"></i> &nbsp; Quick Teller</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-7 adv bg1">
+        <div class="col-md-12">
+            <h2 class="txtcenter">Getting Started</h2>
+        </div>
+        <div class="howto">
+            <div class="col-md-5">
+                <div class="icon">
+                    <img src="~/Images/icon-lg1.png" />
+                </div>
+            </div>
+            <div class="col-md-7">
+                <h3>User Guide</h3>
+                <a href="#" target="_blank" class="white">Online Application Guide</a><br />
+                <a href="@AccountLoginLink" class="white">Resend Activation Email</a><br />
+                <a href="/validate/" class="white">Verify a Permit</a><br />
+                <a href="#" class="white">FAQ</a><br />
+            </div>
+        </div>
+        <br class="clear" /><br />
+        <div class="howto">
+            <div class="col-md-5">
+                <div class="icon">
+                    <img src="~/Images/icon-lg2.png" />
+                </div>
+            </div>
+            <div class="col-md-7">
+                <h3>
+                    <a href="@AccountRegisterLink" class="white">Company Account Creation</a>
+                </h3>
+                <p>
+                    Create account to use resources on this portal. Note that Account creation
+                    is not required to validate a permit.
+                </p>
+            </div>
+        </div>
+        <br class="clear" /><br />
+        <div class="howto">
+            <div class="col-md-5">
+                <div class="icon">
+                    <img src="~/Images/icon-lg3.png" />
+                </div>
+            </div>
+            <div class="col-md-7">
+                <h3><a href="/" class="white">Manage Approvals</a></h3>
+                <p>Login to apply for a new Application Form, renew or manage your approvals</p>
+            </div>
+        </div>
+        <div class="clear"><br /><br /></div>
+
+    </div>
+</div>
+
+@* *@
+@*     <style> *@
+@*         body { *@
+@*             margin: 0; *@
+@*             font-family: Arial; *@
+@*             font-size: 17px; *@
+@*             height: 100%; *@
+@*         } *@
+@* *@
+@*         .contents { *@
+@*             bottom: 0; *@
+@*             width: 50%; *@
+@*             background: rgba(255, 255, 255, 0.85); *@
+@*             color: black; *@
+@*             float: left; *@
+@*             min-height: 100%; *@
+@*             position: absolute; *@
+@*         } *@
+@*     </style> *@
+@*     <body style="background:url('/Images/gaslogo.png'); background-repeat:no-repeat; background-position:center; background-size:cover; overflow-y:scroll"> *@
+@*         <div class="contents"> *@
+@*         @if (ViewData["ErrorMessage"] != null) *@
+@*         { *@
+@*             <div class="col-md-12"> *@
+@*                 <div class="alert alert-danger alert-dismissible center-block" role="alert" id="welcomealert" align="center"> *@
+@*                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> *@
+@*                     <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i> *@
+@*                     <strong>@ViewBag.ErrorMessage</strong> *@
+@*                 </div> *@
+@*             </div> *@
+@*         } *@
+@*             <div class="container text-center"> *@
+@*                 <br />  *@
+@*                 $1$<small> <b class="text-success"> Department of Petroleum Resources </b></small>#1# *@
+@*                 <br /> *@
+@*                 <img src="@Url.Content("~/Images/Dpr_logo.PNG")" style="height:100px; padding:1px" /> *@
+@*                 $1$<h2 class="text-center" style="font-weight:bolder;">DPR</h2>#1# *@
+@* *@
+@*                 <br /> *@
+@*                 <div class="text-center"> *@
+@*                     Gas Export Permit Potal *@
+@*                 </div> *@
+@*                 <div class="text-center"> *@
+@*                     (GATEX) *@
+@*                 </div> *@
+@* *@
+@*                 <br /> *@
+@* *@
+@*                 <div class="col-md-12 text-center" style="padding:5px"> *@
+@*                     <a href="@AccountLoginLink" class="ui button btn btn-lg green">Portal Login</a> *@
+@*                     <a href="@AccountRegisterLink" class="ui button btn btn-lg green">Client Registration</a> *@
+@*                     <a href="@VerifyPermitLink" class="ui button btn btn-lg green">Verify License</a> *@
+@*                     <a href="@ForgetPasswordLink" class="ui button btn btn-lg green">Forgot Password</a> *@
+@*                     <br /> *@
+@*                 </div> *@
+@* *@
+@*                 <b></b> *@
+@* *@
+@* *@
+@*                 <br /> *@
+@*                 <hr /> *@
+@*                 <br /> *@
+@* *@
+@*                 <div class="row text-center" style="font-size:15px; line-height:30px"> *@
+@* *@
+@* *@
+@* *@
+@*                     <div class="col-sm-3"> *@
+@*                         <h6 class="text-danger"><b>Step By Step</b></h6> *@
+@*                         <img src="~/images/icon-lg1.PNG" class="img-circle img-responsive" style="" /> *@
+@*                         <p></p> *@
+@*                         <div class=""> *@
+@* *@
+@*                             <a href="https://1drv.ms/u/s!AoddlNNEL8oQgQXEYxxcqOvdpIa7?e=hbp5nJ" target="_blank" class="">Online Application Guide</a><br /> *@
+@*                             <a href="@ResendEmailActivationLink" class="">Resend Activation Email</a><br /> *@
+@*                             <a href="@VerifyPermitLink" class="">Validating a Permit</a><br /> *@
+@*                             <a href="#" class="">FAQ</a><br /> *@
+@*                         </div> *@
+@*                         <br /> *@
+@*                     </div> *@
+@* *@
+@*                     <div class="col-sm-3"> *@
+@*                         <h6><a href="@AccountRegisterLink">Account Creation</a></h6> *@
+@* *@
+@*                         <img src="~/images/icon-lg2.PNG" class="img-circle img-responsive" style="" /> *@
+@*                         <p></p> *@
+@*                         <div> *@
+@*                             Create account to use resources on this portal. Note that Account creation *@
+@*                             is not required to validate a permit. *@
+@*                         </div> *@
+@*                         <br /> *@
+@*                     </div> *@
+@* *@
+@* *@
+@* *@
+@*                     <div class="col-sm-3"> *@
+@*                         <h6> <a href="@AccountLoginLink">Account Login</a></h6> *@
+@*                         <img src="~/images/icon-lg3.PNG" class="img-circle img-responsive" style="" /> *@
+@*                         <p></p> *@
+@*                         <div> Login to apply for a new license, renew or manage your LPG Plant account</div> *@
+@*                         <br /> *@
+@*                     </div> *@
+@* *@
+@*                     <div class="col-sm-3"> *@
+@*                         <h6 class="text-danger"><b>Payment Processor</b></h6> *@
+@*                         <img src="~/images/remita-logo.PNG" class="img-circle img-responsive" style="" /> *@
+@*                         <p></p> *@
+@*                         <div> *@
+@* *@
+@*                             Cash Deposit<br /> *@
+@* *@
+@*                             Bank Draft<br /> *@
+@* *@
+@*                             MasterCard, Verve, Visa<br /> *@
+@*                             Internet Banking<br /> *@
+@*                             Mobile Wallet<br /> *@
+@* *@
+@*                         </div> *@
+@*                     </div> *@
+@*                 </div> *@
+@* *@
+@* *@
+@* *@
+@*                 <span style="">&copy; @DateTime.Now.Year - Department Of Petrolem Resources. All Rights Reserved.</span> *@
+@* *@
+@* *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*     </body> *@
+@* } *@
