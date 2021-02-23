@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Damilare\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Damilare\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_GOTEX.-2111058434.00" t="ExcludeRecursive" />
-    <e p="D:\Documents\Projects\GOTEX" t="IncludeFlat">
+    <e p="C:\Users\Damilare\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_GOTEX.1886660419.00" t="ExcludeRecursive" />
+    <e p="D:\Documents\Projects\COGATEX\GOTEX" t="IncludeFlat">
       <e p="GOTEX" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />

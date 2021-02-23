@@ -85,6 +85,29 @@ namespace GOTEX.Core.DAL
             }
             return item;
         }
+
+        public bool Delete(Application item)
+        {
+            try
+            {
+                _context.Applications.Remove(item);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _log.Insert(new Log
+                {
+                    Action = "Delete application",
+                    Date = DateTime.UtcNow.AddHours(1),
+                    Error = $"{ex.Message}\n{ex.InnerException}\n{ex.StackTrace}",
+                    UserId = item.LastAssignedUserId
+                });
+            }
+
+            return false;
+        }
+
         public void InvalidatePaymentonElps(string webrootpath, Application application, string feedback, Dictionary<string, string> mailsettings)
         {
             try

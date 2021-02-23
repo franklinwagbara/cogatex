@@ -512,5 +512,26 @@ namespace GOTEX.Controllers
             return View(_history.GetApplicationHistoriesById(id)
                 .Where(x => x.CurrentUser.Equals(User.Identity.Name, StringComparison.OrdinalIgnoreCase)).ToList());
         }
+
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var application = _application.FindById(id);
+                if (application != null)
+                {
+                    if(_application.Delete(application))
+                        TempData["Message"] = "Application was deleted successfully";
+                    else
+                        TempData["Message"] = "An error occured while deleting this application, please contact ICT/Support";
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return RedirectToAction("Index", "Company");
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace GOTEX.Core.Repositories
         int GetCompanyElpsId(string username);
         List<T> GetSameQuarterApplication(string userid, int quarterid, int productid);
         T Insert(T item, bool latePayment);
+        bool Delete(T item);
         List<T> GetListByUserId(string id);
         List<T> GetCompanyApplications(string email);
         object GetApplicationFiles(int id);
