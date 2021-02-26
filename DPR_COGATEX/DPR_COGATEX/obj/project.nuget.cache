@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "OgMHy+ne23qVYxzBfyP0eoBSwH6xaw6KorPPYi+34eDHPtoX/dfPLsxiw9Q2ygNrKlIJFDk770ry5bkcf3XsRg==",
+  "success": true,
+  "projectFilePath": "D:\\Documents\\Projects\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.3\\microsoft.aspnetcore.mvc.razor.extensions.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\3.1.3\\microsoft.aspnetcore.mvc.razor.runtimecompilation.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\3.1.3\\microsoft.aspnetcore.razor.language.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\2.9.3\\microsoft.codeanalysis.analyzers.2.9.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.codeanalysis.common\\3.3.0\\microsoft.codeanalysis.common.3.3.0.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.codeanalysis.csharp\\3.3.0\\microsoft.codeanalysis.csharp.3.3.0.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.codeanalysis.razor\\3.1.3\\microsoft.codeanalysis.razor.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.3\\microsoft.extensions.dependencyinjection.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.3\\microsoft.extensions.dependencyinjection.abstractions.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.3\\microsoft.extensions.dependencymodel.3.1.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.collections.immutable\\1.5.0\\system.collections.immutable.1.5.0.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.text.json\\4.7.1\\system.text.json.4.7.1.nupkg.sha512",
+    "C:\\Users\\Damilare\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.3\\system.threading.tasks.extensions.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        font-size: 17px;
+    }
+
+    .contents {
+/*        background: rgba(208,240,192,.8);*/       
+        background: rgba(248, 222, 126,.6);
+        color: black;
+        min-height: 100% !important;
+    }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+        max-width: 350px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+        perspective: 1000px;
+        background-color: rgba(0, 78, 56);
+        color: lightgray;
+        border-radius: 5px;
+    }
+
+        .card img {
+            border-radius: 50%;
+            /*border: 2px solid #73AD21;*/
+        }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+</style>
+
+<body style="        background: url('/Images/lpp4.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        overflow-y: scroll;">
+
+    <div class="contents">
+        @*<div>*@
+
+        <div class="container text-center">
+            <br />
+            <br />
+            <br />
+            <img src="~/Images/dpr_logo.png" style="height:150px; padding:1px; " />
+
+            <br />
+            <div class="text-center" style="font-size: x-large; font-weight: bold;">
+                Crude Oil and Gas Terminal Export Portal
+            </div>
+            <div class="text-center">
+                (COGATEX)
+            </div>
+
+            <br />
+            <br />
+            <div class="row">
+                <div class="text-center col-sm-12">
+                    <div class="col-md-6" style="float: left;">
+                        <div class="card" style="padding: 20px 5px 20px 5px;">
+                            <span style="margin-left: 15px;">
+                                <img src="@Url.Content("~/Images/Oil-PNG.png")" style="width:20%;">
+                            </span>
+                            <div class="container">
+                                <p><h3><b>Crude Oil Export</b></h3> (COTEX)</p>
+                                
+                                <p class="card-text">Click button below to get started</p>
+                                <p>
+                                    <a href="https://cotex.dpr.gov.ng/" data-id="1" type="button" class="btn btn-warning round">Get Started</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="float: right">
+                        <div class="card" style=" padding: 20px 5px 20px 5px;">
+                            <span style="margin-left: 15px;">
+                                <img src="@Url.Content("~/Images/gaslogo.png")" style="width:40%">
+                            </span>
+                            <div class="container">
+                                    
+                                <p><h3><b>Gas Terminal Export</b></h3> (GATEX)</p>
+                                <p class="card-text">Use for the application of Gas Export</p>
+                                <p>
+                                    <a href="https://gatex.dpr.gov.ng/" data-id="2" class="btn btn-warning round">Get Started</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <span style="font-weight: bold;">&copy; @DateTime.Now.Year. All Rights Reserved - Department of Petroleum Resources. </span>
+        </div>
+    </div>
+
+</body>
+
