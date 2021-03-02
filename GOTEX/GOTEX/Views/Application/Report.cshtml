@@ -1,0 +1,43 @@
+﻿@model List<Application>
+
+@{
+    ViewBag.Title = "All Approved Applications";
+    int count = 0;
+}
+
+<center>
+    <div class="card" style="padding: 1em; margin-top: 2em;">
+        <table class="table table-bordered dataTable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Company</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>F.O.B Value (USD)</th>
+                <th>Export Terminal</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var app in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@app.User.Company.Name</td>
+                    <td>@app.Product.Name</td>
+                    <td>@app.Quantity</td>
+                    <td>@app.Fee.ToString("$ #,###,##0.00")</td>
+                    <td>@app.Terminal.Name</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</center>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.dataTable').DataTable();
+    });
+</script>

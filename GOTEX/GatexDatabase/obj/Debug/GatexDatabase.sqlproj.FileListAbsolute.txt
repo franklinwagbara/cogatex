@@ -1,0 +1,10 @@
+D:\Documents\Projects\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dacpac
+D:\Documents\Projects\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dll
+D:\Documents\Projects\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.pdb
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.sqlprojAssemblyReference.cache
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\Model.xml
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\refactor.xml
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
+D:\Documents\Projects\GOTEX\GatexDatabase\obj\Debug\predeploy.sql

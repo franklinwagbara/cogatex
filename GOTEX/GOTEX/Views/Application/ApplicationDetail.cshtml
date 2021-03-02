@@ -1,0 +1,412 @@
+﻿@model Application
+@inject IAppHistory<ApplicationHistory> _history
+@inject IApplication<Application> _application
+
+@{
+    ViewBag.Title = "Application details for  " + Model.ApplicationType.Name + " Phase: " + Model.ApplicationType.ShortName + " Permit";
+    string alertx = string.Empty;
+    int cnt = 0;
+    int count = 0;
+    var AppDocs = (List<DocumentType>)ViewBag.ApplicationDocs;
+    
+    if (Model.Status.ToLower() == "approved" || Model.Status.ToLower() == "completed") { alertx = "label-success"; }
+    else if (Model.Status.ToLower() == "processing" || Model.Status.ToLower() == "payment confirmed") { alertx = "label-info"; }
+    else if (Model.Status.ToLower() == "pending" || Model.Status.ToLower() == "payment pending") { alertx = "label-warning"; }
+    else { alertx = "label-danger"; }
+}
+
+<center>
+
+    @if (ViewData["AppSubmit"] != null)
+    {
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>Application Info!</strong> @ViewData["AppSubmit"]t
+            </div>
+        </div>
+    }
+    <div class="row box-shadow">
+        <div style="padding: 1em 0.5em 5em 0.5em; color: yellow;background-color: green;">
+            <span style="float: left;">
+                <h2>Application Information: Reference No:- @Model.Reference</h2>
+            </span>
+            <span style="float: right;"><a href="#" class="btn btn-primary"><i class="fa fa-backward">Back</i></a></span>
+        </div>
+    <hr/>
+    @if (ViewData["AppSubmit"] != null)
+        {
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <strong>Application Info!</strong> @ViewData["AppSubmit"]
+                </div>
+            </div>
+        }
+        <div class="col-md-12">
+            <div class="x-panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <table class="table table-striped">
+                                <tr>
+                                    <td>
+                                        <b>Company Name</b>
+                                    </td>
+                                    <td>@Model.User.Company.Name</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Category</b></td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ApplicationType.FullName)
+                                        (@Model.ApplicationType.Name)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Application Type</b></td>
+                                    <td><span class="label label-warning">@Html.DisplayFor(model => model.ApplicationType.Name)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Year</b></td>
+                                    <td>@Html.DisplayFor(model => model.Year)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Fee Payable</b></td>
+                                    <td>@Model.Fee.ToString("$ ###,##0.00")</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Service Charge</b></td>
+                                    <td>@Model.ServiceCharge.ToString("$ ###,##0.00")</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total Amount Due</b></td>
+                                    <td>
+                                        @{var amt = Model.Fee + Model.ServiceCharge;}
+                                        @amt.ToString("$ ###,##0.00")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(model => model.Status)</b></td>
+                                    <td><span class="label @alertx">@Html.DisplayFor(model => model.Status)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Date Applied</b></td>
+                                    <td>@Model.Date.ToLongDateString()</td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" style="padding-top: 10px;"><b>Quarter</b></td>
+                                    <td>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                @Model.Quarter.Name
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                                    
+                                <tr>
+                                    <td valign="top" style="padding-top: 10px;"><b>Terminal(Port of Export)</b></td>
+                                    <td>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                @Model.Terminal.Name
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                                    
+                                <tr>
+                                    <td valign="top" style="padding-top: 10px;"><b>Quantity</b></td>
+                                    <td>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                @if (Model.ApplicationTypeId == 3)
+                                                {
+                                                    <span> @Model.Quantity.ToString("N2") @Model.GasStream of @Model.Product.Name (Supplementary)</span>
+                                                }
+                                                else
+                                                {
+                                                    <span> @Model.Quantity.ToString("N2") @Model.GasStream of @Model.Product.Name</span>
+                                                }
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                                    
+                                <tr>
+                                    <td valign="top" style="padding-top: 10px;"><b>Estimated Price</b></td>
+                                    <td>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">@Model.ProductAmount.ToString("N2")</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                                    
+                                <tr>
+                                    <td valign="top"><b>Attached Documents</b></td>
+                                    <td>
+                                        <div class="list-group doc-list">
+                                            @if (AppDocs.Count > 0)
+                                            {
+                                                foreach (var item in AppDocs)
+                                                {
+                                                    if (!string.IsNullOrEmpty(item.Source) && item.Source.ToLower().EndsWith(".pdf"))
+                                                    {
+                                                        <a href="@item.Source" target="_blank" class="list-group-item">
+                                                            @if (item.Name.ToLower() == "other document")
+                                                            {
+                                                                @item.Document_Name <i class="fa fa-file-pdf-o"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                @item.Name <i class="fa fa-file-pdf-o"></i>
+                                                            }
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="list-group-item zPix" href="@item.Source" target="_blank">
+                                                            @if (item.Name.ToLower() == "other document")
+                                                            {
+                                                                @item.Document_Name <i class="glyphicon glyphicon-picture"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                @item.Name <i class="glyphicon glyphicon-picture"></i>
+                                                            }
+                                                        </a>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <h4>No document(s) submitted for this Application yet</h4>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class=" col-md-6">
+                        @if (!User.IsInRole("Company"))
+                        {
+                            <div class="">
+                                <div>
+                                    <table class="table table-striped" style="width: 100%;">
+                                        <tr>
+                                            <td><b>Received from</b></td>
+                                            <td>@GetHistory(Model.Id, Model.StageId).CurrentUser</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Received Date</b></td>
+                                            <td>@GetHistory(Model.Id, Model.StageId).DateAssigned.ToString("MMMM dd, yyyy")</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Current Desk</b></td>
+                                            <td>@Model.LastAssignedUserId</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Received Office</b></td>
+                                            <td>Head Office</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Last Message</b></td>
+                                            <td>@GetHistory(Model.Id, Model.StageId).Comment</td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+
+                            <hr class="marg50"/>
+                        }
+                        <div class="pad">
+                            <table class="table table-striped">
+                                @{
+                                    var payment = _application.FindById(Model.Id);
+                                    if (payment != null)
+                                    {
+                                        <tr>
+                                            <th colspan="2" class="txtcenter">Payment Evidence Detail</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Bank Reference</td>
+                                            <td>@payment.PaymentEvidence?.ReferenceCode</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Multiple Refernce Code</td>
+                                            <td class="text-wrap">@payment.PaymentEvidence?.HashCode</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amount paid ($)</td>
+                                            <td>@payment.PaymentEvidence?.Amount.ToString("N2")</td>
+                                        </tr>
+                                        <tr>
+                                            <td>No of apps. paid for</td>
+                                            <td>@payment.PaymentEvidence.ApplicationQuantity</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Count of usage</td>
+                                            <td>@payment.PaymentEvidence.UsageCount</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Description</td>
+                                            <td>@payment.PaymentEvidence?.Description</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="2">Payment evidence not available</td>
+                                        </tr>
+                                    }
+                                }
+                                
+                            </table>
+                        </div>
+                        <hr />
+                        <div class="pad">
+                            <div class="panel panel-info">
+                                <div class="panel-heading" style="padding-top: 1.5em; padding-bottom: 1.5em;">
+                                    <p class="panel-title" style=" color: #ffffff !important;">Application History (Last 5)</p>
+                                </div>
+                                <table class="table table-striped">
+
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                    @foreach (var item in ViewBag.History)
+                                    {
+                                        cnt++;
+                                        <tr>
+                                            <td>@cnt</td>
+                                            <td>@DisableBox(item.DateAssigned)</td>
+                                            <td>@item.Comment</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="3">
+                                            <a href="#" data-toggle="modal" data-target="#modalHistory">See all History</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            
+        @if (Model.Status.Equals(ApplicationStatus.Rejected))
+        {
+            <div>
+                <a class="btn btn-sm btn-warning" href="/Application/Resubmit/@Model.Id">Continue</a>
+            </div>
+        }
+    </div>
+</center>
+
+<div class="modal" role="dialog" tabindex="-1" id="modalHistory" style="margin-bottom: 5em;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title btn btn-primary col-md-4">History Detail</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Action</td>
+                        <td>Comment</td>
+                        <td>Treated By</td>
+                        <td>Date Assigned</td>
+                        @* <td>Date Treated</td> *@
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var history in GetApplicationHistory(Model.Id))
+                    {
+                        count++;
+                        <tr>
+                            <td>@count</td>
+                            <td>@history.Action</td>
+                            <td>@history.Comment</td>
+                            <td>@history.CurrentUser</td>
+                            <td>@history.DateAssigned</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions{
+    private string DisableBox(DateTime date)
+    {
+        var diff = DateTime.UtcNow.AddHours(1) - date;
+        if (diff.Days >= 7)
+        {
+            var weeks = (int)(diff.Days / 7);
+
+            if (weeks > 1)
+            {
+                return weeks.ToString() + " weeks ago";
+            }
+            else // if (weeks == 1)
+            {
+                return weeks.ToString() + " week ago";
+            }
+        }
+        else if (diff.Days >= 1)
+        {
+            if (diff.Days > 1)
+            {
+                return diff.Days.ToString() + " days ago";
+            }
+            else //if (diff.Days == 1)
+            {
+                return "Yesterday";
+            }
+        }
+        else if (diff.Hours >= 1)
+        {
+            if (diff.Hours > 1)
+            {
+                return diff.Hours.ToString() + " Hours ago";
+            }
+            else //if (diff.Hours == 1)
+            {
+                return diff.Hours.ToString() + " Hour ago";
+            }
+        }
+        else
+        {
+            return diff.Minutes.ToString() + " Minutes ago";
+        }    
+    }
+    
+    private ApplicationHistory GetHistory(int id, int wkflowid)
+    {
+        var history = _history.GetApplicationHistoriesById( id)
+            .Where(x => 
+                x.ApplicationId == id && x.WorkFlowId == wkflowid )
+            .OrderByDescending(x => x.Id).FirstOrDefault();
+        return history;
+    }
+
+    private List<ApplicationHistory> GetApplicationHistory(int id) => _history.GetApplicationHistoriesById(id).OrderByDescending(x => x.DateAssigned).ToList();
+
+}

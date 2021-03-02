@@ -1,0 +1,257 @@
+﻿@using Microsoft.EntityFrameworkCore
+@model DashboardViewModel
+@inject UserManager<ApplicationUser> _userManager
+
+@{
+    ViewBag.Title = "Company Dashboard";
+}
+
+<div class="row xrow">
+    <div class="col-md-12" style="background-color: green; color: white;">
+        <div class="pad-t">
+            <div class="col-md-3">
+                <div class="welcome">
+                    <h4>WELCOME</h4>
+                    <h2 class="text-wrap">@GetCompanyName(User.Identity.Name)</h2>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-3 dTile">
+                    <div class="tileHead">
+                        <h1 id="expiringCount">@Model.MyDesk</h1>
+                    </div>
+                    <div class="tileBase">
+                        <p>My Desk</p>
+                    </div>
+                </div>
+                <div class="col-md-3 dTile">
+                    <div class="tileHead">
+                        <h1 id="applicationsCount">@Model.All</h1>
+                    </div>
+                    <div class="tileBase">
+                        <p>Total Application(s)</p>
+                    </div>
+                </div>
+                <div class="col-md-3 dTile">
+                    <div class="tileHead">
+                        <h1 id="processingCount">@Model.Processing</h1>
+                    </div>
+                    <div class="tileBase">
+                        <p>Application(s) being Processed</p>
+                    </div>
+                </div>
+                <div class="col-md-3 dTile">
+                    <div class="tileHead">
+                        <h1 id="totalCount">@Model.Approved</h1>
+                    </div>
+                    <div class="tileBase">
+                        <p>All Approved Forms</p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="padd-s">
+            <div class="btn-group btn-group-lg btn-group-justified">
+                <a class="btn btn-success round" role="button" href="@Url.Action("Index", "Application")"><i class="fa fa-book  fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Apply For Approval(s)</a>
+                <a class="btn btn-primary round" role="button" href="@Url.Action("CompanyProfile", "DashBoard")"><i class="fa fa-building fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Company Profile</a>
+                <a class="btn btn-default round" role="button" href="@Url.Action("DocumentLibrary")"><i class="fa fa-folder-open fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Company Documents</a>
+                <a class="btn btn-warning round" role="button" href="@Url.Action("Permits")"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;View Approved Forms</a>
+            </div>
+        </div>
+    </div>
+    <hr style="margin: 0 0 20px 0; padding: 0;" />
+<div class="modal fade" id="modalPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<div>
+    @if (Model.Messages.Count > 0 && Model.Messages
+        .OrderByDescending(x => x.Id)
+        .FirstOrDefault(y => !y.IsRead) != null)
+    {
+        <div class="alert alert-warning alert-dismissable">
+            <span class="glyphicon glyphicon-exclamation-sign"></span> 
+            You have a new message that is unread!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                
+        </div>
+    }
+</div>
+</div>
+    <div id="coverScreen" class="LockOn" style="display: none;"></div>
+    <div class="row xrow" style="">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Recent Notifications</h3>
+                </div>
+                <div class="col-md-12">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Messages)
+                        {
+                            <tr>
+                            <td>
+                                @if (item.IsRead)
+                                {
+                                    <a 
+                                        href="#" 
+                                        data-toggle="modal"
+                                        data-id="@item.Id"
+                                        data-target="#msgModal" 
+                                        data-title="@item.Subject" 
+                                        data-message="@item.Content"
+                                        id="msgmodal"
+                                        aria-expanded="False" class="msgmodal">
+                                        <i class="fa fa-inbox gray"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    
+                                    <a 
+                                        href="#" 
+                                        data-toggle="modal"
+                                        data-id="@item.Id"
+                                        data-target="#msgModal" 
+                                        data-title="@item.Subject" 
+                                        data-message="@item.Content"
+                                        id="msgmodal"
+                                        aria-expanded="False" class="msgmodal">
+                                        <i class="fa fa-inbox"></i>
+                                    </a>
+                                }
+                            </td>
+                            <td style=" text-align: left;">
+                               @item.Subject
+                            </td>
+                            <td style=" text-align: left;">
+                                @{
+                                    var diff = DateTime.Now - item.Date;
+                                    if (diff.Days >= 7)
+                                    {
+                                        var weeks = (int) (diff.Days / 7);
+
+                                        if (weeks > 1)
+                                        {
+                                            <span>@weeks weeks ago</span>
+                                        }
+                                        else if (weeks == 1)
+                                        {
+                                            <span>@weeks week ago</span>
+                                        }
+                                    }
+                                    else if (diff.Days >= 1)
+                                    {
+                                        if (diff.Days > 1)
+                                        {
+                                            <span>@diff.Days days ago</span>
+                                        }
+                                        else if (diff.Days == 1)
+                                        {
+                                            <span>Yesterday</span>
+                                        }
+                                    }
+                                    else if (diff.Hours >= 1)
+                                    {
+                                        if (diff.Hours > 1)
+                                        {
+                                            <span>@diff.Hours Hours ago</span>
+                                        }
+                                        else if (diff.Hours == 1)
+                                        {
+                                            <span>@diff.Hours Hour ago</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span>@diff.Minutes Minutes ago</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        }
+                        @if (Model.Messages.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="4" style=" text-align: center;">No messages</td>
+                            </tr>
+                        }
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="4"><a href="/Application/Messages">View all Message(s)</a></td>
+                        </tr>
+                        </tfoot>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div>
+                <div id="mobSwitch"></div>
+                <h4 class="pad-t">Need Help?</h4>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        Enquiry
+                    </a>
+                    <a href="#" class="list-group-item">FAQs</a>
+                    <a href="#" class="list-group-item">Video Guide</a>
+                    <a href="#" class="list-group-item">Live Chat</a>
+                    <a href="#" class="list-group-item">Guide Lines</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" role="dialog" tabindex="-1" id="msgModal">
+        <div class="modal-dialog" style="width: fit-content !important;" role="document">
+            <div class="modal-content">
+                <div class="modal-body" id="modalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@functions
+{
+    private string GetCompanyName(string email)
+    {
+        var user = _userManager.Users.Include("Company").FirstOrDefault(x => x.Email.Equals(email));
+        return user.Company.Name.ToUpper();
+    }
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function (){
+        $(".msgmodal").click(function (e){
+            e.preventDefault();
+            var msg = $(this).data('message');
+            $("#modalBody").html(msg);
+            $("#modalTitle").html($(this).data('title'));
+            $("#msgModal").show();
+            
+            $.get('/Application/ReadMessage/' + $(this).data('id'));
+        });
+    });
+</script>

@@ -1,0 +1,49 @@
+﻿<!Doctype html>
+<html>
+<partial name="Header" />
+
+<body class="fix-header fix-sidebar" id="bod">
+
+@*@ViewBag.BodyClass*@
+    
+
+<!-- Preloader - style you can find in spinners.css -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+</div>
+<!-- Main wrapper  -->
+<div id="main-wrapper" >
+    <div  >
+
+        <!-- header header  -->
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <partial name="SideBar" />
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <div class="container-main">
+                <div class="main-body">
+                    <!-- Start Page Content -->
+                    @RenderBody()
+                    <!-- End PAge Content -->
+                </div>
+            </div>
+            <!-- End Container fluid  -->
+        </div>
+    </div>
+    <!-- End Page wrapper  -->
+</div>
+<!-- End Wrapper -->
+@RenderSection("Scripts", required: false)
+
+</body>
+        <!-- footer -->
+
+
+        <partial name="Footer" />
+        <!-- End footer -->
+</html>
+

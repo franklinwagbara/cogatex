@@ -1,0 +1,54 @@
+﻿@inject RoleManager<ApplicationRole> _roleManager
+@inject UserManager<ApplicationUser> _userManager
+<div class="left-sidebar" style="background: #001a33;" id="SB" >
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar" >
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav" >
+            <ul>
+                <li class="text-center">
+                    <div style="font-size: x-large; font-weight: bolder; margin-bottom: 1em; margin-top: 1em; color: #3affff; ">
+                        <i class="fa fa-user"></i> @GetUserDisplayRoleName(User.Identity.Name).ToUpper()
+                    </div>
+                </li>
+                <hr/>
+                <li class="nav-devider"></li>
+                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT"))
+                {
+                    <li class="nav-label"> Dashboard </li>
+
+                    <li class="">
+                        <a class="" href="@Url.Action("Index", "Dashboard")" aria-expanded="false">
+                            <i class="fas fa-tachometer-alt text-warning"></i><span class="hide-menu"> Dashboard </span>
+                        </a>
+
+                    </li>
+
+                    <hr/>
+                    
+                }
+                @if (!User.IsInRole("Company"))
+                {
+                    <partial name="_AdminSideBar"/>
+                }
+
+            </ul>
+            <br />
+
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</div>
+@functions
+{
+    private string GetUserDisplayRoleName(string email)
+    {
+        var user = _userManager.FindByEmailAsync(email).Result;
+        var userrole =  _userManager.GetRolesAsync(user).Result;
+        
+        var role =  _roleManager.FindByNameAsync(userrole.FirstOrDefault()).Result;
+
+        return role.DisplayName;
+    }
+}

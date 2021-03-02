@@ -1,0 +1,75 @@
+﻿@model List<Application>
+@{
+    ViewBag.Title = "My Desk";
+    int count = 0;
+}
+
+<center>
+    <div class="card" style="padding: 1em;">
+        <h2>Application(s) on my Desk</h2>
+        @if (ViewBag.Message != null)
+        {
+            <div class="col-md-12">
+                <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <strong>Application Error!</strong> @ViewBag.Message
+                </div>
+            </div>
+        }
+        <table class="table table-striped dataTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Company Name</th>
+                    <th>Reference</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Date Applied</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var app in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@app.User.Company.Name</td>
+                        <td>@app.Reference</td>
+                        <td>@app.Product.Name</td>
+                        <td>@app.Status</td>
+                        <td>@app.Date.ToLongDateString()</td>
+                        <td>
+                            @if (app.Status.Equals(ApplicationStatus.Rejected))
+                            {
+                                <a class="btn btn-sm btn-warning" href="/Application/UploadApplicationDocuments/@app.Id">Re-submit</a>
+                            }
+                            else if(app.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
+                            {
+                                <a class="btn btn-sm btn-warning" href="/Application/UploadApplicationDocuments/@app.Id">Re-submit Payment</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</center>
+
+@section scripts{
+    <!-- Datatables -->
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    
+    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+    <script src="~/ela/js/dataTables.checkboxes.min.js"></script>
+    <script src="~/ela/js/dataTables.min.js"></script>
+    @* Jquery data table scripts *@
+    <script src="~/ela/js/dataTables.buttons.min.js"></script>
+    <script>
+        $(document).ready(function() { 
+            $('.dataTable').DataTable({
+                "order": [[5, "desc"]]
+            }); 
+        });  
+    </script>
+}

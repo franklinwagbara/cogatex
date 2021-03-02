@@ -1,0 +1,166 @@
+﻿@inject UserManager<ApplicationUser> _userManager
+@inject IRepository<Message> _message;
+<!---AM Charts -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/moonrisekingdom.js"></script>
+    <script src="https://www.amcharts.com/lib/4/plugins/forceDirected.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/spiritedaway.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/kelly.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/frozen.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/images/coa.png">
+    <title>GATEX | @ViewData["Title"] </title>
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/ela/ela/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+
+    <link href="~/ela/ela/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/ela/lib/semanticui/dist/semantic.css" />
+
+
+    <link href="~/ela/ela/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="~/ela/ela/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/ela/ela/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/ela/ela/css/helper.css" rel="stylesheet" />
+    <link href="~/ela/ela/css/style.css" rel="stylesheet" />
+    <link href="~/Content/otherStyle.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/ela/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" href="~/ela/css/dataTables.min.css" />
+    <link rel="stylesheet" href="~/ela/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" />
+
+    <link rel="stylesheet" href="~/ela/css/LightTheme.css" />
+
+
+    <link rel="stylesheet" href="~/ela/css/dataTables.checkboxes.css" />
+    <link rel="stylesheet" href="~/ela/css/jquery.datetimepicker.min.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/solid.css" integrity="sha384-+0VIRx+yz1WBcCTXBkVQYIBVNEFH1eP6Zknm16roZCyeNg2maWEpk/l/KsyFKs7G" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/regular.css" integrity="sha384-aubIA90W7NxJ+Ly4QHAqo1JBSwQ0jejV75iHhj59KRwVjLVHjuhS3LkDAoa/ltO4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/brands.css" integrity="sha384-1KLgFVb/gHrlDGLFPgMbeedi6tQBLcWvyNUN+YKXbD7ZFbjX6BLpMDf0PJ32XJfX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/fontawesome.css" integrity="sha384-jLuaxTTBR42U2qJ/pm4JRouHkEDHkVqH0T1nyQXn1mZ7Snycpf6Rl25VBNthU4z0" crossorigin="anonymous">
+
+    <link href="~/ela/ela/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <style>
+        .header {
+            background-color: #001a33 !important;
+        }
+ 
+        .modal-body{
+    max-height: 550px;
+    overflow-y: auto;
+}      
+               .efooter {
+    left: 600px; 
+    position: relative;
+    bottom: 0 !important;
+    width: 100%;
+}
+               .fadd {min-height:600px !important}
+
+    h1 { font-family:'Times New Roman', Times, serif; margin-top:0px }
+
+
+    </style>
+<div class="header">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            <!-- Logo -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Staffs/Dashboard">
+                    <!-- Logo icon -->
+                   <img src="~/Images/coat-of-arm.jpg" style="max-height: 40px !important; border-radius: 5px;" alt="COGATEX" class="dark-logo" id="logo" />
+                    <span style="font-size: x-large; font-weight: bold; color: white;">GATEX</span>
+                </a>
+            </div>
+            <!-- End Logo -->
+            <div class="navbar-collapse">
+                <!-- toggle and nav items -->
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <!-- This is  -->
+                    <li class="nav-item m-l-10" id="expandtoggler"> <a class="nav-link hidden-sm-down text-muted " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                    <li class="nav-item m-l-10" id="hidetogger"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    <!-- Messages -->
+
+                </ul>
+                <!-- User profile and search -->
+                <ul class="navbar-nav my-lg-0">
+                    <!-- Messages Dropdown Menu -->
+                    <!-- Notifications Dropdown Menu -->
+                    <li class="nav-item dropdown"  >
+
+                    </li>
+
+                    <!-- Search -->
+                    <li class="nav-item hidden-sm-down search-box">
+                        <a class="nav-link hidden-sm-down text-muted  " href="/Application/Messages">
+                            <i class="fa fa-bell text-warning"><small><p style="margin-left: 10px; margin-top: -7px;">@GetNotifications()</p></small></i>
+                            
+                        </a>
+                    </li>
+                    @* <li class="nav-item dropdown"> *@
+                    @*     <a  *@
+                    @*         class="nav-link" *@
+                    @*         href="https://cotex.dpr.gov.ng/account/alogin?email=@User.Identity.Name" *@
+                    @*         style="color: white; font-weight: bold; font-size: large;">COTEX <i class="fa fa-arrow-circle-right"></i></a> *@
+                    @* </li> *@
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <b class="text-primary"> <small>Welcome -</small> <span class="text-warning">@_userManager.FindByNameAsync(User.Identity.Name).Result.FirstName @_userManager.FindByNameAsync(User.Identity.Name).Result.LastName</span> </b>
+                            <img src="~/ela/images/Avarta/Advatar1.png" alt="user" class="profile-pic" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                            <ul class="dropdown-user">
+                                <li> <a href="/Account/ChangePassword"> <i class="fa fa-key"></i> Change Password</a></li>
+                                <li><a href="/Account/LogOff"><i class="fa fa-power-off"></i> Logout</a></li>
+
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+@functions{
+    private int GetNotifications()
+    {
+        var user = _userManager.FindByEmailAsync(User.Identity.Name).Result;
+        if (user != null)
+            return _message.GetListByUserId(user.Id).Where(x => !x.IsRead).ToList().Count;
+        
+        return 0;
+    }
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function (){
+        $("#expandtoggler").hide();
+    $(".sidebartoggler").click(function (e){
+        $("#logo").attr('src', '/images/coat-of-arm.jpg');
+        $("#hidetogger").hide();
+        $("#expandtoggler").show();
+    });
+    $("#expandtoggler").click(function(e){
+        $("#logo").attr('src', '/Images/coat-of-arm.jpg');
+        $("#hidetogger").show();
+        $("#expandtoggler").hide();
+    });
+});
+</script>

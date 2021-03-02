@@ -1,0 +1,83 @@
+﻿@model List<Permit>
+@{
+    ViewBag.Title = "Approvals";
+    int count = 0;
+    
+    var now = DateTime.UtcNow.AddHours(1);
+}
+    <div class="card">
+        <div style="background-color: green; color: yellow;padding: 1em;">
+            <h2>
+                Approved Application Forms
+            </h2>
+        </div>
+        <hr/>
+        <table class="table table-striped dataTable">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    Application Number
+                </th>
+                <th>
+                    Application Id
+                </th>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Date Approved
+                </th>
+                <th>
+                    Expiry Date
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                var check = item.ExpiryDate.AddDays(-30);
+                string color = string.Empty;
+
+                if (item.ExpiryDate < now)
+                {
+                    color = "danger";
+                }
+                else if (check <= now)
+                {
+                    color = "warning";
+                }
+                count++;
+
+                <tr class="@color">
+                    <td>@count</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PermitNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LicenseName)
+                    </td>
+                    <td>
+                        @item.DateIssued.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.ExpiryDate.ToShortDateString()
+                    </td>
+                    <td class="txtright">
+                        <a href="/Application/License/@item.Id" target="_blank" class="btn btn-sm btn-primary">View</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.dataTable').DataTable();
+    });
+</script>

@@ -1,0 +1,54 @@
+﻿@model List<ApplicationHistory>
+
+@{
+    ViewBag.Title = "Application History";
+    int counter = 0;
+}
+<div class="card">
+    <div style="background-color: green; color: yellow; padding: 1em;"><h2>@ViewBag.Title for @ViewData["AppId"]</h2></div>
+    <hr/>
+    @if (ViewData["Message"] != null)
+    {
+        <div class="alert alert-info alert-dismissable txtcenter">
+            <span class="glyphicon glyphicon-exclamation-sign"></span> 
+            @ViewData["Message"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                
+        </div>
+    }
+    <table class="table table-striped dataTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Action Date</th>
+            <th>
+                Action
+            </th>
+            <th>Comment/Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            counter++;
+            <tr>
+                <td>
+                    @counter
+                </td>
+                <td>
+                    @item.DateAssigned.Date.ToLongDateString()
+                </td>
+                <td>
+                    @item.Action
+                </td>
+        
+                <td>
+                    @item.Comment
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

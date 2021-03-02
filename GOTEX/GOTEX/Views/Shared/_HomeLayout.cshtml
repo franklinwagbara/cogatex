@@ -1,0 +1,106 @@
+@inject UserManager<ApplicationUser> _userManager
+@inject SignInManager<ApplicationUser> _SignInManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - DPR GAS TERMINAL EXPORT PORTAL (GATEX)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>COGATEX | @ViewData["Title"] </title>
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Images/coat-of-arm.jpg">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+          asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+  
+    <link rel="shortcut-icon" type="image/x-icon" href="~/images/coat-of-arm.jpg">
+    <link href="~/Content/MainStyle.css" rel="stylesheet"/>
+    <link href="~/Content/OtherStyle.less" rel="stylesheet"/>
+    <style>
+        .flash {
+                    border: 2px solid #e32424;
+                    border-radius: 5px;
+                    animation: pulse 2s infinite;
+                }
+    </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top shadow">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+                <img src="@Url.Content("/Images/coat-of-arm.jpg")" alt="DPR Export Permit" class="img-circle">&nbsp;<span class="img-title"  style="float: right;">DPR GAS TERMINAL EXPORT PORTAL (GATEX)</span>
+            </a>
+        </div>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://ems.dpr.gov.ng/Tickets/New" target="_blank" class="flash">Complain/Enquiries</a>
+                    </li> 
+                </ul>
+            </div>
+        }
+        
+    </div>
+</div>
+
+<div class="container" id="main">
+        @RenderBody()
+    </div>
+
+    <div class="">
+        <hr style="margin:10px;padding:0px;">
+
+        <div style="margin-top:0px; text-align:center;" class="container">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <p>Copyright &copy; @DateTime.Now.Year. The Department of Petroleum Resources (DPR) Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel" class="modal-title">Modal header</h3>
+                </div>
+                <div id="modalBody">
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+     <script src="~/lib/semanticui/dist/semantic.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script type="text/javascript">
+    function add_chatinline() { var hccid = 89311022; var nt = document.createElement("script"); nt.async = true; nt.src = "https://mylivechat.com/chatinline.aspx?hccid=" + hccid; var ct = document.getElementsByTagName("script")[0]; ct.parentNode.insertBefore(nt, ct); }
+    add_chatinline();
+</script>

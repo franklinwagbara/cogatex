@@ -1,0 +1,71 @@
+﻿@{
+   ViewBag.Title = "Export Type";
+}
+
+<div class="row">
+    <div class="pageTitle bg1">
+        <h3 class="lefty">Select @ViewBag.Title</h3>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 txtcenter">
+        <div class="col-sm-6">
+            <div class="card">
+                <img src="@Url.Content("~/Images/Oil-PNG.png")" style="width:25%">
+                <div class="container">
+                    <h2><b>Crude Oil </b></h2>
+                    <p class="card-text">Use for the application of Crude Oil Export</p>
+                    <p>
+                        <a href="https://cotex.dpr.gov.ng/account/alogin?email=@User.Identity.Name" data-id="1" type="button" class="btn btn-info round">Apply</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <img src="@Url.Content("~/Images/lpgp.jpg")" style="width:40%">
+                <div class="container">
+                    <h2><b>Gas </b></h2>
+                    <p class="card-text">Use for the application of Gas Export</p>
+                    <p>
+                        <a href="@Url.Action("Index", "Application")" data-id="2" class="btn btn-warning round">Apply</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+        perspective: 1000px;
+    }
+
+        .card img {
+            border-radius: 50%;
+            border: 2px solid #73AD21;
+        }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+
+    .spinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px; /* half width of the spinner gif */
+        margin-top: -50px; /* half height of the spinner gif */
+        text-align: center;
+        z-index: 1234;
+        overflow: auto;
+        width: 100px; /* width of the spinner gif */
+        height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+    }
+</style>

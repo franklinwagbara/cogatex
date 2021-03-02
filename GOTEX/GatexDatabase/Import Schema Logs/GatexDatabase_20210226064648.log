@@ -1,0 +1,84 @@
+2/26/2021 7:46:48 AM	This log contains information about the import schema operation into project 'GatexDatabase' on computer 'BRANDONETECH' by user 'Damilare'.
+2/26/2021 7:46:48 AM	Import of database schema has started.
+2/26/2021 7:47:00 AM	Gathering database credentials
+2/26/2021 7:47:00 AM	Gathering database options
+2/26/2021 7:47:00 AM	Gathering users
+2/26/2021 7:47:00 AM	Gathering roles
+2/26/2021 7:47:00 AM	Gathering application roles
+2/26/2021 7:47:00 AM	Gathering role memberships
+2/26/2021 7:47:00 AM	Gathering filegroups
+2/26/2021 7:47:00 AM	Gathering full-text catalogs
+2/26/2021 7:47:00 AM	Gathering assemblies
+2/26/2021 7:47:00 AM	Gathering certificates
+2/26/2021 7:47:00 AM	Gathering asymmetric keys
+2/26/2021 7:47:00 AM	Gathering symmetric keys
+2/26/2021 7:47:00 AM	Gathering encrypted symmetric keys
+2/26/2021 7:47:00 AM	Gathering schemas
+2/26/2021 7:47:00 AM	Gathering XML schema collections
+2/26/2021 7:47:00 AM	Gathering user-defined data types
+2/26/2021 7:47:00 AM	Gathering user-defined types
+2/26/2021 7:47:00 AM	Gathering table types
+2/26/2021 7:47:00 AM	Gathering unique keys for table types
+2/26/2021 7:47:00 AM	Gathering primary keys for table types
+2/26/2021 7:47:00 AM	Gathering indexes for table types
+2/26/2021 7:47:00 AM	Gathering check constraints for table types
+2/26/2021 7:47:00 AM	Gathering default constraints for table types
+2/26/2021 7:47:00 AM	Gathering partition functions
+2/26/2021 7:47:00 AM	Gathering partition schemes
+2/26/2021 7:47:00 AM	Gathering functions
+2/26/2021 7:47:00 AM	Gathering encrypted functions
+2/26/2021 7:47:00 AM	Gathering aggregates
+2/26/2021 7:47:01 AM	Gathering procedures
+2/26/2021 7:47:01 AM	Gathering encrypted procedures
+2/26/2021 7:47:01 AM	Gathering tables
+2/26/2021 7:47:01 AM	Gathering primary keys
+2/26/2021 7:47:01 AM	Gathering unique constraints
+2/26/2021 7:47:01 AM	Gathering foreign keys
+2/26/2021 7:47:01 AM	Gathering default constraints
+2/26/2021 7:47:01 AM	Gathering check constraints
+2/26/2021 7:47:01 AM	Gathering views
+2/26/2021 7:47:01 AM	Gathering encrypted views
+2/26/2021 7:47:01 AM	Gathering indexes
+2/26/2021 7:47:01 AM	Gathering statistics
+2/26/2021 7:47:01 AM	Gathering full-text index stoplists
+2/26/2021 7:47:01 AM	Gathering search property lists
+2/26/2021 7:47:01 AM	Gathering search properties
+2/26/2021 7:47:01 AM	Gathering full-text indexes
+2/26/2021 7:47:01 AM	Gathering column store indexes
+2/26/2021 7:47:01 AM	Gathering spatial indexes
+2/26/2021 7:47:01 AM	Gathering XML indexes
+2/26/2021 7:47:01 AM	Gathering Selective XML indexes
+2/26/2021 7:47:01 AM	Gathering encrypted triggers
+2/26/2021 7:47:01 AM	Gathering triggers
+2/26/2021 7:47:01 AM	Gathering encrypted and clr ddl triggers
+2/26/2021 7:47:01 AM	Gathering ddl triggers
+2/26/2021 7:47:01 AM	Gathering synonyms
+2/26/2021 7:47:01 AM	Gathering defaults
+2/26/2021 7:47:01 AM	Gathering data constraint uddt bindings
+2/26/2021 7:47:01 AM	Gathering rules
+2/26/2021 7:47:01 AM	Gathering data constraint uddt bindings
+2/26/2021 7:47:01 AM	Gathering message types
+2/26/2021 7:47:01 AM	Gathering queues
+2/26/2021 7:47:01 AM	Gathering contracts
+2/26/2021 7:47:01 AM	Gathering services
+2/26/2021 7:47:01 AM	Gathering event notifications
+2/26/2021 7:47:01 AM	Gathering remote service bindings
+2/26/2021 7:47:01 AM	Gathering broker priorities
+2/26/2021 7:47:01 AM	Gathering signatures
+2/26/2021 7:47:01 AM	Gathering data compression options
+2/26/2021 7:47:01 AM	Gathering sequence types
+2/26/2021 7:47:01 AM	Gathering security policies
+2/26/2021 7:47:01 AM	Gather column encryption keys
+2/26/2021 7:47:01 AM	Gathering column master keys
+2/26/2021 7:47:01 AM	Gathering external data sources
+2/26/2021 7:47:01 AM	Gathering external file formats
+2/26/2021 7:47:01 AM	Gathering external tables
+2/26/2021 7:47:01 AM	Gathering extended properties
+2/26/2021 7:47:01 AM	Gathering credentials
+2/26/2021 7:47:01 AM	Gathering logins
+2/26/2021 7:47:01 AM	Gathering server audits
+2/26/2021 7:47:02 AM	Scanning project for duplicate elements
+2/26/2021 7:47:02 AM	Finished duplicate element processing
+2/26/2021 7:47:04 AM	Finished importing database.
+2/26/2021 7:47:04 AM	A summary of the import was saved to the following location: D:\Documents\Projects\GOTEX\GatexDatabase\Import Schema Logs\GatexDatabase_20210226064648.log
+2/26/2021 7:47:04 AM	Click Finish to continue...
