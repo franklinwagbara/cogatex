@@ -25,6 +25,13 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <div style="text-align: center; padding: 10px 0 10px 0;">
+                        Click <a href="https://gatex.dpr.gov.ng" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px;">here</a> to get started.
+                    </div>
+                </td>
+            </tr>
         </tbody>
         <tfoot>
             <tr style="">

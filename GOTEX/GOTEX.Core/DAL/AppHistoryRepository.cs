@@ -125,8 +125,8 @@ namespace GOTEX.Core.DAL
         {
             if (action.ToLower().Contains("approve"))
             {
-                if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("CTO") 
-                    || role.Equals("HDS") || role.Equals("Reviewer"))
+                if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("ADGOPS") 
+                    || role.Equals("HGMR") || role.Equals("Reviewer"))
                     return ApplicationStatus.Processing;
                 else if(role.Equals("OOD") || role.Equals("Director"))
                     return ApplicationStatus.Completed;

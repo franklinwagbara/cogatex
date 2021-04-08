@@ -247,7 +247,7 @@ namespace GOTEX.Controllers
                 var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
                 var message =
                     $"A {application.ApplicationType.FullName} has been submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
-                string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year);
+                string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.dpr.gov.ng");
 
                 foreach (var user in staff)
                 {
@@ -346,24 +346,9 @@ namespace GOTEX.Controllers
         public IActionResult License(int id, string type = null)
         {
             var permit = _permit.FindById(id);
-            //var viewAsPdf = ViewAsPdf("License", permit)
-            //{
-            //    FileName = "Approval.pdf",
-            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
-            //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-            //};
-            //if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
-            //    viewAsPdf.ViewName = "PrintLicense";
-            // else
-            //     viewAsPdf.ViewName = "License";
-            //
-            //var pdf = await viewAsPdf.BuildFile(ControllerContext);
-            //return File(pdf, "application/pdf");
-
+            
             if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
             {
-                
-                permit = _permit.All().FirstOrDefault(x => x.ApplicationId == id);
                 return new ViewAsPdf("PrintLicense", permit)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
@@ -472,7 +457,7 @@ namespace GOTEX.Controllers
                               "<tr><td><b>Application Category:</b></td><td>Gas Export Permit</td></tr>" +
                               $"<tr><td><b>Quarter:</b></td><td>{application.Quarter.Name} for " +
                               $"{application.Quantity.ToString("N2")} Barrels of {application.Product.Name}</td></tr></table>";
-                    var mailbody = string.Format(body, subject, $"{tk}{src}", msg.Id, DateTime.Now.Year);
+                    var mailbody = string.Format(body, subject, $"{tk}{src}", msg.Id, DateTime.Now.Year, "");
 
                     msg.Content = mailbody;
                     _message.Update(msg);

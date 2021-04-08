@@ -74,6 +74,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/851DC736-17B7-47FB-9CD4-DD3F38D22C2F/1/IdentityRole.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/595A5ABC-AB92-4E7E-8842-727062C80162/C/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3B48D433-65E5-440B-BDFB-184BED50B57A/12/IWebHostEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F680C866-D120-4163-9634-EBD842255BE9/24/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4065B38D-0F9F-44D9-8F53-F4C9102AF396/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9B75F723-8C22-4648-AA94-E16AD14335D4/D/RazorPageBase.cs" root0="SKIP_HIGHLIGHTING" />
@@ -97,25 +98,15 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_ElaLayout.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/_ViewStart.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/wwwroot/ela/css/BlackTheme.css" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Company/Permits.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Company/DocumentLibrary.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/InternalMemo.txt" />
-      <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/GeneralFormat.txt" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/CompanyController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Application.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/ViewHistory.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/SideBar.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_StaffLayout.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IPayment.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PaymentApprovalRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_AdminLayout.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/PaymentReportViewModel.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Application/License.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/PaymentEvidence.cs" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/PaymentEvidenceViewModel.cs" />
@@ -125,29 +116,39 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IAppHistory.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/PaymentApproval.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/PaymentReport.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Staff.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ElpsRepostory.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IElpsRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IApplication.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Home/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_HomeLayout.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Application/PrintLicense.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Dashboard.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_CompanyLayout.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PermitRepository.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/MessageRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/DashBoard/CompanyProfile.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/Header.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Admin/ViewApplication.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/GeneralFormat.txt" />
+      <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/InternalMemo.txt" />
+      <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/Templates/InternalMemo.txt" />
+      <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/Templates/GeneralFormat.txt" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/MessageRepository.cs" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Application/License.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Admin/ViewApplication.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Admin/Permits.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/SideBar.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_AdminSideBar.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/DashBoard/Index.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Application/PrintLicense.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1hVyboVT0meKok5Kdx0C78Amz62" />
@@ -316,7 +317,13 @@
       <workItem from="1614337194791" duration="4710000" />
       <workItem from="1614612005287" duration="13000000" />
       <workItem from="1614694675927" duration="613000" />
-      <workItem from="1614697883679" duration="1457000" />
+      <workItem from="1614697883679" duration="4001000" />
+      <workItem from="1614940196053" duration="4542000" />
+      <workItem from="1615207729124" duration="15682000" />
+      <workItem from="1615374920498" duration="5221000" />
+      <workItem from="1616159259470" duration="1753000" />
+      <workItem from="1617084688910" duration="637000" />
+      <workItem from="1617329404823" duration="1086000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -447,6 +454,32 @@
           <line>152</line>
           <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="151" containingFunctionPresentation="method 'UploadApplicationDocuments'" />
           <option name="timeStamp" value="230" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs</url>
+          <line>528</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="528" containingFunctionPresentation="method 'SendMail'">
+            <startOffsets>
+              <option value="22916" />
+            </startOffsets>
+            <endOffsets>
+              <option value="23094" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs</url>
+          <line>27</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\DAL\AppHistoryRepository.cs" initialLine="27" containingFunctionPresentation="method 'CreateNextProcessingPhase'">
+            <startOffsets>
+              <option value="822" />
+            </startOffsets>
+            <endOffsets>
+              <option value="911" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="234" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -21,42 +21,46 @@
         </ul>
     </li>
     <hr />
-    <li class="nav-label">Application</li>
-<li>
-    <a data-toggle="collapse" href="#submenu1" aria-expanded="false">
-        <i class="far fa-folder-open text-warning"> </i>
-        <span class="nav-label ">Application (s) </span>
-    </a>
-    <ul id="submenu1" class="collapse"  data-toggle="collapse"  aria-expanded="False">
+    @if (!User.IsInRole("Planning"))
+    {
+        <li class="nav-label">Application</li>
         <li>
-            <a href="@Url.Content("~/Application/All")">
-                <i class="far fa-clone text-gray"> </i> 
-                <span class="nav-label"> All Applications</span>
+            <a data-toggle="collapse" href="#submenu1" aria-expanded="false">
+                <i class="far fa-folder-open text-warning"> </i>
+                <span class="nav-label ">Application (s) </span>
             </a>
+            <ul id="submenu1" class="collapse"  data-toggle="collapse"  aria-expanded="False">
+                <li>
+                    <a href="@Url.Content("~/Application/All")">
+                        <i class="far fa-clone text-gray"> </i> 
+                        <span class="nav-label"> All Applications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/Admin/CompanyList")">
+                        <i class="far fa-circle text-gray"> </i>
+                        <span class="nav-label"> All Companies</span>
+                    </a>
+                </li>
+                @if (!User.IsInRole("Support"))
+                {
+                    <li>
+                        <a href="@Url.Content("~/Application/Report")">
+                            <i class="fa fa-check text-gray"> </i>
+                            <span class="nav-label"> Approved App. Reports</span>
+                        </a>
+                    </li>
+                }
+            </ul>
         </li>
-        <li>
-            <a href="@Url.Content("~/Admin/CompanyList")">
-                <i class="far fa-circle text-gray"> </i>
-                <span class="nav-label"> All Companies</span>
-            </a>
-        </li>
-        @if (!User.IsInRole("Support"))
+        <hr />
+        @if (User.IsInRole("Support"))
         {
-            <li>
-                <a href="@Url.Content("~/Application/Report")">
-                    <i class="fa fa-check text-gray"> </i>
-                    <span class="nav-label"> Approved App. Reports</span>
-                </a>
-            </li>
+            <partial name="_SupportLayout"/>
         }
-    </ul>
-</li>
-<hr />
-@if (User.IsInRole("Support"))
-{
-    <partial name="_SupportLayout"/>
-}
-@if (!User.IsInRole("Company") || !User.IsInRole("Support"))
-{
-    <partial name="_StaffLayout"/>
-}
+        @if (!User.IsInRole("Company") || !User.IsInRole("Support"))
+        {
+            <partial name="_StaffLayout"/>
+        }
+    }
+    
