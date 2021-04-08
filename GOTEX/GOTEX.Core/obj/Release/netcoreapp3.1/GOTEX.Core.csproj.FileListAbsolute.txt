@@ -542,3 +542,4 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Release\netcoreapp3.1\GOTEX.C
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Release\netcoreapp3.1\GOTEX.Core.csproj.CoreCompileInputs.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Release\netcoreapp3.1\GOTEX.Core.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Release\netcoreapp3.1\GOTEX.Core.pdb
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Release\netcoreapp3.1\GOTEX.Core.csprojAssemblyReference.cache

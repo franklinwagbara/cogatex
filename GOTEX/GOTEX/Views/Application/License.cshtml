@@ -102,11 +102,11 @@
                                     <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 120px;" id="coynameLine1">
                                         @if (Model.Application.ApplicationTypeId == 3)
                                         {
-                                            <span>  @Model.Application.Quantity.ToString("#,##0") BARRELS (Supplementory)</span>
+                                            <span>  @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream (Supplementory)</span>
                                         }
                                         else
                                         {
-                                            <span>  @Model.Application.Quantity.ToString("#,##0") BARRELS </span>
+                                            <span>  @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream </span>
                                         }
                                     </div>
                                 </div>

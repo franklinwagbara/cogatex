@@ -16,14 +16,17 @@
                 <div>
                     {1}
                 </div>
+                <div style="text-align: center; padding: 10px 0 10px 0;">
+                    Click <a href="{4}" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px; text-decoration: none;">here</a> to get started.
+                </div>
                 <p>
                     Department of Petroleum Resources<br />
-                    (EPA)
+                    (GATEX)
                 </p>
             </div>
         </div>
         <div style="padding: 10px 0; text-align: center; background-color: #888; color: #f9f9f9; width:700px">
-            &copy; 2015 Department of Petroleum Resources &minus; DPR Nigeria
+            &copy; {3} Department of Petroleum Resources &minus; DPR Nigeria
         </div>
     </font>
 </body>

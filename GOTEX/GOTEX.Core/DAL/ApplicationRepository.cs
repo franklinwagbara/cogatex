@@ -143,7 +143,7 @@ namespace GOTEX.Core.DAL
                 
                 var tk = $"Your application for {mailtype} with reference: {application.Reference} on DPR COGATEX portal has been returned to you for payment related issues: " +
                          $"<br /> {feedback}. <br/> Follow the recommendations and resubmit your application for processing";
-                message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year);
+                message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, "https://cogatex.dpr..gov.ng");
                 _message.Update(message);
                 var comapnyemail = _context.Users.FirstOrDefault(x => x.Id == application.UserId);
                 Utils.SendMail(mailsettings, comapnyemail.Email, message.Subject, message.Content, "olanipekun.j.o@dpr.gov.ng;hamisu.a.a@dpr.gov.ng;abodunrin.a.o@dpr.gov.ng;musa.m.o@dpr.gov.ng");

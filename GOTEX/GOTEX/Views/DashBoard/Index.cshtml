@@ -35,30 +35,24 @@
                     <p class="card-text" style="float: left; color: white !important;">Application(s) being processed</p>
                 </div>
             </div>
-            @if (!User.IsInRole("Company"))
-            {
-                <div class="card" style="width: 19em; padding-top: 3em; background-color: #8a1f11;">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <span style="float: left">@Model.Declined</span><span style="float: right"><i class="fa fa-minus"></i></span>
-                        </div>
-                        <br/>
-                        <p class="card-text" style="float: left; color: white !important;">Application(s) declined</p>
+            <div class="card" style="width: 19em; padding-top: 3em; background-color: #8a1f11; margin-right: 3em;">
+                <div class="card-body">
+                    <div class="card-title">
+                        <span style="float: left">@Model.Declined</span><span style="float: right"><i class="fa fa-minus"></i></span>
                     </div>
+                    <br/>
+                    <p class="card-text" style="float: left; color: white !important;">Application(s) declined</p>
                 </div>
-            }
-            @if (User.IsInRole("Company"))
-            {
-                <div class="card" style="min-width: 19em; padding-top: 3em; background-color: #8a1f11;">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <span style="float: left">@Model.Approved</span><span style="float: right"><i class="fa fa-check"></i></span>
-                        </div>
-                        <br/>
-                        <p class="card-text" style="float: left; color: white !important;">Approved Approval(s)</p>
+            </div>
+            <div class="card btn-info bg-aqua" style="width: 19em; padding-top: 3em;">
+                <div class="card-body">
+                    <div class="card-title">
+                        <span style="float: left">@Model.Approved</span><span style="float: right"><i class="fa fa-check"></i></span>
                     </div>
+                    <br/>
+                    <p class="card-text" style="float: left; color: white !important;">Approved Approval(s)</p>
                 </div>
-            }
+            </div>
         </div>
         <div>
             @if (Model.Messages.Count > 0 && Model.Messages
@@ -196,7 +190,7 @@
                 <input type="hidden" id="allApplications" value="@Model.All"/>
                 <input type="hidden" id="processing" value="@Model.Processing"/>
                 <input type="hidden" id="declined" value="@Model.Declined"/>
-                <input type="hidden" id="desk" value="@Model.MyDesk"/>
+                <input type="hidden" id="mydesk" value="@Model.MyDesk"/>
                 <input type="hidden" id="approved" value="@Model.Approved"/>
                 <canvas id="myChart"></canvas>
             </div>
@@ -221,8 +215,8 @@
     var all = $("#allApplications").val();
     var proc = $("#processing").val();
     var declined = $("#declined").val();
-    var desk = $("#desk").val();
-    var approved =$("#approved").val();
+    var desk = $("#mydesk").val();
+    var approved = $("#approved").val();
     
     var myChart = new Chart(ctx, {
         type: 'doughnut',
