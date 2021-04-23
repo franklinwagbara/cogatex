@@ -1,4 +1,36 @@
 ﻿<!-- All Jquery -->
+<div class="modal" role="dialog" tabindex="-1" id="modalPassword">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><b>Change Password</b></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 400px;">
+                <form action="/Account/ChangePassword" method="post" enctype="multipart/form-data" id="formApprove" name="frmApprove">
+                    <div class="form-group">
+                        <label style="float:left">Old Password</label>
+                        <input type="password" class="form-control op" name="OldPassword" required />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left" class="col-form-label">New Password</label>
+                        <input type="password" class="form-control np" name="NewPassword" required />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left" class="col-form-label">Confirm New Password</label>
+                        <input type="password" class="form-control cp" name="CPassword" required />
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" class="btn btn-info btnPassword" name="Submit" />
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Bootstrap tether Core JavaScript -->
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -42,18 +74,9 @@
 <script src="~/Scripts/bootbox.min.js"></script>
 <script type="text/javascript">
     function add_chatinline() { var hccid = 89311022; var nt = document.createElement("script"); nt.async = true; nt.src = "https://mylivechat.com/chatinline.aspx?hccid=" + hccid; var ct = document.getElementsByTagName("script")[0]; ct.parentNode.insertBefore(nt, ct); }
-        add_chatinline();</script>
-@* @RenderSection("scripts", required: false) *@
-
-
-@* <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script> *@
-
-
-
-
-
+        add_chatinline();
+</script>
 <footer class="efooter">Copyright &copy; @DateTime.Now.Year All Rights Reserved - Department of Petroleum Resources. </footer>
-@*Confirm jquery script*@
 <script>
     $(document).ready(function () {
 
@@ -74,10 +97,33 @@
         })
         $(".mcloseconfirm").on('click', function (e) {
             $("#mconfirm").hide();
-        })
+        });
             $("#mno").on('click', function (e) {
             $("#mconfirm").hide();
         })
+        
+         $('.btnPassword').click(function (e){
+             e.preventDefault();
+            var op = $('.op').val();
+            var np = $('.np').val();
+            var cp = $('.cp').val();
+            
+            if (op && np && cp !== ""){
+                if (cp !== np){
+                    alert("New password mismatch, please try again");
+                }
+                else if (op === np){
+                    alert("New password cannot be same as old password, please try again");
+                }
+                else if (np === cp){
+                    $('.modal-content').addClass('Submitloader');
+                    $('#modalPassword form').submit();
+                } 
+            }
+            else{
+                alert("Password cannt be empty, please try again");
+            }
+        });
     })
 
 </script>

@@ -45,6 +45,7 @@ namespace GOTEX.Controllers
         }
         public async Task<IActionResult> Index(DashboardViewModel model)
         {
+            ViewData["Message"] = TempData["Message"];
             int declined = 0;
             int allApps = 0;
             var user = await _userManager.FindByNameAsync(User.Identity.Name);

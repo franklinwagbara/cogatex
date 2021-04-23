@@ -19,5 +19,6 @@ namespace GOTEX.Core.Repositories
         List<Staff> GetAllStaff();
         Staff GetStaff(string email);
         int PushPermitToElps(PermitAPIModel item);
+        Dictionary<string, string> ChangePassword(object model, string useremail);
     }
 }

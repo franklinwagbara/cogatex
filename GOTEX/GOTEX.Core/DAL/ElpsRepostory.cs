@@ -287,5 +287,23 @@ namespace GOTEX.Core.DAL
             }
             return elpsid;
         }
+
+        public Dictionary<string, string> ChangePassword(object model, string useremail)
+        {
+            try
+            {
+                var resp = CallElps($"/api/Accounts/ChangePassword/{useremail}/",
+                    HttpMethod.Post, model);
+
+                if (!string.IsNullOrEmpty(resp))
+                    return resp.Parse<Dictionary<string, string>>();
+            }
+            catch(Exception ex)
+            {
+                
+            }
+
+            return null;
+        }
     }
 }
