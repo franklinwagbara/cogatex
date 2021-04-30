@@ -45,63 +45,62 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A9DC9E5-20A0-472B-9AF1-FB1B764F318D/4/AuthenticationProperties.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A9DC9E5-20A0-472B-9AF1-FB1B764F318D/2/AuthenticationHttpContextExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B527AC3-BC2B-41C6-A4B4-15BB7ECC3161/33/02d34a98/Chart.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C8217C-B733-4D02-8D35-584ABCC8BFDB/F3/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/BE97B73D-C897-4E6C-8529-7D9C33E0D59E/D/RazorPageBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9481D310-60CF-4AB5-BB18-EE2195E361A5/22/OrderBy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A7B9519-FE31-4C9B-B8C4-5A3ED6673590/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F8CE1BF-4CC8-4F47-9FD7-9796CB0C3AE6/98/f5c61025/WkhtmltopdfConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/47002240-EC38-46FD-BE4F-E63419744E68/B/ConfigureServicesBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/168024B4-4B0F-4D53-9690-6E414ABEED89/75/c5c7b20f/RotativaConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A243FC51-8A09-4DB3-8E42-C3FF52E72DE5/3/IdentityServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/30EDA72F-50B0-4F4A-98E1-C65C14CD2175/2/IdentityServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/Dependdencies.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A243FC51-8A09-4DB3-8E42-C3FF52E72DE5/8/IdentityBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX/Views/Admin/ApplicationTypes.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/AppConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX/Views/Application/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F8CE1BF-4CC8-4F47-9FD7-9796CB0C3AE6/da/e036f529/IGeneratePdf.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/14E/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1B896B6A-B488-49FD-9A27-47115AF6995D/6D/IUrlHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/DB5C90CB-A10C-4BF1-A233-F8E597A889B9/8/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F680C866-D120-4163-9634-EBD842255BE9/F3/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/30EDA72F-50B0-4F4A-98E1-C65C14CD2175/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/35909858-3A4E-483A-954D-61928307F2A4/27/Select.SpeedOpt.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C37662-579A-499A-A4DE-B3C85349280D/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/Dependdencies.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/851DC736-17B7-47FB-9CD4-DD3F38D22C2F/1/IdentityRole.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/595A5ABC-AB92-4E7E-8842-727062C80162/C/Controller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3B48D433-65E5-440B-BDFB-184BED50B57A/12/IWebHostEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F680C866-D120-4163-9634-EBD842255BE9/24/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4065B38D-0F9F-44D9-8F53-F4C9102AF396/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9B75F723-8C22-4648-AA94-E16AD14335D4/D/RazorPageBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ElpsRepostory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX.Core/Repositories/IApplication.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE97CC5E-0513-47A5-A832-CE77BCF9132F/e1/13ef2a29/AsResultBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4393B870-BDFD-4A8A-B6E5-C2F66E96ED7A/0c/3a29048b/IActionResult.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE97CC5E-0513-47A5-A832-CE77BCF9132F/4c/f252d016/ViewAsPdf.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Application.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ElpsRepostory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/BE97B73D-C897-4E6C-8529-7D9C33E0D59E/F/RazorPageOfT.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/878145E8-BB4A-439F-AB38-D524616B458C/2/AuthenticationHttpContextExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C8217C-B733-4D02-8D35-584ABCC8BFDB/194/ObjectMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2E5F3E8F-B4C5-4891-AEA5-F382D67EF91A/3/IdentityUserContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE97CC5E-0513-47A5-A832-CE77BCF9132F/03/5f6066c6/RotativaConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GOTEX/Views/Admin/ApplicationTypes.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/09542617-C152-46BC-A981-89C9878D13FC/6/AuthenticationMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/48F23A5D-0965-44C1-BCA7-4ED3E1516FC2/16/EndpointRoutingMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX.Core/Repositories/IApplication.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A9DC9E5-20A0-472B-9AF1-FB1B764F318D/4/AuthenticationProperties.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A9DC9E5-20A0-472B-9AF1-FB1B764F318D/2/AuthenticationHttpContextExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B527AC3-BC2B-41C6-A4B4-15BB7ECC3161/33/02d34a98/Chart.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C8217C-B733-4D02-8D35-584ABCC8BFDB/F3/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/BE97B73D-C897-4E6C-8529-7D9C33E0D59E/D/RazorPageBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Application.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9481D310-60CF-4AB5-BB18-EE2195E361A5/22/OrderBy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A7B9519-FE31-4C9B-B8C4-5A3ED6673590/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GOTEX/Views/Application/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3F8CE1BF-4CC8-4F47-9FD7-9796CB0C3AE6/98/f5c61025/WkhtmltopdfConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/47002240-EC38-46FD-BE4F-E63419744E68/B/ConfigureServicesBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/168024B4-4B0F-4D53-9690-6E414ABEED89/75/c5c7b20f/RotativaConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A243FC51-8A09-4DB3-8E42-C3FF52E72DE5/3/IdentityServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/30EDA72F-50B0-4F4A-98E1-C65C14CD2175/2/IdentityServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/CompanyController.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Application.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Application/ViewHistory.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_StaffLayout.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IPayment.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PaymentApprovalRepository.cs" />
@@ -111,17 +110,13 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/PaymentEvidence.cs" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/PaymentEvidenceViewModel.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/UploadApplicationDocuments.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/AccountController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/ApplicationDetail.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IAppHistory.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/PaymentApproval.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/PaymentReport.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Staff.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ElpsRepostory.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IElpsRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IApplication.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Home/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_HomeLayout.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Dashboard.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_CompanyLayout.cshtml" />
@@ -129,7 +124,6 @@
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/DashBoard/CompanyProfile.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/Header.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/wwwroot/App_Data/GeneralFormat.txt" />
@@ -141,14 +135,23 @@
       <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/License.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/ViewApplication.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/Permits.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/SideBar.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_AdminSideBar.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/DashBoard/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/PrintLicense.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_ElaLayout.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/Header.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/ViewModels/PasswordViewModel.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/Footer.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IElpsRepository.cs" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ElpsRepostory.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/AccountController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/HomeController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Home/Index.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/DashBoard/Index.cshtml" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1hVyboVT0meKok5Kdx0C78Amz62" />
@@ -161,9 +164,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34965035" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3495212" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -241,7 +245,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Azure - Publish Web App.Publish GOTEX to Azure" />
         <item itemvalue="Publish to custom server.Publish GOTEX to custom server" />
       </list>
     </recent_temporary>
@@ -324,6 +327,7 @@
       <workItem from="1616159259470" duration="1753000" />
       <workItem from="1617084688910" duration="637000" />
       <workItem from="1617329404823" duration="1086000" />
+      <workItem from="1619137628597" duration="5040000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -436,12 +440,6 @@
           <line>138</line>
           <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX.Core\DAL\ElpsRepostory.cs" initialLine="119" />
           <option name="timeStamp" value="215" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>347</line>
-          <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="334" containingFunctionPresentation="method 'License'" />
-          <option name="timeStamp" value="219" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs</url>

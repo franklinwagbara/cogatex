@@ -37,7 +37,7 @@ namespace GOTEX.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ViewData["ErrorMessage"] = TempData["ErrorMessage"];
+            ViewData["Message"] = TempData["Message"];
             return View();
         } 
         public IActionResult Privacy() => View();
