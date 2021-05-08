@@ -16,16 +16,6 @@
 }
 
 <center>
-
-    @if (ViewData["AppSubmit"] != null)
-    {
-        <div class="col-md-12">
-            <div class="alert alert-info" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <strong>Application Info!</strong> @ViewData["AppSubmit"]t
-            </div>
-        </div>
-    }
     <div class="row box-shadow">
         <div style="padding: 1em 0.5em 5em 0.5em; color: yellow;background-color: green;">
             <span style="float: left;">
@@ -307,6 +297,12 @@
                 <a class="btn btn-sm btn-warning" href="/Application/Resubmit/@Model.Id">Continue</a>
             </div>
         }
+    else if (Model.Status.Equals("Submitted"))
+    {
+        <div>
+            <a class="btn btn-sm btn-info" href="@Url.Action("SubmitApplication", new { id = Model.Id})">Submit Application</a>
+        </div>
+    }
     </div>
 </center>
 
