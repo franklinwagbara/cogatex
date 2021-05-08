@@ -85,30 +85,6 @@ namespace GOTEX.Core.DAL
                     
                     Utils.SendMail(mailSettings, application.User.Email, subject, msgBody);
 
-                    // var staff =  _userManager.Users.ToList();
-                    //
-                    // body = Utils.ReadTextFile(webrootpath, "InternalMemo.txt");
-                    //
-                    // subject = "New Application on Export Permit Portal";
-                    // mailtype = application.ApplicationType.FullName;
-                    //
-                    // var _msg = string.Format(mailTemplates.FirstOrDefault(x => x.Type.ToLower() == "new" 
-                    //                                                            && x.Category.Equals("staff", StringComparison.OrdinalIgnoreCase))?.Content ?? "", mailtype,
-                    //     application.Id, application.Reference, application.User.Company.Id,
-                    //     application.User.Company.Name);
-                    //
-                    // foreach (var item in staff)
-                    // {
-                    //     if (_userManager.IsInRoleAsync(item, "Supervisor").Result 
-                    //         || _userManager.IsInRoleAsync(item, "Reviewer").Result 
-                    //         || _userManager.IsInRoleAsync(item, "Officer").Result 
-                    //         || _userManager.IsInRoleAsync(item, "CTO").Result
-                    //         || _userManager.IsInRoleAsync(item, "HDS").Result)
-                    //     {
-                    //         msgBody = string.Format(body, subject, "", application.User.Email, _msg, DateTime.Now.Year);
-                    //         Utils.SendMail(mailSettings, item.Email, subject, msgBody);
-                    //     }
-                    // }
                 }
                 return true;
             }
@@ -118,71 +94,7 @@ namespace GOTEX.Core.DAL
             }
             return false;
         }
-        
-        // public bool SendPay(Application application, string webrootpath, List<MailTemplate> mailTemplates, Dictionary<string, string> mailSettings)
-        // {
-        //     try
-        //     {
-        //         string subject = (application.ApplicationTypeId == 1 ? "Application Initiated: " 
-        //             : "Permit Renewal Initiated: ") + application.Reference;
-        //
-        //         var prevmessage = _context.Messages.FirstOrDefault(x => x.Subject.Equals(subject));
-        //         if (prevmessage == null)
-        //         {
-        //             var msg = new Message
-        //             {
-        //                 User = application.User,
-        //                 Date = DateTime.UtcNow.AddHours(1),
-        //                 Subject = subject,
-        //                 Content = "Loading...",
-        //             };
-        //             msg = Insert(msg);
-        //             
-        //             var body = Utils.ReadTextFile(webrootpath, "GeneralFormat.txt");
-        //
-        //             string mailtype = application.ApplicationType.FullName;
-        //             
-        //             string appInfo = string.Format(mailTemplates.FirstOrDefault(x => x.Type.ToLower() == "new" && x.Category.Equals("company", StringComparison.OrdinalIgnoreCase))?.Content ?? "",
-        //                 application.Reference, application.ApplicationType.Name, "Export Permit", application.Fee + application.ServiceCharge, application.Year, mailtype);
-        //             
-        //             var msgBody = string.Format(body, subject, appInfo, msg.Id, mailtype);
-        //             msg.Content = msgBody;
-        //             Update(msg);
-        //             
-        //             Utils.SendMail(mailSettings, application.User.Email, subject, msgBody);
-        //
-        //             var staff =  _userManager.Users.ToList();
-        //             
-        //             body = Utils.ReadTextFile(webrootpath, "InternalMemo.txt");
-        //             
-        //             subject = "New Application on Export Permit Portal";
-        //             mailtype = application.ApplicationType.FullName;
-        //
-        //             var _msg = string.Format(mailTemplates.FirstOrDefault(x => x.Type.ToLower() == "new" 
-        //                                                                        && x.Category.Equals("staff", StringComparison.OrdinalIgnoreCase))?.Content ?? "", mailtype,
-        //                 application.Id, application.Reference, application.User.Company.Id,
-        //                 application.User.Company.Name);
-        //             
-        //             foreach (var item in staff)
-        //             {
-        //                 var comprole = _userManager.IsInRoleAsync(item, "Company").Result;
-        //                 var supportrole = _userManager.IsInRoleAsync(item, "Support").Result;
-        //                 var staffrole = _userManager.IsInRoleAsync(item, "Staff").Result;
-        //                 if (!comprole && !supportrole && !staffrole)
-        //                 {
-        //                     msgBody = string.Format(body, subject, "", application.User.Email, _msg, DateTime.Now.Year);
-        //                     Utils.SendMail(mailSettings, item.Email, subject, msgBody);
-        //                 }
-        //             }
-        //         }
-        //         return true;
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         
-        //     }
-        //     return false;
-        // }
+
         public string SendApplicationSubmittedMail(Application application, Dictionary<string, string> mailsettings, string webrootpath)
         {
             string desc = "";
