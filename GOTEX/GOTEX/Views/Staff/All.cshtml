@@ -82,7 +82,7 @@
                           data-pnumber = "@user.PhoneNumber"
                            data-userrole = "@GetUserRole(user.Email)"
                         >Edit</a>
-                        @if (!GetUserRole(user.Email).Equals("Company", StringComparison.OrdinalIgnoreCase))
+                        @if (GetUserRole(user.Email) != null && !GetUserRole(user.Email).Equals("Company", StringComparison.OrdinalIgnoreCase))
                         {
                             if(apps > 0)
                             {
