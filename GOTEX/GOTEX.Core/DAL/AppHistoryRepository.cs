@@ -6,6 +6,7 @@ using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GOTEX.Core.DAL
 {
@@ -194,5 +195,15 @@ namespace GOTEX.Core.DAL
             _context.ApplicationHistories.Update(item);
             _context.SaveChanges();
         }
+
+        public List<ApplicationHistory> SentApplications(string email)
+            =>  _context.ApplicationHistories
+                .Include("Application.User.Company")
+                .Include("Application.Product")
+                .Include("Application.ApplicationType")
+                .Include("Application.Terminal")
+                .Include("Application.Quarter")
+                .Where(x => x.CurrentUser.Equals(email))
+                .OrderByDescending(x => x.DateAssigned).ToList();
     }
 }

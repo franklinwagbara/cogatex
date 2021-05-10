@@ -508,6 +508,30 @@ namespace GOTEX.Controllers
 
         public IActionResult StaffDesk() => View(_userManager.Users.ToList());
 
+        public IActionResult Outbox()
+        {
+            var history = _history.SentApplications(User.Identity.Name);
+            var apps = history
+                .GroupBy(x => x.ApplicationId)
+                .Select(x => x.FirstOrDefault())
+                .OrderByDescending(x => x.DateAssigned)
+                .ThenByDescending(x => x.DateAssigned)
+                .Select(x => new SentItems
+                {
+                    DateApplied = x.Application.Date,
+                    CompanyName = x.Application.User.Company.Name,
+                    Reference = x.Application.Reference,
+                    AppType = x.Application.ApplicationType.Name,
+                    DateTreated = x.DateAssigned,
+                    Product = x.Application.Product.Name,
+                    Terminal = x.Application.Terminal.Name,
+                    Quarter = x.Application.Quarter.Name,
+                    Action = x.Action,
+                    Comment = x.Comment
+                }).ToList();
+            return View(apps);
+        }
+
         private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message)
         {
             var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>DPR Gas Export Permit portal (GATEX) has been sent to you for further action: " +
