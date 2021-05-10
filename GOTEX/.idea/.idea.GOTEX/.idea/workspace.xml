@@ -101,14 +101,12 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PaymentApprovalRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_AdminLayout.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/PaymentReportViewModel.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/PaymentEvidence.cs" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/PaymentEvidenceViewModel.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/PaymentApproval.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Admin/PaymentReport.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/Staff.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IApplication.cs" />
@@ -145,12 +143,14 @@
       <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IAppHistory.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/SideBar.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/SentItems.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/Outbox.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_AdminSideBar.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/SideBar.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_StaffLayout.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Admin/PaymentReport.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
     </changedPaths>
   </component>
@@ -329,7 +329,7 @@
       <workItem from="1617329404823" duration="1086000" />
       <workItem from="1619137628597" duration="8552000" />
       <workItem from="1619419343323" duration="2099000" />
-      <workItem from="1620290716586" duration="13140000" />
+      <workItem from="1620290716586" duration="14464000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
