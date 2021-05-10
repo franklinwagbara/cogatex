@@ -54,13 +54,13 @@
             </ul>
         </li>
         <hr />
-        @if (User.IsInRole("Support"))
-        {
-            <partial name="_SupportLayout"/>
-        }
-        @if (!User.IsInRole("Company") || !User.IsInRole("Support"))
-        {
-            <partial name="_StaffLayout"/>
-        }
+    }
+    @if (User.IsInRole("Support"))
+    {
+        <partial name="_SupportLayout"/>
+    }
+    @if (!User.IsInRole("Company") || !User.IsInRole("Support"))
+    {
+        <partial name="_StaffLayout"/>
     }
     
