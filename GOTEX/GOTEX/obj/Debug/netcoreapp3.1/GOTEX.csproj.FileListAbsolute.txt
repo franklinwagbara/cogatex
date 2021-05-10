@@ -856,3 +856,4 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csproj.C
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.pdb
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.genruntimeconfig.cache
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Outbox.cshtml.g.cs

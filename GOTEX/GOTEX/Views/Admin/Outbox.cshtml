@@ -1,0 +1,56 @@
+﻿@model List<SentItems>
+@{
+    ViewBag.Title = "My Sent Items";
+    int count = 0; 
+}
+
+<div class="text-center card">
+    <h2 class="btn btn-primary col-md-3">@ViewBag.Title</h2>
+    <table class="table table-striped dataTable text-left">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Date Applied</th>
+            <th>Company Name</th>
+            <th>Reference</th>
+            <th>Category</th>
+            <th>Quarter</th>
+            <th>Product</th>
+            <th>Terminal</th>
+            <th>Action</th>
+            <th>Date Treated</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.DateApplied.ToString("MMM dd, yyyy")</td>
+                <td>@item.CompanyName</td>
+                <td>@item.Reference</td>
+                <td>
+                    @{
+                        var apptype = $"{item.AppType} Export Approval";
+                    }
+                    @apptype
+                </td>
+                <td>@item.Quarter</td>
+                <td>@item.Product</td>
+                <td>@item.Terminal</td>
+                <td>@item.Action</td>
+                <td>@item.DateTreated.ToString("MMM dd, yyyy")</td>
+                <td>@item.Comment</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<script>
+$(document).ready(function (){
+    $(".dataTable").dataTable({ dom: 'Blfrtip' })
+});
+</script>
