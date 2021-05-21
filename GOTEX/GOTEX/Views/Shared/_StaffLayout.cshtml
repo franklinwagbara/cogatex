@@ -14,20 +14,23 @@
             <i class="fa fa-chart-bar text-warning"> </i>
             <span class="hide-menu">Report</span>
         </a>
-        <ul aria-expanded="false"  data-toggle="collapse" class="collapse" id="myaccount">
-            <li>
-                <a href="@Url.Action("ApplicationReport", "Admin")">
-                    <i class="fa fa-chart-line"> </i>
-                    <span class="nav-label"> Application Report</span>
-                </a>
-            </li>
+        <ul aria-expanded="false" data-toggle="collapse" class="collapse" id="myaccount">
+            @if (!User.IsInRole("Planning"))
+            {
+                <li>
+                    <a href="@Url.Action("ApplicationReport", "Admin")">
+                        <i class="fa fa-chart-line"> </i>
+                        <span class="nav-label"> Application Report</span>
+                    </a>
+                </li>
+            }
             <li>
                 <a href="@Url.Action("PaymentReport", "Admin")">
                     <i class="fa fa-chart-line"> </i>
                     <span class="nav-label"> Payment Report</span>
                 </a>
             </li>
-            
+
             @* <li> *@
             @*     <a href="@Url.Action("PermitReport", "Admin")"> *@
             @*         <i class="fa fa-chart-pie"> </i> <span>Approval Report</span> *@

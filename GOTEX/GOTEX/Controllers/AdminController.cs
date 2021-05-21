@@ -200,7 +200,7 @@ namespace GOTEX.Controllers
                         PaymentUrl = "",
                         Status = model.submitBtn,
                         User = await _userManager.FindByEmailAsync(User.Identity.Name),
-                        ApprovedBy = $"{user.LastName} {user.LastName} ({User.Identity.Name})"
+                        ApprovedBy = $"{user.FirstName} {user.LastName} ({User.Identity.Name})"
                     };
                     _paymentApproval.Insert(payment);
 

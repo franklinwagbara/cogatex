@@ -8,7 +8,7 @@
             <ul>
                 <li class="text-center">
                     <div style="font-size: x-large; font-weight: bolder; margin-bottom: 1em; margin-top: 1em; color: #3affff; ">
-                        <i class="fa fa-user"></i> @GetUserDisplayRoleName(User.Identity.Name).ToUpper()
+                        <i class="fa fa-user"></i> @GetUserDisplayRoleName(User.Identity.Name)?.ToUpper()
                     </div>
                 </li>
                 <hr/>
