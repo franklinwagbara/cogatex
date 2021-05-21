@@ -389,7 +389,7 @@ namespace GOTEX.Controllers
                 foreach (var user in staff)
                 {
                     if (_userManager.IsInRoleAsync(user, "Supervisor").Result 
-                        || _userManager.IsInRoleAsync(user, "Reviewer").Result 
+                        || _userManager.IsInRoleAsync(user, "Inspector").Result 
                         || _userManager.IsInRoleAsync(user, "Officer").Result 
                         || _userManager.IsInRoleAsync(user, "AGGOPS").Result
                         || _userManager.IsInRoleAsync(user, "HGMR").Result)
