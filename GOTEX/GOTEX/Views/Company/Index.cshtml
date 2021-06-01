@@ -85,6 +85,7 @@
                 <td class="txtright">
                     @if (item.Status == ApplicationStatus.PaymentNotSatisfied || item.Status == ApplicationStatus.NotSubmitted)
                     {
+                        <a href="@Url.Action("Resubmit", "Application", new{ id = item.Id })" class="btn btn-xs btn-warning ">Resubmit <i class="glyphicon glyphicon-folder-open"></i></a>
                         <div class="btn-group">
                             <a 
                                 href="/Application/UploadApplicationDocuments/@item.Id"
