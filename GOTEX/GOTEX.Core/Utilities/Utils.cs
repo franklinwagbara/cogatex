@@ -119,7 +119,14 @@ namespace GOTEX.Core.Utilities
             mail.Body = body;
             mail.IsBodyHtml = true;
 
-            smtp.Send(mail);
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         public static string ReadTextFile(string webrootpath, string filename)
