@@ -76,6 +76,7 @@ namespace GOTEX.Core.DAL
 
         public List<PaymentApproval> GetAll() 
             => _context.PaymentApprovals
+                .Include("User")
                 .Include("Application.User.Company")
                 .Include("Application.ApplicationType")
                 .Include("Application.Quarter")
