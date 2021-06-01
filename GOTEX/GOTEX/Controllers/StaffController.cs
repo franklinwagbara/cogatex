@@ -8,6 +8,7 @@ using GOTEX.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace GOTEX.Controllers
@@ -37,7 +38,7 @@ namespace GOTEX.Controllers
         {
             ViewData["Message"] = TempData["Message"];
             ViewData["alert"] = TempData["alert"];
-            return View( _userManager.Users.ToList());
+            return View( _userManager.Users.Include(x => x.UserRoles).ThenInclude(x => x.Role).ToList());
         }
         [HttpPost]
         public async Task<IActionResult> Edit(UserViewModel model)

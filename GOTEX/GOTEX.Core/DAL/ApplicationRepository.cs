@@ -146,7 +146,12 @@ namespace GOTEX.Core.DAL
                 message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, "https://cogatex.dpr..gov.ng");
                 _message.Update(message);
                 var comapnyemail = _context.Users.FirstOrDefault(x => x.Id == application.UserId);
-                Utils.SendMail(mailsettings, comapnyemail.Email, message.Subject, message.Content, "olanipekun.j.o@dpr.gov.ng;hamisu.a.a@dpr.gov.ng;abodunrin.a.o@dpr.gov.ng;musa.m.o@dpr.gov.ng");
+                var roles = new[] { "SUpervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                var staff = _context.Users.Include(x 
+                        => x.UserRoles).ThenInclude(x => x.Role)
+                    .Where(x => roles.Contains(x.UserRoles.FirstOrDefault().Role.Name))
+                    .Select(x => x.UserRoles.FirstOrDefault().Role.Name);
+                Utils.SendMail(mailsettings, comapnyemail.Email, message.Subject, message.Content, string.Join(',', staff));
 
             }
             catch (Exception ex)

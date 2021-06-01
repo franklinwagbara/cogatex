@@ -15,5 +15,7 @@ namespace GOTEX.Core.BusinessObjects
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
         public bool IsActive { get; set; }
+        public ICollection<ApplicationUserRole> UserRoles { get; set; }
+
     }
 }
