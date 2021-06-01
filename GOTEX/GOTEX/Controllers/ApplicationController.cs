@@ -430,8 +430,12 @@ namespace GOTEX.Controllers
         {
             try
             {
+                bool res = false;
                 var application = _application.FindById(id);
-                var res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
+                if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
+                    res = _history.CreateNextProcessingPhase(application, "SubmitPayment");
+                else
+                    res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
                 if (res)
                 {
                     var mailmessage = _elps.GetMailMessages();
