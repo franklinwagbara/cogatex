@@ -60,7 +60,8 @@ namespace GOTEX.Controllers
             
             if (!await _userManager.IsInRoleAsync(user, model.Role))
             {
-                await _userManager.RemoveFromRoleAsync(user, role);
+                if(role != null)
+                    await _userManager.RemoveFromRoleAsync(user, role);
                 await _userManager.AddToRoleAsync(user, model.Role);
             }
             TempData["alert"] = "alert-success";

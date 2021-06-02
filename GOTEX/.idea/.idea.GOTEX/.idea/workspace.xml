@@ -83,6 +83,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/BFB7BC60-541C-4F92-BEE8-4FCC9DD27F52/F/RazorPageOfT.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE97CC5E-0513-47A5-A832-CE77BCF9132F/03/5f6066c6/RotativaConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/09542617-C152-46BC-A981-89C9878D13FC/6/AuthenticationMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/48F23A5D-0965-44C1-BCA7-4ED3E1516FC2/16/EndpointRoutingMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/Repositories/IApplication.cs" root0="FORCE_HIGHLIGHTING" />
@@ -146,14 +147,14 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/ApplicationRole.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/ApplicationUser.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PaymentApprovalRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/ApplicationDetail.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1hVyboVT0meKok5Kdx0C78Amz62" />
@@ -335,7 +336,7 @@
       <workItem from="1620829172062" duration="595000" />
       <workItem from="1621599212256" duration="683000" />
       <workItem from="1622550924622" duration="1221000" />
-      <workItem from="1622553259753" duration="10932000" />
+      <workItem from="1622553259753" duration="13427000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -439,7 +440,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs</url>
-          <line>162</line>
+          <line>163</line>
           <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX\Controllers\StaffController.cs" initialLine="160" />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
@@ -451,7 +452,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs</url>
-          <line>274</line>
+          <line>272</line>
           <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX.Core\DAL\ApplicationRepository.cs" initialLine="239" containingFunctionPresentation="method 'GetApplicationFiles'" />
           <option name="timeStamp" value="223" />
         </line-breakpoint>
@@ -508,17 +509,43 @@
           <option name="timeStamp" value="236" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GOTEX.Core/Utilities/Utils.cs</url>
-          <line>121</line>
-          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\Utilities\Utils.cs" initialLine="121" containingFunctionPresentation="method 'SendMail'">
+          <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
+          <line>434</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="434" containingFunctionPresentation="method 'Resubmit'">
             <startOffsets>
-              <option value="4837" />
+              <option value="18580" />
             </startOffsets>
             <endOffsets>
-              <option value="4837" />
+              <option value="18649" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="237" />
+          <option name="timeStamp" value="241" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX.Core/Utilities/Utils.cs</url>
+          <line>97</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\Utilities\Utils.cs" initialLine="97" containingFunctionPresentation="method 'SendMail'">
+            <startOffsets>
+              <option value="3861" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3971" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="244" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs</url>
+          <line>149</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\DAL\ApplicationRepository.cs" initialLine="149" containingFunctionPresentation="method 'InvalidatePaymentonElps'">
+            <startOffsets>
+              <option value="6858" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6970" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="245" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
