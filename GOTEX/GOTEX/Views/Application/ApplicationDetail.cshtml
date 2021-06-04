@@ -200,11 +200,11 @@
                                     <table class="table table-striped" style="width: 100%;">
                                         <tr>
                                             <td><b>Received from</b></td>
-                                            <td>@GetHistory(Model.Id, Model.StageId).CurrentUser</td>
+                                            <td>@GetHistory(Model.Id, Model.StageId)?.CurrentUser</td>
                                         </tr>
                                         <tr>
                                             <td><b>Received Date</b></td>
-                                            <td>@GetHistory(Model.Id, Model.StageId).DateAssigned.ToString("MMMM dd, yyyy")</td>
+                                            <td>@GetHistory(Model.Id, Model.StageId)?.DateAssigned.ToString("MMMM dd, yyyy")</td>
                                         </tr>
                                         <tr>
                                             <td><b>Current Desk</b></td>
@@ -216,7 +216,7 @@
                                         </tr>
                                         <tr>
                                             <td><b>Last Message</b></td>
-                                            <td>@GetHistory(Model.Id, Model.StageId).Comment</td>
+                                            <td>@GetHistory(Model.Id, Model.StageId)?.Comment</td>
                                         </tr>
 
                                     </table>
