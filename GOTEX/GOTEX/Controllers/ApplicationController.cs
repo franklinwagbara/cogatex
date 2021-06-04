@@ -378,7 +378,9 @@ namespace GOTEX.Controllers
             {
                 TempData["Message"] = "Application has been submitted successfully";
                 //Notify all staff of submitted application
-                var staff = _userManager.Users.ToList();
+                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                var staff = _context.Users.Include(x 
+                    => x.UserRoles).ThenInclude(x => x.Role).ToList();
                 
                 string subject = "GATEX Application Submission";
                 var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
@@ -386,16 +388,9 @@ namespace GOTEX.Controllers
                     $"A {application.ApplicationType.FullName} has been submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
                 string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.dpr.gov.ng");
 
-                foreach (var user in staff)
-                {
-                    if (_userManager.IsInRoleAsync(user, "Supervisor").Result 
-                        || _userManager.IsInRoleAsync(user, "Inspector").Result 
-                        || _userManager.IsInRoleAsync(user, "Officer").Result 
-                        || _userManager.IsInRoleAsync(user, "AGGOPS").Result
-                        || _userManager.IsInRoleAsync(user, "HGMR").Result)
-                        Utils.SendMail(
-                            _emailSettings.Stringify().Parse<Dictionary<string, string>>(), user.Email, subject, content);
-                }
+                foreach (var user in staff.Where(x => roles.Contains(x.UserRoles.FirstOrDefault().Role.Name)))
+                    Utils.SendMail(
+                        _emailSettings.Stringify().Parse<Dictionary<string, string>>(), user.Email, subject, content);
             }            
             else
                 TempData["Message"] = "An error occured, please contact ICT/Support";
