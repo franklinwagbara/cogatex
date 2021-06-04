@@ -1,6 +1,7 @@
 ﻿@model Application
 @inject IAppHistory<ApplicationHistory> _history
 @inject IApplication<Application> _application
+@inject IPayment<PaymentApproval> _payment
 
 @{
     ViewBag.Title = "Application details for  " + Model.ApplicationType.Name + " Phase: " + Model.ApplicationType.ShortName + " Permit";
@@ -16,16 +17,6 @@
 }
 
 <center>
-
-    @if (ViewData["AppSubmit"] != null)
-    {
-        <div class="col-md-12">
-            <div class="alert alert-info" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <strong>Application Info!</strong> @ViewData["AppSubmit"]t
-            </div>
-        </div>
-    }
     <div class="row box-shadow">
         <div style="padding: 1em 0.5em 5em 0.5em; color: yellow;background-color: green;">
             <span style="float: left;">
@@ -87,7 +78,21 @@
                                 </tr>
                                 <tr>
                                     <td><b>@Html.DisplayNameFor(model => model.Status)</b></td>
-                                    <td><span class="label @alertx">@Html.DisplayFor(model => model.Status)</span></td>
+                                    <td>
+                                        <span class="label @alertx">@Html.DisplayFor(model => model.Status)</span>
+                                        @{
+                                            if (Model.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
+                                            {
+                                                var pay = _payment.GetAll().FirstOrDefault(x => x.ApplicationId == Model.Id);
+                                                <a 
+                                                    href="#" 
+                                                    class="btn btn-xs btn-warning btnRejectComment" 
+                                                    data-comment="@pay.Comment (rejected by - @pay.User.FirstName @pay.User.LastName)"
+                                                    data-toggle="modal"
+                                                    data-target="#RejectModal">View Reason/Details</a>
+                                            }
+                                        }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><b>Date Applied</b></td>
@@ -195,11 +200,11 @@
                                     <table class="table table-striped" style="width: 100%;">
                                         <tr>
                                             <td><b>Received from</b></td>
-                                            <td>@GetHistory(Model.Id, Model.StageId).CurrentUser</td>
+                                            <td>@GetHistory(Model.Id, Model.StageId)?.CurrentUser</td>
                                         </tr>
                                         <tr>
                                             <td><b>Received Date</b></td>
-                                            <td>@GetHistory(Model.Id, Model.StageId).DateAssigned.ToString("MMMM dd, yyyy")</td>
+                                            <td>@GetHistory(Model.Id, Model.StageId)?.DateAssigned.ToString("MMMM dd, yyyy")</td>
                                         </tr>
                                         <tr>
                                             <td><b>Current Desk</b></td>
@@ -211,7 +216,7 @@
                                         </tr>
                                         <tr>
                                             <td><b>Last Message</b></td>
-                                            <td>@GetHistory(Model.Id, Model.StageId).Comment</td>
+                                            <td>@GetHistory(Model.Id, Model.StageId)?.Comment</td>
                                         </tr>
 
                                     </table>
@@ -307,6 +312,12 @@
                 <a class="btn btn-sm btn-warning" href="/Application/Resubmit/@Model.Id">Continue</a>
             </div>
         }
+    else if (Model.Status.Equals("Submitted"))
+    {
+        <div>
+            <a class="btn btn-sm btn-info" href="@Url.Action("SubmitApplication", new { id = Model.Id})">Submit Application</a>
+        </div>
+    }
     </div>
 </center>
 
@@ -348,6 +359,20 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" role="dialog" tabindex="-2" id="RejectModal">
+    <div class="modal-dialog modal.sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Reason for application rejection</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body rjtBody" style="min-height: 280px;">
             </div>
         </div>
     </div>
@@ -410,3 +435,11 @@
     private List<ApplicationHistory> GetApplicationHistory(int id) => _history.GetApplicationHistoriesById(id).OrderByDescending(x => x.DateAssigned).ToList();
 
 }
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+$(document).ready(function (){
+     $(".btnRejectComment").one('click', function (e){
+         $(".rjtBody").html($(this).data("comment"));
+    });
+});
+</script>

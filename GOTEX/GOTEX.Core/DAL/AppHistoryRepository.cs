@@ -6,6 +6,7 @@ using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GOTEX.Core.DAL
 {
@@ -125,8 +126,8 @@ namespace GOTEX.Core.DAL
         {
             if (action.ToLower().Contains("approve"))
             {
-                if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("CTO") 
-                    || role.Equals("HDS") || role.Equals("Reviewer"))
+                if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("ADGOPS") 
+                    || role.Equals("HGMR") || role.Equals("Reviewer"))
                     return ApplicationStatus.Processing;
                 else if(role.Equals("OOD") || role.Equals("Director"))
                     return ApplicationStatus.Completed;
@@ -194,5 +195,15 @@ namespace GOTEX.Core.DAL
             _context.ApplicationHistories.Update(item);
             _context.SaveChanges();
         }
+
+        public List<ApplicationHistory> SentApplications(string email)
+            =>  _context.ApplicationHistories
+                .Include("Application.User.Company")
+                .Include("Application.Product")
+                .Include("Application.ApplicationType")
+                .Include("Application.Terminal")
+                .Include("Application.Quarter")
+                .Where(x => x.CurrentUser.Equals(email))
+                .OrderByDescending(x => x.DateAssigned).ToList();
     }
 }

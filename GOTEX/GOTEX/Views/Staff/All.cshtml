@@ -55,7 +55,14 @@
                     <td>@user.Email</td>
                     <td>@GetDeskCount(user.Email)</td>
                     <td>
-                        @GetUserRole(user.Email)
+                        @{
+                            string userrole = "";
+                            if (user.UserRoles.Count > 0)
+                            {
+                                userrole = user.UserRoles.FirstOrDefault().Role.Name;
+                            }
+                        }
+                            @userrole
                     </td>
                     <td>
                         @if (user.IsActive)
@@ -80,9 +87,9 @@
                           data-fname = "@user.FirstName"
                           data-lname = "@user.LastName"
                           data-pnumber = "@user.PhoneNumber"
-                           data-userrole = "@GetUserRole(user.Email)"
+                           data-userrole = "@user.UserRoles.FirstOrDefault()?.Role.Name"
                         >Edit</a>
-                        @if (!GetUserRole(user.Email).Equals("Company", StringComparison.OrdinalIgnoreCase))
+                        @if (user.UserRoles.Count > 0 && !user.UserRoles.FirstOrDefault().Role.Name.Equals("Company", StringComparison.OrdinalIgnoreCase))
                         {
                             if(apps > 0)
                             {

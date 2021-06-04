@@ -12,13 +12,13 @@
 
 <div class="col-md-12">
     <div class="col-md-5 form-signin extForm">
-        @if (ViewData["ErrorMessage"] != null)
+        @if (ViewData["Message"] != null)
         {
             <div class="col-md-12">
                 <div class="alert alert-danger alert-dismissible center-block" role="alert" id="welcomealert" align="center">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
-                    <strong>@ViewBag.ErrorMessage</strong>
+                    <strong>@ViewData["Message"]</strong>
                 </div>
             </div>
         }

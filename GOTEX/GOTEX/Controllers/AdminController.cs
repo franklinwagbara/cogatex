@@ -20,19 +20,19 @@ namespace GOTEX.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private IApplication<Application> _application;
-        private IAppHistory<ApplicationHistory> _history;
-        private UserManager<ApplicationUser> _userManager;
-        private IPayment<PaymentApproval> _paymentApproval;
-        private IWebHostEnvironment _hostingEnvironment;
-        private IAppConfiguration<Configuration> _appConfig;
-        private IElpsRepository _elps;
-        private IRepository<Message> _message;
-        private IPermit<Permit> _permit;
+        private readonly IApplication<Application> _application;
+        private readonly IAppHistory<ApplicationHistory> _history;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IPayment<PaymentApproval> _paymentApproval;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IAppConfiguration<Configuration> _appConfig;
+        private readonly IElpsRepository _elps;
+        private readonly IRepository<Message> _message;
+        private readonly IPermit<Permit> _permit;
         private readonly EmailSettings _emailSettings;
-        private IRepository<Log> _log;
-        private IApplicationTypeDocs<ApplicationTypeDocuments> _applicationTypeDocs;
-        private IRepository<ApplicationType> _appTypes;
+        private readonly IRepository<Log> _log;
+        private readonly IApplicationTypeDocs<ApplicationTypeDocuments> _applicationTypeDocs;
+        private readonly IRepository<ApplicationType> _appTypes;
 
         public AdminController(
             IApplication<Application> application,
@@ -200,7 +200,7 @@ namespace GOTEX.Controllers
                         PaymentUrl = "",
                         Status = model.submitBtn,
                         User = await _userManager.FindByEmailAsync(User.Identity.Name),
-                        ApprovedBy = $"{user.LastName} {user.LastName} ({User.Identity.Name})"
+                        ApprovedBy = $"{user.FirstName} {user.LastName} ({User.Identity.Name})"
                     };
                     _paymentApproval.Insert(payment);
 
@@ -315,7 +315,7 @@ namespace GOTEX.Controllers
                 { 
                     var tk = $"Application for {mailtype} with reference: {application.Reference} on DPR Gas Export Permit portal (GATEX) has been approved: " +
                            $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
-                    message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year);
+                    message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr..gov.ng/account/login?email={application.LastAssignedUserId}");
                     
                     application = _application.FindById(model.APplicationId);
                     if (application.Status.Equals(ApplicationStatus.Completed))
@@ -508,10 +508,34 @@ namespace GOTEX.Controllers
 
         public IActionResult StaffDesk() => View(_userManager.Users.ToList());
 
+        public IActionResult Outbox()
+        {
+            var history = _history.SentApplications(User.Identity.Name);
+            var apps = history
+                .GroupBy(x => x.ApplicationId)
+                .Select(x => x.FirstOrDefault())
+                .OrderByDescending(x => x.DateAssigned)
+                .ThenByDescending(x => x.DateAssigned)
+                .Select(x => new SentItems
+                {
+                    DateApplied = x.Application.Date,
+                    CompanyName = x.Application.User.Company.Name,
+                    Reference = x.Application.Reference,
+                    AppType = x.Application.ApplicationType.Name,
+                    DateTreated = x.DateAssigned,
+                    Product = x.Application.Product.Name,
+                    Terminal = x.Application.Terminal.Name,
+                    Quarter = x.Application.Quarter.Name,
+                    Action = x.Action,
+                    Comment = x.Comment
+                }).ToList();
+            return View(apps);
+        }
+
         private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message)
         {
             var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>DPR Gas Export Permit portal (GATEX) has been sent to you for further action: " +
-                     $"<br /> {comment}. <br/> Kindly treat.";
+                     $"<br /> {comment}. <br/>";
             message.Content = string.Format(body, message.Subject, tk, message.Id);
                    
             if(action.ToLower().Equals("accept"))

@@ -231,34 +231,9 @@ namespace GOTEX.Controllers
             {
                 ViewBag.ApplicationDocs = _application.GetApplicationFiles(id);
                 ViewBag.History = _history.GetApplicationHistoriesById(id);
-                // if (res)
-                // {
-                    // if(remitapayment.RRR.ToLower() == "DPR-ELPS".ToLower())
-                    //     ViewData["AppSubmit"] = "Your application has been re-submitted successfully";
-                    // else if(string.Equals(remitapayment.RRR, "DPR-Bank-M", StringComparison.CurrentCultureIgnoreCase))
-                    //     ViewData["AppSubmit"] = "Congratulations, your application was submitted successfully";
-                    // else
-                ViewData["AppSubmit"] = "Your application has been created. Please take the reference number to Planning Department for payment reconciliation";
+                ViewData["Id"] = id;
+                ViewData["AppSubmit"] = $"Your application has been created.\n Please click the button below to submit application to Planning Department.";
                 
-                //Notify all staff of submitted application
-                var staff = _userManager.Users.ToList();
-                
-                string subject = "GATEX Application Submission";
-                var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
-                var message =
-                    $"A {application.ApplicationType.FullName} has been submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
-                string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year);
-
-                foreach (var user in staff)
-                {
-                    if (_userManager.IsInRoleAsync(user, "Supervisor").Result 
-                        || _userManager.IsInRoleAsync(user, "Reviewer").Result 
-                        || _userManager.IsInRoleAsync(user, "Officer").Result 
-                        || _userManager.IsInRoleAsync(user, "AGGOPS").Result
-                        || _userManager.IsInRoleAsync(user, "HGMR").Result)
-                        Utils.SendMail(
-                            _emailSettings.Stringify().Parse<Dictionary<string, string>>(), user.Email, subject, content);
-                }
             }
             catch (Exception ex)
             {
@@ -346,24 +321,9 @@ namespace GOTEX.Controllers
         public IActionResult License(int id, string type = null)
         {
             var permit = _permit.FindById(id);
-            //var viewAsPdf = ViewAsPdf("License", permit)
-            //{
-            //    FileName = "Approval.pdf",
-            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
-            //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-            //};
-            //if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
-            //    viewAsPdf.ViewName = "PrintLicense";
-            // else
-            //     viewAsPdf.ViewName = "License";
-            //
-            //var pdf = await viewAsPdf.BuildFile(ControllerContext);
-            //return File(pdf, "application/pdf");
-
+            
             if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
             {
-                
-                permit = _permit.All().FirstOrDefault(x => x.ApplicationId == id);
                 return new ViewAsPdf("PrintLicense", permit)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
@@ -415,7 +375,23 @@ namespace GOTEX.Controllers
             var application = _application.FindById(id);
             var res = _history.CreateNextProcessingPhase(application, "SubmitPayment");
             if (res)
+            {
                 TempData["Message"] = "Application has been submitted successfully";
+                //Notify all staff of submitted application
+                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                var staff = _context.Users.Include(x 
+                    => x.UserRoles).ThenInclude(x => x.Role).ToList();
+                
+                string subject = "GATEX Application Submission";
+                var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
+                var message =
+                    $"A {application.ApplicationType.FullName} has been submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
+                string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.dpr.gov.ng");
+
+                foreach (var user in staff.Where(x => roles.Contains(x.UserRoles.FirstOrDefault().Role.Name)))
+                    Utils.SendMail(
+                        _emailSettings.Stringify().Parse<Dictionary<string, string>>(), user.Email, subject, content);
+            }            
             else
                 TempData["Message"] = "An error occured, please contact ICT/Support";
             
@@ -449,8 +425,12 @@ namespace GOTEX.Controllers
         {
             try
             {
+                bool res = false;
                 var application = _application.FindById(id);
-                var res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
+                if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
+                    res = _history.CreateNextProcessingPhase(application, "SubmitPayment");
+                else
+                    res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
                 if (res)
                 {
                     var mailmessage = _elps.GetMailMessages();
@@ -472,7 +452,7 @@ namespace GOTEX.Controllers
                               "<tr><td><b>Application Category:</b></td><td>Gas Export Permit</td></tr>" +
                               $"<tr><td><b>Quarter:</b></td><td>{application.Quarter.Name} for " +
                               $"{application.Quantity.ToString("N2")} Barrels of {application.Product.Name}</td></tr></table>";
-                    var mailbody = string.Format(body, subject, $"{tk}{src}", msg.Id, DateTime.Now.Year);
+                    var mailbody = string.Format(body, subject, $"{tk}{src}", msg.Id, DateTime.Now.Year, "");
 
                     msg.Content = mailbody;
                     _message.Update(msg);

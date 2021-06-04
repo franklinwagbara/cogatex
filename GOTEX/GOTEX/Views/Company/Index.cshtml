@@ -1,5 +1,6 @@
 ﻿@model List<Application>
 @inject IAppHistory<ApplicationHistory> _appHistory
+@inject IPayment<PaymentApproval> _payment
 
 @{
     ViewBag.Title = "Company Applications";
@@ -84,11 +85,18 @@
                 <td class="txtright">
                     @if (item.Status == ApplicationStatus.PaymentNotSatisfied || item.Status == ApplicationStatus.NotSubmitted)
                     {
+                        <a href="@Url.Action("Resubmit", "Application", new{ id = item.Id })" class="btn btn-xs btn-warning ">Resubmit <i class="glyphicon glyphicon-folder-open"></i></a>
                         <div class="btn-group">
                             <a 
                                 href="/Application/UploadApplicationDocuments/@item.Id"
                                 class=" btn btn-xs btn-success"
                                 >Continue <i class=" glyphicon glyphicon-credit-card"></i></a>
+                            <a 
+                                href="#" 
+                                class="btn btn-xs btn-danger btnRejectComment"
+                                data-comment="@PaymentRejectReason(item.Id)"
+                                data-target="#RejectModal"
+                                data-toggle="modal">See Why <i class="glyphicon glyphicon-question"></i></a>
                             <a 
                                 href="#"
                                 id="#"
@@ -245,6 +253,8 @@
 
     private string GetRejectionComment(int id) 
         => _appHistory.GetApplicationHistoriesById(id).OrderByDescending(x => x.Id).FirstOrDefault()?.Comment;
+
+    private string PaymentRejectReason(int id) => _payment.GetAll().FirstOrDefault(x => x.ApplicationId == id)?.Comment;
 }
 @section scripts{
     @*<script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>*@

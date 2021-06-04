@@ -187,6 +187,33 @@ namespace GOTEX.Controllers
             
             return user;
         }
+
+        public async Task<IActionResult> ChangePassword(PasswordViewModel model)
+        {
+            bool status = false;
+            if (ModelState.IsValid)
+            {
+                var response = _elps.ChangePassword(new
+                {
+                    model.OldPassword,
+                    model.NewPassword,
+                    ConfirmPassword = model.CPassword
+                }, User.Identity.Name);
+
+                if (response != null)
+                {
+                    if (response.GetValue("msg").Equals("ok", StringComparison.OrdinalIgnoreCase) &&
+                        response.GetValue("code").Equals("1"))
+                    {
+                        TempData["Message"] = "Password changed successfully, please login again to continue";
+                        return await LogOff();
+                    }
+                    TempData["Message"] = "Password change unsuccessful, please try again";
+
+                }
+            }
+            return RedirectToAction("Index", "DashBoard");
+        }
         public async Task<IActionResult> LogOff()
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);

@@ -45,6 +45,7 @@ namespace GOTEX.Controllers
         }
         public async Task<IActionResult> Index(DashboardViewModel model)
         {
+            ViewData["Message"] = TempData["Message"];
             int declined = 0;
             int allApps = 0;
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -165,6 +166,7 @@ namespace GOTEX.Controllers
                     model.RegisteredAddress.stateId = 2412;
                     var addList = new List<RegisteredAddress>();
                     addList.Add(model.RegisteredAddress);
+                    user.Company.RegisteredAddress = model.RegisteredAddress.address_1;
                     if (user.Company.RegAddressId > 0)
                     {
                         model.RegisteredAddress.id = user.Company.RegAddressId;
@@ -176,7 +178,6 @@ namespace GOTEX.Controllers
                         var req = _elps.AddCompanyRegAddress(addList, user.Company.ElpsId).Stringify().Parse<List<RegisteredAddress>>().FirstOrDefault();
                         user.Company.RegisteredAddress = req.address_1;
                         user.Company.RegAddressId = req.id;
-                        
                     }
                 }
                 // else if (model.Director != null)

@@ -15,11 +15,13 @@ namespace GOTEX.Core.DAL
     {
         private readonly AppDbContext _context;
         private IAppConfiguration<Configuration> _appConfig;
+        
         public ElpsRepostory(AppDbContext context, IAppConfiguration<Configuration> appConfig)
         {
             _context = context;
             _appConfig = appConfig;
         }
+        
         public Dictionary<string, string> GetCompanyDetailByEmail(string email)
         {
             var dic = new Dictionary<string, string>();
@@ -36,6 +38,7 @@ namespace GOTEX.Core.DAL
             }
             return dic;
         }
+        
         public RegisteredAddress GetCompanyRegAddressById(int id)
         {
             var dic = new RegisteredAddress();
@@ -55,6 +58,7 @@ namespace GOTEX.Core.DAL
             }
             return dic;
         }
+        
         public List<RegisteredAddress> GetCompanyRegAddress(int id)
         {
             var dic = new List<RegisteredAddress>();
@@ -74,6 +78,7 @@ namespace GOTEX.Core.DAL
             }
             return dic;
         }
+        
         public bool UpdateCompanyRegAddress(List<RegisteredAddress> model)
         {
             try
@@ -88,6 +93,7 @@ namespace GOTEX.Core.DAL
             }
             return false;
         }
+        
         public object AddCompanyRegAddress(List<RegisteredAddress> model, int companyId)
         {
             try
@@ -102,6 +108,7 @@ namespace GOTEX.Core.DAL
             }
             return false;
         }
+        
         public List<DirectorModel> GetCompanyDirectors(int id)
         {
             var dic = new List<DirectorModel>();
@@ -120,6 +127,7 @@ namespace GOTEX.Core.DAL
             }
             return dic;
         }
+        
         public object UpdateCompanyDetails(CompanyModel model, string email, bool update)
         {
             try
@@ -158,6 +166,7 @@ namespace GOTEX.Core.DAL
             }
             return null;
         }
+        
         public string UpdateCompanyNameEmail(object model)
         {
             try
@@ -172,6 +181,7 @@ namespace GOTEX.Core.DAL
             }
             return null;
         }
+        
         public object GetDocumentTypes(string type = null)
         {
             var docs = new List<DocumentType>();
@@ -195,6 +205,7 @@ namespace GOTEX.Core.DAL
             }
             return docs;
         }
+        
         public object GetCompanyDocuments(int id, string type = null)
         {
             var docs = new List<CompanyDocument>();
@@ -213,6 +224,7 @@ namespace GOTEX.Core.DAL
             }
             return docs;
         }
+        
         private string CallElps(string requestUri, HttpMethod method, object body = null)
         {
             var resp  = new HttpResponseMessage();
@@ -233,7 +245,9 @@ namespace GOTEX.Core.DAL
             
             return null;
         }
+        
         private string HttpHash() => $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
+        
         public List<MailTemplate> GetMailMessages() => _context.MailTemplates.ToList();
         
         public List<Staff> GetAllStaff()
@@ -286,6 +300,24 @@ namespace GOTEX.Core.DAL
                 
             }
             return elpsid;
+        }
+
+        public Dictionary<string, string> ChangePassword(object model, string useremail)
+        {
+            try
+            {
+                var resp = CallElps($"/api/Accounts/ChangePassword/{useremail}/",
+                    HttpMethod.Post, model);
+
+                if (!string.IsNullOrEmpty(resp))
+                    return resp.Parse<Dictionary<string, string>>();
+            }
+            catch(Exception ex)
+            {
+                
+            }
+
+            return null;
         }
     }
 }
