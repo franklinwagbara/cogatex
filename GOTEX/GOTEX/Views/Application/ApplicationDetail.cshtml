@@ -237,11 +237,11 @@
                                         </tr>
                                         <tr>
                                             <td>Bank Reference</td>
-                                            <td>@payment.PaymentEvidence?.ReferenceCode</td>
+                                            <td>@payment?.PaymentEvidence?.ReferenceCode</td>
                                         </tr>
                                         <tr>
                                             <td>Multiple Refernce Code</td>
-                                            <td class="text-wrap">@payment.PaymentEvidence?.HashCode</td>
+                                            <td class="text-wrap">@payment?.PaymentEvidence?.HashCode</td>
                                         </tr>
                                         <tr>
                                             <td>Amount paid ($)</td>
@@ -249,15 +249,15 @@
                                         </tr>
                                         <tr>
                                             <td>No of apps. paid for</td>
-                                            <td>@payment.PaymentEvidence.ApplicationQuantity</td>
+                                            <td>@payment?.PaymentEvidence.ApplicationQuantity</td>
                                         </tr>
                                         <tr>
                                             <td>Count of usage</td>
-                                            <td>@payment.PaymentEvidence.UsageCount</td>
+                                            <td>@payment?.PaymentEvidence.UsageCount</td>
                                         </tr>
                                         <tr>
                                             <td>Payment Description</td>
-                                            <td>@payment.PaymentEvidence?.Description</td>
+                                            <td>@payment?.PaymentEvidence?.Description</td>
                                         </tr>
                                     }
                                     else

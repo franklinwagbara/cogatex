@@ -138,7 +138,6 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/ApplicationUser.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PaymentApprovalRepository.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Views/Application/ApplicationDetail.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Index.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
@@ -152,9 +151,10 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/Dependdencies.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Utilities/Roles.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Views/Application/ApplicationDetail.cshtml" />
+      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1hVyboVT0meKok5Kdx0C78Amz62" />
@@ -337,7 +337,7 @@
       <workItem from="1621599212256" duration="683000" />
       <workItem from="1622550924622" duration="1221000" />
       <workItem from="1622553259753" duration="17109000" />
-      <workItem from="1623134722084" duration="8292000" />
+      <workItem from="1623134722084" duration="10284000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
