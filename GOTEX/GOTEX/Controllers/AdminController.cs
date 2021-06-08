@@ -33,6 +33,7 @@ namespace GOTEX.Controllers
         private readonly IRepository<Log> _log;
         private readonly IApplicationTypeDocs<ApplicationTypeDocuments> _applicationTypeDocs;
         private readonly IRepository<ApplicationType> _appTypes;
+        private readonly IRepository<WorkFlow> _workFlow;
 
         public AdminController(
             IApplication<Application> application,
@@ -47,7 +48,8 @@ namespace GOTEX.Controllers
             IOptionsMonitor<EmailSettings> optionsMonitor,
             IRepository<Log> log,
             IApplicationTypeDocs<ApplicationTypeDocuments> applicationTypeDocs,
-            IRepository<ApplicationType> appTypes)
+            IRepository<ApplicationType> appTypes,
+            IRepository<WorkFlow> workFlow)
         {
             _application = application;
             _history = history;
@@ -62,6 +64,7 @@ namespace GOTEX.Controllers
             _log = log;
             _applicationTypeDocs = applicationTypeDocs;
             _appTypes = appTypes;
+            _workFlow = workFlow;
         }
 
         public IActionResult Index()
@@ -531,6 +534,8 @@ namespace GOTEX.Controllers
                 }).ToList();
             return View(apps);
         }
+
+        public IActionResult ApplicationFlow() => View(_workFlow.GetAll());
 
         private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message)
         {

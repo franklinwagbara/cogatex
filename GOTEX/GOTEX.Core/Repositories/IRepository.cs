@@ -7,7 +7,7 @@ namespace GOTEX.Core.Repositories
     {
         T Insert(T item);
         T Update(T item);
-        T Remove(int id);
+        void Remove(int id);
         T FindById(int id);
         List<T> GetAll();
         List<T> GetListByUserId(string id);

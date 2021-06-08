@@ -5,40 +5,40 @@ using GOTEX.Core.Repositories;
 
 namespace GOTEX.Core.DAL
 {
-    public class AppTypeRepository : IRepository<ApplicationType>
+    public class WorkflowRepository : IRepository<WorkFlow>
     {
-        public readonly AppDbContext _context;
-        public AppTypeRepository(AppDbContext context)
+        private readonly AppDbContext _context;
+        public WorkflowRepository(AppDbContext context)
         {
             _context = context;
         }
-        public ApplicationType Insert(ApplicationType item)
+        public WorkFlow Insert(WorkFlow item)
         {
-            _context.ApplicationTypes.Add(item);
+            _context.WorkFlows.Add(item);
             _context.SaveChanges();
             return item;
         }
 
-        public ApplicationType Update(ApplicationType item)
+        public WorkFlow Update(WorkFlow item)
         {
-            _context.ApplicationTypes.Update(item);
+            _context.WorkFlows.Update(item);
             _context.SaveChanges();
             return item;
         }
 
         public void Remove(int id)
         {
-            throw new System.NotImplementedException();
+            var item = FindById(id);
+            _context.WorkFlows.Remove(item);
+            _context.SaveChanges();
+            
         }
 
-        public ApplicationType FindById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        public WorkFlow FindById(int id) => _context.WorkFlows.FirstOrDefault(x => x.Id == id);
 
-        public List<ApplicationType> GetAll() => _context.ApplicationTypes.ToList();
+        public List<WorkFlow> GetAll() => _context.WorkFlows.ToList();
 
-        public List<ApplicationType> GetListByUserId(string id)
+        public List<WorkFlow> GetListByUserId(string id)
         {
             throw new System.NotImplementedException();
         }
