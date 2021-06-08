@@ -26,10 +26,11 @@ namespace GOTEX.Core.DAL
         {
             try
             {
-                var processingUser = _userManager.FindByNameAsync(application.LastAssignedUserId).Result;
-                var processingUserRole = _userManager.GetRolesAsync(processingUser).Result.FirstOrDefault();
+                var processingUser = _userManager.Users
+                    .Include(x => x.UserRoles)
+                    .ThenInclude(x => x.Role).FirstOrDefault(x => x.Email.Equals(application.LastAssignedUserId));
                 var nextaction = _context.WorkFlows.FirstOrDefault(x =>
-                    x.Action.ToLower().Contains(action) && x.TriggeredByRole.ToLower().Equals(processingUserRole.ToLower()));
+                    x.Action.ToLower().Contains(action) && x.TriggeredByRole.ToLower().Equals(processingUser.UserRoles.FirstOrDefault().Role.Name.ToLower()));
                 var nextprocofficer = nextaction.TargetRole.Equals("Company") ? application.User : GetNextProcessingOfficer(nextaction.TargetRole, action, application, processingUser);
                 if (nextprocofficer != null)
                 {
@@ -41,9 +42,9 @@ namespace GOTEX.Core.DAL
                             : $"{AppHistoryComment(nextaction)} => {comment}",
                         Status = !action.ToLower().Contains("approve")
                             ? nextaction.Status
-                            : nextaction.Status + GetApplicationStatus(action, processingUserRole),
+                            : nextaction.Status + GetApplicationStatus(action, processingUser.UserRoles.FirstOrDefault().Role.Name),
                         CurrentUser = processingUser.UserName,
-                        CurrentUserRole = processingUserRole,
+                        CurrentUserRole = processingUser.UserRoles.FirstOrDefault().Role.Name,
                         DateAssigned = DateTime.UtcNow.AddHours(1),
                         DateTreated = DateTime.UtcNow.AddHours(1),
                         IsAssigned = true,
@@ -66,7 +67,7 @@ namespace GOTEX.Core.DAL
                         || action.Equals("resubmitapplication", StringComparison.OrdinalIgnoreCase))
                         application.Status = nextaction.Status;
                     else
-                        application.Status = GetApplicationStatus(action, processingUserRole);
+                        application.Status = GetApplicationStatus(action, processingUser.UserRoles.FirstOrDefault().Role.Name);
                     _context.Applications.Update(application);
                     _context.SaveChanges();
                     return true;
