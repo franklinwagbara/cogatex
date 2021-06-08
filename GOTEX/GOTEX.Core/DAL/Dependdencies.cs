@@ -18,6 +18,7 @@ namespace GOTEX.Core.DAL
             services.AddTransient<IPermit<Permit>, PermitRepository>();
             services.AddTransient<IRepository<Log>, Logrepository>();
             services.AddTransient<IRepository<ApplicationType>, AppTypeRepository>();
+            services.AddTransient<IRepository<WorkFlow>, WorkflowRepository>();
             services.AddTransient<IApplicationTypeDocs<ApplicationTypeDocuments>, AppTypeDocsRepository>();
         }
     }

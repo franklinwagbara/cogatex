@@ -1,0 +1,263 @@
+﻿@model List<WorkFlow>
+
+@{
+    
+}
+
+@{
+    ViewBag.Title = "Application Work-flow";
+    int count = 0;
+}
+<center>
+    <div class="card" style="margin-top: 2em; padding: 1em;">
+        @if (ViewData["Message"] != null)
+        {
+            <div class="col-md-12">
+                <div class="alert @ViewData["alert"] alert-dismissible center-block" role="alert" id="welcomealert" align="center">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+                    <strong>@ViewData["Message"]</strong>
+                </div>
+            </div>
+        }
+        <h2 class="btn btn-primary col-md-3">@ViewBag.Title</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>#</td>
+                <td>Acting Role</td>
+                <td>Action</td>
+                <td>Target Role</td>
+                <td>Status</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@item.TriggeredByRole</td>
+                    <td>@item.Action</td>
+                    <td>@item.TargetRole</td>
+                    <td>@item.Status</td>
+                    <td>
+                        <a
+                            href="#"
+                            data-id="@item.Id"
+                            data-target="#EditModal"
+                            class="btn btn-sm btn-success editBtn"
+                            data-toggle="modal">Edit</a> |
+                        <a 
+                            href="#"
+                            data-id="@item.Id"
+                            data-target="#DocModal" 
+                            class="btn btn-sm btn-danger mgnBtn"
+                            data-toggle="modal"
+                            >Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</center>
+
+<div class="modal" role="dialog" tabindex="-1" id="EditModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title btn btn-success">Application Type</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height: 280px;">
+                <form action="/Admin/EditApplicationType" method="post" enctype="multipart/form-data" id="formSave">
+                    <input type="hidden" name="Id" id="id" value=""/>
+                    <div class="form-group">
+                        <label style="float:left">Name</label>
+                        <input type="text" class="form-control" id="name" name="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Short Name</label>
+                        <input type="text" class="form-control" id="sname" name="ShortName" />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Full Name</label>
+                        <input type="text" class="form-control" id="fname" name="FullName" />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Price</label>
+                        <input type="number" class="form-control" id="amount" name="Amount" />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Processing Fee</label>
+                        <input type="number" class="form-control" id="pfee" name="ProcessingFee" />
+                    </div>
+                    <div CLASS="form-group">
+                        <label style="float:left">Service Charge</label>
+                        <input type="number" class="form-control" id="scharge" name="ServiceCharge" />
+                    </div>
+                    <div CLASS="form-group">
+                        <label style="float:left">Issue Type</label>
+                        <input type="text" class="form-control" id="issueType" name="IssueType" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Update" class="btn btn-danger" name="Submit" id="EditBtn" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #myInput {
+      background-image: url('../../wwwroot/images/seachicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+</style>
+<div class="modal" role="dialog" tabindex="-2" id="DocModal" style="margin-bottom: 5em;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title btn btn-success">Application Type Documents</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Search for Document name.." />
+                </div>
+                <form action="/Admin/UpdateApplicationTypeDocuments" method="post" enctype="multipart/form-data" id="formDocs">
+                    <input type="hidden" name="ApplicationTypeId" id="ApplicationTypeId" value=""/>
+                    <div class="col-md-6" style="float:left">
+                        <h2 class="btn btn-primary">Company Document(s)</h2>
+                        <table id="companydocuments" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <td></td>
+                                <th>Document Name</th>
+                            </tr>
+                            </thead>
+                            <tbody id="compdocbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6" style="float:right;">
+                        <h2 class="btn btn-primary">Facility Document(s)</h2>
+                        <table id="facilitydocuments" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <td></td>
+                                <th>Document Name</th>
+                            </tr>
+                            </thead>
+                            <tbody id="facdocbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Save Changes" class="btn btn-success" name="Submit" id="mgnSubmit" />
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+$(document).ready(function (){
+    $(".editBtn").click(function (e){
+        $("#id").val($(this).data('id'));
+       
+    });
+    
+    $("#EditBtn").click(function (e){
+        e.preventDefault();
+        $("#formSave").submit();
+    });
+    
+    $(".mgnBtn").click(function (e){
+        e.preventDefault();
+        $("#compdocbody").html('');
+        $("#facdocbody").html('');
+        $("#ApplicationTypeId").val($(this).data('id'));
+        $.get('/Admin/ManageDocuments/' + $(this).data('id'), function (data){
+            var companydocs = data.compdocs;
+            var facdocs = data.facdocs;
+            
+            $.each(companydocs, function (key, val){
+                if (val.selected === true){
+                    $("#compdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '" checked ="true" /></td><td>' + val.name + '</td></tr>');
+                }
+                else{
+                    $("#compdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '"/></td><td> ' + val.name + '</td></tr>');
+                }
+            });
+            $.each(facdocs, function (key, val){
+                if (val.selected === true){
+                    $("#facdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '" checked ="true" /></td><td>' + val.name + '</td></tr>');
+                }
+                else{
+                    $("#facdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '"/></td><td> ' + val.name + '</td></tr>');
+                }
+            });            
+        });
+    });
+    $("#mgnSubmit").click(function (e){
+        e.preventDefault();
+        $("#formDocs").submit();
+    });
+});
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("companydocuments");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = tr[i].textContent || tr[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } 
+      else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+  
+  table = document.getElementById("facilitydocuments");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = tr[i].textContent || tr[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } 
+        else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+}
+</script>

@@ -45,7 +45,7 @@ namespace GOTEX.Core.DAL
             }
             return item;
         }
-        public Message Remove(int id)
+        public void Remove(int id)
         {
             throw new System.NotImplementedException();
         }

@@ -24,7 +24,7 @@ namespace GOTEX.Core.DAL
             throw new System.NotImplementedException();
         }
 
-        public Log Remove(int id)
+        public void Remove(int id)
         {
             throw new System.NotImplementedException();
         }
