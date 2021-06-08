@@ -65,6 +65,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3B48D433-65E5-440B-BDFB-184BED50B57A/12/IWebHostEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F680C866-D120-4163-9634-EBD842255BE9/24/ControllerBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FF4263DB-1990-4D27-8A08-3F2BC9AFBE0A/194/ObjectMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4065B38D-0F9F-44D9-8F53-F4C9102AF396/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9B75F723-8C22-4648-AA94-E16AD14335D4/D/RazorPageBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
@@ -124,7 +125,6 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ElpsRepostory.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/UploadApplicationDocuments.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IAppHistory.cs" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/ViewModels/SentItems.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/Outbox.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Shared/_AdminSideBar.cshtml" />
@@ -143,17 +143,18 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/WorkflowRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Repositories/IRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/MessageRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/Logrepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppTypeRepository.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Admin/ApplicationFlow.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/Dependdencies.cs" />
-      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
       <option value="$PROJECT_DIR$/GOTEX.Core/Utilities/Roles.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs" />
+      <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1hVyboVT0meKok5Kdx0C78Amz62" />
@@ -336,7 +337,7 @@
       <workItem from="1621599212256" duration="683000" />
       <workItem from="1622550924622" duration="1221000" />
       <workItem from="1622553259753" duration="17109000" />
-      <workItem from="1623134722084" duration="4248000" />
+      <workItem from="1623134722084" duration="8292000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -458,13 +459,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs</url>
-          <line>557</line>
+          <line>558</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="528" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="24170" />
+              <option value="24397" />
             </startOffsets>
             <endOffsets>
-              <option value="24348" />
+              <option value="24575" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="232" />
@@ -477,62 +478,49 @@
               <option value="859" />
             </startOffsets>
             <endOffsets>
-              <option value="948" />
+              <option value="893" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="234" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs</url>
-          <line>154</line>
+          <line>155</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\DAL\AppHistoryRepository.cs" initialLine="153" containingFunctionPresentation="method 'GetNextProcessingOfficer'">
             <startOffsets>
-              <option value="7589" />
+              <option value="7724" />
             </startOffsets>
             <endOffsets>
-              <option value="7651" />
+              <option value="7786" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="235" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>376</line>
+          <line>375</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="376" containingFunctionPresentation="method 'SubmitApplication'">
             <startOffsets>
-              <option value="15947" />
+              <option value="15932" />
             </startOffsets>
             <endOffsets>
-              <option value="15955" />
+              <option value="15940" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="236" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>429</line>
+          <line>428</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="434" containingFunctionPresentation="method 'Resubmit'">
             <startOffsets>
-              <option value="18373" />
+              <option value="18358" />
             </startOffsets>
             <endOffsets>
-              <option value="18442" />
+              <option value="18427" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="241" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GOTEX.Core/Utilities/Utils.cs</url>
-          <line>97</line>
-          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\Utilities\Utils.cs" initialLine="97" containingFunctionPresentation="method 'SendMail'">
-            <startOffsets>
-              <option value="3861" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3971" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="244" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs</url>
@@ -546,6 +534,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="245" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs</url>
+          <line>305</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="305" containingFunctionPresentation="method 'Approve'">
+            <startOffsets>
+              <option value="13129" />
+            </startOffsets>
+            <endOffsets>
+              <option value="13209" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="247" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs</url>
+          <line>553</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="541" containingFunctionPresentation="method 'SendMail'">
+            <startOffsets>
+              <option value="23932" />
+            </startOffsets>
+            <endOffsets>
+              <option value="24148" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="248" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
