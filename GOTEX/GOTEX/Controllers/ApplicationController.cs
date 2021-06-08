@@ -300,10 +300,9 @@ namespace GOTEX.Controllers
         
         public IActionResult ApplicationDetail(int id)
         {
-            var appdocs = _application.GetApplicationFiles(id).Stringify().Parse<List<DocumentType>>();
+            var appdocs = _application.GetApplicationFiles(id)?.Stringify().Parse<List<DocumentType>>();
             ViewBag.ApplicationDocs = appdocs.Where(a => a.Selected).ToList();
-            ViewBag.History = _history.GetApplicationHistoriesById(id).OrderByDescending(x => x.DateAssigned)
-                .Take(5);
+            ViewBag.History = _history.GetApplicationHistoriesById(id)?.OrderByDescending(x => x.DateAssigned).Take(5);
             return View(_application.FindById(id));
         }
         
