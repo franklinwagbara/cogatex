@@ -233,7 +233,7 @@
                             <table class="table table-striped">
                                 @{
                                     var payment = _application.FindById(Model.Id);
-                                    if (payment != null)
+                                    if (payment.PaymentEvidence != null)
                                     {
                                         <tr>
                                             <td>Bank Reference</td>
