@@ -186,7 +186,7 @@ namespace GOTEX.Controllers
                         TempData["Message"] = "An error occured while submitting this application, please try again or contact support.";
                 }
                 else
-                    TempData["Message"] = "Payment evidence supplied is invalid, please provide valid payment information.";
+                    TempData["Message"] = verify.message;
                       
             }
             catch (Exception ex)

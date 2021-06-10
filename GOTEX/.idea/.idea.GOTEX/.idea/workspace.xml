@@ -139,7 +139,6 @@
       <option value="$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/PaymentApprovalRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Company/Index.cshtml" />
-      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Staff/All.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs" />
       <option value="$PROJECT_DIR$/GOTEX.Core/DAL/WorkflowRepository.cs" />
@@ -155,6 +154,7 @@
       <option value="$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs" />
       <option value="$PROJECT_DIR$/GOTEX/Views/Application/ApplicationDetail.cshtml" />
       <option value="$PROJECT_DIR$/GOTEX/appsettings.json" />
+      <option value="$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1hVyboVT0meKok5Kdx0C78Amz62" />
@@ -338,7 +338,7 @@
       <workItem from="1622550924622" duration="1221000" />
       <workItem from="1622553259753" duration="17109000" />
       <workItem from="1623134722084" duration="13363000" />
-      <workItem from="1623231561137" duration="3086000" />
+      <workItem from="1623231561137" duration="3821000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -561,6 +561,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="248" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs</url>
+          <line>190</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\DAL\ApplicationRepository.cs" initialLine="190" containingFunctionPresentation="method 'ValidatePaymentEvidence'">
+            <startOffsets>
+              <option value="8467" />
+            </startOffsets>
+            <endOffsets>
+              <option value="8497" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="249" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
