@@ -33,6 +33,7 @@ namespace GOTEX.Controllers
         private readonly IRepository<Log> _log;
         private readonly IApplicationTypeDocs<ApplicationTypeDocuments> _applicationTypeDocs;
         private readonly IRepository<ApplicationType> _appTypes;
+        private readonly IRepository<WorkFlow> _workFlow;
 
         public AdminController(
             IApplication<Application> application,
@@ -47,7 +48,8 @@ namespace GOTEX.Controllers
             IOptionsMonitor<EmailSettings> optionsMonitor,
             IRepository<Log> log,
             IApplicationTypeDocs<ApplicationTypeDocuments> applicationTypeDocs,
-            IRepository<ApplicationType> appTypes)
+            IRepository<ApplicationType> appTypes,
+            IRepository<WorkFlow> workFlow)
         {
             _application = application;
             _history = history;
@@ -62,6 +64,7 @@ namespace GOTEX.Controllers
             _log = log;
             _applicationTypeDocs = applicationTypeDocs;
             _appTypes = appTypes;
+            _workFlow = workFlow;
         }
 
         public IActionResult Index()
@@ -333,8 +336,20 @@ namespace GOTEX.Controllers
                         message.Subject, message.Content);
                 }
                 else
-                    SendMail(application, message.Content, message.Subject, body, model.Action, mailtype, message);
-
+                {
+                    SendMail(application, model.Report, message.Subject, body, model.Action, mailtype, message);
+                    if(model.Action.ToLower().Equals("approve"))
+                        TempData["message"] =                                                                    
+                            "Application has been pushed to the next processing officer for appropriate action";
+                    else if(model.Action.ToLower().Equals("reject"))
+                    {
+                        TempData["message"] =
+                            "Application has been rejected to the immediate processing officer for appropriate action";
+                        if (application.LastAssignedUserId.Equals(application.UserId))
+                            TempData["message"] =
+                                "Application has been rejected to the marketer for appropriate action";
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -532,23 +547,14 @@ namespace GOTEX.Controllers
             return View(apps);
         }
 
+        public IActionResult ApplicationFlow() => View(_workFlow.GetAll());
+
         private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message)
         {
             var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>DPR Gas Export Permit portal (GATEX) has been sent to you for further action: " +
                      $"<br /> {comment}. <br/>";
-            message.Content = string.Format(body, message.Subject, tk, message.Id);
-                   
-            if(action.ToLower().Equals("accept"))
-                TempData["message"] =                                                                    
-                    "Application has been pushed to the next processing officer for appropriate action";
-            else if(action.ToLower().Equals("reject"))
-            {
-                TempData["message"] =
-                    "Application has been rejected to the immediate processing officer for appropriate action";
-                if (application.LastAssignedUserId.Equals(application.UserId))
-                    TempData["message"] =
-                        "Application has been rejected to the marketer for appropriate action";
-            }
+            message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr.gov.ng/account/login?email={application.LastAssignedUserId}");
+            
             _message.Update(message);
             Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
                 application.LastAssignedUserId, 
