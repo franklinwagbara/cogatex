@@ -189,43 +189,45 @@ namespace GOTEX.Core.DAL
         public (bool status, string hash, string message)  ValidatePaymentEvidence(Dictionary<string, string> dic)
         {
             string message = string.Empty;
+            var resp = false;
             //Check amount paid against number of applications
             if(_context.ApplicationTypes.FirstOrDefault()?.Amount * int.Parse(dic.GetValue("ApplicationQuantity")) != decimal.Parse(dic.GetValue("Amount")))
                 message = "The amount paid and number of applications provided is invalid.";
-            
-            var reference = dic.GetValue("referencetype");
-            var resp = false;
-            var paymentevidence = reference.Equals("1")
-                ? _context.PaymentEvidences.FirstOrDefault(x => x.ReferenceCode.Equals(dic.GetValue("referencecode")))
-                : _context.PaymentEvidences.FirstOrDefault(x => x.HashCode.Equals(dic.GetValue("referencecode")));
+            else
+            {
+                var reference = dic.GetValue("referencetype");
+                var paymentevidence = reference.Equals("1")
+                    ? _context.PaymentEvidences.FirstOrDefault(x => x.ReferenceCode.Equals(dic.GetValue("referencecode")))
+                    : _context.PaymentEvidences.FirstOrDefault(x => x.HashCode.Equals(dic.GetValue("referencecode")));
 
-            if (reference.Equals("1") && paymentevidence == null)
-            {
-                paymentevidence = dic.Stringify().Parse<PaymentEvidence>();
-                paymentevidence.HashCode = $"{Utils.RefrenceCode()}{dic.GetValue("referencecode")}";
-                paymentevidence.UsageCount = 1;
-                    
-                _context.PaymentEvidences.Add(paymentevidence);
-                resp = true;
-                message = "Payment Evidence is valid";
-            }
-            else if(reference.Equals("1") && paymentevidence == null)
-                message = "Payment Evidence submitted is invalid, kindly contact Support/ICT";
-            else if (paymentevidence != null)
-            {
-                resp = paymentevidence.ApplicationQuantity > paymentevidence.UsageCount;
-                    
-                if (resp)
+                if (reference.Equals("1") && paymentevidence == null)
                 {
-                    paymentevidence.UsageCount++;
-                    message = "Multiple reference code is valid for this application";
+                    paymentevidence = dic.Stringify().Parse<PaymentEvidence>();
+                    paymentevidence.HashCode = $"{Utils.RefrenceCode()}{dic.GetValue("referencecode")}";
+                    paymentevidence.UsageCount = 1;
+                    
+                    _context.PaymentEvidences.Add(paymentevidence);
+                    resp = true;
+                    message = "Payment Evidence is valid";
                 }
-                else
-                    message = "Multiple reference code is invalid";
+                else if(reference.Equals("1") && paymentevidence != null)
+                    message = "Payment Evidence submitted is invalid, kindly contact Support/ICT";
+                else if (!reference.Equals("1") && paymentevidence != null)
+                {
+                    resp = paymentevidence.ApplicationQuantity > paymentevidence.UsageCount;
+                    
+                    if (resp)
+                    {
+                        paymentevidence.UsageCount++;
+                        message = "Multiple reference code is valid for this application";
+                    }
+                    else
+                        message = "Multiple reference code is invalid";
+                }
+                _context.SaveChanges();
+                return (resp, paymentevidence?.HashCode, message);
             }
-            _context.SaveChanges();
-
-            return (resp, paymentevidence?.HashCode, message);
+            return (resp, string.Empty, message);
         }
 
         public List<Application> GetAll() => _context.Applications
