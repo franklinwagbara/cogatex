@@ -296,7 +296,11 @@ namespace GOTEX.Controllers
             return View(applications);
         } 
         
-        public IActionResult All() => View(_application.GetAll().Stringify().Parse<List<Application>>());
+        public IActionResult All()
+        {
+            ViewData["Message"] = TempData["Message"];
+            return View(_application.GetAll().Stringify().Parse<List<Application>>());
+        }
         
         public IActionResult ApplicationDetail(int id)
         {
@@ -502,6 +506,10 @@ namespace GOTEX.Controllers
                 });
                 TempData["Message"] = "An error occured while updating application, please contact support.";
             }
+
+            if (!User.IsInRole("Company"))
+                return RedirectToAction("All", "Application");
+            
             return RedirectToAction("Index", "Company");
         }
 

@@ -6,8 +6,20 @@
 }
 
 <center>
+    
     <div class="card" style="margin-top: 2em; padding: 1em;">
-      <h2 class="btn btn-success col-md-3">All Application(s)</h2>
+        <h2 class="btn btn-success col-md-3">All Application(s)</h2>
+        @if (ViewData["Message"] != null)
+            {
+                <div class="alert alert-info alert-dismissable txtcenter">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                    @ViewData["Message"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                        
+                </div>
+            }
         <table class="table table-striped dataTable">
             <thead>
             <tr>
@@ -21,32 +33,127 @@
             </tr>
             </thead>
             <tbody>
-                @foreach (var app in Model)
-                {
-                    count++;
-                    <tr>
-                        <td>@count</td>
-                        <td>@app.User.Company.Name</td>
-                        <td>@app.Reference</td>
-                        <td>@app.Product.Name</td>
-                        <td>@app.Status</td>
-                        <td>@app.Date</td>
-                        <td>
-                            <a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a>
-                            @if (!User.IsInRole("Company") || !User.IsInRole("Admin") || !User.IsInRole("Staff"))
-                            {
-                                <a href="/Application/License/@app.Id?type=print" target="_blank" class="btn btn-sm btn-warning">Preview Approval</a>
-                            }
-                        </td>
-                    </tr>
-                }
+            @foreach (var app in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@app.User.Company.Name</td>
+                    <td>@app.Reference</td>
+                    <td>@app.Product.Name</td>
+                    <td>@app.Status</td>
+                    <td>@app.Date</td>
+                    <td>
+                        <a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a>
+                        @if (!User.IsInRole("Company") || !User.IsInRole("Admin") || !User.IsInRole("Staff"))
+                        {
+                            <a
+                                href="#"
+                                data-id="@app.Id"
+                                data-quantity="@app.Quantity"
+                                data-apptype="@app.ApplicationType.Name"
+                                data-quarter="@app.Quarter.Name"
+                                data-product="@app.Product.Name"
+                                data-terminal="@app.Terminal.Name"
+                                data-amount="@app.ProductAmount"
+                                data-gasstream="@app.GasStream"
+                                data-toggle="modal"
+                                data-target="#EditModal"
+                                class="btn btn-sm btn-success editBtn">Update App</a>                            
+                            <a href="/Application/License/@app.Id?type=print" target="_blank" class="btn btn-sm btn-warning">Preview Approval</a>
+                        }
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
 </center>
+
+<div class="modal" role="dialog" tabindex="-1" id="EditModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Application Update</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="min-height: 280px;">
+                <form action="/Application/UpdateApplication" method="post" enctype="multipart/form-data" id="formUpdate">
+                    <input type="hidden" name="Id" id="Id"/>
+                    <div class="form-group">
+                        <label style="float:left">Application Type</label>
+                        <input type="text" class="form-control" id="ApplicationType" name="ApplicationType" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Quarter Registration</label>
+                        <input type="text" class="form-control" id="Quarter" name="Quarter" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Product Type</label>
+                        <input type="text" class="form-control" id="Product" name="Product" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Terminal (Port of Export)</label>
+                        <input type="text" class="form-control" id="Terminal" name="Terminal" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Quantity</label>
+                        <input type="text" class="form-control" id="Quantity" name="Quantity"/>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Equivalent Value ($)</label>
+                        <input type="text" class="form-control" id="Amount" name="Amount"/>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Measurement</label>
+                        <select type="text" class="form-control" id="gasstream" name="GasStream">
+                            
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="modal-footer">
+                            <input type="submit" value="Update" class="btn btn-primary" name="Submit" id="UpdateBtn" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function () {
         $('.dataTable').DataTable();
+        
+        $(document.body).on('click', '.editBtn', function (e){
+            var measure = $(this).data('gasstream');
+            $("#ApplicationType").val($(this).data('apptype'));
+            $("#Id").val($(this).data('id'));
+            $("#Quarter").val($(this).data('quarter'));
+            $("#Product").val($(this).data('product'));
+            $("#Terminal").val($(this).data('terminal'));
+            $("#Quantity").val($(this).data('quantity'));
+            $("#Amount").val($(this).data('amount'));
+            
+            if (measure === ""){
+                $("#gasstream").append('<option value="MT">Metric Tonnes</option>');
+                $("#gasstream").append('<option value="Barrels">Barrels</option>');
+            }
+            else{
+                if (measure === "MT"){
+                    $("#gasstream").append('<option value="MT" selected>Metric Tonnes</option>');
+                    $("#gasstream").append('<option value="Barrels">Barrels</option>');
+                }
+                else{
+                    $("#gasstream").append('<option value="MT">Metric Tonnes</option>');
+                    $("#gasstream").append('<option value="Barrels" selected>Barrels</option>');
+                }
+                
+            }
+        });
     });
 </script>
