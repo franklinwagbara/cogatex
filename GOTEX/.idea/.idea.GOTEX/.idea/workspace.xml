@@ -344,6 +344,7 @@
       <workItem from="1624969951999" duration="516000" />
       <workItem from="1625484793807" duration="3604000" />
       <workItem from="1627133232626" duration="1153000" />
+      <workItem from="1627639782145" duration="810000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -468,10 +469,10 @@
           <line>558</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="528" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="24397" />
+              <option value="24398" />
             </startOffsets>
             <endOffsets>
-              <option value="24575" />
+              <option value="24576" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="232" />
@@ -533,10 +534,10 @@
           <line>305</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="305" containingFunctionPresentation="method 'Approve'">
             <startOffsets>
-              <option value="13129" />
+              <option value="13130" />
             </startOffsets>
             <endOffsets>
-              <option value="13209" />
+              <option value="13210" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="247" />
@@ -546,10 +547,10 @@
           <line>553</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="541" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="23932" />
+              <option value="23933" />
             </startOffsets>
             <endOffsets>
-              <option value="24148" />
+              <option value="24149" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="248" />
