@@ -14,7 +14,7 @@
         "outputPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Microsoft\\Xamarin\\NuGet"
         ],
         "configFilePaths": [
           "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",
