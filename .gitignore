@@ -2,5 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/GOTEX/GatexDatabase/GatexDatabase.jfm
 /GOTEX/GatexDatabase/GatexDatabase.dbmdl
+/GOTEX/GatexDatabase/GatexDatabase.jfm
