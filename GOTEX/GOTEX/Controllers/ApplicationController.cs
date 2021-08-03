@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
@@ -150,6 +151,11 @@ namespace GOTEX.Controllers
             try
             {
                 var application = _application.FindById(id);
+                if (Regex.IsMatch(model.ReferenceCode, "\\s\\t[*'\",_&#^@!$%-+/><?{}]"))
+                {
+                    TempData["Message"] = "Payment reference contains invalid characters";
+                    return RedirectToAction("UploadApplicationDocuments", new {id});
+                }
                 var verify =
                     _application.ValidatePaymentEvidence(model.Stringify().Parse<Dictionary<string, string>>());
 
@@ -199,7 +205,7 @@ namespace GOTEX.Controllers
                     UserId = User.Identity.Name
                 });
             }
-            return RedirectToAction("UploadApplicationDocuments", new { id = id });
+            return RedirectToAction("UploadApplicationDocuments", new { id });
         }
         
         [HttpGet]
@@ -296,7 +302,11 @@ namespace GOTEX.Controllers
             return View(applications);
         } 
         
-        public IActionResult All() => View(_application.GetAll().Stringify().Parse<List<Application>>());
+        public IActionResult All()
+        {
+            ViewData["Message"] = TempData["Message"];
+            return View(_application.GetAll().Stringify().Parse<List<Application>>());
+        }
         
         public IActionResult ApplicationDetail(int id)
         {
@@ -502,6 +512,10 @@ namespace GOTEX.Controllers
                 });
                 TempData["Message"] = "An error occured while updating application, please contact support.";
             }
+
+            if (!User.IsInRole("Company"))
+                return RedirectToAction("All", "Application");
+            
             return RedirectToAction("Index", "Company");
         }
 
