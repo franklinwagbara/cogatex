@@ -35,6 +35,7 @@ namespace GOTEX.Controllers
         private readonly IRepository<ApplicationType> _appTypes;
         private readonly IRepository<WorkFlow> _workFlow;
 
+
         public AdminController(
             IApplication<Application> application,
             IAppHistory<ApplicationHistory> history,
