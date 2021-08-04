@@ -190,13 +190,13 @@ namespace GOTEX.Core.DAL
         {
             string message = string.Empty;
             var resp = false;
+            var reference = dic.GetValue("referencetype");
+
             //Check amount paid against number of applications
-            if(_context.ApplicationTypes.FirstOrDefault()?.Amount * int.Parse(dic.GetValue("ApplicationQuantity")) != decimal.Parse(dic.GetValue("Amount")))
+            if(reference.Equals("1") && _context.ApplicationTypes.FirstOrDefault()?.Amount * int.Parse(dic.GetValue("ApplicationQuantity")) != decimal.Parse(dic.GetValue("Amount")))
                 message = "The amount paid and number of applications provided is invalid.";
             else
             {
-                var reference = dic.GetValue("referencetype");
-
                 var paymentevidence = reference.Equals("1")
                     ? _context.PaymentEvidences.FirstOrDefault(x => x.ReferenceCode.Equals(dic.GetValue("referencecode")))
                     : _context.PaymentEvidences.FirstOrDefault(x => x.HashCode.Equals(dic.GetValue("referencecode")));
