@@ -101,11 +101,11 @@ namespace GOTEX.Core.Utilities
                 EnableSsl = bool.Parse(mailsettings.GetValue("UseSsl")),
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = credentials
+                Credentials = credentials,
             };
 
 
-            var mail = new MailMessage {From = new MailAddress(mailsettings.GetValue("Sender"))};
+            var mail = new MailMessage {From = new MailAddress(mailsettings.GetValue("UserName"))};
             mail.To.Add(new MailAddress(toEmail));;
 
             if (!string.IsNullOrEmpty(bcc))
@@ -121,7 +121,7 @@ namespace GOTEX.Core.Utilities
 
             try
             {
-                smtp.Send(mail);
+                smtp.SendMailAsync(mail).Wait();
             }
             catch (Exception ex)
             {
