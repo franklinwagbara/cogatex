@@ -70,7 +70,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A9DC9E5-20A0-472B-9AF1-FB1B764F318D/4/AuthenticationProperties.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A9DC9E5-20A0-472B-9AF1-FB1B764F318D/2/AuthenticationHttpContextExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/Dependdencies.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/851DC736-17B7-47FB-9CD4-DD3F38D22C2F/1/IdentityRole.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/BusinessObjects/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
@@ -103,7 +102,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2073514815234917a5e8f91b0b239405a95b0/12/JsonSerializer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX/Views/Application/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/76ec9956a97f4729b1c09e2a5a239d3e91d990/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/FF4263DB-1990-4D27-8A08-3F2BC9AFBE0A/194/ObjectMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -350,7 +348,8 @@
       <workItem from="1627133232626" duration="1153000" />
       <workItem from="1627639782145" duration="6655000" />
       <workItem from="1628244710199" duration="3189000" />
-      <workItem from="1628593306185" duration="4195000" />
+      <workItem from="1628593306185" duration="7654000" />
+      <workItem from="1629190184604" duration="694000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -516,6 +515,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="248" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
+          <line>153</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="153" containingFunctionPresentation="method 'UploadApplicationDocuments'">
+            <startOffsets>
+              <option value="6074" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6146" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="255" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
