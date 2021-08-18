@@ -131,6 +131,7 @@ namespace GOTEX.Controllers
                 docs = _application.GetApplicationFiles(id).Stringify().Parse<List<DocumentType>>();
                 ViewBag.companyId = _application.GetCompanyElpsId(User.Identity.Name);
                 ViewBag.appId = id;
+                ViewData["Status"] = _application.FindById(id)?.Status;
             }
             catch (Exception ex)
             {
@@ -150,49 +151,72 @@ namespace GOTEX.Controllers
         {
             try
             {
+                bool res = false;
+                var mailmessage = _elps.GetMailMessages();
                 var application = _application.FindById(id);
-                if (Regex.IsMatch(model.ReferenceCode, "\\s\\t[*'\",_&#^@!$%-+/><?{}]"))
+                if (application.Status.Equals("Rejected"))
                 {
-                    TempData["Message"] = "Payment reference contains invalid characters";
-                    return RedirectToAction("UploadApplicationDocuments", new {id});
-                }
-                var verify =
-                    _application.ValidatePaymentEvidence(model.Stringify().Parse<Dictionary<string, string>>());
+                    res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
+                    TempData["Message"] = "Application has been resubmitted successfully";
+                    
+                    //Notify all staff of submitted application
+                    var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                    var staff = _context.Users.Include(x 
+                        => x.UserRoles).ThenInclude(x => x.Role).ToList();
+                
+                    string subject = "GATEX Application Re-Submission";
+                    var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
+                    var message =
+                        $"A {application.ApplicationType.FullName} has been re-submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
+                    string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.dpr.gov.ng");
 
-                if (application?.PaymentEvidenceId != null)
+                    foreach (var user in staff.Where(x => roles.Contains(x.UserRoles.FirstOrDefault().Role.Name)))
+                        Utils.SendMail(
+                            _emailSettings.Stringify().Parse<Dictionary<string, string>>(), user.Email, subject, content);
+                    return RedirectToAction("Index", "Company");
+                }               
+                else
                 {
-                    verify.status = true;
-                    verify.hash = application.PaymentEvidence.HashCode;
-                    verify.message = "Payment Evidence is valid";
-                }
-                if (verify.status)
-                {
-                    bool res = false;
-                    //application.LastAssignedUserId = User.Identity.Name;
-                    application.PaymentEvidenceId = model.ReferenceType == 1 
-                        ? _context.PaymentEvidences.FirstOrDefault(x => x.ReferenceCode.Equals(model.ReferenceCode))?.Id
-                        : _context.PaymentEvidences.FirstOrDefault(x => x.HashCode.Equals(model.ReferenceCode))?.Id;
-                    var mailmessage = _elps.GetMailMessages();
-            
-                    if (application.Status.Equals(ApplicationStatus.NotSubmitted))
-                        res = _history.CreateNextProcessingPhase(application, "SubmitApplication");
-                    else if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
-                        res = _history.CreateNextProcessingPhase(application, "ResubmitPayment");
-                    else if (application.Status.Equals(ApplicationStatus.Rejected))
-                        res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
-
-                    if (res)
+                    if (Regex.IsMatch(model.ReferenceCode, "\\s\\t[*'\",_&#^@!$%-+/><?{}]"))
                     {
+                        TempData["Message"] = "Payment reference contains invalid characters";
+                        return RedirectToAction("UploadApplicationDocuments", new {id});
+                    }
+                    var verify =  
+                        _application.ValidatePaymentEvidence(model?.Stringify().Parse<Dictionary<string, string>>());
+
+                    if (application?.PaymentEvidenceId != null)
+                    {
+                        verify.status = true;
+                        verify.hash = application.PaymentEvidence.HashCode;
+                        verify.message = "Payment Evidence is valid";
+                    }
+                    if (verify.status)
+                    {
+                        //application.LastAssignedUserId = User.Identity.Name;
+                        application.PaymentEvidenceId = model.ReferenceType == 1 
+                            ? _context.PaymentEvidences.FirstOrDefault(x => x.ReferenceCode.Equals(model.ReferenceCode))?.Id
+                            : _context.PaymentEvidences.FirstOrDefault(x => x.HashCode.Equals(model.ReferenceCode))?.Id;
+                
+                        if (application.Status.Equals(ApplicationStatus.NotSubmitted))
+                            res = _history.CreateNextProcessingPhase(application, "SubmitApplication");
+                        else if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
+                            res = _history.CreateNextProcessingPhase(application, "ResubmitPayment");
+                        
                         TempData["Message"] = verify.message;
-                        var message = _message.SendApplicationMessage(application, _hostingEnvironment.WebRootPath, mailmessage,
-                            _emailSettings.Stringify().Parse<Dictionary<string, string>>());
-                        return RedirectToAction("Payment", new {id = application.Id, reference = application.Reference});
                     }
                     else
-                        TempData["Message"] = "An error occured while submitting this application, please try again or contact support.";
+                        TempData["Message"] = verify.message;
+                }
+                if (res)
+                {
+                   
+                    var message = _message.SendApplicationMessage(application, _hostingEnvironment.WebRootPath, mailmessage,
+                        _emailSettings.Stringify().Parse<Dictionary<string, string>>());
+                    return RedirectToAction("Payment", new {id = application.Id, reference = application.Reference});
                 }
                 else
-                    TempData["Message"] = verify.message;
+                    TempData["Message"] = "An error occured while submitting this application, please try again or contact support.";
                       
             }
             catch (Exception ex)
