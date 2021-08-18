@@ -114,89 +114,91 @@
                     }
                     </tbody>
                 </table>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th style="width: 7%;">#</th>
-                        <th style="width: 20%;">Document Name</th>
-                        <th style="width: 30%;">Select Document</th>
-                        <th>Upload Progress</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td colspan="4" style="text-align: center"><h4>Required Documents Remaining <small>(Only PDF and Image (jpg/png) is allowed)</small> Max size: <small>4mb</small></h4></td>
-                    </tr>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th style="width: 7%;">#</th>
+                    <th style="width: 20%;">Document Name</th>
+                    <th style="width: 30%;">Select Document</th>
+                    <th>Upload Progress</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="4" style="text-align: center"><h4>Required Documents Remaining <small>(Only PDF and Image (jpg/png) is allowed)</small> Max size: <small>4mb</small></h4></td>
+                </tr>
     
-                    @if (Model.Count() > 0)
+                @if (Model.Count() > 0)
+                {
+                    for (int i = 0; i < Model.Count; i++)
                     {
-                        for (int i = 0; i < Model.Count; i++)
+                        if (!Model[i].Selected)
                         {
-                            if (!Model[i].Selected)
-                            {
-                                index2++;
-                                var did = "document" + i;
-                                var application_id = "appdocs[" + i + "].application_id";
-                                var document_id = "appdocs[" + i + "].document_id";
-                                var document_type_id = "appdocs[" + i + "].document_type_id";
-                                var progId = "extProgress-" + i;
-                                var exFileName = "extFileName-" + i;
-                                var editDoc = "editDoc" + i;
-                                var complete = "complete" + i;
-                                var fl = "filebtn" + i;
-                                var fd = "facDoc_" + i;
+                            index2++;
+                            var did = "document" + i;
+                            var application_id = "appdocs[" + i + "].application_id";
+                            var document_id = "appdocs[" + i + "].document_id";
+                            var document_type_id = "appdocs[" + i + "].document_type_id";
+                            var progId = "extProgress-" + i;
+                            var exFileName = "extFileName-" + i;
+                            var editDoc = "editDoc" + i;
+                            var complete = "complete" + i;
+                            var fl = "filebtn" + i;
+                            var fd = "facDoc_" + i;
     
-                                <tr class="form-group">
-                                    <td>@index2</td>
-                                    <td>
+                            <tr class="form-group">
+                                <td>@index2</td>
+                                <td>
     
-                                        <input type="hidden" name="@application_id" value="@ViewBag.appId" />
-                                        <input type="hidden" name="@document_id" value="" id="@did" />
-                                        <input type="hidden" name="@document_type_id" value="@Model[i].Id" />
+                                    <input type="hidden" name="@application_id" value="@ViewBag.appId" />
+                                    <input type="hidden" name="@document_id" value="" id="@did" />
+                                    <input type="hidden" name="@document_type_id" value="@Model[i].Id" />
     
-                                        @if (Model[i].Name.ToLower() == "other document")
-                                        {
-                                            <input type="text" name="documentName-@i" id="documentName-@i" placeholder="Document Name" />
-                                        }
-                                        else
-                                        {
-                                            @Model[i].Name
-                                        }
-                                    </td>
-                                    <td>
+                                    @if (Model[i].Name.ToLower() == "other document")
+                                    {
+                                        <input type="text" name="documentName-@i" id="documentName-@i" placeholder="Document Name" />
+                                    }
+                                    else
+                                    {
+                                        @Model[i].Name
+                                    }
+                                </td>
+                                <td>
     
-                                        @if (Model[i].Type != "Facility")
-                                        {
-                                            <input type="hidden" name="facDoc" id="@fd" value="false" />
-                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/UploadCompanyDoc/" + Model[i].Id + "/" + ViewBag.companyId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
-                                        }
-                                        else
-                                        {
-                                            <input type="hidden" name="facDoc" id="@fd" value="true" />
-                                            baseDocUpload = _appConfig.GetElpsUrl() + "/a[i/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + _appConfig.GetHashCode();
-                                        }
-                                        <input type="file" name="Name" id="@fl" class="docUpload" data-type="@Model[i].Type" data-doctypeid="@Model[i].Id" data-compid="@ViewBag.companyId"
-                                               accept="image/gif, image/png, image/jpeg, application/pdf" data-i="@i" data-location="@baseDocUpload" data-appId="@ViewBag.appId" />
-                                        <div id="@exFileName" class="files"></div>
-                                    </td>
-                                    <td>
-                                        <div id="@progId" class="progress">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
+                                    @if (Model[i].Type != "Facility")
+                                    {
+                                        <input type="hidden" name="facDoc" id="@fd" value="false" />
+                                        baseDocUpload = _appConfig.GetElpsUrl() + "/api/UploadCompanyDoc/" + Model[i].Id + "/" + ViewBag.companyId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" name="facDoc" id="@fd" value="true" />
+                                        baseDocUpload = _appConfig.GetElpsUrl() + "/a[i/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + _appConfig.GetHashCode();
+                                    }
+                                    <input type="file" name="Name" id="@fl" class="docUpload" data-type="@Model[i].Type" data-doctypeid="@Model[i].Id" data-compid="@ViewBag.companyId"
+                                           accept="image/gif, image/png, image/jpeg, application/pdf" data-i="@i" data-location="@baseDocUpload" data-appId="@ViewBag.appId" />
+                                    <div id="@exFileName" class="files"></div>
+                                </td>
+                                <td>
+                                    <div id="@progId" class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped"></div>
+                                    </div>
+                                </td>
+                            </tr>
                         }
                     }
-                    else
-                    {
-                        <tr>
-                            <td colspan="4" style="text-align: center">All required documents are available</td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-                <div class="form-group">
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" style="text-align: center">All required documents are available</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            @if ((ViewData["Status"] != null && (string)ViewData["Status"] != "Rejected") || ViewData["Status"] is null)
+            {
+              <div class="form-group">
                     <table class="table table-bordered" style="width: 70%;">
                         <thead>
                         <th class="txtcenter" colspan="2">Payment Evidence Details</th>
@@ -234,7 +236,8 @@
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                </div>  
+            }
             </div>
             <div class="col-md-offset-4 col-md-4">
                 <div class="form-group txtcenter">
