@@ -510,7 +510,7 @@ namespace GOTEX.Controllers
             return RedirectToAction("Resubmit", new { id = id });
         }
         [HttpPost]
-        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream)
+        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product)
         {
             try
             {
@@ -520,6 +520,7 @@ namespace GOTEX.Controllers
                     application.Quantity = quantity;
                     application.ProductAmount = amount;
                     application.GasStream = gasstream;
+                    application.ProductId = product;
 
                     _application.Update(application);
                     TempData["Message"] = "Application updated successfully";

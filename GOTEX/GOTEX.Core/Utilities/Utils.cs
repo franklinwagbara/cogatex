@@ -105,7 +105,7 @@ namespace GOTEX.Core.Utilities
             };
 
 
-            var mail = new MailMessage {From = new MailAddress(mailsettings.GetValue("UserName"))};
+            var mail = new MailMessage {From = new MailAddress(mailsettings.GetValue("Sender"))};
             mail.To.Add(new MailAddress(toEmail));;
 
             if (!string.IsNullOrEmpty(bcc))

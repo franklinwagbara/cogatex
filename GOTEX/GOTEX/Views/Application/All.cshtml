@@ -1,4 +1,6 @@
-﻿@model List<Application>
+﻿@using GOTEX.Core.Utilities
+@model List<Application>
+@inject IAppConfiguration<Configuration> _appConfig
 
 @{
     ViewBag.Title = "All Applications";
@@ -9,6 +11,7 @@
     
     <div class="card" style="margin-top: 2em; padding: 1em;">
         <h2 class="btn btn-success col-md-3">All Application(s)</h2>
+        <input type="hidden" id="productlist" value="@_appConfig.GetGasProducts().Stringify()" />
         @if (ViewData["Message"] != null)
             {
                 <div class="alert alert-info alert-dismissable txtcenter">
@@ -92,7 +95,7 @@
                     </div>
                     <div class="form-group">
                         <label style="float:left">Product Type</label>
-                        <input type="text" class="form-control" id="Product" name="Product" readonly/>
+                        <select class="form-control" id="Product" name="Product"></select>
                     </div>
                     <div class="form-group">
                         <label style="float:left">Terminal (Port of Export)</label>
@@ -108,7 +111,7 @@
                     </div>
                     <div class="form-group">
                         <label style="float:left">Measurement</label>
-                        <select type="text" class="form-control" id="gasstream" name="GasStream">
+                        <select class="form-control" id="gasstream" name="GasStream">
                             
                         </select>
                     </div>
@@ -134,10 +137,22 @@
             $("#ApplicationType").val($(this).data('apptype'));
             $("#Id").val($(this).data('id'));
             $("#Quarter").val($(this).data('quarter'));
-            $("#Product").val($(this).data('product'));
+            $("#Product").html('');
+            var prod = $(this).data('product');
             $("#Terminal").val($(this).data('terminal'));
             $("#Quantity").val($(this).data('quantity'));
             $("#Amount").val($(this).data('amount'));
+            
+            var products = JSON.parse($("#productlist").val());
+            var html = '';
+            $.each(products, function(key, val){
+                if(val.name === prod){
+                    $("#Product").append('<option value="' + val.Id + '" selected>' + val.Name + '</option>');
+                }
+                else{
+                    $("#Product").append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                }
+            });
             
             if (measure === ""){
                 $("#gasstream").append('<option value="MT">Metric Tonnes</option>');

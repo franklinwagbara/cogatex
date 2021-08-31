@@ -357,7 +357,9 @@
       <workItem from="1627639782145" duration="6655000" />
       <workItem from="1628244710199" duration="3189000" />
       <workItem from="1628593306185" duration="7654000" />
-      <workItem from="1629190184604" duration="3779000" />
+      <workItem from="1629190184604" duration="4402000" />
+      <workItem from="1630322052207" duration="277000" />
+      <workItem from="1630399313394" duration="1398000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -525,17 +527,17 @@
           <option name="timeStamp" value="248" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/AppHistoryRepository.cs</url>
-          <line>58</line>
-          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\DAL\AppHistoryRepository.cs" initialLine="58" containingFunctionPresentation="method 'CreateNextProcessingPhase'">
+          <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
+          <line>515</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="515" containingFunctionPresentation="method 'UpdateApplication'">
             <startOffsets>
-              <option value="2943" />
+              <option value="23141" />
             </startOffsets>
             <endOffsets>
-              <option value="2998" />
+              <option value="23142" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="258" />
+          <option name="timeStamp" value="259" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
