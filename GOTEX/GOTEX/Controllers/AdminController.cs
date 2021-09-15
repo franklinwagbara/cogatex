@@ -301,54 +301,56 @@ namespace GOTEX.Controllers
             try
             {
                 var application = _application.FindById(model.APplicationId);
-
-                _history.CreateNextProcessingPhase(application, model.Action, model.Report);
-                
-                var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
-                var message = new Message
+                if (User.Identity.Name.Equals(application.LastAssignedUserId))
                 {
-                    Date = DateTime.UtcNow.AddHours(1),
-                    Subject = $"Application for {mailtype}",
-                    ApplicationId = application.Id,
-                    User = _userManager.FindByEmailAsync(application.LastAssignedUserId).Result
-                };
-                _message.Insert(message);
-                var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
-
-                if (User.IsInRole("OOD") && model.Action.Contains("Approve"))
-                { 
-                    var tk = $"Application for {mailtype} with reference: {application.Reference} on DPR Gas Export Permit portal (GATEX) has been approved: " +
-                           $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
-                    message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr..gov.ng/account/login?email={application.LastAssignedUserId}");
+                    _history.CreateNextProcessingPhase(application, model.Action, model.Report);
                     
-                    application = _application.FindById(model.APplicationId);
-                    if (application.Status.Equals(ApplicationStatus.Completed))
+                    var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
+                    var message = new Message
                     {
-                        var permitnumber = _permit.CreatePermit(application.Id,
-                            _hostingEnvironment.WebRootPath,
-                            _emailSettings.Stringify().Parse<Dictionary<string, string>>());
-                        TempData["message"] = "You have APPROVED this Application (" + application.Reference +
-                                              ")  and Permit has been recommended for issuance. Permit No: " + permitnumber;
+                        Date = DateTime.UtcNow.AddHours(1),
+                        Subject = $"Application for {mailtype}",
+                        ApplicationId = application.Id,
+                        User = _userManager.FindByEmailAsync(application.LastAssignedUserId).Result
+                    };
+                    _message.Insert(message);
+                    var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
+
+                    if (User.IsInRole("OOD") && model.Action.Contains("Approve"))
+                    { 
+                        var tk = $"Application for {mailtype} with reference: {application.Reference} on DPR Gas Export Permit portal (GATEX) has been approved: " +
+                               $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
+                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr..gov.ng/account/login?email={application.LastAssignedUserId}");
+                        
+                        application = _application.FindById(model.APplicationId);
+                        if (application.Status.Equals(ApplicationStatus.Completed))
+                        {
+                            var permitnumber = _permit.CreatePermit(application.Id,
+                                _hostingEnvironment.WebRootPath,
+                                _emailSettings.Stringify().Parse<Dictionary<string, string>>());
+                            TempData["message"] = "You have APPROVED this Application (" + application.Reference +
+                                                  ")  and Permit has been recommended for issuance. Permit No: " + permitnumber;
+                        }
+                        
+                        _message.Update(message);
+                        Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
+                            application.LastAssignedUserId, 
+                            message.Subject, message.Content);
                     }
-                    
-                    _message.Update(message);
-                    Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
-                        application.LastAssignedUserId, 
-                        message.Subject, message.Content);
-                }
-                else
-                {
-                    SendMail(application, model.Report, message.Subject, body, model.Action, mailtype, message);
-                    if(model.Action.ToLower().Equals("approve"))
-                        TempData["message"] =                                                                    
-                            "Application has been pushed to the next processing officer for appropriate action";
-                    else if(model.Action.ToLower().Equals("reject"))
+                    else
                     {
-                        TempData["message"] =
-                            "Application has been rejected to the immediate processing officer for appropriate action";
-                        if (application.LastAssignedUserId.Equals(application.UserId))
+                        SendMail(application, model.Report, message.Subject, body, model.Action, mailtype, message);
+                        if(model.Action.ToLower().Equals("approve"))
+                            TempData["message"] =                                                                    
+                                "Application has been pushed to the next processing officer for appropriate action";
+                        else if(model.Action.ToLower().Equals("reject"))
+                        {
                             TempData["message"] =
-                                "Application has been rejected to the marketer for appropriate action";
+                                "Application has been rejected to the immediate processing officer for appropriate action";
+                            if (application.LastAssignedUserId.Equals(application.UserId))
+                                TempData["message"] =
+                                    "Application has been rejected to the marketer for appropriate action";
+                        }
                     }
                 }
             }
