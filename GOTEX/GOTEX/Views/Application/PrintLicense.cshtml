@@ -17,19 +17,19 @@
 </head>
 <body style="font-size: 1.2em; font-family: Candara;">
 
-    <div style="display:block; position:absolute; top: 4.0cm;  right: 2.0cm;"> @Model.PermitNumber </div>
+    <div style="display:block; position:absolute; top: 3.8cm;  right: 2.0cm;"> @Model.PermitNumber </div>
 
     <div style="width: 100%; border-spacing: 0;">
 
-        <div style="position: absolute; top:10.7cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px  4.8cm;">
+        <div style="position: absolute; top:10.5cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px  4.8cm;">
             @Model.Application.User.Company.Name
         </div>
 
-        <div style="position: absolute; top:12.0cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 4.8cm;">
+        <div style="position: absolute; top:11.8cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 4.8cm;">
             @Model.Application.User.Company.RegisteredAddress
         </div>
         
-        <div style="position: absolute; top:13.3cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 9cm;">
+        <div style="position: absolute; top:13.2cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 9cm;">
             @Model.Application.Product.Name
         </div>
 
@@ -72,10 +72,10 @@
         <div style="position:absolute; top:24.0cm; padding-left:380px; height: 80px;">
             <img style="width:160px;" src="@Model.Application.User.Company.DirectorSignature" alt="CEO Signature" />
         </div>
-        <div style="position: absolute; top:30.2cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 0;">
+        <div style="position: absolute; top:30.4cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 0;">
             @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream
         </div>
-        <div style="position: absolute; top:31.6cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 0;">
+        <div style="position: absolute; top:31.8cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 0;">
             @if (Model.Application.QuarterId == 1)
             {
                 <span>JAN-MAR @Model.Application.Year</span>
@@ -96,7 +96,7 @@
             }
         </div>
 
-        <div style="position: absolute; top:33.0cm; right: 1.7cm; width:8cm; text-align:center; font-weight: 300; border-top:  0px  #888;">
+        <div style="position: absolute; top:33.2cm; right: 1.7cm; width:8cm; text-align:center; font-weight: 300; border-top:  0px  #888;">
             <div style="position: relative; height: 110px;">
                 <img style="margin-left:-30px" src="~/Images/DirectorSignature.png" width="240" alt="Director/CEO's Signature" />
             </div>

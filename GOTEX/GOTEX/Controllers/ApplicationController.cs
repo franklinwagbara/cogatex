@@ -363,7 +363,7 @@ namespace GOTEX.Controllers
                     FileName = "Approval.pdf"
                 };
             }
-             else
+            else
             {
                 return new ViewAsPdf("License", permit)
                 {
@@ -509,6 +509,7 @@ namespace GOTEX.Controllers
             ViewBag.Error = "An error occured while resubmitting application, please try again";
             return RedirectToAction("Resubmit", new { id = id });
         }
+        
         [HttpPost]
         public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product)
         {
