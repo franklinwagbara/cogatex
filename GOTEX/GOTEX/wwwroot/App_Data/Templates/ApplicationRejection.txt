@@ -65,13 +65,13 @@
                     &nbsp;
                 </p>
                 <p>
-                    Department of Petroleum Resources<br />
-                    (EPA)
+                    Nigerian Midstream and Downstream Petroleum Regulatory Authority<br />
+                    (GATEX)
                 </p>
             </div>
         </div>
         <div style="padding: 10px 0; text-align: center; background-color: #888; color: #f9f9f9; width:700px">
-            &copy; {12} Department of Petroleum Resources &minus; DPR Nigeria
+            &copy; {12} Nigerian Midstream and Downstream Petroleum Regulatory Authority &minus; NMDPRA Nigeria
         </div>
     </font>
 </body>

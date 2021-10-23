@@ -351,29 +351,31 @@ namespace GOTEX.Controllers
             return Json(data: new { status = true });
         }
         
-        public IActionResult License(int id, string type = null)
+        public async Task<IActionResult> License(int id, string type = null)
         {
             var permit = _permit.FindById(id);
             
             if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
             {
-                return new ViewAsPdf("PrintLicense", permit)
+                var pdf = await new ViewAsPdf("PrintLicense", permit)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
                     FileName = "Approval.pdf"
-                };
+                }.BuildFile(ControllerContext);
+                return File(new MemoryStream(pdf), "application/pdf");
             }
             else
             {
-                return new ViewAsPdf("License", permit)
+                var pdf = await new ViewAsPdf("License", permit)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
                     FileName = "Approval.pdf"
-                };
+                }.BuildFile(ControllerContext);
+                return File(new MemoryStream(pdf), "application/pdf");
             }
         }
         
-        public IActionResult PreviewLicense(int id)
+        public async Task<IActionResult> PreviewLicense(int id)
         {
             var application = _application.FindById(id);
             var permit = new Permit
@@ -385,20 +387,13 @@ namespace GOTEX.Controllers
                 PermitNumber = "",
                 
             };
-            //var viewAsPdf = new Rotativa.AspNetCore.ViewAsPdf("License", permit)
-            //{
-            //    FileName = "Approval.pdf",
-            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
-            //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-            //};
-            //var pdf = await viewAsPdf.BuildFile(ControllerContext);
-            //return File(new MemoryStream(pdf), "application/pdf" );
-            return new ViewAsPdf("License", permit)
+            var pdf = await new ViewAsPdf("License", permit)
             {
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 FileName = "LicensePreview",
 
-            }; ;
+            }.BuildFile(ControllerContext);
+            return File(new MemoryStream(pdf), "application/pdf");
         }
         
         public IActionResult Report() => View(_application.Report());

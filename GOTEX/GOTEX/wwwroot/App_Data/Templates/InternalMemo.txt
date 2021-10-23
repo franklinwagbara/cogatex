@@ -37,14 +37,14 @@
             <tr style="">
                 <td style="padding: 10px 20px;">
                     <p>
-                        Department of Petroleum Resources<br />
-                        (COGATEX)
+                        Nigerian Midstream and Downstream Petroleum Regulatory Authority<br />
+                        (GATEX)
                     </p>
                 </td>
             </tr>
             <tr style="background-color: #888;">
                 <td style="padding: 10px 0; text-align: center;  color: #f9f9f9; ">
-                    &copy; {4} Department of Petroleum Resources &minus; DPR Nigeria
+                    &copy; {4} Nigerian Midstream and Downstream Petroleum Regulatory Authority &minus; NMDPRA Nigeria
                 </td>
             </tr>
         </tfoot>
