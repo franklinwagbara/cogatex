@@ -554,7 +554,7 @@ namespace GOTEX.Controllers
 
         private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message)
         {
-            var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>DPR Gas Export Permit portal (GATEX) has been sent to you for further action: " +
+            var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>NMDPRA Gas Export Permit portal (GATEX) has been sent to you for further action: " +
                      $"<br /> {comment}. <br/>";
             message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr.gov.ng/account/login?email={application.LastAssignedUserId}");
             

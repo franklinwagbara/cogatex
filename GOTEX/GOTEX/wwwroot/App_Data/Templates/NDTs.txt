@@ -6,7 +6,7 @@
 <body style="color: gray; font-size:14px; box-sizing: border-box;">
     <font face="Helvetica, arial, sans-serif">
         <div style=" width:700px;background-color: #ece8d4; padding: 5px 0 5px 0;">
-            <img src="https://ROMS.dpr.gov.ng/Content/Images/mainlogo.png" alt="Logo" style="width: 98%; height: 120px; display: block; margin: 0 auto;" />
+            <img src="https://roms.dpr.gov.ng/Content/Images/mainlogo.png" alt="Logo" style="width: 98%; height: 120px; display: block; margin: 0 auto;" />
         </div>
 
         <div style="background-color: #ece8d4; width:700px; min-height:200px;">
@@ -44,13 +44,13 @@
 				
                 <br /><br />
                 <p>
-                    Department of Petroleum Resources<br />
-                    (EPA)
+                    Nigerian Midstream and Downstream Petroleum Regulatory Authority<br />
+                    (GATEX)
                 </p>
             </div>
         </div>
         <div style="padding: 10px 0; text-align: center; background-color: #888; color: #f9f9f9; width:700px">
-            &copy; {6} Department of Petroleum Resources &minus; DPR Nigeria
+            &copy; {6} Nigerian Midstream and Downstream Petroleum Regulatory Authority &minus; NMDPRA Nigeria
         </div>
     </font>
 </body>
