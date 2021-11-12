@@ -11,28 +11,30 @@
         <style type="text/css">
         </style>
     </head>
-    <body style="font-size: 1.2em;">
-        <div style="width: 1240px; height: 1810px; margin: 0px auto;box-sizing: border-box; padding: 0px; position: relative;">
-            <div style="border: 10px solid #fff; padding: 30px 20px; font-family: 'Times New Roman'; position: relative; height: 100%; box-sizing: border-box;">
-                <div style="text-align:right"> CONFIDENTIAL (FORM-1) </div>
+    <body style="font-size: 18px;">
+        <div style="width: 1240px; height: 1810px; margin: 0px auto;box-sizing: border-box; position: relative;">
+            <div style="border: 10px solid #fff; font-family: Candara; position: relative; height: 100%; box-sizing: border-box;">
+            <div style="text-align:right">
+                CONFIDENTIAL (FORM-1)
+                <h4 style="margin-top: -5px;">Form-1 No:  @Model.PermitNumber</h4>
+            </div>
                 <div style="text-align: center;">
-                    <img src="/Images/coat-of-arm.jpg" alt="Logo" style="height: 195px; display: block; margin: 0 auto 25px auto;" />
+                    <img src="/Images/nmdpra.png" alt="Logo" style="height: 195px; display: block; margin: 0 auto 25px auto;" />
                     <div>
-                        <h2 style="margin: 0; margin-top:10px;font-size: 1.7em">THE NIGERIAN MIDSTREAM and DOWNSTREAM PETROLEUM REGULATORY AUTHORITY</h2>
-                        <h3 style="margin: 0; margin-top:10px;font-size: 1.0em">MINISTRY OF PETROLEUM RESOURCES</h3>
-                        <h2 style="margin: 0; margin-top: 5px;font-size: 1.3em; border-bottom: 1.5px solid; display: inline-block;">APPLICATION FOR EXPORT CLEARANCE:</h2>
+                        <h2 style="margin: 0; margin-top:10px;">THE NIGERIAN MIDSTREAM AND DOWNSTREAM PETROLEUM REGULATORY AUTHORITY</h2>
+                        @* <h3 style="margin: 0; margin-top:10px;">MINISTRY OF PETROLEUM RESOURCES</h3> *@
+                        <h2 style="margin: 0; margin-top: 5px; border-bottom: 1.5px solid; display: inline-block;">APPLICATION FOR EXPORT CLEARANCE:</h2>
                         <br />
                         <h3 style="margin: 0; margin-top: 5px;font-size: 1.2em;border-bottom: 1.5px solid; display: inline-block;">(CRUDE OIL, GAS AND CONDENSATE CARGOES)</h3>
-                        <h4>Form-1 No:  @Model.PermitNumber</h4>
                         @if (Model.Application.Status == "Recalled")
                         {
-                        <h3 style="color:#ff6a00">THIS PERMIT HAS BEEN RECALLED</h3>
+                            <h3 style="color:#ff6a00">THIS PERMIT HAS BEEN RECALLED</h3>
                         }
                     
                     </div>
                 </div>
 
-                <div style="padding: 0px; position: absolute; box-sizing: border-box; top: 490px; left: 97px; right: 97px;">
+                <div style="padding: 0px; position: absolute; box-sizing: border-box; top: 480px; left: 97px; right: 97px;">
 
                     <div style="width: 100%; border-spacing: 0; position: relative; margin-top: 0px; font-size: 26px;">
                         <ol>
@@ -203,34 +205,26 @@
 
                        <table style="width: 100%; position: relative;">
                             <tr style="height: 150px; margin-top: 0px;">
-                                <td style="vertical-align: bottom;">
-                                    <span style="font-size: 1em;" id="cateName"></span>
-                                </td>
                                 <td>
                                     <div style="text-align: right; max-width: 390px; float: right; height: 130px; position: relative;">
                                         <div style="position: relative; height: 130px;">
                                             @if (!string.IsNullOrEmpty(Model.Application.User.Company.DirectorSignature))
                                             {
-
                                                 <img src="@Model.Application.User.Company.DirectorSignature" alt="CEO Signature" />
-
                                             }
                                         </div>
-                                        <div style="height: 20px; font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;    border-top: 2px dotted #888; position: absolute; bottom: 0;">
+                                        <div style="font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;    border-top: 2px dotted #888; position: absolute; bottom: 0;">
                                             Cheif Excutive Officer of the Company
                                             (Official Stamp and Date)
-                                       
                                         </div>
                                     </div>
-                                    <div style="clear: both;"></div>
                                 </td>
                             </tr>
 
                         </table>
                         <div>
-                            <p style="color:#fff">.</p>
-                            <p>RECOMMENDATION:</p>
-                            <p style="font-size:1.2em">
+                            <h3>RECOMMENDATION:</h3>
+                            <p style="font-size: inherit">
                                 I, recommend that the above application be granted to enable the applicant export
                                 @Model.Application.Quantity.ToString("#,##0") BARRELS during the period of
 
@@ -287,21 +281,19 @@
                                 to all destinations.
                             </p>
                         </div>
-
+                        <br/>
+                        <br/>
                         <table style="width: 100%; position: relative;">
-                            <tr style="height: 130px; margin-top: 0px;">
-                                <td style="vertical-align: bottom;">
-                                    <span style="font-size: 1em;" id="cateName"></span>
-                                </td>
+                            <tr style=" font-size: inherit;">
                                 <td>
-                                    <div style="text-align: right; max-width: 390px; float: right; height: 150px; position: relative;">
+                                    <div style="text-align: right; max-width: 390px;float: right; height: 150px; position: relative;">
                                         <div style="position: relative; height: 130px;">
-                                            <img style="margin-left:-30px" src="~/Content/Signatures/dg.png" width="260" alt="Director/CEO's Signature" />
+                                            <img style="margin-left:-30px" src="~/Content/nDirectorSignature.PNG" width="260" alt="Director/CEO's Signature" />
                                         </div>
-                                        <div style="height: 15px; font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;
+                                        <div style="font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;
                                         border-top: 2px dotted #888; position: absolute; bottom: 0;">
-                                            Engr. Auwalu Sarki  FNSE <br />
-                                            DIRECTOR/CEO PETROLEUM RESOURCES
+                                            Engr. Farouk A. Ahmed <br />
+                                            Authority Chief Executive, NMDPRA
                                             <br />
 
                                         </div>

@@ -128,9 +128,9 @@ namespace GOTEX.Core.DAL
             if (action.ToLower().Contains("approve"))
             {
                 if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("ADGOPS") 
-                    || role.Equals("HGMR") || role.Equals("Reviewer"))
+                    || role.Equals("HGMR")|| role.Equals("HDS") || role.Equals("Reviewer"))
                     return ApplicationStatus.Processing;
-                else if(role.Equals("OOD") || role.Equals("Director"))
+                else if(role.Equals("OOD")|| role.Equals("ACE") || role.Equals("Director"))
                     return ApplicationStatus.Completed;
             }
             return ApplicationStatus.Rejected;
@@ -198,13 +198,21 @@ namespace GOTEX.Core.DAL
         }
 
         public List<ApplicationHistory> SentApplications(string email)
-            =>  _context.ApplicationHistories
-                .Include("Application.User.Company")
-                .Include("Application.Product")
-                .Include("Application.ApplicationType")
-                .Include("Application.Terminal")
-                .Include("Application.Quarter")
-                .Where(x => x.CurrentUser.Equals(email))
+            =>  All().Where(x => x.CurrentUser.Equals(email))
                 .OrderByDescending(x => x.DateAssigned).ToList();
+
+        public List<ApplicationHistory> All() => _context.ApplicationHistories
+            .Include("Application.User.Company")
+            .Include("Application.Product")
+            .Include("Application.ApplicationType")
+            .Include("Application.Terminal")
+            .Include("Application.Quarter").ToList();
+
+        public bool UpdateList(List<ApplicationHistory> itemlist)
+        {
+            _context.ApplicationHistories.AddRange(itemlist);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

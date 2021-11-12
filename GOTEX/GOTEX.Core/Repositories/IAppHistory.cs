@@ -9,6 +9,8 @@ namespace GOTEX.Core.Repositories
         ApplicationUser GetNextProcessingOfficer(string rolename, string action, Application application, ApplicationUser currentuser);
         List<T> GetApplicationHistoriesById(int applicationid);
         void Update(ApplicationHistory item);
-        public List<ApplicationHistory> SentApplications(string email);
+        List<T> SentApplications(string email);
+        List<T> All();
+        bool UpdateList(List<T> itemList);
     }
 }

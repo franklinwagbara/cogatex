@@ -859,3 +859,5 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.genrunti
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Outbox.cshtml.g.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ApplicationFlow.cshtml.g.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditFlow.cshtml.g.cs
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddFlow.cshtml.g.cs

@@ -22,5 +22,6 @@ namespace GOTEX.Core.Repositories
         T Update(T item);
         List<T> Report();
         (bool status, string hash, string message) ValidatePaymentEvidence(Dictionary<string, string> dic);
+        bool UpdateList(List<T> itemList);
     }
 }

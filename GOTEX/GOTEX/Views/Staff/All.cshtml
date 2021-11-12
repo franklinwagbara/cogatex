@@ -332,36 +332,6 @@
             placeholder : 'Search for staff by name or email'
          });
          
-        // $(".mybtn").click(function (e){
-        //     $("#role").html('');
-        //     $("#status").html('');
-        //     //let button = $(e.target) 
-        //     let userrole = $(this).data('userrole');
-        //     let userstatus = $(this).data('status');
-        //     if (userstatus !== "False"){
-        //         $("#status").append('<option value="false">Inactive</option>');
-        //         $("#status").append('<option value="true" selected>Active</option>');
-        //     }
-        //     else{
-        //         $("#status").append('<option value="false" selected>Inactive</option>');
-        //         $("#status").append('<option value="true" >Active</option>')
-        //     }
-        //     $.get('/Staff/GetRoles', function (data){
-        //         $.each(data.roles, function (key, value){
-        //             if (userrole === value){
-        //                 $("#role").append('<option value=' + value + ' selected>' + value + '</option>');
-        //             }
-        //             else{
-        //                 $("#role").append('<option value=' + value + '>' + value + '</option>')
-        //             }
-        //         });
-        //     });
-        //     $("#fname").val($(this).data('fname'));
-        //     $("#lname").val($(this).data('lname'));
-        //     $("#pnumber").val($(this).data('pnumber'));
-        //      $("#email").val($(this).data('email'));
-        //     $("#EditModal").show();
-        // });
         $(document.body).on("click", '.mybtn', function (e){
             $("#role").html('');
             $("#status").html('');

@@ -68,7 +68,7 @@ namespace GOTEX.Controllers
             TempData["Message"] = "User updated successfully";
             return RedirectToAction("All");
         }
-        public async Task<IActionResult> GetRoles()
+        public IActionResult GetRoles()
         {
             var roles = new[]
             {
@@ -78,6 +78,8 @@ namespace GOTEX.Controllers
                 Roles.Supervisor,
                 Roles.CTO,
                 Roles.HDS,
+                Roles.HGMR,
+                Roles.ACE,
                 Roles.OOD,
                 Roles.Support,
                 Roles.Admin,

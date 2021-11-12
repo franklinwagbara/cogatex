@@ -95,6 +95,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/595A5ABC-AB92-4E7E-8842-727062C80162/C/Controller.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9481D310-60CF-4AB5-BB18-EE2195E361A5/22/OrderBy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A7B9519-FE31-4C9B-B8C4-5A3ED6673590/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX/Views/Admin/ApplicationTypes.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -365,7 +366,8 @@
       <workItem from="1630577241973" duration="6241000" />
       <workItem from="1631711009349" duration="4824000" />
       <workItem from="1633958279291" duration="3330000" />
-      <workItem from="1635006167094" duration="6007000" />
+      <workItem from="1635006167094" duration="6286000" />
+      <workItem from="1636625522515" duration="20240000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -412,7 +414,7 @@
     <option name="coveragePercentColumnWidth" value="150" />
     <option name="sortOrder" value="DESCENDING" />
     <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="218" />
+    <option name="symbolColumnWidth" value="249" />
     <coverage-tree-state>
       <expand />
       <select />
@@ -463,14 +465,8 @@
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GOTEX/Controllers/AccountController.cs</url>
-          <line>93</line>
-          <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX\Controllers\AccountController.cs" initialLine="92" />
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs</url>
-          <line>163</line>
+          <line>165</line>
           <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX\Controllers\StaffController.cs" initialLine="160" />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
@@ -485,10 +481,10 @@
           <line>560</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="528" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="24707" />
+              <option value="24731" />
             </startOffsets>
             <endOffsets>
-              <option value="24885" />
+              <option value="24909" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="232" />
@@ -511,23 +507,23 @@
           <line>555</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="541" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="24239" />
+              <option value="24263" />
             </startOffsets>
             <endOffsets>
-              <option value="24458" />
+              <option value="24482" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="248" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>511</line>
+          <line>517</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="515" containingFunctionPresentation="method 'UpdateApplication'">
             <startOffsets>
-              <option value="23041" />
+              <option value="23387" />
             </startOffsets>
             <endOffsets>
-              <option value="23042" />
+              <option value="23388" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="259" />
