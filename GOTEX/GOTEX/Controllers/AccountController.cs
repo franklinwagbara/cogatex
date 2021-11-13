@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace GOTEX.Controllers
@@ -24,16 +25,23 @@ namespace GOTEX.Controllers
         private IAppConfiguration<Configuration> _appConfig;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IApplication<Application> _application;
+        private readonly IAppHistory<ApplicationHistory> _history;
+
         public AccountController(
             IElpsRepository elps,
             IAppConfiguration<Configuration> appConfig,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IApplication<Application> application,
+            IAppHistory<ApplicationHistory> history)
         {
             _elps = elps;
             _appConfig = appConfig;
             _userManager = userManager;
             _signInManager = signInManager;
+            _application = application;
+            _history = history;
         }
         // GET
         // public IActionResult Index()
@@ -46,27 +54,86 @@ namespace GOTEX.Controllers
         {
             try
             {
-                var scheme = HttpContext.Request.Scheme;
-                var ip = HttpContext.Connection.RemoteIpAddress.ToString();
                 var hash = Utils.GenerateSHA512($"{_appConfig.GetAppId()}.{model.email}.{_appConfig.GetAppKey()}");
-
-                //if ((scheme.Equals("https") && !ip.Equals("::1") && hash.Equals(model.code))
-                //    || (scheme.Equals("https") && ip.Equals("::1") && !hash.Equals(model.code))
-                //    || (scheme.Equals("http") && !hash.Equals(model.code)))
-                //{
-                    var user = await _userManager.FindByNameAsync(model.email);
-                    if (user == null)
+                var user = new ApplicationUser();
+                // if (hash.Equals(model.code))
+                // {
+                    //fetch email as company
+                    var dic = _elps.GetCompanyDetailByEmail(model.email);
+                    if (dic.Count > 0)
                     {
-                        var company = _elps.GetCompanyDetailByEmail(model.email);
-                        if (company?.Count > 0)
-                            user = await RegisterCompany(company);
-                        // else
-                        // {
-                        //     user = await CreateAdminUsers(model.email);
-                        // }
-                    }
+                        user = _userManager.Users.Include(x => x.Company)
+                            .FirstOrDefault(x => x.Company.ElpsId == int.Parse(dic.GetValue("id")));
+                        if (user != null)
+                        {
+                            var apps = (from a in _application.GetAll() where a.LastAssignedUserId.Equals(user.Email) select a).ToList();
+                            var history1 = (from h in _history.All() where h.CurrentUser.Equals(user.Email) select h).ToList();
+                            var history2 = (from h in _history.All() where h.ProcessingUser.Equals(user.Email) select h).ToList();
 
-                    if (user != null && user.IsActive)
+                            apps.ForEach(x => x.LastAssignedUserId = model.email);
+                            
+                            user.Email = model.email.Trim();
+                            user.UserName = model.email.Trim();
+                            user.Company.Name = dic.GetValue("name");
+                            user.Company.Nationality = dic.GetValue("nationality");
+                            user.Company.RcNumber = dic.GetValue("rC_Number");
+                            user.Company.TinNumber = dic.GetValue("tin_Number");
+                            user.Company.YearIncorporated = dic.GetValue("year_Incorporated");
+
+                            //apps2.ForEach(x => x.CompanyUserId = Email.Trim());
+                            history1.ForEach(x => x.CurrentUser = model.email);
+                            history2.ForEach(x => x.ProcessingUser = model.email);
+                            
+                            if(apps.Count > 0)
+                                _application.UpdateList(apps);
+                            if(history1.Count > 0)
+                                _history.UpdateList(history1);
+                            if(history2.Count > 0)
+                                _history.UpdateList(history2);
+
+                            await _userManager.UpdateAsync(user);
+                        }
+                        else
+                            user = await RegisterCompany(dic);
+                    }
+                    else
+                    {
+                        //fetch email as staff
+                        var staff = _elps.GetStaff(model.email);
+                        if (staff != null)
+                        {
+                            var str = model.email.Split('@');
+                            user = _userManager.Users.FirstOrDefault(x => x.Email.StartsWith(str.FirstOrDefault()));
+                            if (user != null && !user.Email.Equals(model.email))
+                            {
+                                //fetch apps
+                                var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
+                                apps.ForEach(x => x.LastAssignedUserId = model.email);
+                                //fetch apphistory
+                                var apphistory1 = _history.All().Where(x => x.ProcessingUser.Equals(user.Email)).ToList();
+                                if(apphistory1.Count > 0)
+                                    apphistory1.ForEach(x => x.ProcessingUser = model.email);
+                                
+                                var apphistory2 = _history.All().Where(x => x.CurrentUser.Equals(user.Email)).ToList();
+                                if(apphistory2.Count > 0)
+                                    apphistory2.ForEach(x => x.CurrentUser = model.email);
+
+                                
+                                user.Email = model.email;
+                                user.UserName = model.email;
+
+                                await _userManager.UpdateAsync(user);
+                                
+                                if(apps.Count > 0)
+                                    _application.UpdateList(apps);
+                                if(apphistory1.Count > 0)
+                                    _history.UpdateList(apphistory1);
+                                if(apphistory2.Count > 0)
+                                    _history.UpdateList(apphistory2);
+                            }
+                        }
+                    }
+                    if (user is { IsActive: true })
                     {
                         if (User.IsInRole("Staff"))
                         {
@@ -96,55 +163,7 @@ namespace GOTEX.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        private async Task<ApplicationUser> CreateAdminUsers(string email)
-        {
-            string[] users = new[] {"planning@dpr.gov.ng|Planning",
-                "officerhq@dpr.gov.ng|Inspector", 
-                "supervisorhq@dpr.gov.ng|Supervisor", "ad@dpr.gov.ng|CTO",
-                "head@dpr.gov.ng|HDS", 
-                "directorhq@dpr.gov.ng|OOD",
-                "damilare.olanrewaju@brandonetech.com|Admin"
-            };
-            var user = users.FirstOrDefault(x => x.StartsWith(email));
-            var admin = new ApplicationUser();
-
-            if (user != null)
-            {
-                var item = user.Split('|');
-                if (await _userManager.FindByEmailAsync(item[0]) != null) return admin;
-                admin = new ApplicationUser
-                {
-                    Email = item[0],
-                    UserName = item[0],
-                    EmailConfirmed = true,
-                    FirstName = "Test",
-                    LastName = "User",
-                    ProfileComplete = true,
-                    PhoneNumber = "0802547",
-                    CompanyId = null,
-                    IsActive = true
-                };
-                await _userManager.CreateAsync(admin);
-                await _userManager.AddToRoleAsync(admin, item[1]);
-            }
-            else
-            {
-                if (await _userManager.FindByEmailAsync(email) != null) return admin;
-                admin = new ApplicationUser
-                {
-                    Email = email,
-                    UserName = email,
-                    EmailConfirmed = true,
-                    ProfileComplete = true,
-                    CompanyId = null,
-                    IsActive = false
-                };
-                await _userManager.CreateAsync(admin);
-                await _userManager.AddToRoleAsync(admin, "Staff");
-            }
-
-            return admin;
-        }
+        
         [AllowAnonymous]
         public async  Task<IActionResult> Login(string email)
         {

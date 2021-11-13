@@ -1,0 +1,83 @@
+﻿@using GOTEX.Core.Utilities
+@inject RoleManager<ApplicationRole> _roleManager
+@inject IRepository<WorkFlow> _workflow
+@model WorkFlow
+
+@{
+    Layout = null;
+    var roles = _roleManager.Roles.ToList();
+    var actions = _workflow.GetAll().Select(x => x.Action).ToArray();
+    var stat = _workflow.GetAll().Select(x => x.Status).Distinct().ToList();
+}
+<form action="/Admin/EditFlow" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="Id" value="@Model.Id"/>
+    <input type="hidden" name="ApplicationTypeId" value="@Model.ApplicationTypeId"/>
+    <div class="form-group">
+        <label style="float:left">Acting Role</label>
+        <select name="TriggeredByRole" class="form-control">
+            @foreach (var role in roles)
+            {
+                if (role.Name.Equals(Model.TriggeredByRole))
+                {
+                    <option value="@role.Name" selected>@role.DisplayName</option>
+                }
+                else
+                {
+                    <option value="@role.Name">@role.DisplayName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Action</label>
+        <select name="Action" class="form-control">
+            @foreach (var action in actions)
+            {
+                if (action.Equals(Model.Action))
+                {
+                    <option value="@action" selected>@action</option>
+                }
+                else
+                {
+                    <option value="@action">@action</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Target Role</label>
+        <select name="TargetRole" class="form-control">
+            @foreach (var role in roles)
+            {
+                if (role.Name.Equals(Model.TargetRole))
+                {
+                    <option value="@role.Name" selected>@role.DisplayName</option>
+                }
+                else
+                {
+                    <option value="@role.Name">@role.DisplayName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Status</label>
+        <select name="Status" class="form-control">
+            <option disabled></option>
+            @foreach (var status in stat)
+            {
+                if (status.Equals(Model.Status))
+                {
+                    <option value="@status" selected>@status</option>
+                }
+                else
+                {
+                    <option value="@status">@status</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" name="Submit" class="form-control btn btn-sm btn-info" />
+    </div>
+</form>

@@ -269,7 +269,7 @@
             });
         });
         $(document).ready(function (){
-            $(".btnUpdate").click(function (e){
+            $(document).on('click', '.btnUpdate', function (e){
                 e.preventDefault();
                 var measure = $(this).data('gasstream');
                 $("#ApplicationType").val($(this).data('apptype'));

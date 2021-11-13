@@ -7,7 +7,9 @@
         public const string Inspector = "Inspector";
         public const string Supervisor = "Supervisor";
         public const string CTO = "ADGOPS";
-        public const string HDS = "HGMR";
+        public const string HGMR = "HGMR";
+        public const string HDS = "HDS";
+        public const string ACE = "ACE";
         public const string OOD = "OOD";
         public const string Support = "Support";
         public const string Staff = "Staff";

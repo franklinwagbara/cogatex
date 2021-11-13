@@ -350,7 +350,7 @@
 
                         if (!Model.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!User.IsInRole("OOD"))
+                            if (!User.IsInRole("OOD") || !User.IsInRole("ACE"))
                             {
                                 <tr>
                                     <td>

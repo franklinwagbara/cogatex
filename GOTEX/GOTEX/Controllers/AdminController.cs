@@ -316,7 +316,7 @@ namespace GOTEX.Controllers
                     _message.Insert(message);
                     var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
 
-                    if (User.IsInRole("OOD") && model.Action.Contains("Approve"))
+                    if (User.IsInRole("OOD") || User.IsInRole("ACE") && model.Action.Contains("Approve"))
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on DPR Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
@@ -562,6 +562,30 @@ namespace GOTEX.Controllers
             Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
                 application.LastAssignedUserId, 
                 message.Subject, message.Content);
+        }
+
+        public IActionResult EditFlow(int id) => View(_workFlow.GetAll().FirstOrDefault(x => x.Id == id));
+        [HttpPost]
+        public ActionResult EditFlow(WorkFlow model)
+        {
+            if (model != null)
+                _workFlow.Update(model);
+            return RedirectToAction("ApplicationFlow");
+        }
+        
+        public IActionResult AddFlow(int id) => View();
+        [HttpPost]
+        public ActionResult AddFlow(WorkFlow model)
+        {
+            if (model != null)
+                _workFlow.Insert(model);
+            return RedirectToAction("ApplicationFlow");
+        }
+
+        public IActionResult DeleteFlow(int id)
+        {
+            _workFlow.Remove(id);
+            return RedirectToAction("ApplicationFlow");
         }
     }
 }

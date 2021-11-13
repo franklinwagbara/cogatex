@@ -119,7 +119,9 @@ namespace GOTEX
                 Roles.Support,
                 Roles.Admin,
                 Roles.Staff,
-                Roles.ICT
+                Roles.ICT,
+                Roles.HGMR,
+                Roles.ACE
             };
             foreach(var role in roles)
             {

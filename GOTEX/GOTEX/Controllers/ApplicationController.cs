@@ -355,24 +355,30 @@ namespace GOTEX.Controllers
         {
             var permit = _permit.FindById(id);
             
-            if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
+            // if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
+            // {
+            //     var pdf = await new ViewAsPdf("PrintLicense", permit)
+            //     {
+            //         PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            //         FileName = "Approval.pdf"
+            //     }.BuildFile(ControllerContext);
+            //     return File(new MemoryStream(pdf), "application/pdf");
+            // }
+            // else
+            // {
+            //     var pdf = await new ViewAsPdf("License", permit)
+            //     {
+            //         PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            //         FileName = "Approval.pdf"
+            //     }.BuildFile(ControllerContext);
+            //     return File(new MemoryStream(pdf), "application/pdf");
+            // }
+            var pdf = await new ViewAsPdf("License", permit)
             {
-                var pdf = await new ViewAsPdf("PrintLicense", permit)
-                {
-                    PageSize = Rotativa.AspNetCore.Options.Size.A4,
-                    FileName = "Approval.pdf"
-                }.BuildFile(ControllerContext);
-                return File(new MemoryStream(pdf), "application/pdf");
-            }
-            else
-            {
-                var pdf = await new ViewAsPdf("License", permit)
-                {
-                    PageSize = Rotativa.AspNetCore.Options.Size.A4,
-                    FileName = "Approval.pdf"
-                }.BuildFile(ControllerContext);
-                return File(new MemoryStream(pdf), "application/pdf");
-            }
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                FileName = "Approval.pdf"
+            }.BuildFile(ControllerContext);
+            return File(new MemoryStream(pdf), "application/pdf");
         }
         
         public async Task<IActionResult> PreviewLicense(int id)
