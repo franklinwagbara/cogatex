@@ -66,7 +66,7 @@ namespace GOTEX.Controllers
                             .FirstOrDefault(x => x.Company.ElpsId == int.Parse(dic.GetValue("id")));
                         if (user != null)
                         {
-                            var apps = (from a in _application.GetAll() where a.LastAssignedUserId.Equals(user.Email) select a).ToList();
+                            var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
                             var history1 = (from h in _history.All() where h.CurrentUser.Equals(user.Email) select h).ToList();
                             var history2 = (from h in _history.All() where h.ProcessingUser.Equals(user.Email) select h).ToList();
 

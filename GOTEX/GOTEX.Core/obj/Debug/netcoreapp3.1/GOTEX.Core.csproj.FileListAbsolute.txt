@@ -538,10 +538,10 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\refs\Syst
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\refs\System.Xml.XPath.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\refs\System.Xml.XPath.XDocument.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\refs\WindowsBase.dll
-D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.csprojAssemblyReference.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.AssemblyInfoInputs.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.AssemblyInfo.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.csproj.CoreCompileInputs.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.pdb
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.csproj.AssemblyReference.cache

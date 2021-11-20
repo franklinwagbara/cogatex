@@ -606,9 +606,17 @@ namespace GOTEX.Core.DAL
         }
         public bool UpdateList(List<Application> itemlist)
         {
-            _context.Applications.AddRange(itemlist);
-            _context.SaveChanges();
-            return true;
+            try
+            {
+                _context.Applications.UpdateRange(itemlist);
+                _context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return false;
         }
     }
 }
