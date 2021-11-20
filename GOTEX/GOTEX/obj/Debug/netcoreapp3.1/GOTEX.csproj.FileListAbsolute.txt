@@ -786,7 +786,6 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\runtimes\win\l
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\GOTEX.Core.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\GOTEX.Core.pdb
-D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csprojAssemblyReference.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.AssemblyInfoInputs.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.AssemblyInfo.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csproj.CoreCompileInputs.cache
@@ -795,8 +794,6 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.MvcAppli
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.RazorAssemblyInfo.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.RazorAssemblyInfo.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\staticwebassets\GOTEX.StaticWebAssets.Manifest.cache
-D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\staticwebassets\GOTEX.StaticWebAssets.xml
-D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\scopedcss\bundle\GOTEX.styles.css
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.TagHelpers.input.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.TagHelpers.output.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.RazorCoreGenerate.cache
@@ -861,3 +858,4 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Ad
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.GeneratedMSBuildEditorConfig.editorconfig
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditFlow.cshtml.g.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddFlow.cshtml.g.cs
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csproj.AssemblyReference.cache

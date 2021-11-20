@@ -95,7 +95,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AD61CA47-F8B7-4CC6-93A0-BA44CC73B5C7/1E0/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/595A5ABC-AB92-4E7E-8842-727062C80162/C/Controller.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9481D310-60CF-4AB5-BB18-EE2195E361A5/22/OrderBy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2A7B9519-FE31-4C9B-B8C4-5A3ED6673590/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX/Views/Admin/ApplicationTypes.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
@@ -368,6 +367,8 @@
       <workItem from="1633958279291" duration="3330000" />
       <workItem from="1635006167094" duration="6286000" />
       <workItem from="1636625522515" duration="20240000" />
+      <workItem from="1636920299437" duration="1745000" />
+      <workItem from="1637398040648" duration="122000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>

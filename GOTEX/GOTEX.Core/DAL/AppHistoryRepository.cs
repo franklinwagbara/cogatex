@@ -210,7 +210,7 @@ namespace GOTEX.Core.DAL
 
         public bool UpdateList(List<ApplicationHistory> itemlist)
         {
-            _context.ApplicationHistories.AddRange(itemlist);
+            _context.ApplicationHistories.UpdateRange(itemlist);
             _context.SaveChanges();
             return true;
         }

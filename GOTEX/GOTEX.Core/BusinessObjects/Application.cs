@@ -6,6 +6,7 @@ namespace GOTEX.Core.BusinessObjects
 {
     public class Application
     {
+        [Key]
         public int Id { get; set; }
         public string UserId { get; set; }
         [Required]
