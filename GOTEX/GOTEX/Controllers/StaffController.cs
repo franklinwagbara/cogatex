@@ -20,17 +20,20 @@ namespace GOTEX.Controllers
         private IApplication<Application> _application;
         private IAppHistory<ApplicationHistory> _history;
         private IElpsRepository _elps;
+        private IRepository<Message> _message;
         
         public StaffController(
             UserManager<ApplicationUser> userManager,
             IApplication<Application> applicataion,
             IAppHistory<ApplicationHistory>  history,
-            IElpsRepository elps)
+            IElpsRepository elps,
+            IRepository<Message> message)
         {
             _userManager = userManager;
             _application = applicataion;
             _history = history;
             _elps = elps;
+            _message = message;
         }
         // GET
         public IActionResult Index() => View();
@@ -165,7 +168,12 @@ namespace GOTEX.Controllers
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user != null)
+            {
+                var messages = _message.GetAll().Where(x => x.UserId.Equals(email)).ToList();
+                if (messages != null)
+                    _message.DeleteRange(messages);
                 await _userManager.DeleteAsync(user);
+            }
             
             TempData["alert"] = "alert-success";
             TempData["Message"] = "Staff deleted successfully";

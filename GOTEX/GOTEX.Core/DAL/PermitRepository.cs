@@ -162,7 +162,7 @@ namespace GOTEX.Core.DAL
 
         private string GeneratePermitNo(string status)
         {
-            string no = "DPR/GATEX/"; 
+            string no = "NMDPRA/GATEX/"; 
             generate:
             int digits = new Random().Next(10001, 99999);
             if (!string.IsNullOrEmpty(status) && status.Equals("r", StringComparison.OrdinalIgnoreCase))

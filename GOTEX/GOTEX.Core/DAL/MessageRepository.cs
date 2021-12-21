@@ -170,5 +170,20 @@ namespace GOTEX.Core.DAL
             }
             return desc;
         }
+
+        public bool DeleteRange(List<Message> items)
+        {
+            try
+            {
+                _context.Messages.RemoveRange(items);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return false;
+        }
     }
 }

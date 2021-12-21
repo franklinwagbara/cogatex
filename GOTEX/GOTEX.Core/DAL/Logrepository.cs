@@ -53,5 +53,10 @@ namespace GOTEX.Core.DAL
         {
             throw new System.NotImplementedException();
         }
+
+        public bool DeleteRange(List<Log> items)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

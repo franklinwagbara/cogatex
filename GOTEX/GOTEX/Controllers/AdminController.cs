@@ -370,6 +370,29 @@ namespace GOTEX.Controllers
 
         public IActionResult Permits() => View(_permit.All());
 
+        public IActionResult RecreatePermitNo(int id)
+        {
+            var permit = _permit.FindById(id);
+            if (permit != null)
+            {
+                var str = permit.PermitNumber.Split('/').ToList();
+                str.RemoveAt(0);
+                permit.PermitNumber = $"NMDPRA/{String.Join("/", str)}";
+                permit.ElpsId = _elps.PushPermitToElps(new PermitAPIModel
+                {
+                    CategoryName = "Gas Export Permit",
+                    Company_Id = permit.Application.User.Company.ElpsId,
+                    Date_Expire = permit.ExpiryDate,
+                    Date_Issued = permit.DateIssued,
+                    Permit_No = permit.PermitNumber,
+                    Is_Renewed = permit.IsRenewed,
+                });
+                _permit.Update(permit);
+            }
+
+            return RedirectToAction("Permits");
+        }
+
         public IActionResult ApplicationReport() => View();
 
         [HttpPost]
