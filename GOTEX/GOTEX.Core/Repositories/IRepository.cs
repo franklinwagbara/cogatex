@@ -13,5 +13,6 @@ namespace GOTEX.Core.Repositories
         List<T> GetListByUserId(string id);
         bool SendApplicationMessage(Application application, string webrootpath, List<MailTemplate> mailTemplates, Dictionary<string, string> mailSettings);
         string SendApplicationSubmittedMail(Application application, Dictionary<string, string> mailsettings, string webrootpath);
+        bool DeleteRange(List<T> items);
     }
 }

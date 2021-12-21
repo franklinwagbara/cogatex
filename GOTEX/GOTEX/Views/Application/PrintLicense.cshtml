@@ -1,119 +1,313 @@
 ﻿@model Permit
-
 @{
     Layout = null;
 }
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
 
-    <style type="text/css">
-        body {
-            width: 21cm;
-            margin: 3cm 4.5cm 0cm 4.5cm;
-        }
-    </style>
-</head>
-<body style="font-size: 1.2em; font-family: Candara;">
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title></title>
 
-    <div style="display:block; position:absolute; top: 3.5cm;  right: 2.0cm;"> @Model.PermitNumber </div>
-
-    <div style="width: 100%; border-spacing: 0;">
-
-        <div style="position: absolute; top:10.3cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px  4.8cm;">
-            @Model.Application.User.Company.Name
-        </div>
-
-        <div style="position: absolute; top:11.8cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 4.8cm;">
-            @Model.Application.User.Company.RegisteredAddress
-        </div>
-        
-        <div style="position: absolute; top:13.2cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 9cm;">
-            @Model.Application.Product.Name
-        </div>
-
-        <div style="position: absolute; top:14.5cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 2.7cm;">
-            @if (Model.Application.ApplicationTypeId == 3)
-            {
-                <span>  @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream (Supplementary)</span>
-            }
-            else
-            {
-                <span>  @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream </span>
-            }
-        </div>
-
-
-        <div style="position: absolute; top:16.0cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 10.0cm;">
-            <span>USD</span> @Model.Application.ProductAmount.ToString("N2")
-        </div>
-        <div style="position: absolute; top:17.3cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 4.8cm;">
-            @if (Model.Application.QuarterId == 1)
-            {
-                <span>JAN-MAR @Model.Application.Year</span>
-            }
-            else if (Model.Application.QuarterId == 2)
-            {
-                <span>APR-JUN @Model.Application.Year</span>
-            }
-            else if (Model.Application.QuarterId == 3)
-            {
-                <span>JUL-SEP @Model.Application.Year</span>
-            }
-            else if (Model.Application.QuarterId == 4)
-            {
-                <span>OCT-DEC @Model.Application.Year </span>
-            }
-        </div>
-        <div style="position: absolute; top:18.5cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 4.8cm;">
-            @Model.Application.Terminal.Name
-        </div>
-        <div style="position:absolute; top:24.0cm; padding-left:380px; height: 80px;">
-            <img style="width:160px;" src="@Model.Application.User.Company.DirectorSignature" alt="CEO Signature" />
-        </div>
-        <div style="position: absolute; top:30.4cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 0;">
-            @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream
-        </div>
-        <div style="position: absolute; top:31.8cm; font-weight: 300; border-bottom: 2px  #888;padding: 5px 10px 10px 0;">
-            @if (Model.Application.QuarterId == 1)
-            {
-                <span>JAN-MAR @Model.Application.Year</span>
-            }
-            else if (Model.Application.QuarterId == 2)
-            {
-                <span>APR-JUN @Model.Application.Year</span>
-
-            }
-            else if (Model.Application.QuarterId == 3)
-            {
-                <span>JUL-SEP @Model.Application.Year</span>
-
-            }
-            else if (Model.Application.QuarterId == 4)
-            {
-                <span>OCT-DEC @Model.Application.Year</span>
-            }
-        </div>
-
-        <div style="position: absolute; top:33.28cm; right: 1.7cm; width:8cm; text-align:center; font-weight: 300; border-top:  0px  #888;">
-            @if (Model.DateIssued < new DateTime(2021, 10, 19, 23, 59, 59))
-            {
-                <div style="position: relative; height: 110px;">
-                    <img style="margin-left:-30px" src="~/Images/DirectorSignature.png" width="240" alt="Director/CEO's Signature" />
+        <style type="text/css">
+        </style>
+    </head>
+    <body style="font-size: 18px;">
+    <div style="width: 1240px; height: 1810px; margin: 0px auto;box-sizing: border-box; position: relative;">
+    
+    @* <div style="width: 100%; text-align: center; position: absolute; top: 50%; margin-top: -400px; opacity: 0.1;"> *@
+    @*     <img src="~/images/coa.png" style="width: 820px; width: 920px;" /> *@
+    @* </div> *@
+            <div style="border: 10px solid #fff; font-family: Candara; position: relative; height: 100%; box-sizing: border-box;">
+            <div style="text-align:right">
+                CONFIDENTIAL (FORM-1)
+                <h4 style="margin-top: -5px;">Form-1 No:  @Model.PermitNumber</h4>
+            </div>
+                <div style="text-align: center;">
+                    <img src="/Images/nmdpra.png" alt="Logo" style="height: 195px; display: block; margin: 0 auto 25px auto;" />
+                    <div>
+                        <h2 style="margin: 0; margin-top:10px;">NIGERIAN MIDSTREAM AND DOWNSTREAM PETROLEUM REGULATORY AUTHORITY</h2>
+                        @* <h3 style="margin: 0; margin-top:10px;">MINISTRY OF PETROLEUM RESOURCES</h3> *@
+                        <h2 style="margin: 0; margin-top: 5px; border-bottom: 1.5px solid; display: inline-block;">APPLICATION FOR EXPORT CLEARANCE:</h2>
+                        <br />
+                        <h3 style="margin: 0; margin-top: 5px;font-size: 1.2em;border-bottom: 1.5px solid; display: inline-block;">(CRUDE OIL, GAS AND CONDENSATE CARGOES)</h3>
+                        @if (Model.Application.Status == "Recalled")
+                        {
+                            <h3 style="color:#ff6a00">THIS PERMIT HAS BEEN RECALLED</h3>
+                        }
+                    
+                    </div>
                 </div>
-            }
-            else
-            {
-                <div style="position: relative; height: 110px;">
-                    <img style="margin-left:-30px" src="~/Images/nDirectorSignature.png" width="240" alt="Director/CEO's Signature" />
+
+                <div style="padding: 0px; position: absolute; box-sizing: border-box; top: 480px; left: 97px; right: 97px;">
+
+                    <div style="width: 100%; border-spacing: 0; position: relative; margin-top: 0px; font-size: 26px;">
+                        <ol>
+
+                            <li style="  margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Name of Applicant:
+                                    </div>
+
+                                    <div style="position: relative;   font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 240px;" id="coynameLine1">
+                                        @Model.Application.User.Company.Name
+                                    </div>
+                               
+                                </div>
+
+                            </li>
+
+
+                            <li style="  margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Company Address (In Nigeria):
+                                    </div>
+
+                                    <div style="position: relative;  font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 340px;" id="coynameLine1">
+                                        @Model.Application.User.Company.RegisteredAddress
+                                    </div>
+                               
+                                </div>
+                            </li>
+
+
+
+                            <li style="margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Crude Oil/Gas Stream/Condensate:
+                                    </div>
+
+                                    <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 390px;" id="coynameLine1">
+                                        @Model.Application.Product.Name
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li style="margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Application Type:
+                                    </div>
+                            
+                                    <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 390px;" id="coynameLine1">
+                                        @Model.Application.ApplicationType.FullName
+                                    </div>
+                                </div>
+                            </li>
+                            
+
+                            <li style="margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Quantity:
+                                    </div>
+
+
+                                    <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 120px;" id="coynameLine1">
+                                        @if (Model.Application.ApplicationTypeId == 3)
+                                        {
+                                            <span>  @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream (Supplementory)</span>
+                                        }
+                                        else
+                                        {
+                                            <span>  @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream </span>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        F.O.B Value (Estimated in U.S. Dollars):
+                                    </div>
+
+                                    <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 450px;" id="coynameLine1">
+                                        <span>USD</span> @Model.Application.ProductAmount.ToString("N2")
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Period Covered:
+                                    </div>
+
+                                    <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 190px;" id="coynameLine1">
+                                        @if (Model.Application.Quarter.Name == "First Quarter")
+                                        {
+                                            /*
+                                            if (Model.Application.Date.Month > 3)
+                                            {
+                                                var y = @Model.Application.Year + 1;
+                                                <span>JAN-MAR @y</span>
+                                            }
+                                            else
+                                            {
+                                                <span>JAN-MAR @Model.Application.Year</span>
+                                                
+                                            }*/
+                                            <span>JAN-MAR @Model.Application.Year</span>
+
+                                        }
+                                        else if (Model.Application.Quarter.Name == "Second Quarter")
+                                        {
+                                            /*
+                                            if (Model.Application.Date.Month > 6)
+                                            {
+                                                var y = @Model.Application.Year + 1;
+                                                <span>APR-JUN @y</span>
+                                            }
+                                            else
+                                            {
+                                                <span>APR-JUN @Model.Application.Year</span>
+                                            }*/
+                                            <span>APR-JUN @Model.Application.Year</span>
+                                        }
+                                        else if (Model.Application.Quarter.Name == "Third Quarter")
+                                        {
+                                            /*
+                                            if (Model.Application.Date.Month > 9)
+                                            {
+                                                var y = @Model.Application.Year + 1;
+                                                <span>JUL-SEP @y</span>
+                                            }
+                                            else
+                                            {
+                                                <span>JUL-SEP @Model.Application.Year</span>
+                                            }*/
+                                            <span>JUL-SEP @Model.Application.Year</span>
+                                        }
+                                        else if (Model.Application.Quarter.Name == "Fourth Quarter")
+                                        {
+                                            <span>OCT-DEC @Model.Application.Year </span>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="margin-top:30px">
+                                <div style="width: 100%; padding: 0px; position: relative; box-sizing: border-box;">
+                                    <div style="z-index: 101; position: absolute; top: 0; left: 0; float: left; margin-bottom: -3px; background-color: #fff;padding: 5px 10px 5px 0;">
+                                        Port of Export:
+                                    </div>
+
+                                    <div style="position: relative; font-weight: 300; border-bottom: 2px dotted #888;padding: 5px 0 0 180px;" id="coynameLine1">
+                                        @Model.Application.Terminal.Name
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+
+                        <div>
+                            <p>
+                                I, declare that all particulars set out in this application is true, in the full knowledge
+                                that if the particulars are found to be false or wrong in material respect, the approval
+                                will no longer be valid.
+                            </p>
+                        </div>
+
+                       <table style="width: 100%; position: relative;">
+                            <tr style="height: 150px; margin-top: 0px;">
+                                <td>
+                                    <div style="text-align: right; max-width: 390px; float: right; height: 130px; position: relative;">
+                                        <div style="position: relative; height: 130px;">
+                                            @if (!string.IsNullOrEmpty(Model.Application.User.Company.DirectorSignature))
+                                            {
+                                                <img src="@Model.Application.User.Company.DirectorSignature" alt="CEO Signature" />
+                                            }
+                                        </div>
+                                        <div style="font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;    border-top: 2px dotted #888; position: absolute; bottom: 0;">
+                                            Cheif Excutive Officer of the Company
+                                            (Official Stamp and Date)
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                       </table>
+                        <div>
+                            <h3>RECOMMENDATION:</h3>
+                            <p style="font-size: inherit">
+                                I, recommend that the above application be granted to enable the applicant export
+                                @Model.Application.Quantity.ToString("#,##0") @Model.Application.GasStream during the period of
+
+                                @if (Model.Application.Quarter.Name == "First Quarter")
+                                {
+                                    /*
+                                    if (Model.Application.Date.Month > 3)
+                                    {
+                                        var y = @Model.Application.Year + 1;
+                                        <span>JAN-MAR @y (@Model.Application.Quarter.Name)</span>
+                                    }
+                                    else
+                                    {
+                                        <span>JAN-MAR @Model.Application.Year (@Model.Application.Quarter.Name)</span>
+                                        
+                                    }*/
+                                    <span>JAN-MAR @Model.Application.Year (@Model.Application.Quarter.Name)</span>
+                                }
+                                else if (Model.Application.Quarter.Name == "Second Quarter")
+                                {
+                                    /*
+                                    if (Model.Application.Date.Month > 6)
+                                    {
+                                        var y = @Model.Application.Year + 1;
+                                        <span>APR-JUN @y</span>
+                                    }
+                                    else
+                                    {
+                                        <span>APR-JUN @Model.Application.Year</span>
+                                        
+                                    }*/
+                                    <span>APR-JUN @Model.Application.Year (@Model.Application.Quarter.Name)</span>
+                                }
+                                else if (Model.Application.Quarter.Name == "Third Quarter")
+                                {
+                                    /*
+                                    if (Model.Application.Date.Month > 9)
+                                    {
+                                        var y = @Model.Application.Year + 1;
+                                        <span>JUL-SEP @y</span>
+                                    }
+                                    else
+                                    {
+                                        <span>JUL-SEP @Model.Application.Year (@Model.Application.Quarter.Name)</span>
+                                        
+                                    }*/
+                                    <span>JUL-SEP @Model.Application.Year (@Model.Application.Quarter.Name)</span>
+                                }
+                                else if (Model.Application.Quarter.Name == "Fourth Quarter")
+                                {
+                                    <span>OCT-DEC @Model.Application.Year </span>
+                                }
+
+                                to all destinations.
+                            </p>
+                        </div>
+                        <table style="width: 100%; position: relative;">
+                            <tr style=" font-size: inherit;">
+                                <td>
+                                    <div style="text-align: right; max-width: 390px;float: right; height: 150px; position: relative;">
+                                        <div style="position: relative; height: 130px; margin-right: 70px;">
+                                            <img style="margin-left:-30px" src="~/Content/nDirectorSignature.PNG" width="260" alt="Director/CEO's Signature" />
+                                        </div>
+                                        <div style="font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;
+                                        border-top: 2px dotted #888; position: absolute; bottom: 0;">
+                                            Engr. Farouk A. Ahmed <br />
+                                            Authority Chief Executive, NMDPRA
+                                            <br />
+
+                                        </div>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
                 </div>
-            }
-            
-            <div style="height: 15px; font-size: 1.2em; text-align: center; margin-bottom: 0; width: 390px; right: 0; position: absolute; bottom: 0;">
-                DIRECTOR/CEO, NMDPRA
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

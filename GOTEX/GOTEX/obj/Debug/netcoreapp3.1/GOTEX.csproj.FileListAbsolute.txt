@@ -789,7 +789,6 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\GOTEX.Core.pdb
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.AssemblyInfoInputs.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.AssemblyInfo.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csproj.CoreCompileInputs.cache
-D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.MvcApplicationPartsAssemblyInfo.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.MvcApplicationPartsAssemblyInfo.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.RazorAssemblyInfo.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.RazorAssemblyInfo.cs
@@ -859,3 +858,4 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.Generate
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditFlow.cshtml.g.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddFlow.cshtml.g.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csproj.AssemblyReference.cache
+D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.MvcApplicationPartsAssemblyInfo.cs

@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a9a86d2c-e489-4f40-9eb0-a3f5c7ff3594": {
+      "ProjectGuid": "a9a86d2c-e489-4f40-9eb0-a3f5c7ff3594",
+      "DisplayName": "GOTEX",
+      "ColorIndex": 0
+    },
+    "06b4d38d-d7e3-4f50-8020-a33afa52054b": {
+      "ProjectGuid": "06b4d38d-d7e3-4f50-8020-a33afa52054b",
+      "DisplayName": "GOTEX.Core",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

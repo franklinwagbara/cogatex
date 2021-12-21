@@ -52,5 +52,10 @@ namespace GOTEX.Core.DAL
         {
             throw new System.NotImplementedException();
         }
+
+        public bool DeleteRange(List<WorkFlow> items)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
