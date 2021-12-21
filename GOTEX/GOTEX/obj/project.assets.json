@@ -3013,7 +3013,10 @@
         },
         "runtime": {
           "bin/placeholder/GOTEX.Core.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
