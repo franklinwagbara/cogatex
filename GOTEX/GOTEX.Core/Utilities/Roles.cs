@@ -15,5 +15,7 @@
         public const string Staff = "Staff";
         public const string ICT = "ICT";
         public const string Admin = "Admin";
+        public const string ACE_STA = "ACE_STA";
+        public const string ED_STA = "ED_STA";
     }
 }
