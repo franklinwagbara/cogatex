@@ -49,6 +49,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e863dbd528d545dd9bf095ea0313e72637390/7b/2468f479/RazorPage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2B527AC3-BC2B-41C6-A4B4-15BB7ECC3161/33/02d34a98/Chart.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3469534919ad490a9a077a6b440fec7e50d70/14/Stack.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/851DC736-17B7-47FB-9CD4-DD3F38D22C2F/1/IdentityRole.cs" root0="SKIP_HIGHLIGHTING" />
@@ -378,6 +379,7 @@
       <workItem from="1636920299437" duration="1745000" />
       <workItem from="1637398040648" duration="122000" />
       <workItem from="1640085487051" duration="6135000" />
+      <workItem from="1643575557229" duration="3753000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -475,7 +477,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/StaffController.cs</url>
-          <line>165</line>
+          <line>167</line>
           <properties documentPath="D:\Documents\Projects\GOTEX\GOTEX\Controllers\StaffController.cs" initialLine="160" />
           <option name="timeStamp" value="147" />
         </line-breakpoint>

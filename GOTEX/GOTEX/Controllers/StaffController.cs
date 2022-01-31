@@ -41,7 +41,7 @@ namespace GOTEX.Controllers
         {
             ViewData["Message"] = TempData["Message"];
             ViewData["alert"] = TempData["alert"];
-            return View( _userManager.Users.Include(x => x.UserRoles).ThenInclude(x => x.Role).ToList());
+            return View( _userManager.Users.Include(x => x.UserRoles).ThenInclude(x => x.Role).Where(x => !x.UserRoles.FirstOrDefault().Role.Name.Equals("Company")).ToList());
         }
         [HttpPost]
         public async Task<IActionResult> Edit(UserViewModel model)
@@ -87,7 +87,9 @@ namespace GOTEX.Controllers
                 Roles.Support,
                 Roles.Admin,
                 Roles.Staff,
-                Roles.ICT
+                Roles.ICT,
+                Roles.ACE_STA,
+                Roles.ED_STA
             };
             return Json(new { roles });
         }

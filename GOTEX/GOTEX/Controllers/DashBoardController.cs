@@ -65,6 +65,9 @@ namespace GOTEX.Controllers
             {
                 if (User.IsInRole("Planning"))
                     return RedirectToAction("Index", "Admin");
+                else if(User.IsInRole("ACE_STA") || User.IsInRole("ED_STA"))
+                    return RedirectToAction("AceDesk", "DashBoard");
+
                 model.All = allapps.Count;
                 model.Processing = allapps.Count(x => x.Status.ToLower().Equals("processing"));
                 model.Declined = allapps.Count(x => x.Status.ToLower().Equals("rejected"));
@@ -224,6 +227,27 @@ namespace GOTEX.Controllers
                 user.Company.DirectorSignature = source;
                 await _userManager.UpdateAsync(user);
             }
+        }
+
+        public IActionResult AceDesk()
+        {
+            ViewData["Title"] = "ED's Desk";
+            var user = _userManager.Users
+                .Include(x => x.UserRoles)
+                .ThenInclude(x => x.Role)
+                .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("HDS"));
+            
+            if (User.IsInRole("ACE_STA"))
+            {
+                ViewData["Title"] = "ACE's Desk";
+                user = _userManager.Users
+                    .Include(x => x.UserRoles)
+                    .ThenInclude(x => x.Role)
+                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("ACE"));
+            }
+
+            var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
+            return View(apps);
         }
     }
 }

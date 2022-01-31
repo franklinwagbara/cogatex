@@ -121,12 +121,14 @@ namespace GOTEX
                 Roles.Staff,
                 Roles.ICT,
                 Roles.HGMR,
-                Roles.ACE
+                Roles.ACE,
+                Roles.ACE_STA,
+                Roles.ED_STA
             };
             foreach(var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))
-                    await roleManager.CreateAsync(new ApplicationRole { Name = role});
+                    await roleManager.CreateAsync(new ApplicationRole { Name = role, DisplayName = role});
             }
         }
     }
