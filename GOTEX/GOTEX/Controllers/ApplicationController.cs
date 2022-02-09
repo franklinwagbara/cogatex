@@ -95,7 +95,7 @@ namespace GOTEX.Controllers
                         TempData["Error"] = "Sorry but non-supplementary application for a product type in the sane quarter is not allowed";
                         return RedirectToAction("Index");
                     }
-                    var lateApp = LatePayment();
+                    var lateApp = LatePayment(model.QuarterId);
                     model.User = user;
                     model.Date = DateTime.UtcNow.AddHours(1);
                     model.LastAssignedUserId = user.Email;
@@ -278,38 +278,34 @@ namespace GOTEX.Controllers
             return View("ApplicationDetail", application);
         }
         
-        private bool LatePayment()
+        private bool LatePayment(int quarterid)
         {
-            var date = DateTime.UtcNow.AddHours(1);
-            if (date.Month > 9 && (date.Month == 11 && date.Day > 10) || date.Month > 11)
+            var date = DateTime.Now;
+            if (date.Month >= 10 && date.Month <= 12 && date >= new DateTime(date.Year, 9, 1, 00, 00, 00) && quarterid == 4)
                 return true;
-            else if (date.Month > 6 && (date.Month == 8 && date.Day > 10) || date.Month > 8)
+            if (date.Month >= 7 && date.Month <= 9 && date >= new DateTime(date.Year, 6, 1, 00, 00, 00) && quarterid == 3)
                 return true;
-            else if (date.Month > 3 && (date.Month == 5 && date.Day > 10) || date.Month > 5)
-            {
-                if(date.Month > 3 && date.Year > 2021)
-                    return true;
-            }
-            else if ((date.Month == 2 && date.Day > 10) || date.Month > 2)
-            {
-                if(date.Year > 2021)
-                    return true;
-            }
+            if (date.Month >= 4 && date.Month <= 6 && date >= new DateTime(date.Year, 3, 1, 00, 00, 00) && quarterid == 2)
+                return true;
+            if (date.Month >= 1 && date.Month <= 3 && date >= new DateTime(date.Year - 1, 12, 1, 00, 00, 00) && quarterid == 1)
+                return true;
+
             return false;
         }
         
         private List<Quarter> LatePaymentText(List<Quarter> quarters)
         {
-            var month = DateTime.Now.Month;
+            var month = DateTime.Now;
             
-            if (month >= 1 && month <= 3)
-                quarters[0].Name =  $"{quarters[0].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
-            if(month >= 4 && month <= 6)
-                quarters[1].Name =  $"{quarters[1].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
-            if(month >= 7 && month <= 9)
-                quarters[2].Name =  $"{quarters[2].Name} (Late Application Payment attracts a Fee of Extra $1000.00)>";
-            if(month >= 10 && month <= 12)
-                quarters[3].Name =  $"{quarters[3].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+            if (month.Month >= 1 && month.Month <= 3 && month >= new DateTime(month.Year - 1, 12, 1, 00, 00, 00))
+                quarters[0].Name = $"{quarters[0].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+            if(month.Month >= 4 && month.Month <= 6 && month >= new DateTime(month.Year, 3, 1, 00, 00, 00))
+                quarters[1].Name = $"{quarters[1].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+            if(month.Month >= 7 && month.Month <= 9 && month >= new DateTime(month.Year, 6, 1, 00, 00, 00))
+                quarters[2].Name = $"{quarters[2].Name} (Late Application Payment attracts a Fee of Extra $1000.00)>";
+            if(month.Month >= 10 && month.Month <= 12 && month >= new DateTime(month.Year, 9, 1, 00, 00, 00))
+                quarters[3].Name = $"{quarters[3].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+            
             return quarters;
         }
         
