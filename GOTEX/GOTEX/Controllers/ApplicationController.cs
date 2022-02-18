@@ -25,14 +25,15 @@ namespace GOTEX.Controllers
     {
         private readonly AppDbContext _context;
         private IAppConfiguration<Configuration> _appConfig;
-        private IApplication<Application> _application;
-        private IRepository<Message> _message;
-        private IElpsRepository _elps;
-        private IAppHistory<ApplicationHistory> _history;
+        private readonly IApplication<Application> _application;
+        private readonly IRepository<Message> _message;
+        private readonly IElpsRepository _elps;
+        private readonly IAppHistory<ApplicationHistory> _history;
         private readonly UserManager<ApplicationUser> _userManager;
         private IWebHostEnvironment _hostingEnvironment;
-        private IPermit<Permit> _permit;
-        private IRepository<Log> _log;
+        private readonly IPermit<Permit> _permit;
+        private readonly IRepository<Facility> _fac;
+        private readonly IRepository<Log> _log;
         private readonly EmailSettings _emailSettings;
         
         public ApplicationController(
@@ -46,6 +47,7 @@ namespace GOTEX.Controllers
             IElpsRepository elps,
             IPermit<Permit> permit,
             IRepository<Log> log,
+            IRepository<Facility> fac,
             IOptionsMonitor<EmailSettings> optionsMonitor)
         {
             _context = context;
@@ -59,6 +61,7 @@ namespace GOTEX.Controllers
             _permit = permit;
             _log = log;
             _emailSettings = optionsMonitor.CurrentValue;
+            _fac = fac;
         }
         // GET
         public async Task<IActionResult> Index()
@@ -88,7 +91,7 @@ namespace GOTEX.Controllers
             {
                 if (ModelState.IsValid && model.Quantity > 0)
                 {
-                    var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                    var user = _userManager.Users.Include(x => x.Company).FirstOrDefault(x => x.Email.Equals(User.Identity.Name));
                     var prevApplication = _application.GetSameQuarterApplication(user.Id, model.QuarterId, model.ProductId);
                     if (prevApplication.Count > 0 && model.ApplicationTypeId != 3)
                     {
@@ -99,6 +102,32 @@ namespace GOTEX.Controllers
                     model.User = user;
                     model.Date = DateTime.UtcNow.AddHours(1);
                     model.LastAssignedUserId = user.Email;
+                    //check if the terminal has been created as facility for the company
+                    var facility = _fac.GetAll().FirstOrDefault(x =>
+                        x.CompanyId == user.CompanyId && x.ProductId == model.ProductId &&
+                        x.TerminalId == model.TerminalId);
+
+                    if (facility == null)
+                    {
+                        facility = new Facility
+                        {
+                            CompanyId = user.CompanyId.GetValueOrDefault(),
+                            ProductId = model.ProductId,
+                            TerminalId = model.TerminalId,
+                            ElpsId = _elps.CreateFacility(new
+                            {
+                                _context.Terminals.FirstOrDefault(x => x.Id == model.TerminalId).Name,
+                                StreetAddress = user.Company.RegisteredAddress,
+                                user.CompanyId,
+                                DateAdded = DateTime.Now,
+                                StateId = 256,
+                                FacilityType = "Gas Export Terminal"
+                            })
+                        };
+                        _fac.Insert(facility);
+                    }
+                    else
+                        model.FacilityId = facility.Id;
                     var result = _application.Insert(model, lateApp);
                     return RedirectToAction("UploadApplicationDocuments", new {id = result.Id });
                 }
@@ -126,10 +155,39 @@ namespace GOTEX.Controllers
         {
             ViewData["Message"] = TempData["Message"];
             var docs = new List<DocumentType>();
+            var application = _application.FindById(id);
             try
             {
+                var facility = _fac.GetAll().FirstOrDefault(x =>
+                    x.CompanyId == application.User.CompanyId && x.ProductId == application.ProductId &&
+                    x.TerminalId == application.TerminalId);
+                if (facility == null)
+                {
+                    facility = new Facility
+                    {
+                        CompanyId = application.User.CompanyId.GetValueOrDefault(),
+                        ProductId = application.ProductId,
+                        TerminalId = application.TerminalId,
+                        ElpsId = _elps.CreateFacility(new
+                        {
+                            _context.Terminals.FirstOrDefault(x => x.Id == application.TerminalId).Name,
+                            StreetAddress = application.User.Company.RegisteredAddress,
+                            application.User.CompanyId,
+                            DateAdded = DateTime.Now,
+                            StateId = 256,
+                            FacilityType = "Gas Export Terminal"
+                        })
+                    };
+                    _fac.Insert(facility);
+                }
+                else
+                {
+                    application.FacilityId = facility.Id;
+                    _application.Update(application);
+                }
                 docs = _application.GetApplicationFiles(id).Stringify().Parse<List<DocumentType>>();
                 ViewBag.companyId = _application.GetCompanyElpsId(User.Identity.Name);
+                ViewBag.FacilityId = facility.ElpsId;
                 ViewBag.appId = id;
                 ViewData["Status"] = _application.FindById(id)?.Status;
             }
@@ -177,7 +235,8 @@ namespace GOTEX.Controllers
                 }               
                 else
                 {
-                    if (Regex.IsMatch(model.ReferenceCode, "\\s\\t[*'\",_&#^@!$%-+/><?{}]"))
+                    // if (Regex.IsMatch(model.ReferenceCode, "\\s\\t[*'\",_&#^@!$%-+/><?{}]"))
+                    if (Regex.IsMatch(model.ReferenceCode, "[^A-Za-z0-9]"))
                     {
                         TempData["Message"] = "Payment reference contains invalid characters";
                         return RedirectToAction("UploadApplicationDocuments", new {id});
@@ -431,10 +490,39 @@ namespace GOTEX.Controllers
         public IActionResult Resubmit(int id)
         {
             var docs = new List<DocumentType>();
+            var application = _application.FindById(id);
             try
             {
+                var facility = _fac.GetAll().FirstOrDefault(x =>
+                    x.CompanyId == application.User.CompanyId && x.ProductId == application.ProductId &&
+                    x.TerminalId == application.TerminalId);
+                if (facility == null)
+                {
+                    facility = new Facility
+                    {
+                        CompanyId = application.User.CompanyId.GetValueOrDefault(),
+                        ProductId = application.ProductId,
+                        TerminalId = application.TerminalId,
+                        ElpsId = _elps.CreateFacility(new
+                        {
+                            _context.Terminals.FirstOrDefault(x => x.Id == application.TerminalId).Name,
+                            StreetAddress = application.User.Company.RegisteredAddress,
+                            application.User.CompanyId,
+                            DateAdded = DateTime.Now,
+                            StateId = 256,
+                            FacilityType = "Gas Export Terminal"
+                        })
+                    };
+                    _fac.Insert(facility);
+                }
+                else
+                {
+                    application.FacilityId = facility.Id;
+                    _application.Update(application);
+                }
                 docs = _application.GetApplicationFiles(id).Stringify().Parse<List<DocumentType>>();
                 ViewBag.companyId = _application.GetCompanyElpsId(User.Identity.Name);
+                ViewBag.FacilityId = facility.ElpsId;
                 ViewBag.appId = id;
             }
             catch (Exception ex)

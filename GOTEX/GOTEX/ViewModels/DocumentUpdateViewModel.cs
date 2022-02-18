@@ -7,7 +7,6 @@ namespace GOTEX.ViewModels
     {
         [Required]
         public int ApplicationTypeId { get; set; }
-        [Required]
-        public List<int> DocId { get; set; }
+        public List<string> DocInfo { get; set; }
     }
 }

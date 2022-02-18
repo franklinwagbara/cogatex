@@ -319,5 +319,23 @@ namespace GOTEX.Core.DAL
 
             return null;
         }
+
+        public int CreateFacility(object item)
+        {
+            try
+            {
+                var content = CallElps("/api/Facility/Add/", HttpMethod.Post, item);
+                if (!string.IsNullOrEmpty(content))
+                {
+                    var dic = content.Parse<Dictionary<string, object>>();
+                    return int.Parse(dic.GetValue("id").ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return 0;
+        }
     }
 }

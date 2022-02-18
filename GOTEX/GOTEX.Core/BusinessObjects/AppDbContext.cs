@@ -15,6 +15,7 @@ namespace GOTEX.Core.BusinessObjects
         public DbSet<Configuration> Configurations { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Facility> Facilities { get; set; }
         public DbSet<Application> Applications { get; set; }
         public DbSet<ApplicationHistory> ApplicationHistories { get; set; }
         public DbSet<WorkFlow> WorkFlows { get; set; }

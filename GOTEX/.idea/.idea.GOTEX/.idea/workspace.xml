@@ -61,6 +61,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE97CC5E-0513-47A5-A832-CE77BCF9132F/e1/13ef2a29/AsResultBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/48F23A5D-0965-44C1-BCA7-4ED3E1516FC2/16/EndpointRoutingMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/35909858-3A4E-483A-954D-61928307F2A4/27/Select.SpeedOpt.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GOTEX/Controllers/DashBoardController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/30EDA72F-50B0-4F4A-98E1-C65C14CD2175/F/SignInManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/A9C8217C-B733-4D02-8D35-584ABCC8BFDB/194/ObjectMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -83,6 +84,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/830354e3eee34c8abd8271b77eeb9ac3d1d80/C9/QueryingEnumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FE97CC5E-0513-47A5-A832-CE77BCF9132F/03/5f6066c6/RotativaConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/76ec9956a97f4729b1c09e2a5a239d3e91d990/2E/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c53140faf222c11025825ee5b65fea97a7b3e32422e293584a9a69bbdd2a3240/ComplexTypeModelBinder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/595A5ABC-AB92-4E7E-8842-727062C80162/C/Controller.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/30EDA72F-50B0-4F4A-98E1-C65C14CD2175/2/IdentityServiceCollectionExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2073514815234917a5e8f91b0b239405a95b0/12/JsonSerializer.cs" root0="SKIP_HIGHLIGHTING" />
@@ -191,7 +193,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.GOTEX">
@@ -381,7 +383,8 @@
       <workItem from="1640085487051" duration="6135000" />
       <workItem from="1643575557229" duration="3753000" />
       <workItem from="1643893427441" duration="964000" />
-      <workItem from="1644436143815" duration="1676000" />
+      <workItem from="1644436143815" duration="4574000" />
+      <workItem from="1645124858027" duration="19695000" />
     </task>
     <task id="LOCAL-00001" summary="--gatex portal">
       <created>1606975740403</created>
@@ -491,13 +494,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs</url>
-          <line>583</line>
+          <line>578</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="528" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="25626" />
+              <option value="25406" />
             </startOffsets>
             <endOffsets>
-              <option value="25804" />
+              <option value="25584" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="232" />
@@ -517,42 +520,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/AdminController.cs</url>
-          <line>578</line>
+          <line>573</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\AdminController.cs" initialLine="541" containingFunctionPresentation="method 'SendMail'">
             <startOffsets>
-              <option value="25158" />
+              <option value="24938" />
             </startOffsets>
             <endOffsets>
-              <option value="25377" />
+              <option value="25157" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="248" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>513</line>
+          <line>589</line>
           <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="515" containingFunctionPresentation="method 'UpdateApplication'">
             <startOffsets>
-              <option value="23569" />
+              <option value="27721" />
             </startOffsets>
             <endOffsets>
-              <option value="23570" />
+              <option value="27722" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="259" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GOTEX.Core/Utilities/Utils.cs</url>
-          <line>123</line>
-          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\Utilities\Utils.cs" initialLine="123" containingFunctionPresentation="method 'SendMail'">
-            <startOffsets>
-              <option value="4872" />
-            </startOffsets>
-            <endOffsets>
-              <option value="4904" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="260" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX.Core/DAL/ApplicationRepository.cs</url>
@@ -569,29 +559,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>299</line>
-          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="304" containingFunctionPresentation="method 'LatePaymentText'">
+          <line>109</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="109" containingFunctionPresentation="method 'Index'">
             <startOffsets>
-              <option value="13380" />
+              <option value="4660" />
             </startOffsets>
             <endOffsets>
-              <option value="13481" />
+              <option value="4681" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="262" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/GOTEX/Controllers/ApplicationController.cs</url>
-          <line>303</line>
-          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="310" containingFunctionPresentation="method 'LatePaymentText'">
+          <line>105</line>
+          <properties documentPath="D:\Documents\Projects\COGATEX\GOTEX\GOTEX\Controllers\ApplicationController.cs" initialLine="105" containingFunctionPresentation="method 'Index'">
             <startOffsets>
-              <option value="13838" />
+              <option value="4440" />
             </startOffsets>
             <endOffsets>
-              <option value="13933" />
+              <option value="4638" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="265" />
+          <option name="timeStamp" value="263" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

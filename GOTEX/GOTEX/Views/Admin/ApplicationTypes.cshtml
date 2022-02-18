@@ -218,18 +218,18 @@ $(document).ready(function (){
             
             $.each(companydocs, function (key, val){
                 if (val.selected === true){
-                    $("#compdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '" checked ="true" /></td><td>' + val.name + '</td></tr>');
+                    $("#compdocbody").append('<tr><td></td><td><input type="checkbox" name="DocInfo" value="' + val.id + '|Company" checked ="true" /></td><td>' + val.name + '</td></tr>');
                 }
                 else{
-                    $("#compdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '"/></td><td> ' + val.name + '</td></tr>');
+                    $("#compdocbody").append('<tr><td></td><td><input type="checkbox" name="DocInfo" value="' + val.id + '|Company"/></td><td> ' + val.name + '</td></tr>');
                 }
             });
             $.each(facdocs, function (key, val){
                 if (val.selected === true){
-                    $("#facdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '" checked ="true" /></td><td>' + val.name + '</td></tr>');
+                    $("#facdocbody").append('<tr><td></td><td><input type="checkbox" name="DocInfo" value="' + val.id + '|Facility" checked ="true" /></td><td>' + val.name + '</td></tr>');
                 }
                 else{
-                    $("#facdocbody").append('<tr><td></td><td><input type="checkbox" name="DocId" value="' + val.id + '"/></td><td> ' + val.name + '</td></tr>');
+                    $("#facdocbody").append('<tr><td></td><td><input type="checkbox" name="DocInfo" value="' + val.id + '|Facility"/></td><td> ' + val.name + '</td></tr>');
                 }
             });            
         });

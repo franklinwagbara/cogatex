@@ -25,9 +25,9 @@
         <tr>
             <th>#</th>
             <th>Application</th>
-            <th>
-                Reference
-            </th>
+            <th>Terminal</th>
+            <th>Product</th>
+            <th>Reference</th>
             <th>Status</th>
             <th>Date Applied</th>
             <th></th>
@@ -59,10 +59,11 @@
                 <td>
                     @item.ApplicationType.FullName for @item.Quarter.Name
                 </td>
+                <td>@item.Terminal.Name</td>
+                <td>@item.Product.Name</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Reference)
                 </td>
-        
                 <td>
                     <div class="alert alert-mini @alertx">
                         @if(item.Status== "Payment Pending") { 
@@ -85,35 +86,45 @@
                 <td class="txtright">
                     @if (item.Status == ApplicationStatus.PaymentNotSatisfied || item.Status == ApplicationStatus.NotSubmitted)
                     {
-                        <a href="@Url.Action("Resubmit", "Application", new{ id = item.Id })" class="btn btn-xs btn-warning ">Resubmit <i class="glyphicon glyphicon-folder-open"></i></a>
-                        <div class="btn-group">
+                        if(item.Status == ApplicationStatus.PaymentNotSatisfied)
+                        {
                             <a 
-                                href="/Application/UploadApplicationDocuments/@item.Id"
-                                class=" btn btn-xs btn-success"
-                                >Continue <i class=" glyphicon glyphicon-credit-card"></i></a>
+                                href="@Url.Action("Resubmit", "Application", new { id = item.Id })"
+                                class="btn btn-xs btn-warning">Resubmit <i class="glyphicon glyphicon-folder-open"></i></a>
+                                                                                                                                                                                           
                             <a 
                                 href="#" 
                                 class="btn btn-xs btn-danger btnRejectComment"
                                 data-comment="@PaymentRejectReason(item.Id)"
                                 data-target="#RejectModal"
                                 data-toggle="modal">See Why <i class="glyphicon glyphicon-question"></i></a>
-                            <a 
-                                href="#"
-                                id="#"
-                                data-id="@item.Id"
-                                data-quantity="@item.Quantity"
-                                data-apptype="@item.ApplicationType.Name"
-                                data-quarter="@item.Quarter.Name"
-                                data-product="@item.Product.Name"
-                                data-terminal="@item.Terminal.Name"
-                                data-amount="@item.ProductAmount"
-                                data-toggle="modal"
-                                data-target="#UpdateModal"
-                                class="btn btn-xs btn-primary btnUpdate"
+                        }
+                        if (item.Status == ApplicationStatus.NotSubmitted)
+                        {
+                            <div class="btn-group">
+                                <a 
+                                    href="/Application/UploadApplicationDocuments/@item.Id"
+                                    class=" btn btn-xs btn-success"
+                                >Continue <i class=" glyphicon glyphicon-credit-card"></i></a>
+                                <a 
+                                    href="#"
+                                    id="#"
+                                    data-id="@item.Id"
+                                    data-quantity="@item.Quantity"
+                                    data-apptype="@item.ApplicationType.Name"
+                                    data-quarter="@item.Quarter.Name"
+                                    data-product="@item.Product.Name"
+                                    data-terminal="@item.Terminal.Name"
+                                    data-amount="@item.ProductAmount"
+                                    data-toggle="modal"
+                                    data-target="#UpdateModal"
+                                    class="btn btn-xs btn-primary btnUpdate"
                                 >Update <i class="glyphicon glyphicon-edit"></i></a>
-                            <a href="/Application/Delete/@item.Id" class="btn btn-xs btn-danger "> Remove <i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="/Application/Delete/@item.Id" class="btn btn-xs btn-danger "> Remove <i class="glyphicon glyphicon-remove"></i></a>
                             
-                        </div>
+                            </div>
+                        }                     
+                        
                     }
                     else if (item.Status == ApplicationStatus.PaymentPending)
                     {
