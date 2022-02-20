@@ -13,15 +13,18 @@
     </RootPath>
     <RootNamespace>GatexDatabase</RootNamespace>
     <AssemblyName>GatexDatabase</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <TargetFrameworkProfile />
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,5 +59,38 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Applications_1.sql" />
+    <Build Include="dbo\Tables\ApplicationDocuments_1.sql" />
+    <Build Include="dbo\Tables\ApplicationTypeDocuments_1.sql" />
+    <Build Include="dbo\Tables\PaymentEvidences_1.sql" />
+    <Build Include="dbo\Tables\AspNetRoles_1.sql" />
+    <Build Include="dbo\Tables\MailTemplates_1.sql" />
+    <Build Include="dbo\Tables\AspNetUsers_1.sql" />
+    <Build Include="dbo\Tables\Configurations_1.sql" />
+    <Build Include="dbo\Tables\AspNetRoleClaims_1.sql" />
+    <Build Include="dbo\Tables\PaymentApprovals_1.sql" />
+    <Build Include="dbo\Tables\AspNetUserClaims_1.sql" />
+    <Build Include="dbo\Tables\Invoices_1.sql" />
+    <Build Include="dbo\Tables\AspNetUserLogins_1.sql" />
+    <Build Include="dbo\Tables\RemitaPayments_1.sql" />
+    <Build Include="dbo\Tables\AspNetUserRoles_1.sql" />
+    <Build Include="dbo\Tables\AspNetUserTokens_1.sql" />
+    <Build Include="dbo\Tables\Nationalities_1.sql" />
+    <Build Include="dbo\Tables\Companies_1.sql" />
+    <Build Include="dbo\Tables\ManualRemitaValues_1.sql" />
+    <Build Include="dbo\Tables\ApplicationTypes_1.sql" />
+    <Build Include="dbo\Tables\Messages_1.sql" />
+    <Build Include="dbo\Tables\Logs_1.sql" />
+    <Build Include="dbo\Tables\Permits_1.sql" />
+    <Build Include="dbo\Tables\WorkFlows_1.sql" />
+    <Build Include="dbo\Tables\ApplicationHistories_1.sql" />
+    <Build Include="dbo\Tables\Quarters_1.sql" />
+    <Build Include="dbo\Tables\Terminals_1.sql" />
+    <Build Include="dbo\Tables\Products_1.sql" />
+    <Build Include="dbo\Tables\Facilities.sql" />
   </ItemGroup>
 </Project>

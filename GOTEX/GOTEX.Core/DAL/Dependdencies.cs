@@ -19,6 +19,7 @@ namespace GOTEX.Core.DAL
             services.AddTransient<IRepository<Log>, Logrepository>();
             services.AddTransient<IRepository<ApplicationType>, AppTypeRepository>();
             services.AddTransient<IRepository<WorkFlow>, WorkflowRepository>();
+            services.AddTransient<IRepository<Facility>, FacilityRepository>();
             services.AddTransient<IApplicationTypeDocs<ApplicationTypeDocuments>, AppTypeDocsRepository>();
         }
     }

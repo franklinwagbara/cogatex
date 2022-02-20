@@ -237,6 +237,7 @@ namespace GOTEX.Core.DAL
             .Include("Quarter")
             .Include("Terminal")
             .Include("Product")
+            .Include(x => x.Facility)
             .Include("PaymentEvidence")
             .ToList();
         public List<Application> GetListByUserId(string id) 
@@ -249,19 +250,27 @@ namespace GOTEX.Core.DAL
                 var application = FindById(id);
                 var appType = _context.ApplicationTypes.FirstOrDefault(x => x.Id == application.ApplicationTypeId);
                 var compDocs = _elps.GetCompanyDocuments(application.User.Company.ElpsId).Stringify().Parse<List<CompanyDocument>>();
+                var facDocs = application.Facility == null ? new List<CompanyDocument>() : _elps.GetCompanyDocuments(application.Facility.ElpsId, "Facility").Stringify().Parse<List<CompanyDocument>>();
                 var documents = _elps.GetDocumentTypes().Stringify().Parse<List<DocumentType>>();
+                var facdocuments = _elps.GetDocumentTypes("Facility").Stringify().Parse<List<DocumentType>>();
                 var appTypeDocs = _context.ApplicationTypeDocuments.Where(x => x.ApplicationTypeId == appType.Id).ToList();
 
                 foreach (var item in appTypeDocs)
-                    docs.AddRange(GetRequiredDocs(item.DocumentTypeId, application.Id, compDocs, documents).Stringify()
-                        .Parse<List<DocumentType>>());
+                {
+                    if(item.DocType.ToLower().Equals("company"))
+                        docs.AddRange(GetRequiredDocs(item.DocumentTypeId, application.Id, compDocs, documents).Stringify()
+                            .Parse<List<DocumentType>>());
+                    else
+                        docs.AddRange(GetRequiredDocs(item.DocumentTypeId, application.Id, facDocs, facdocuments).Stringify()
+                            .Parse<List<DocumentType>>());
+                }
 
                 if (application.Fee == 2000)
                 {
                     var lateApplicationDoc = documents.FirstOrDefault(a => a.Name == "Late Submission Form");
                     if (lateApplicationDoc != null)
                     {
-                        var otherdocs = GetRequiredDocs(lateApplicationDoc.Id, id, compDocs, documents).Stringify()
+                        var otherdocs = GetRequiredDocs(lateApplicationDoc.Document_Id, id, compDocs, documents).Stringify()
                             .Parse<List<DocumentType>>();
                         docs.AddRange(otherdocs);
                     }
@@ -294,7 +303,7 @@ namespace GOTEX.Core.DAL
                 var applicationDocs = _context.ApplicationDocuments.Where(x => x.ApplicationId == applicationId).ToList();
                 var docItem = allDocs.FirstOrDefault(x => x.Id == docId);
                 var configDocs = _constdocs.ConstantDocuments.Split(';').Stringify().Parse<string[]>();
-
+                
                 foreach (var name in configDocs)
                 {
                     var ret = allDocs.FirstOrDefault(x => x.Name == name.Trim());
@@ -316,28 +325,22 @@ namespace GOTEX.Core.DAL
                     }
                     else
                     {
-                        if (et != null)
+                        _context.ApplicationDocuments.Add(new ApplicationDocument
                         {
-                            docs.Add(et);
-                        }
-                        else
-                        {
-                            _context.ApplicationDocuments.Add(new ApplicationDocument
-                            {
-                                ApplicationId = applicationId,
-                                DocumentId = existingdocs.Id,
-                                ApplicationTypeDocumentId = existingdocs.Document_Type_Id,
-                                DocTypeId = docId
-                            });
-                            _context.SaveChanges();
+                            ApplicationId = applicationId,
+                            DocumentId = existingdocs.Id,
+                            ApplicationTypeDocumentId = existingdocs.Document_Type_Id,
+                            DocTypeId = docId
+                        });
+                        _context.SaveChanges();
 
-                            docItem.Selected = true;
-                            docItem.Document_Id = existingdocs.Id;
-                            docItem.CoyFileId = existingdocs.Id;
-                            docItem.Source = existingdocs.Source;
-                            docItem.ParentSelected = existingdocs.Status;
-                            docs.Add(docItem);
-                        }
+                        docItem.Selected = true;
+                        docItem.Document_Id = existingdocs.Id;
+                        docItem.CoyFileId = existingdocs.Id;
+                        docItem.Source = existingdocs.Source;
+                        docItem.ParentSelected = existingdocs.Status;
+                        docs.Add(docItem);
+                    
                     }
                 }
                 else
@@ -346,12 +349,9 @@ namespace GOTEX.Core.DAL
                         .FirstOrDefault(y => y.Document_Type_Id == docId && y.Id == addedDocuments.DocumentId && !y.Archived);
                     if (existingdocs != null)
                     {
-                        if (et != null)
+                        if (addedDocuments != null && addedDocuments.IsUploaded)
                         {
-                            if (addedDocuments.IsUploaded)
-                                docItem.Selected = true;
-                            else
-                                docItem.Selected = false;
+                            docItem.Selected = true;
                         }
                         else
                         {

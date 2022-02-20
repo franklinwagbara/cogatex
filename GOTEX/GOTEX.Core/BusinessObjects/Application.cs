@@ -28,6 +28,7 @@ namespace GOTEX.Core.BusinessObjects
         [Required]
         public int ProductId { get; set; }
         public int? PaymentEvidenceId { get; set; }
+        public int? FacilityId { get; set; }
         public string GasStream { get; set; }
         [Required]
         public int Quantity { get; set; }
@@ -49,6 +50,8 @@ namespace GOTEX.Core.BusinessObjects
         public ApplicationType ApplicationType { get; set; }
         [ForeignKey("PaymentEvidenceId")]
         public PaymentEvidence PaymentEvidence { get; set; }
+        [ForeignKey("FacilityId")]
+        public Facility Facility { get; set; }
 
         public string DateView => Date.ToLongDateString();
     }

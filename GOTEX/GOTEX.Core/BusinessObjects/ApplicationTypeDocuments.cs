@@ -8,6 +8,7 @@ namespace GOTEX.Core.BusinessObjects
         public int Id { get; set; }
         public int DocumentTypeId { get; set; }
         public int ApplicationTypeId { get; set; }
+        public string DocType { get; set; }
         [ForeignKey("ApplicationTypeId")]
         public ApplicationType ApplicationType { get; set; }
     }

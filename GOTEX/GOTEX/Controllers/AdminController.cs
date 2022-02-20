@@ -519,29 +519,24 @@ namespace GOTEX.Controllers
             {
                 var apptypedocs = _applicationTypeDocs.GetAll()
                     .Where(x => x.ApplicationTypeId == model.ApplicationTypeId).ToList();
-                if (apptypedocs != null)
-                {
-                    foreach (var doc in model.DocId)
-                    {
-                        if(apptypedocs.Any(x => x.DocumentTypeId == doc))
-                            continue;
-                        else
-                        {
-                            _applicationTypeDocs.InsertDocs(new ApplicationTypeDocuments
-                            {
-                                 ApplicationTypeId = model.ApplicationTypeId,
-                                 DocumentTypeId = doc
-                            });
-                        }
-                    }
-
-                    foreach (var sysdocs in apptypedocs)
-                    {
-                        if (!model.DocId.Contains(sysdocs.DocumentTypeId))
-                            _applicationTypeDocs.Delete(sysdocs);
-                    }
-                }
                 
+                apptypedocs.ForEach(x =>
+                {
+                    if(model.DocInfo.Any(y => y.Contains(x.DocumentTypeId.ToString())))
+                        _applicationTypeDocs.Delete(x);
+                });
+                
+                foreach (var item in model.DocInfo)
+                {
+                    var doc = item.Split("|");
+                    _applicationTypeDocs.InsertDocs(new ApplicationTypeDocuments
+                    {
+                        ApplicationTypeId = model.ApplicationTypeId,
+                        DocumentTypeId = int.Parse(doc[0]),
+                        DocType = doc[1]
+                    });
+                }
+
             }
 
             return RedirectToAction("ApplicationTypes");
