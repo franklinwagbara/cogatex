@@ -10,7 +10,12 @@
       "ProjectGuid": "06b4d38d-d7e3-4f50-8020-a33afa52054b",
       "DisplayName": "GOTEX.Core",
       "ColorIndex": 1
+    },
+    "00b0e4d0-651a-43cd-bf13-a388214c80c3": {
+      "ProjectGuid": "00b0e4d0-651a-43cd-bf13-a388214c80c3",
+      "DisplayName": "GatexDatabase",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }
