@@ -467,9 +467,14 @@ namespace GOTEX.Controllers
             {
                 TempData["Message"] = "Application has been submitted successfully";
                 //Notify all staff of submitted application
-                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning" };
                 var staff = _context.Users.Include(x 
                     => x.UserRoles).ThenInclude(x => x.Role).ToList();
+
+                var planning = _userManager.Users.Include(x => x.UserRoles).FirstOrDefault(x => x.Email.Equals(application.LastAssignedUserId));
+
+                if (planning != null)
+                    staff.Add(planning);
                 
                 string subject = "GATEX Application Submission";
                 var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
@@ -546,7 +551,10 @@ namespace GOTEX.Controllers
                 bool res = false;
                 var application = _application.FindById(id);
                 if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
-                    res = _history.CreateNextProcessingPhase(application, "SubmitPayment");
+                {
+                    res = _history.CreateNextProcessingPhase(application, "SubmitPayment");                    
+                }
+
                 else
                     res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
                 if (res)
@@ -577,7 +585,14 @@ namespace GOTEX.Controllers
                 
                     Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
                         User.Identity.Name, subject,mailbody);
-                
+
+                    if(application.Status.ToLower().Equals("payment pending"))
+                    {
+                        var planning = _userManager.Users.Include(x => x.UserRoles).FirstOrDefault(x => x.Email.Equals(application.LastAssignedUserId));
+                        Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
+                       planning.Email, subject, mailbody);
+                    }
+
                     return RedirectToAction("MyDesk", "Company");
                 }
             }
