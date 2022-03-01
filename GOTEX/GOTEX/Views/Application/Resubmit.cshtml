@@ -152,7 +152,7 @@
                                     </td>
                                     <td>
     
-                                        @if (Model[i].Type != "Facility")
+                                        @if (Model[i].Type.ToLower() != "facility")
                                         {
                                             <input type="hidden" name="facDoc" id="@fd" value="false" />
                                             baseDocUpload = _appConfig.GetElpsUrl() + "/api/UploadCompanyDoc/" + Model[i].Id + "/" + ViewBag.companyId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
@@ -160,7 +160,7 @@
                                         else
                                         {
                                             <input type="hidden" name="facDoc" id="@fd" value="true" />
-                                            baseDocUpload = _appConfig.GetElpsUrl() + "/a[i/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + _appConfig.GetHashCode();
+                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
                                         }
                                         <input type="file" name="Name" id="@fl" class="docUpload"  required data-type="@Model[i].Type" data-doctypeid="@Model[i].Id" data-compid="@ViewBag.companyId"
                                                accept="image/gif, image/png, image/jpeg, application/pdf" data-i="@i" data-location="@baseDocUpload" data-appId="@ViewBag.appId" />
