@@ -42,8 +42,7 @@ namespace GOTEX.Controllers
                 ViewData["Message"] = TempData["Message"];
                 return View();
             }
-            else
-                return RedirectToAction("Login", "Account", new{ email = User.Identity.Name });
+            return RedirectToAction("Login", "Account", new { email = User.Identity.Name });
         } 
         public IActionResult Privacy() => View();
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
