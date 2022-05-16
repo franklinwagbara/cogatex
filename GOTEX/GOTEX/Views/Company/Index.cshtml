@@ -139,6 +139,7 @@
                                 data-product="@item.Product.Name"
                                 data-terminal="@item.Terminal.Name"
                                 data-amount="@item.ProductAmount"
+                                data-gasstream="@item.GasStream"
                                 data-toggle="modal"
                                 data-target="#UpdateModal"
                                 class="btn btn-xs btn-primary btnUpdate"
@@ -179,11 +180,8 @@
                     {
                         <a href="/Application/SubmitApplication/@item.Id" class="btn btn-xs btn-warning "> Submit Application <i class="glyphicon glyphicon-plus"></i></a>
                     }
-                    else
-                    {
-                        <a href="/Application/ApplicationDetail/@item.Id" class="btn btn-xs btn-info ">View <i class="glyphicon glyphicon-eye-open"></i></a>
-        
-                    }
+                    <a href="/Application/ApplicationDetail/@item.Id" class="btn btn-xs btn-info ">View <i class="glyphicon glyphicon-eye-open"></i></a>
+
                 </td>
             </tr>
         }

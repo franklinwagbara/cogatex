@@ -544,3 +544,4 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Cor
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.dll
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.pdb
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\Projects\cogatex\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.csproj.AssemblyReference.cache

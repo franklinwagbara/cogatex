@@ -860,3 +860,5 @@ D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Ad
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.csproj.AssemblyReference.cache
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.MvcApplicationPartsAssemblyInfo.cs
 D:\Documents\Projects\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\AceDesk.cshtml.g.cs
+D:\Documents\Projects\cogatex\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditPaymentEvidence.cshtml.g.cs
+D:\Documents\Projects\cogatex\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\PaymentEvidences.cshtml.g.cs
