@@ -34,6 +34,7 @@ namespace GOTEX.Controllers
         private readonly IApplicationTypeDocs<ApplicationTypeDocuments> _applicationTypeDocs;
         private readonly IRepository<ApplicationType> _appTypes;
         private readonly IRepository<WorkFlow> _workFlow;
+        private readonly IRepository<PaymentEvidence> _paymentEvidence;
 
 
         public AdminController(
@@ -50,7 +51,8 @@ namespace GOTEX.Controllers
             IRepository<Log> log,
             IApplicationTypeDocs<ApplicationTypeDocuments> applicationTypeDocs,
             IRepository<ApplicationType> appTypes,
-            IRepository<WorkFlow> workFlow)
+            IRepository<WorkFlow> workFlow,
+            IRepository<PaymentEvidence> paymentEvidence)
         {
             _application = application;
             _history = history;
@@ -66,6 +68,7 @@ namespace GOTEX.Controllers
             _applicationTypeDocs = applicationTypeDocs;
             _appTypes = appTypes;
             _workFlow = workFlow;
+            _paymentEvidence = paymentEvidence;
         }
 
         public IActionResult Index()
@@ -605,5 +608,31 @@ namespace GOTEX.Controllers
             _workFlow.Remove(id);
             return RedirectToAction("ApplicationFlow");
         }
+
+        public IActionResult PaymentEvidences() => View(_paymentEvidence.GetAll());
+        public IActionResult EditPaymentEvidence(int id) => View(_paymentEvidence.FindById(id));
+
+        [HttpPost]
+        public IActionResult EditPaymentEvidence(PaymentEvidence model) 
+        {
+            if (ModelState.IsValid)
+            {
+                var payment = _paymentEvidence.FindById(model.Id);
+                if(payment != null)
+                {
+                    payment.Amount = model.Amount;
+                    payment.Description = model.Description;
+                    payment.ReferenceCode = model.ReferenceCode;
+                    payment.UsageCount = model.UsageCount;
+                    payment.ApplicationQuantity = model.ApplicationQuantity;
+                    
+                    _paymentEvidence.Update(payment);
+                }
+            }
+            return RedirectToAction("PaymentEvidences");
+        }
+
+
+
     }
 }

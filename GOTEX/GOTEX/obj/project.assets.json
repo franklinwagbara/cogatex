@@ -9135,11 +9135,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj",
+      "projectUniqueName": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj",
       "projectName": "GOTEX",
-      "projectPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj",
+      "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj",
       "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\obj\\",
+      "outputPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9156,8 +9156,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
-              "projectPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj"
+            "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
+              "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj"
             }
           }
         }
