@@ -28,6 +28,7 @@ namespace GOTEX.Controllers
         private readonly IApplication<Application> _application;
         private readonly IAppHistory<ApplicationHistory> _history;
 
+
         public AccountController(
             IElpsRepository elps,
             IAppConfiguration<Configuration> appConfig,
