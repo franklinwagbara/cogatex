@@ -80,7 +80,7 @@
                                 <tr>
                                     <td><b>@Html.DisplayNameFor(model => model.Status)</b></td>
                                     <td>
-                                        <span class="label @alertx">Not SUbmitted</span>
+                                        <span class="label @alertx">@Model.Status</span>
                                         @{
                                             if (Model.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
                                             {
