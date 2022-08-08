@@ -611,7 +611,7 @@ namespace GOTEX.Controllers
         }
         
         [HttpPost]
-        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product)
+        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product, int terminal)
         {
             try
             {
@@ -622,6 +622,8 @@ namespace GOTEX.Controllers
                     application.ProductAmount = amount;
                     application.GasStream = gasstream;
                     application.ProductId = product;
+                    application.TerminalId = terminal;
+                    application.FacilityId = terminal;
 
                     _application.Update(application);
                     TempData["Message"] = "Application updated successfully";
