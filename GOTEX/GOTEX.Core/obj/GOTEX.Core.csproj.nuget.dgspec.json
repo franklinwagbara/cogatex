@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {}
+    "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
+    "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+        "projectUniqueName": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
         "projectName": "GOTEX.Core",
-        "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+        "projectPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
         "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
         "outputPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\obj\\",
         "projectStyle": "PackageReference",
