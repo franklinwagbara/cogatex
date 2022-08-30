@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Mg5aMT7ai2eOrka7a6VmZF2VPpPtTyCgsDlUdw3kKdJs620c2Ox57QzQk8fQ7OmAoaLTO2Baw7pxOOva+SLWaQ==",
+  "dgSpecHash": "/tCHu0iXm09NHBKW0M77tomB2a58bXm+lEeSPBgH5J6refSRE3uLCLSXcPDCpQcAMn4HLY/HXDm5ymOo4k6BeA==",
   "success": true,
-  "projectFilePath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj",
+  "projectFilePath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Damilare\\.nuget\\packages\\dotless.core\\1.6.7\\dotless.core.1.6.7.nupkg.sha512",
     "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.0.1\\microsoft.aspnetcore.antiforgery.2.0.1.nupkg.sha512",

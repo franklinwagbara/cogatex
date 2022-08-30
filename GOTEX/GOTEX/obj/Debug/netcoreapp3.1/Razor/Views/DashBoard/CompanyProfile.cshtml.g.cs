@@ -63,7 +63,9 @@ using Microsoft.EntityFrameworkCore;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"71b0ec5b63b6fdf962001b1cb503639b671306fa", @"/Views/DashBoard/CompanyProfile.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"553fa4994824a0e1c271dcc0934bac47a5a1b66a", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_DashBoard_CompanyProfile : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<GOTEX.Core.BusinessObjects.CompanyInformation>
+    #nullable disable
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("enctype", new global::Microsoft.AspNetCore.Html.HtmlString("multipart/form-data"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -143,7 +145,7 @@ using Microsoft.EntityFrameworkCore;
             <div role=""tabpanel"" class=""tab-pane"" id=""Profile"">
             <br/>
             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa8526", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa8572", async() => {
                 WriteLiteral("\r\n                ");
 #nullable restore
 #line 39 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\DashBoard\CompanyProfile.cshtml"
@@ -255,7 +257,7 @@ WriteAttributeValue("", 2671, ViewBag.Email, 2671, 14, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa13968", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa14014", async() => {
 #nullable restore
 #line 77 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\DashBoard\CompanyProfile.cshtml"
                                                                                              Write(item.Text);
@@ -622,7 +624,7 @@ AddHtmlAttributeValue("", 1588, Url.Action("CompanyProfile"), 1588, 29, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n        </div>\r\n            <div role=\"tabpanel\" class=\"tab-pane\" id=\"Address\">\r\n            <div class=\"p-20\">\r\n                <br/>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa32266", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa32312", async() => {
                 WriteLiteral("\r\n                    ");
 #nullable restore
 #line 199 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\DashBoard\CompanyProfile.cshtml"
@@ -712,7 +714,7 @@ AddHtmlAttributeValue("", 1588, Url.Action("CompanyProfile"), 1588, 29, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa36862", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa36908", async() => {
 #nullable restore
 #line 242 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\DashBoard\CompanyProfile.cshtml"
                                                                                 Write(item.Text);
@@ -756,7 +758,7 @@ AddHtmlAttributeValue("", 1588, Url.Action("CompanyProfile"), 1588, 29, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa39503", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa39549", async() => {
 #nullable restore
 #line 246 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\DashBoard\CompanyProfile.cshtml"
                                                                        Write(item.Text);
@@ -835,7 +837,7 @@ AddHtmlAttributeValue("", 11465, Url.Action("CompanyProfile"), 11465, 29, false)
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            </div>\r\n        </div>\r\n        </div>\r\n    </div>\r\n    \r\n</div>\r\n\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa44261", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "71b0ec5b63b6fdf962001b1cb503639b671306fa44307", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1061,18 +1063,30 @@ WriteAttributeValue("", 15492, Url.Content("/Scripts/js/jquery.fileupload.js"), 
 ");
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public IAppConfiguration<Configuration> _appConfig { get; private set; }
+        public IAppConfiguration<Configuration> _appConfig { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<GOTEX.Core.BusinessObjects.CompanyInformation> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<GOTEX.Core.BusinessObjects.CompanyInformation> Html { get; private set; } = default!;
+        #nullable disable
     }
 }
 #pragma warning restore 1591
