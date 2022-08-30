@@ -63,7 +63,9 @@ using GOTEX.Core.Utilities;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"115e017a2a4d6b0a4755225cdb6d53a1135cc7e4", @"/Views/Admin/EditFlow.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"553fa4994824a0e1c271dcc0934bac47a5a1b66a", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_Admin_EditFlow : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WorkFlow>
+    #nullable disable
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("/Admin/EditFlow"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -106,7 +108,7 @@ using GOTEX.Core.Utilities;
 #line default
 #line hidden
 #nullable disable
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e45600", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e45646", async() => {
                 WriteLiteral("\r\n    <input type=\"hidden\" name=\"Id\"");
                 BeginWriteAttribute("value", " value=\"", 473, "\"", 490, 1);
 #nullable restore
@@ -139,7 +141,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e47200", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e47246", async() => {
 #nullable restore
 #line 22 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                                    Write(role.DisplayName);
@@ -183,7 +185,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e49644", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e49690", async() => {
 #nullable restore
 #line 26 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                           Write(role.DisplayName);
@@ -234,7 +236,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e412228", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e412274", async() => {
 #nullable restore
 #line 38 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                                 Write(action);
@@ -278,7 +280,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e414657", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e414703", async() => {
 #nullable restore
 #line 42 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                        Write(action);
@@ -329,7 +331,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e417238", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e417284", async() => {
 #nullable restore
 #line 54 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                                    Write(role.DisplayName);
@@ -373,7 +375,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e419683", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e419729", async() => {
 #nullable restore
 #line 58 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                           Write(role.DisplayName);
@@ -413,7 +415,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("        </select>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label style=\"float:left\">Status</label>\r\n        <select name=\"Status\" class=\"form-control\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e421944", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e421990", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -440,7 +442,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e423570", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e423616", async() => {
 #nullable restore
 #line 71 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                                 Write(status);
@@ -484,7 +486,7 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e425999", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "115e017a2a4d6b0a4755225cdb6d53a1135cc7e426045", async() => {
 #nullable restore
 #line 75 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\EditFlow.cshtml"
                                        Write(status);
@@ -543,20 +545,34 @@ WriteAttributeValue("", 552, Model.ApplicationTypeId, 552, 24, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public IRepository<WorkFlow> _workflow { get; private set; }
+        public IRepository<WorkFlow> _workflow { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public RoleManager<ApplicationRole> _roleManager { get; private set; }
+        public RoleManager<ApplicationRole> _roleManager { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<WorkFlow> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<WorkFlow> Html { get; private set; } = default!;
+        #nullable disable
     }
 }
 #pragma warning restore 1591

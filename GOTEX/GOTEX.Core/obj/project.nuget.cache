@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b+PdA0Of3BHF2GQBAYG0+2YeP4OM/8jW7W1JKF9hoJsdglbY0q/RihvihG+oaBKILd2K0HDNvtDnJCrbgCJvtg==",
+  "dgSpecHash": "CBxAmGab94wVwJ00xpO2PKfWiQgXUyLHgpSuVaZDqq67SNcZq2O0fm8PO32joPQjDTQyg5PEhcPIIIqZQmRQew==",
   "success": true,
-  "projectFilePath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+  "projectFilePath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Damilare\\.nuget\\packages\\dotless.core\\1.6.7\\dotless.core.1.6.7.nupkg.sha512",
     "C:\\Users\\Damilare\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.7\\microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",

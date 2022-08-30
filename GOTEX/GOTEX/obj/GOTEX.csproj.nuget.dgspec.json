@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj": {}
+    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
+    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+        "projectUniqueName": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
         "projectName": "GOTEX.Core",
-        "projectPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+        "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
         "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
         "outputPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\obj\\",
         "projectStyle": "PackageReference",
@@ -80,15 +80,18 @@
         }
       }
     },
-    "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj": {
+    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj",
+        "projectUniqueName": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj",
         "projectName": "GOTEX",
-        "projectPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj",
+        "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\GOTEX.csproj",
         "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
         "outputPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -104,8 +107,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
-                "projectPath": "D:\\Documents\\Projects\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj"
+              "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
+                "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj"
               }
             }
           }

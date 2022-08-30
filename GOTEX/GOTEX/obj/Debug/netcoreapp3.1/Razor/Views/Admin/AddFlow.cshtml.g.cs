@@ -63,7 +63,9 @@ using GOTEX.Core.Utilities;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f9a2ee03848a5519d6ba7ee3a64222ae3f51312", @"/Views/Admin/AddFlow.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"553fa4994824a0e1c271dcc0934bac47a5a1b66a", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_Admin_AddFlow : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WorkFlow>
+    #nullable disable
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("/Admin/AddFlow"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -106,7 +108,7 @@ using GOTEX.Core.Utilities;
 #line default
 #line hidden
 #nullable disable
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f513125592", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f513125638", async() => {
                 WriteLiteral("\r\n    <input type=\"hidden\" name=\"ApplicationTypeId\" value=\"1\"/>\r\n    <div class=\"form-group\">\r\n        <label style=\"float:left\">Acting Role</label>\r\n        <select name=\"TriggeredByRole\" class=\"form-control\">\r\n");
 #nullable restore
 #line 17 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\AddFlow.cshtml"
@@ -117,7 +119,7 @@ using GOTEX.Core.Utilities;
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f513126340", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f513126386", async() => {
 #nullable restore
 #line 19 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\AddFlow.cshtml"
                                       Write(role.DisplayName);
@@ -165,7 +167,7 @@ using GOTEX.Core.Utilities;
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f513128820", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f513128866", async() => {
 #nullable restore
 #line 28 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\AddFlow.cshtml"
                                    Write(action);
@@ -213,7 +215,7 @@ using GOTEX.Core.Utilities;
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f5131211289", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f5131211335", async() => {
 #nullable restore
 #line 37 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\AddFlow.cshtml"
                                       Write(role.DisplayName);
@@ -252,7 +254,7 @@ using GOTEX.Core.Utilities;
 #line hidden
 #nullable disable
                 WriteLiteral("        </select>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label style=\"float:left\">Status</label>\r\n        <select name=\"Status\" class=\"form-control\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f5131213520", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f5131213566", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -277,7 +279,7 @@ using GOTEX.Core.Utilities;
 #line hidden
 #nullable disable
                 WriteLiteral("                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f5131215072", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8f9a2ee03848a5519d6ba7ee3a64222ae3f5131215118", async() => {
 #nullable restore
 #line 47 "D:\Documents\Projects\cogatex\GOTEX\GOTEX\Views\Admin\AddFlow.cshtml"
                                    Write(status);
@@ -335,20 +337,34 @@ using GOTEX.Core.Utilities;
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public IRepository<WorkFlow> _workflow { get; private set; }
+        public IRepository<WorkFlow> _workflow { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public RoleManager<ApplicationRole> _roleManager { get; private set; }
+        public RoleManager<ApplicationRole> _roleManager { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<WorkFlow> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<WorkFlow> Html { get; private set; } = default!;
+        #nullable disable
     }
 }
 #pragma warning restore 1591
