@@ -35,6 +35,7 @@ namespace GOTEX.Controllers
         private readonly IRepository<ApplicationType> _appTypes;
         private readonly IRepository<WorkFlow> _workFlow;
         private readonly IRepository<PaymentEvidence> _paymentEvidence;
+        private readonly IRepository<Product> _product;
 
 
         public AdminController(
@@ -46,6 +47,7 @@ namespace GOTEX.Controllers
             IAppConfiguration<Configuration> appConfig,
             IElpsRepository elps,
             IRepository<Message> message,
+            IRepository<Product> product,
             IPermit<Permit> permit,
             IOptionsMonitor<EmailSettings> optionsMonitor,
             IRepository<Log> log,
@@ -69,6 +71,7 @@ namespace GOTEX.Controllers
             _appTypes = appTypes;
             _workFlow = workFlow;
             _paymentEvidence = paymentEvidence;
+            _product = product;
         }
 
         public IActionResult Index()
@@ -632,7 +635,21 @@ namespace GOTEX.Controllers
             return RedirectToAction("PaymentEvidences");
         }
 
+        public IActionResult GasStreams() => View(_product.GetAll());
 
+        public IActionResult EditProduct(int id) => View(_product.FindById(id));
+
+        [HttpPost]
+        public IActionResult EditProduct(Product model) 
+        {
+            var product = _product.FindById(model.Id);
+            if(product != null)
+            {
+                product.Name = model.Name;
+                _product.Update(product);
+            }
+            return RedirectToAction("GasStreams");
+        }
 
     }
 }
