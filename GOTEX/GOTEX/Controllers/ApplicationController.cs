@@ -93,7 +93,10 @@ namespace GOTEX.Controllers
                 {
                     var user = _userManager.Users.Include(x => x.Company).FirstOrDefault(x => x.Email.Equals(User.Identity.Name));
                     var prevApplication = _application.GetSameQuarterApplication(user.Id, model.QuarterId, model.ProductId);
-                    if (prevApplication.Count > 0 && model.ApplicationTypeId != 3)
+
+                    if(prevApplication.Count > 0 && model.QuarterId == 1 && DateTime.UtcNow.Month >= 10)
+                        TempData["Success"] = "APplication type is allowed";
+                    else if (prevApplication.Count > 0 && model.ApplicationTypeId != 3)
                     {
                         TempData["Error"] = "Sorry but non-supplementary application for a product type in the sane quarter is not allowed";
                         return RedirectToAction("Index");
