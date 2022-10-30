@@ -46,6 +46,7 @@ namespace GOTEX.Core.DAL
         public int GetCompanyElpsId(string username) 
             => _context.Users.Include("Company").FirstOrDefault(x => x.Email == username).Company.ElpsId;
         public List<Application> GetSameQuarterApplication(string userid, int quarterid, int productid) => _context.Applications
+            .Include(x => x.ApplicationType)
             .Where(x => x.UserId == userid 
                         && x.QuarterId == quarterid 
                         && x.ProductId == productid
@@ -66,7 +67,7 @@ namespace GOTEX.Core.DAL
                 item.Status = ApplicationStatus.NotSubmitted;
                 item.ServiceCharge = apptype.ServiceCharge;
                 item.Fee = apptype.Amount + la;
-                item.Year = item.ApplicationTypeId == 1 && DateTime.UtcNow.Month >= 10 ? DateTime.Now.Year + 1 : DateTime.Now.Year;
+                item.Year = item.QuarterId == 1 && DateTime.UtcNow.Month >= 10 ? DateTime.Now.Year + 1 : DateTime.Now.Year;
                 item.Description = feeDescription;
                 item.StageId = 1;
                 
