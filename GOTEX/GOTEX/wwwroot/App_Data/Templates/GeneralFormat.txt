@@ -20,13 +20,13 @@
                     Click <a href="{4}" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px; text-decoration: none;">here</a> to get started.
                 </div>
                 <p>
-                    Nigerian Midstream and Downstream Petroleum Regulatory Authority<br />
+                    NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION<br />
                     (GATEX)
                 </p>
             </div>
         </div>
         <div style="padding: 10px 0; text-align: center; background-color: #888; color: #f9f9f9; width:700px">
-            &copy; {3} Nigerian Midstream and Downstream Petroleum Regulatory Authority &minus; NMDPRA Nigeria
+            &copy; {3} NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION &minus; NUPRC Nigeria
         </div>
     </font>
 </body>

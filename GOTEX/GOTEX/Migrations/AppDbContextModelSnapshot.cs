@@ -15,8 +15,8 @@ namespace GOTEX.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Application", b =>
@@ -38,6 +38,9 @@ namespace GOTEX.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("FacilityId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Fee")
                         .HasColumnType("decimal(18,2)");
 
@@ -52,6 +55,9 @@ namespace GOTEX.Migrations
 
                     b.Property<string>("LastAssignedUserId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PaymentEvidenceId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ProductAmount")
                         .HasColumnType("decimal(18,2)");
@@ -92,6 +98,10 @@ namespace GOTEX.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationTypeId");
+
+                    b.HasIndex("FacilityId");
+
+                    b.HasIndex("PaymentEvidenceId");
 
                     b.HasIndex("ProductId");
 
@@ -202,18 +212,18 @@ namespace GOTEX.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
+                        .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
@@ -262,6 +272,9 @@ namespace GOTEX.Migrations
                     b.Property<int>("ApplicationTypeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("DocType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DocumentTypeId")
                         .HasColumnType("int");
 
@@ -288,8 +301,8 @@ namespace GOTEX.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -310,12 +323,12 @@ namespace GOTEX.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -336,22 +349,37 @@ namespace GOTEX.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationUserRole", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Company", b =>
@@ -411,6 +439,36 @@ namespace GOTEX.Migrations
                     b.ToTable("Configurations");
                 });
 
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.Facility", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ElpsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TerminalId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("TerminalId");
+
+                    b.ToTable("Facilities");
+                });
+
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Invoice", b =>
                 {
                     b.Property<int>("Id")
@@ -432,24 +490,24 @@ namespace GOTEX.Migrations
 
                     b.Property<string>("PaymentCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("PaymentTransactionId")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ReceiptNo")
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(6)")
-                        .HasMaxLength(6);
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.HasKey("Id");
 
@@ -605,6 +663,9 @@ namespace GOTEX.Migrations
                     b.Property<int>("ApplicationId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ApprovedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Bank")
                         .HasColumnType("nvarchar(max)");
 
@@ -633,6 +694,39 @@ namespace GOTEX.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("PaymentApprovals");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.PaymentEvidence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ApplicationQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HashCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReferenceCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReferenceType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsageCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentEvidences");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Permit", b =>
@@ -717,29 +811,29 @@ namespace GOTEX.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ApprovedAmount")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("OnlineReference")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("OrderId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PaymentLogId")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PaymentReference")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PaymentSource")
                         .HasColumnType("nvarchar(max)");
@@ -751,34 +845,34 @@ namespace GOTEX.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReferenceNumber")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ResponseCode")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ResponseDescription")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("TransactionAmount")
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("TransactionCurrency")
-                        .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("TransactionDate")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -907,21 +1001,6 @@ namespace GOTEX.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
@@ -949,6 +1028,14 @@ namespace GOTEX.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GOTEX.Core.BusinessObjects.Facility", "Facility")
+                        .WithMany()
+                        .HasForeignKey("FacilityId");
+
+                    b.HasOne("GOTEX.Core.BusinessObjects.PaymentEvidence", "PaymentEvidence")
+                        .WithMany()
+                        .HasForeignKey("PaymentEvidenceId");
+
                     b.HasOne("GOTEX.Core.BusinessObjects.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
@@ -970,6 +1057,20 @@ namespace GOTEX.Migrations
                     b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("ApplicationType");
+
+                    b.Navigation("Facility");
+
+                    b.Navigation("PaymentEvidence");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Quarter");
+
+                    b.Navigation("Terminal");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationDocument", b =>
@@ -979,6 +1080,8 @@ namespace GOTEX.Migrations
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Application");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationHistory", b =>
@@ -988,6 +1091,8 @@ namespace GOTEX.Migrations
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Application");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationTypeDocuments", b =>
@@ -997,6 +1102,8 @@ namespace GOTEX.Migrations
                         .HasForeignKey("ApplicationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationType");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationUser", b =>
@@ -1004,6 +1111,54 @@ namespace GOTEX.Migrations
                     b.HasOne("GOTEX.Core.BusinessObjects.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationUserRole", b =>
+                {
+                    b.HasOne("GOTEX.Core.BusinessObjects.ApplicationRole", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.Facility", b =>
+                {
+                    b.HasOne("GOTEX.Core.BusinessObjects.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GOTEX.Core.BusinessObjects.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GOTEX.Core.BusinessObjects.Terminal", "Terminal")
+                        .WithMany()
+                        .HasForeignKey("TerminalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Terminal");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Invoice", b =>
@@ -1013,6 +1168,8 @@ namespace GOTEX.Migrations
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Application");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Message", b =>
@@ -1020,6 +1177,8 @@ namespace GOTEX.Migrations
                     b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.PaymentApproval", b =>
@@ -1033,6 +1192,10 @@ namespace GOTEX.Migrations
                     b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Application");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Permit", b =>
@@ -1042,6 +1205,8 @@ namespace GOTEX.Migrations
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Application");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.RemitaPayment", b =>
@@ -1049,6 +1214,8 @@ namespace GOTEX.Migrations
                     b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.WorkFlow", b =>
@@ -1058,6 +1225,8 @@ namespace GOTEX.Migrations
                         .HasForeignKey("ApplicationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationType");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1087,21 +1256,6 @@ namespace GOTEX.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("GOTEX.Core.BusinessObjects.ApplicationRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("GOTEX.Core.BusinessObjects.ApplicationUser", null)
@@ -1109,6 +1263,16 @@ namespace GOTEX.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationRole", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationUser", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

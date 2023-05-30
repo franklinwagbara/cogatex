@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {}
+    "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
+    "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
         "projectName": "GOTEX.Core",
-        "projectPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
-        "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\Projects\\cogatex\\GOTEX\\GOTEX.Core\\obj\\",
+        "projectPath": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\GOTEX\\GOTEX.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +71,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -79,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
