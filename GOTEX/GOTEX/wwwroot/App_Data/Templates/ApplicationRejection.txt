@@ -65,13 +65,13 @@
                     &nbsp;
                 </p>
                 <p>
-                    Nigerian Midstream and Downstream Petroleum Regulatory Authority<br />
+                    NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION<br />
                     (GATEX)
                 </p>
             </div>
         </div>
         <div style="padding: 10px 0; text-align: center; background-color: #888; color: #f9f9f9; width:700px">
-            &copy; {12} Nigerian Midstream and Downstream Petroleum Regulatory Authority &minus; NMDPRA Nigeria
+            &copy; {12} Nigerian Upstream Petroleum Regulatory Commission &minus; NUPRC Nigeria
         </div>
     </font>
 </body>

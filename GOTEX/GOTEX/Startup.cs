@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rotativa.AspNetCore;
 
+
 namespace GOTEX
 {
     public class Startup
@@ -128,7 +129,8 @@ namespace GOTEX
             foreach(var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))
-                    await roleManager.CreateAsync(new ApplicationRole { Name = role, DisplayName = role});
+                    await roleManager.CreateAsync(new ApplicationRole { Name = role, DisplayName = role
+    });
             }
         }
     }

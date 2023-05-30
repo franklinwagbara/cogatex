@@ -87,7 +87,7 @@ namespace GOTEX.Core.DAL
 
                         //Send Mail
                         var dt = date.Day.ToString() + date.Month.ToString() + date.Year.ToString();
-                        var sn = string.Format("NMDPRA/GATEX/{0}/{1}", dt, application.User.Company.Id);
+                        var sn = string.Format("NUPRC/GATEX/{0}/{1}", dt, application.User.Company.Id);
                         var body = Utils.ReadTextFile(webrootpath, "NDTs.txt");
                         string subject = "Export Permit Approval for your Company";
                         var msgBody = string.Format(body, subject, application.User.Company.Name,
@@ -162,7 +162,7 @@ namespace GOTEX.Core.DAL
 
         private string GeneratePermitNo(string status)
         {
-            string no = "NMDPRA/GATEX/"; 
+            string no = "NUPRC/GATEX/"; 
             generate:
             int digits = new Random().Next(10001, 99999);
             if (!string.IsNullOrEmpty(status) && status.Equals("r", StringComparison.OrdinalIgnoreCase))

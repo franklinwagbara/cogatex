@@ -16,7 +16,7 @@
 				</h3>
 				<p>Dear {1},</p>
 				<p>
-					This is to inform you that a Joint Meeting/Inspection has been scheduled between the Client and The Nigerian Midstream and Downstream Petroleum Regulatory Authority (NMDPRA).
+					This is to inform you that a Joint Meeting/Inspection has been scheduled between the Client and The NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION (NUPRC).
 					You are receiving this email because you have been assigned to participate in the Inspection processes of this application towards issuance of its License/Approval.
 				</p>
 				<p>
@@ -52,13 +52,13 @@
 				</p>
 				
 				<p>
-					Nigerian Midstream and Downstream Petroleum Regulatory Authority<br />
-					(NMDPRA)
+					NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION<br />
+					(NUPRC)
 				</p>
 			</div>
 		</div>
 		<div style="padding: 10px 0; text-align: center; background-color: #888; color: #f9f9f9; width:700px">
-			&copy; {8} Nigerian Midstream and Downstream Petroleum Regulatory Authority &minus; NMDPRA Nigeria
+			&copy; {8} NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION &minus; NUPRC Nigeria
 		</div>
 	</font>
 </body>

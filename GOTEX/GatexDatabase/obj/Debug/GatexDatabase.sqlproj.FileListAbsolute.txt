@@ -8,3 +8,9 @@ D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
 D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\predeploy.sql
 D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
 D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dacpac
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dll
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.pdb
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.sqlproj.AssemblyReference.cache
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb
