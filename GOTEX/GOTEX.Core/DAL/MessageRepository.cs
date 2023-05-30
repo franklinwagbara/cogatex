@@ -79,7 +79,7 @@ namespace GOTEX.Core.DAL
                     string appInfo = string.Format(mailTemplates.FirstOrDefault(x => x.Type.ToLower() == "new" && x.Category.Equals("company", StringComparison.OrdinalIgnoreCase))?.Content ?? "",
                         application.Reference, application.ApplicationType.Name, "Export Permit Approval", application.Fee + application.ServiceCharge, application.Year, mailtype);
                     
-                    var msgBody = string.Format(body, subject, appInfo, msg.Id, mailtype, "https://cogatex.dpr.gov.ng");
+                    var msgBody = string.Format(body, subject, appInfo, msg.Id, mailtype, "https://cogatex.nuprc.gov.ng");
                     msg.Content = msgBody;
                     Update(msg);
                     
@@ -146,7 +146,7 @@ namespace GOTEX.Core.DAL
                 tbl = string.IsNullOrEmpty(tbl) ? "" : string.Format(tbl, application.User.Company.Name, application.Reference,
                     application.Fee, application.ServiceCharge, application.Fee + application.ServiceCharge, application.Year,
                     DateTime.UtcNow.AddHours(1).ToString(), $"{application.Quarter.Name} for {application.Quantity.ToString("N2")} " +
-                                                            $"Barrels of {application.Product.Name}", "https://cogatex.dpr..gov.ng");
+                                                            $"Barrels of {application.Product.Name}", "https://cogatex.nuprc..gov.ng");
 
 
                 var src = "<table class='table table-bordered table-striped'>" +

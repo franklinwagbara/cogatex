@@ -326,7 +326,7 @@ namespace GOTEX.Controllers
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on DPR Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
-                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr..gov.ng/account/login?email={application.LastAssignedUserId}");
+                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc..gov.ng/account/login?email={application.LastAssignedUserId}");
                         
                         application = _application.FindById(model.APplicationId);
                         if (application.Status.Equals(ApplicationStatus.Completed))
@@ -580,7 +580,7 @@ namespace GOTEX.Controllers
         {
             var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>NUPRC Gas Export Permit portal (GATEX) has been sent to you for further action: " +
                      $"<br /> {comment}. <br/>";
-            message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.dpr.gov.ng/account/login?email={application.LastAssignedUserId}");
+            message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
             
             _message.Update(message);
             Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
