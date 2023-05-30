@@ -711,25 +711,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Damilare\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Projects\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
       "projectName": "DPR_COGATEX",
-      "projectPath": "D:\\Documents\\Projects\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
-      "packagesPath": "C:\\Users\\Damilare\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Projects\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\obj\\",
+      "projectPath": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Damilare\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -769,7 +769,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -781,7 +782,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }
