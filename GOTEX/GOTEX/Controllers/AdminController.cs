@@ -324,7 +324,7 @@ namespace GOTEX.Controllers
 
                     if (User.IsInRole("OOD") || User.IsInRole("ACE") && model.Action.Contains("Approve"))
                     { 
-                        var tk = $"Application for {mailtype} with reference: {application.Reference} on DPR Gas Export Permit portal (GATEX) has been approved: " +
+                        var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
                         message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc..gov.ng/account/login?email={application.LastAssignedUserId}");
                         
