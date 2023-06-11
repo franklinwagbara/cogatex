@@ -13,7 +13,7 @@
                 </li>
                 <hr/>
                 <li class="nav-devider"></li>
-                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA"))
+                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA"))
                 {
                     <li class="nav-label"> Dashboard </li>
 
@@ -28,9 +28,9 @@
                     
                 }
                 
-                @if (User.IsInRole("ED_STA") || User.IsInRole("ACE_STA"))
+                @if (User.IsInRole("ED_STA") || User.IsInRole("CCE_STA"))
                 {
-                    var display = User.IsInRole("ED_STA") ? "ED's Desk" : "ACE's Desk";
+                    var display = User.IsInRole("ED_STA") ? "ED's Desk" : "CCE's Desk";
                     <li class="nav-label"> @display </li>
 
                     <li class="">

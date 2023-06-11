@@ -221,7 +221,7 @@ namespace GOTEX.Controllers
                     TempData["Message"] = "Application has been resubmitted successfully";
                     
                     //Notify all staff of submitted application
-                    var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                    var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "ADCOGTO", "ECDP" };
                     var staff = _context.Users.Include(x 
                         => x.UserRoles).ThenInclude(x => x.Role).ToList();
                 
@@ -470,7 +470,7 @@ namespace GOTEX.Controllers
             {
                 TempData["Message"] = "Application has been submitted successfully";
                 //Notify all staff of submitted application
-                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning", "ECDP", "ADCTO" };
+                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning", "ECDP", "ADCOGTO" };
                 var staff = _context.Users.Include(x 
                     => x.UserRoles).ThenInclude(x => x.Role).ToList();
 
