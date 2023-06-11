@@ -470,7 +470,7 @@ namespace GOTEX.Controllers
             {
                 TempData["Message"] = "Application has been submitted successfully";
                 //Notify all staff of submitted application
-                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning" };
+                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning", "ECDP", "ADCTO" };
                 var staff = _context.Users.Include(x 
                     => x.UserRoles).ThenInclude(x => x.Role).ToList();
 

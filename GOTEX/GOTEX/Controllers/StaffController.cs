@@ -89,7 +89,10 @@ namespace GOTEX.Controllers
                 Roles.Staff,
                 Roles.ICT,
                 Roles.ACE_STA,
-                Roles.ED_STA
+                Roles.ED_STA,
+                Roles.ECDP,
+                Roles.CCE,
+                Roles.ADCOGTO
             };
             return Json(new { roles });
         }
