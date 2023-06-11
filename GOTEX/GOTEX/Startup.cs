@@ -127,7 +127,8 @@ namespace GOTEX
                 Roles.ED_STA,
                 Roles.CCE,
                 Roles.ADCOGTO,
-                Roles.ECDP
+                Roles.ECDP,
+                Roles.CCE_STA
             };
             foreach(var role in roles)
             {

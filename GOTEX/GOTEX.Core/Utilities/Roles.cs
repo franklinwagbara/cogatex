@@ -20,5 +20,6 @@
         public const string ED_STA = "ED_STA";
         public const string ECDP = "ECDP";
         public const string ADCOGTO = "ADCOGTO";
+        public const string CCE_STA = "CCE_STA";
     }
 }
