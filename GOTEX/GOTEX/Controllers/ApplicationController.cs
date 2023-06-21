@@ -614,7 +614,7 @@ namespace GOTEX.Controllers
         }
         
         [HttpPost]
-        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product, int terminal, string LastAssignedUserId, int stageid)
+        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product, int terminal, string LastAssignedUserId, int stageid, string status)
         {
             try
             {
@@ -631,6 +631,7 @@ namespace GOTEX.Controllers
                     {
                         application.StageId = stageid;
                         application.LastAssignedUserId = LastAssignedUserId;
+                        application.Status = status;
 
                     }
 
