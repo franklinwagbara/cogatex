@@ -27,6 +27,7 @@
                     <th>Product</th>
                     <th>Status</th>
                     <th>Date Applied</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,7 @@
                         <td>@app.Product.Name</td>
                         <td>@app.Status</td>
                         <td>@app.DateView</td>
+                        <td><a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a></td>
                     </tr>
                 }
                 </tbody>
