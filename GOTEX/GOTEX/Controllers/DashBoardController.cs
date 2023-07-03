@@ -231,19 +231,19 @@ namespace GOTEX.Controllers
 
         public IActionResult AceDesk()
         {
-            ViewData["Title"] = "ED's Desk";
+            ViewData["Title"] = "EC's Desk";
             var user = _userManager.Users
                 .Include(x => x.UserRoles)
                 .ThenInclude(x => x.Role)
                 .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("HDS"));
             
-            if (User.IsInRole("ACE_STA"))
+            if (User.IsInRole("CCE_STA"))
             {
-                ViewData["Title"] = "ACE's Desk";
+                ViewData["Title"] = "CCE's Desk";
                 user = _userManager.Users
                     .Include(x => x.UserRoles)
                     .ThenInclude(x => x.Role)
-                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("ACE"));
+                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("CCE"));
             }
 
             var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
