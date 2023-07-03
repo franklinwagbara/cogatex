@@ -231,7 +231,7 @@ namespace GOTEX.Controllers
 
         public IActionResult AceDesk()
         {
-            ViewData["Title"] = "ED's Desk";
+            ViewData["Title"] = "EC's Desk";
             var user = _userManager.Users
                 .Include(x => x.UserRoles)
                 .ThenInclude(x => x.Role)
@@ -243,7 +243,7 @@ namespace GOTEX.Controllers
                 user = _userManager.Users
                     .Include(x => x.UserRoles)
                     .ThenInclude(x => x.Role)
-                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("ACE"));
+                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("CCE"));
             }
 
             var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
