@@ -127,10 +127,10 @@ namespace GOTEX.Core.DAL
         {
             if (action.ToLower().Contains("approve"))
             {
-                if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("ADGOPS") 
-                    || role.Equals("HGMR")|| role.Equals("HDS") || role.Equals("Reviewer"))
+                if (role.Equals("Inspector") || role.Equals("Supervisor") || role.Equals("ADCOGTO") 
+                    || role.Equals("HGMR")|| role.Equals("HDS") || role.Equals("Reviewer") || role.Equals("ECDP"))
                     return ApplicationStatus.Processing;
-                else if(role.Equals("OOD")|| role.Equals("ACE") || role.Equals("Director"))
+                else if(role.Equals("OOD")|| role.Equals("ACE") || role.Equals("Director") || role.Equals("CCE") || role.Equals("CCE_STA"))
                     return ApplicationStatus.Completed;
             }
             return ApplicationStatus.Rejected;

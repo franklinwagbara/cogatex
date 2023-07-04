@@ -32,9 +32,9 @@
                 <th>Company Name</th>
                 <th>Reference</th>
                 <th>Product Type</th>
-                <td>Status</td>
-                <td>Date Applied</td>
-                <td> </td>
+                <th>Status</th>
+                <th>Date Applied</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
@@ -64,6 +64,7 @@
                                 data-gasstream="@app.GasStream"
                                 data-flowid="@app.StageId"
                                 data-user="@app.LastAssignedUserId"
+                                data-status="@app.Status"
                                 data-toggle="modal"
                                 data-target="#EditModal"
                                 class="btn btn-sm btn-success editBtn">Update App</a>                            
@@ -131,6 +132,10 @@
                             <label style="float:left">Current User</label>
                             <input type="text" class="form-control" id="currentuser" name="LastAssignedUserId"/>
                         </div>
+                        <div>
+                            <label style="float:left">Status</label>
+                            <input type="text" class="form-control" id="status" name="Status"/>
+                        </div>
                     }
                     <div class="form-group">
                         <div class="modal-footer">
@@ -163,6 +168,7 @@
             $("#Amount").val($(this).data('amount'));
             $("#stageid").val($(this).data('flowid'));
             $("#currentuser").val($(this).data('user'));
+            $("#status").val($(this).data('status'));
             
             var products = JSON.parse($("#productlist").val());
             var terminals = JSON.parse($("#terminallist").val());

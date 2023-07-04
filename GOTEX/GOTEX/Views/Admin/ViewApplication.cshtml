@@ -18,6 +18,7 @@
     else { alertx = "label-danger"; }
     
     var AppDocs = (List<DocumentType>)ViewBag.ApplicationDocs;
+        var currHist = GetHistory(Model.Id, Model.StageId);
 }
 
 <center>
@@ -180,11 +181,11 @@
                                 <table class="table table-striped" style="width: 100%;">
                                     <tr>
                                         <td><b>Received from</b></td>
-                                        <td>@GetHistory(Model.Id, Model.StageId).CurrentUser</td>
+                                        <td>@currHist?.CurrentUser</td>
                                     </tr>
                                     <tr>
                                         <td><b>Received Date</b></td>
-                                        <td>@GetHistory(Model.Id, Model.StageId).DateAssigned.ToString("MMMM dd, yyyy")</td>
+                                        <td>@currHist?.DateAssigned.ToString("MMMM dd, yyyy")</td>
                                     </tr>
                                     <tr>
                                         <td><b>Current Desk</b></td>
@@ -196,7 +197,7 @@
                                     </tr>
                                     <tr>
                                         <td><b>Last Message</b></td>
-                                        <td>@GetHistory(Model.Id, Model.StageId).Comment</td>
+                                        <td>@currHist?.Comment</td>
                                     </tr>
 
                                 </table>
@@ -350,7 +351,7 @@
 
                         if (!Model.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!User.IsInRole("OOD") || !User.IsInRole("ACE"))
+                                if (!User.IsInRole("OOD") && !User.IsInRole("ACE") && !User.IsInRole("CCE"))
                             {
                                 <tr>
                                     <td>
@@ -417,7 +418,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        @{ var cont = User.IsInRole("OOD") ? "Generate License/Approval" : "Approve";}
+                        @{ var cont = User.IsInRole("CCE") ? "Generate License/Approval" : "Approve";}
                         <input type="submit" value="@cont" class="btn btn-success btnApprove" name="Submit" id="modalSubmit" />
                         <input type="submit" value="Reject" class="btn btn-danger btnReject" name="Submit" id="modalReject" />
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

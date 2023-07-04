@@ -221,7 +221,7 @@ namespace GOTEX.Controllers
                     TempData["Message"] = "Application has been resubmitted successfully";
                     
                     //Notify all staff of submitted application
-                    var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR" };
+                    var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "ADCOGTO", "ECDP" };
                     var staff = _context.Users.Include(x 
                         => x.UserRoles).ThenInclude(x => x.Role).ToList();
                 
@@ -229,7 +229,7 @@ namespace GOTEX.Controllers
                     var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
                     var message =
                         $"A {application.ApplicationType.FullName} has been re-submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
-                    string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.dpr.gov.ng");
+                    string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.nuprc.gov.ng");
 
                     foreach (var user in staff.Where(x => roles.Contains(x.UserRoles.FirstOrDefault().Role.Name)))
                         Utils.SendMail(
@@ -470,7 +470,7 @@ namespace GOTEX.Controllers
             {
                 TempData["Message"] = "Application has been submitted successfully";
                 //Notify all staff of submitted application
-                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning" };
+                var roles = new[] { "Supervisor", "Officer", "Inspector", "ADGOPS", "HGMR", "Planning", "ECDP", "ADCOGTO" };
                 var staff = _context.Users.Include(x 
                     => x.UserRoles).ThenInclude(x => x.Role).ToList();
 
@@ -483,7 +483,7 @@ namespace GOTEX.Controllers
                 var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
                 var message =
                     $"A {application.ApplicationType.FullName} has been submitted for processing. It is currently on {application.LastAssignedUserId}'s desk.";
-                string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.dpr.gov.ng");
+                string content = string.Format(body, subject, message, application.Id, DateTime.Now.Year , "https://gatex.nuprc.gov.ng");
 
                 foreach (var user in staff.Where(x => roles.Contains(x.UserRoles.FirstOrDefault().Role.Name)))
                     Utils.SendMail(
@@ -614,7 +614,7 @@ namespace GOTEX.Controllers
         }
         
         [HttpPost]
-        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product, int terminal, string LastAssignedUserId, int stageid)
+        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product, int terminal, string LastAssignedUserId, int stageid, string status)
         {
             try
             {
@@ -631,6 +631,7 @@ namespace GOTEX.Controllers
                     {
                         application.StageId = stageid;
                         application.LastAssignedUserId = LastAssignedUserId;
+                        application.Status = status;
 
                     }
 
