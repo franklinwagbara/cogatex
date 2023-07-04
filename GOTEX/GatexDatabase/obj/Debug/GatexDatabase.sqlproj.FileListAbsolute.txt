@@ -20,3 +20,7 @@ C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\G
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.sqlproj.AssemblyReference.cache
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\Model.xml
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\refactor.xml
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\predeploy.sql
