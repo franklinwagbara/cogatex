@@ -322,7 +322,7 @@ namespace GOTEX.Controllers
                     _message.Insert(message);
                     var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
 
-                    if (User.IsInRole("OOD") || User.IsInRole("ACE") && model.Action.Contains("Approve"))
+                    if (User.IsInRole("OOD") || User.IsInRole("ACE") && User.IsInRole("CCE") && model.Action.Contains("Approve"))
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
