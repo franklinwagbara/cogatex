@@ -351,7 +351,7 @@
 
                         if (!Model.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!User.IsInRole("OOD") || !User.IsInRole("ACE"))
+                                if (!User.IsInRole("OOD") && !User.IsInRole("ACE") && !User.IsInRole("CCE"))
                             {
                                 <tr>
                                     <td>
@@ -418,7 +418,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        @{ var cont = User.IsInRole("OOD") ? "Generate License/Approval" : "Approve";}
+                        @{ var cont = User.IsInRole("CCE") ? "Generate License/Approval" : "Approve";}
                         <input type="submit" value="@cont" class="btn btn-success btnApprove" name="Submit" id="modalSubmit" />
                         <input type="submit" value="Reject" class="btn btn-danger btnReject" name="Submit" id="modalReject" />
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
