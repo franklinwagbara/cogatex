@@ -137,6 +137,8 @@ namespace GOTEX.Core.DAL
         }
         public ApplicationUser GetNextProcessingOfficer(string rolename, string action, Application application, ApplicationUser currentuser)
         {
+            var use = "";
+            var role = "";
             var nextofficer = new ApplicationUser();
             try
             {
@@ -145,9 +147,22 @@ namespace GOTEX.Core.DAL
                     var history = _context.ApplicationHistories.Where(x =>
                         x.CurrentUserRole.Equals(rolename) && x.ApplicationId == application.Id && x.ProcessingUser == currentuser.Email)
                         .OrderByDescending(y => y.Id).FirstOrDefault();
-                    
+
                     if (history == null && _userManager.IsInRoleAsync(currentuser, "Inspector").Result)
                         nextofficer = _userManager.FindByIdAsync(application.UserId).Result;
+                    else if (history == null && _userManager.IsInRoleAsync(currentuser, "CCE").Result)
+                    {
+                        role = "ECDP";
+                        var getmeuser = _userManager.GetUsersInRoleAsync(role).Result;
+                        foreach (var item in getmeuser)
+                        {
+                            if (item.IsActive)
+                            {
+                                use = item.Email;
+                            }
+                        }
+                        nextofficer = _userManager.FindByEmailAsync(use).Result;
+                    }
                     else
                         nextofficer = _userManager.FindByNameAsync(history.CurrentUser).Result;
                 }
