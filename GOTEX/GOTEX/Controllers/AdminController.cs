@@ -426,7 +426,7 @@ namespace GOTEX.Controllers
                 ? DateTime.Today.AddDays(-29).Date
                 : DateTime.ParseExact(endDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
             return _application.GetAll()
-                .Where(x => x.Submitted && x.Date >= start && x.Date <= end)
+                .Where(x => x.Date >= start && x.Date <= end)
                 .OrderByDescending(y => y.Date)
                 .ToList();
         }
