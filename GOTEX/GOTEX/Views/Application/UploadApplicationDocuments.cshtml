@@ -201,7 +201,7 @@
               <div class="form-group">
                     <table class="table table-bordered" style="width: 70%;">
                         <thead>
-                        <th class="txtcenter" colspan="2">Payment Evidence Details</th>
+                           <tr> <th class="txtcenter" colspan="2">Payment Evidence Details</th></tr>
                         </thead>
                         <tbody>
                         <tr>
@@ -285,26 +285,28 @@
                 
             });
 
-            // //Prevent double click on submit
-            // $(".submitBtn").on("click", function () {
-            //     //var val = $('#frmUpload');
-            //     $(this).attr("disabled", "disabled");
-            //     // val.submit();
-            //     $("#frmUpload form").validate({
-            //       rules:{
-            //           PaymentReference: "required"
-            //       },
-            //       messages:{
-            //           PaymentReference: "Please complete required fields"
-            //       },
-            //       success: function() {
-            //          $("#frmUpload").addClass("Submitloader");
-            //          $('#frmUpload').submit();
-            //       }
-            //   });
-            //   $("#frmUpload").removeClass("Submitloader");
-            //   $(this).removeAttr("disabled");
-            // });
+             //Prevent double click on submit
+             $(".submitBtn").on("click", function () {
+                 //var val = $('#frmUpload');
+                 $(this).attr("disabled", "disabled");
+                 // val.submit();
+                 //$("#frmUpload form").validate({
+                 //      rules:{
+                 //          PaymentReference: "required"
+                 //      },
+                 //      messages:{
+                 //          PaymentReference: "Please complete required fields"
+                 //      },
+                 //      success: function() {
+                 //         $("#frmUpload").addClass("Submitloader");
+                 //         $('#frmUpload').submit();
+                 //      }
+                 //  });
+                $("#frmUpload").addClass("Submitloader");
+                $('#frmUpload').submit();
+               //$("#frmUpload").removeClass("Submitloader");
+               //$(this).removeAttr("disabled");
+             });
 
             $(document.body).on("click", '.docUpload', function () {
                 var me = $(this);

@@ -5,19 +5,13 @@
 @inject SignInManager<ApplicationUser> _signInManager
 @{
     if (!User.Identity.IsAuthenticated)
-    {
         Layout = "_HomeLayout";
-    }
     else
     {
         if (User.IsInRole("Company"))
-        {
             Layout = "_CompanyLayout";
-        }
         else
-        {
             Layout = "_ElaLayout";
-        }
     }
     
 }

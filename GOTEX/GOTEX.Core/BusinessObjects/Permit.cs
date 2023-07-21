@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GOTEX.Core.BusinessObjects
@@ -17,5 +18,7 @@ namespace GOTEX.Core.BusinessObjects
         public int ElpsId { get; set; }
         [ForeignKey("ApplicationId")]
         public Application Application { get; set; }
+        public ICollection<Survey> Survey { get; set; }
+
     }
 }

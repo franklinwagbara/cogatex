@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "cHuJnSK8biOkmCSxlmZvqF/8Y1uIE9g43A/wRGHW7fhUQP8VHbIfMrEN9cNwpGkBzIYpTuOlLL1rhbxtpfKpvQ==",
+  "dgSpecHash": "LED+Zq3EIlCHSxFQqkZtv+clOZmJzcrJDhp0r08QBf2NgSZYRXyXRh0q3OxTXzgDqeyT7SlXaBGXhWUAWKKq0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\suppo\\Documents\\Visual Studio 2022\\Projects\\nuprc-gatex\\COGATEX\\GOTEX\\GOTEX\\GOTEX.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\suppo\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
+    "C:\\Users\\suppo\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\suppo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\suppo\\.nuget\\packages\\dotless.core\\1.6.7\\dotless.core.1.6.7.nupkg.sha512",
     "C:\\Users\\suppo\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\suppo\\.nuget\\packages\\identitymodel\\4.4.0\\identitymodel.4.4.0.nupkg.sha512",

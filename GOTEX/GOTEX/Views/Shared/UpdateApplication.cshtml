@@ -1,0 +1,56 @@
+﻿@model ApplicationViewModel
+@{
+    Layout = null;
+    var unit = new []{ "MT", "Barrels" };
+}
+
+<form action="/Application/UpdateApplication" method="post" enctype="multipart/form-data" id="formUpdate">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label style="float:left">Application Type</label>
+        <select asp-for="ApplicationTypeId" class="form-control" disabled asp-items="new SelectList(@Model.ApplicationType, nameof(ApplicationType.Id), nameof(ApplicationType.Name))" readonly></select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Quarter Registration</label>
+        <select asp-for="QuarterId" class="form-control" disabled asp-items="new SelectList(@Model.Quarter, nameof(Quarter.Id), nameof(Quarter.Name))" readonly>
+        </select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Product Type</label>
+        <select asp-for="ProductId" class="form-control" asp-items="new SelectList(@Model.Product, nameof(Product.Id), nameof(Product.Name))"> </select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Terminal (Port of Export)</label>
+        <select asp-for="TerminalId" class="form-control" asp-items="new SelectList(@Model.Terminal, nameof(Terminal.Id), nameof(Terminal.Name))"> </select>
+    </div>
+    <div class="form-group">
+        <label style="float:left">Quantity</label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label style="float:left">Equivalent Value ($)</label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label style="float:left">Measurement</label>
+        <select asp-for="GasStream" class="form-control">
+            @foreach (var item in unit)
+            {
+                if (Model.GasStream.Equals(item))
+                {
+                    <option value="@item" selected="selected">@item</option>
+                }
+                else
+                {
+                    <option value="@item">@item</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="modal-footer">
+            <input type="submit" value="Update" class="btn btn-primary" name="Submit" id="UpdateBtn" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</form>

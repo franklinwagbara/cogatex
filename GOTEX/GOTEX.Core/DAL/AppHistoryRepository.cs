@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
@@ -22,7 +23,7 @@ namespace GOTEX.Core.DAL
             _context = context;
             _userManager = userManager;
         }
-        public bool CreateNextProcessingPhase(Application application, string action, string comment = null)
+        public async Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null)
         {
             try
             {
@@ -31,9 +32,12 @@ namespace GOTEX.Core.DAL
                     .ThenInclude(x => x.Role).FirstOrDefault(x => x.Email.Equals(application.LastAssignedUserId));
                 var nextaction = _context.WorkFlows.FirstOrDefault(x =>
                     x.Action.ToLower().Contains(action) && x.TriggeredByRole.ToLower().Equals(processingUser.UserRoles.FirstOrDefault().Role.Name.ToLower()));
-                var nextprocofficer = nextaction.TargetRole.Equals("Company") ? application.User : GetNextProcessingOfficer(nextaction.TargetRole, action, application, processingUser);
+                var nextprocofficer = nextaction.TargetRole.Equals("Company") ? application.User : await GetNextProcessingOfficer(nextaction.TargetRole, action, application, processingUser);
                 if (nextprocofficer != null)
                 {
+                    if(await _userManager.IsInRoleAsync(nextprocofficer, Roles.ECDP))
+                        nextaction = _context.WorkFlows.FirstOrDefault(x => x.Action.ToLower().Contains(action) 
+                        && x.TriggeredByRole.ToLower().Equals(processingUser.UserRoles.FirstOrDefault().Role.Name.ToLower()) && x.TargetRole.Equals(Roles.ECDP));
                     var history = new ApplicationHistory
                     {
                         Action = action,
@@ -68,6 +72,9 @@ namespace GOTEX.Core.DAL
                         application.Status = nextaction.Status;
                     else
                         application.Status = GetApplicationStatus(action, processingUser.UserRoles.FirstOrDefault().Role.Name);
+
+                    nextprocofficer.LastJobDate = DateTime.UtcNow.AddHours(1);
+                    await _userManager.UpdateAsync(nextprocofficer);
                     _context.Applications.Update(application);
                     _context.SaveChanges();
                     return true;
@@ -123,6 +130,7 @@ namespace GOTEX.Core.DAL
             }
             return comment;
         }
+
         private string GetApplicationStatus(string action, string role)
         {
             if (action.ToLower().Contains("approve"))
@@ -135,8 +143,11 @@ namespace GOTEX.Core.DAL
             }
             return ApplicationStatus.Rejected;
         }
-        public ApplicationUser GetNextProcessingOfficer(string rolename, string action, Application application, ApplicationUser currentuser)
+
+        public async Task<ApplicationUser> GetNextProcessingOfficer(string rolename, string action, Application application, ApplicationUser currentuser)
         {
+            var use = "";
+            var role = "";
             var nextofficer = new ApplicationUser();
             try
             {
@@ -146,34 +157,29 @@ namespace GOTEX.Core.DAL
                         x.CurrentUserRole.Equals(rolename) && x.ApplicationId == application.Id && x.ProcessingUser == currentuser.Email)
                         .OrderByDescending(y => y.Id).FirstOrDefault();
                     
-                    if (history == null && _userManager.IsInRoleAsync(currentuser, "Inspector").Result)
-                        nextofficer = _userManager.FindByIdAsync(application.UserId).Result;
+                    if (history == null && await _userManager.IsInRoleAsync(currentuser, "Inspector"))
+                        nextofficer = await _userManager.FindByIdAsync(application.UserId);
                     else
-                        nextofficer = _userManager.FindByNameAsync(history.CurrentUser).Result;
+                        nextofficer = await _userManager.FindByNameAsync(history.CurrentUser);
                 }
                 else
-                {
-                    var users = _userManager.GetUsersInRoleAsync(rolename).Result;
-                    var deskcount = new Dictionary<string, int>();
-                    if (users.Where(x => x.IsActive).ToList().Count > 1)
-                    {
-                        foreach (var item in users)
-                        {
-                            if (item.IsActive)
-                            {
-                                int count = _context.Applications.Count(x => x.Status != ApplicationStatus.Completed 
-                                                                             && x.LastAssignedUserId == item.Email);
-                            
-                                deskcount.Add(item.Email, count);
-                            }
-                        }
-
-                        var officerEmail = deskcount.OrderBy(x => x.Value).FirstOrDefault().Key;
-                        nextofficer = users.FirstOrDefault(x => x.Email == officerEmail);
-                    }
-                    else
-                        nextofficer = users.FirstOrDefault(x => x.IsActive);
+                {                    
+                    var users = await _userManager.GetUsersInRoleAsync(rolename);
                     
+                    if (rolename.Equals(Roles.ADCOGTO))
+                    {
+                        var ed = await _userManager.GetUsersInRoleAsync(Roles.ECDP);
+                        if(ed.Count > 0)
+                            users = users.Union(ed).ToList();
+                    }
+                    //if(users.Count > 0 && users.Any(x => x.LastJobDate == null)) { }
+                    if (users.Count > 0)
+                        users = users.Where(x => x.IsActive).ToList();
+
+                    if (users.Count > 1)
+                        nextofficer = users.OrderBy(x => x.LastJobDate).FirstOrDefault();
+                    else if(users.Count == 1)
+                        nextofficer = users.FirstOrDefault(x => x.IsActive);
                 }
             }
             catch (Exception ex)
@@ -188,6 +194,7 @@ namespace GOTEX.Core.DAL
             }
             return nextofficer;
         }
+        
         public List<ApplicationHistory> GetApplicationHistoriesById(int applicationid) => 
             _context.ApplicationHistories.Where(x => x.ApplicationId == applicationid).ToList();
 

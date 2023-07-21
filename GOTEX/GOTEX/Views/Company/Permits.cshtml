@@ -68,16 +68,38 @@
                         @item.ExpiryDate.ToShortDateString()
                     </td>
                     <td class="txtright">
-                        <a href="/Application/License/@item.Id" target="_blank" class="btn btn-sm btn-primary">View</a>
+                        <a href="/Application/License/@item.ApplicationId?type=preview" target="_blank" class="btn btn-sm btn-primary">View</a>
+                        <a href="#surveyModal" data-toggle="modal" data-id="@item.Id" class="btn btn-sm btn-info btnAddSurvey">Add Survey</a>
                     </td>
                 </tr>
             }
 
         </table>
     </div>
+
+    <div class="modal" role="dialog" tabindex="-1" id="surveyModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="text-center"><h3 class="modal-title"></h3></div>
+                <div class="modal-body" id="modalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('.dataTable').DataTable();
+    $(document).ready(function () {
+        $('.dataTable').dataTable({ dom: 'Blfrtip' });
+
+        $(document).on('click', '.btnAddSurvey', function(e){
+            e.preventDefault();
+            $.get('/Company/AddSurvey', { id : $(this).data('id') }, function(data){
+                $('.modal-body').html(data);
+            });
+        });
     });
 </script>

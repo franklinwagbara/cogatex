@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -57,8 +58,8 @@ namespace GOTEX.Controllers
             {
                 var hash = Utils.GenerateSHA512($"{_appConfig.GetAppId()}.{model.email}.{_appConfig.GetAppKey()}");
                 var user = new ApplicationUser();
-                // if (hash.Equals(model.code))
-                // {
+                if (Debugger.IsAttached || (!Debugger.IsAttached && hash.Equals(model.code)))
+                {
                     //fetch email as company
                     var dic = _elps.GetCompanyDetailByEmail(model.email);
                     if (dic.Count > 0)
@@ -67,12 +68,25 @@ namespace GOTEX.Controllers
                             .FirstOrDefault(x => x.Company.ElpsId == int.Parse(dic.GetValue("id")));
                         if (user != null)
                         {
-                            var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
-                            var history1 = (from h in _history.All() where h.CurrentUser.Equals(user.Email) select h).ToList();
-                            var history2 = (from h in _history.All() where h.ProcessingUser.Equals(user.Email) select h).ToList();
+                            if (!await _userManager.IsInRoleAsync(user, Roles.Company))
+                            {
+                                var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
+                                var history1 = (from h in _history.All() where h.CurrentUser.Equals(user.Email) select h).ToList();
+                                var history2 = (from h in _history.All() where h.ProcessingUser.Equals(user.Email) select h).ToList();
 
-                            apps.ForEach(x => x.LastAssignedUserId = model.email);
-                            
+                                apps.ForEach(x => x.LastAssignedUserId = model.email);
+
+                                //apps2.ForEach(x => x.CompanyUserId = Email.Trim());
+                                history1.ForEach(x => x.CurrentUser = model.email);
+                                history2.ForEach(x => x.ProcessingUser = model.email);
+
+                                if (apps.Count > 0)
+                                    _application.UpdateList(apps);
+                                if (history1.Count > 0)
+                                    _history.UpdateList(history1);
+                                if (history2.Count > 0)
+                                    _history.UpdateList(history2);
+                            }
                             user.Email = model.email.Trim();
                             user.UserName = model.email.Trim();
                             user.Company.Name = dic.GetValue("name");
@@ -80,18 +94,7 @@ namespace GOTEX.Controllers
                             user.Company.RcNumber = dic.GetValue("rC_Number");
                             user.Company.TinNumber = dic.GetValue("tin_Number");
                             user.Company.YearIncorporated = dic.GetValue("year_Incorporated");
-
-                            //apps2.ForEach(x => x.CompanyUserId = Email.Trim());
-                            history1.ForEach(x => x.CurrentUser = model.email);
-                            history2.ForEach(x => x.ProcessingUser = model.email);
                             
-                            if(apps.Count > 0)
-                                _application.UpdateList(apps);
-                            if(history1.Count > 0)
-                                _history.UpdateList(history1);
-                            if(history2.Count > 0)
-                                _history.UpdateList(history2);
-
                             await _userManager.UpdateAsync(user);
                         }
                         else
@@ -156,7 +159,7 @@ namespace GOTEX.Controllers
                         TempData["ErrorMessage"] = "An error occured, please contact Support/ICT.";
 
                     return await LogOff();
-                //}
+                }
             }
             catch (Exception ex)
             {

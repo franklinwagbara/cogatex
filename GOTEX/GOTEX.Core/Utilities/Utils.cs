@@ -19,11 +19,18 @@ namespace GOTEX.Core.Utilities
 {
     public static class Utils
     {
-        public static string Stringify(this object any) => JsonConvert.SerializeObject(any);
+        public static string Stringify(this object any) => JsonConvert.SerializeObject(any, Formatting.Indented,
+        new JsonSerializerSettings()
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        });
+
         public static string GetValue(this Dictionary<string, string> dic, string key)
             => dic.FirstOrDefault(x => x.Key.Equals(key, StringComparison.OrdinalIgnoreCase)).Value;
+
         public static object GetValue(this Dictionary<string, object> dic, string key)
             => dic.FirstOrDefault(x => x.Key.Equals(key, StringComparison.OrdinalIgnoreCase)).Value;
+
         public static TOut Parse<TOut>(this string any) =>
             JsonConvert.DeserializeObject<TOut>(any, new JsonSerializerSettings
             {
@@ -33,6 +40,7 @@ namespace GOTEX.Core.Utilities
                 },
                 Converters = { new IsoDateTimeConverter() }
             });
+
         public static async Task<HttpResponseMessage> Send(string url, HttpRequestMessage message)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls 
@@ -44,6 +52,7 @@ namespace GOTEX.Core.Utilities
                 return await client.SendAsync(message);
             }
         }
+
         public static string GenerateSHA512(this string inputString)
         {
             SHA512 sha512 = SHA512Managed.Create();
@@ -58,6 +67,7 @@ namespace GOTEX.Core.Utilities
 
             return sb.ToString();
         }
+
         public static List<SelectListItem> GetSortedCountry(this List<Nationality> countries, string selectedCountry)
         {
             var countrylist = new List<SelectListItem>();
@@ -84,6 +94,7 @@ namespace GOTEX.Core.Utilities
             }
             return countrylist;
         }
+
         public static string RefrenceCode()
         {
             //generate 12 digit numbers
@@ -93,6 +104,7 @@ namespace GOTEX.Core.Utilities
             ulong random = BitConverter.ToUInt64(bytes, 0) % 1000000000000;
             return $"{random:D12}";
         }
+
         public static void SendMail(Dictionary<string, string> mailsettings, string toEmail, string subject, string body, string bcc = null)
         {
             var credentials = new NetworkCredential(mailsettings.GetValue("UserName"), mailsettings.GetValue("Password"));

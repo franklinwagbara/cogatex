@@ -8,9 +8,12 @@ namespace GOTEX.Controllers
     public class ValidateController : Controller
     {
         private IPermit<Permit> _permit;
-        public ValidateController(IPermit<Permit> permit)
+        private readonly IRepository<Survey> _survey;
+
+        public ValidateController(IPermit<Permit> permit, IRepository<Survey> survey)
         {
             _permit = permit;
+            _survey = survey;
         }
         // GET
         public IActionResult Index()
@@ -39,6 +42,16 @@ namespace GOTEX.Controllers
                 ViewBag.Msg = "Permit with the specified Permit Number not found. Enter another number and try again";
             }
             return View(permit);
+        }
+
+        public ActionResult ViewSurvey(int id) 
+        { 
+            var survey = _survey.FindById(id);
+            if(survey != null)
+                return View("AddSurvey", survey);
+
+            TempData["Message"] = "No survey form was found!";
+            return RedirectToAction("Index", "Home");
         }
     }
 }

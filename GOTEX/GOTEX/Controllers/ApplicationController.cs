@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using AutoMapper;
 using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
@@ -17,6 +18,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Rotativa.AspNetCore;
+using static System.Net.Mime.MediaTypeNames;
+using Application = GOTEX.Core.BusinessObjects.Application;
 
 namespace GOTEX.Controllers
 {
@@ -35,6 +38,7 @@ namespace GOTEX.Controllers
         private readonly IRepository<Facility> _fac;
         private readonly IRepository<Log> _log;
         private readonly EmailSettings _emailSettings;
+        private readonly IMapper _mapper;
         
         public ApplicationController(
             AppDbContext context,
@@ -48,7 +52,8 @@ namespace GOTEX.Controllers
             IPermit<Permit> permit,
             IRepository<Log> log,
             IRepository<Facility> fac,
-            IOptionsMonitor<EmailSettings> optionsMonitor)
+            IOptionsMonitor<EmailSettings> optionsMonitor,
+            IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
@@ -62,6 +67,7 @@ namespace GOTEX.Controllers
             _log = log;
             _emailSettings = optionsMonitor.CurrentValue;
             _fac = fac;
+            _mapper = mapper;
         }
         // GET
         public async Task<IActionResult> Index()
@@ -208,7 +214,7 @@ namespace GOTEX.Controllers
         }
         
         [HttpPost]
-        public IActionResult UploadApplicationDocuments(int id, PaymentEvidenceViewModel model)
+        public async Task<IActionResult> UploadApplicationDocuments(int id, PaymentEvidenceViewModel model)
         {
             try
             {
@@ -217,7 +223,7 @@ namespace GOTEX.Controllers
                 var application = _application.FindById(id);
                 if (application.Status.Equals("Rejected"))
                 {
-                    res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
+                    res = await _history.CreateNextProcessingPhase(application, "ResubmitApplication");
                     TempData["Message"] = "Application has been resubmitted successfully";
                     
                     //Notify all staff of submitted application
@@ -261,9 +267,9 @@ namespace GOTEX.Controllers
                             : _context.PaymentEvidences.FirstOrDefault(x => x.HashCode.Equals(model.ReferenceCode))?.Id;
                 
                         if (application.Status.Equals(ApplicationStatus.NotSubmitted))
-                            res = _history.CreateNextProcessingPhase(application, "SubmitApplication");
+                            res = await _history.CreateNextProcessingPhase(application, "SubmitPayment");
                         else if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
-                            res = _history.CreateNextProcessingPhase(application, "ResubmitPayment");
+                            res = await _history.CreateNextProcessingPhase(application, "ResubmitPayment");
                         
                         TempData["Message"] = verify.message;
                     }
@@ -411,31 +417,14 @@ namespace GOTEX.Controllers
         
         public async Task<IActionResult> License(int id, string type = null)
         {
-            var permit = _permit.FindById(id);
-            
-            // if (!string.IsNullOrEmpty(type) && type.Equals("print", StringComparison.OrdinalIgnoreCase))
-            // {
-            //     var pdf = await new ViewAsPdf("PrintLicense", permit)
-            //     {
-            //         PageSize = Rotativa.AspNetCore.Options.Size.A4,
-            //         FileName = "Approval.pdf"
-            //     }.BuildFile(ControllerContext);
-            //     return File(new MemoryStream(pdf), "application/pdf");
-            // }
-            // else
-            // {
-            //     var pdf = await new ViewAsPdf("License", permit)
-            //     {
-            //         PageSize = Rotativa.AspNetCore.Options.Size.A4,
-            //         FileName = "Approval.pdf"
-            //     }.BuildFile(ControllerContext);
-            //     return File(new MemoryStream(pdf), "application/pdf");
-            // }
-            var pdf = await new ViewAsPdf("License", permit)
+            var permit = _application.FindById(id);
+            permit.ViewType = type;
+            var pdf = await new ViewAsPdf("License", permit?.Permit)
             {
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 FileName = "Approval.pdf"
             }.BuildFile(ControllerContext);
+            ViewData["viewType"] = type;
             return File(new MemoryStream(pdf), "application/pdf");
         }
         
@@ -462,10 +451,25 @@ namespace GOTEX.Controllers
         
         public IActionResult Report() => View(_application.Report());
 
-        public IActionResult SubmitApplication(int id)
+        [HttpPost]
+        public async Task<IActionResult> Report(int QuarterId, int Year) 
+        {
+            var apps = new List<Application>();
+            if (QuarterId > 0 && Year > 0)
+                apps = _application.Report().Where(x => x.QuarterId == QuarterId && x.Year == Year).ToList();
+            else if (QuarterId > 0 && Year == 0)
+                apps = _application.Report().Where(x => x.QuarterId == QuarterId).ToList();
+            else if (QuarterId == 0 && Year > 0)
+                apps = _application.Report().Where(x => x.Year == Year).ToList();
+            else
+                apps = _application.Report();
+            return View(apps);
+        }
+
+        public async Task<IActionResult> SubmitApplication(int id)
         {
             var application = _application.FindById(id);
-            var res = _history.CreateNextProcessingPhase(application, "SubmitPayment");
+            var res = await _history.CreateNextProcessingPhase(application, "SubmitPayment");
             if (res)
             {
                 TempData["Message"] = "Application has been submitted successfully";
@@ -547,7 +551,7 @@ namespace GOTEX.Controllers
         }
         
         [HttpPost]
-        public IActionResult Resubmit(int id, int companyId)
+        public async Task<IActionResult> Resubmit(int id, int companyId)
         {
             try
             {
@@ -555,11 +559,11 @@ namespace GOTEX.Controllers
                 var application = _application.FindById(id);
                 if (application.Status.Equals(ApplicationStatus.PaymentNotSatisfied))
                 {
-                    res = _history.CreateNextProcessingPhase(application, "SubmitPayment");                    
+                    res = await _history.CreateNextProcessingPhase(application, "SubmitPayment");                    
                 }
 
                 else
-                    res = _history.CreateNextProcessingPhase(application, "ResubmitApplication");
+                    res = await _history.CreateNextProcessingPhase(application, "ResubmitApplication");
                 if (res)
                 {
                     var mailmessage = _elps.GetMailMessages();
@@ -612,29 +616,50 @@ namespace GOTEX.Controllers
             ViewBag.Error = "An error occured while resubmitting application, please try again";
             return RedirectToAction("Resubmit", new { id = id });
         }
-        
+
+        public IActionResult UpdateApplication(int id)
+        { 
+            var app = _application.FindById(id);
+            return View(new ApplicationViewModel 
+            { 
+                Amount = app.ProductAmount,
+                ApplicationTypeId = app.ApplicationTypeId,
+                GasStream = app.GasStream,
+                Id = app.Id,
+                LastAssignedUserId = app.LastAssignedUserId,
+                ProductId = app.ProductId,
+                Quantity = app.Quantity,
+                QuarterId = app.QuarterId,
+                StageId = app.StageId,
+                Status = app.Status,
+                TerminalId = app.TerminalId,
+                ApplicationType = _appConfig.GetApplicationTypes().Stringify().Parse<List<ApplicationType>>(),
+                Quarter = _appConfig.GetQuarters().Stringify().Parse<List<Quarter>>(),
+                Product = _appConfig.GetGasProducts().Stringify().Parse<List<Product>>(),
+                Terminal = _appConfig.GetTerminal().Stringify().Parse<List<Terminal>>(),
+            });
+        }
+
         [HttpPost]
-        public IActionResult UpdateApplication(int id, int quantity, decimal amount, string gasstream, int product, int terminal, string LastAssignedUserId, int stageid, string status)
+        public IActionResult UpdateApplication(ApplicationViewModel model)
         {
             try
             {
-                var application = _application.FindById(id);
+                var application = _application.FindById(model.Id);
                 if (application != null)
                 {
-                    application.Quantity = quantity;
-                    application.ProductAmount = amount;
-                    application.GasStream = gasstream;
-                    application.ProductId = product;
-                    application.TerminalId = terminal;
-                    application.FacilityId = terminal;
+                    application.Quantity = model.Quantity;
+                    application.ProductAmount = model.Amount;
+                    application.GasStream = model.GasStream;
+                    application.ProductId = model.ProductId;
+                    application.TerminalId = model.TerminalId;
+                    application.FacilityId = model.TerminalId;
                     if (User.IsInRole("Admin"))
                     {
-                        application.StageId = stageid;
-                        application.LastAssignedUserId = LastAssignedUserId;
-                        application.Status = status;
-
+                        application.StageId = model.StageId;
+                        application.LastAssignedUserId = model.LastAssignedUserId;
+                        application.Status = model.Status;
                     }
-
                     _application.Update(application);
                     TempData["Message"] = "Application updated successfully";
                 }

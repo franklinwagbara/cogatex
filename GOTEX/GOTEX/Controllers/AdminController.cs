@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security;
 using System.Threading.Tasks;
@@ -223,7 +224,7 @@ namespace GOTEX.Controllers
                         _application.Update(application);
 
                         //Reject application to client/marketer
-                        _history.CreateNextProcessingPhase(application, "RejectPayment", model.feedback);
+                        await _history.CreateNextProcessingPhase(application, "RejectPayment", model.feedback);
                         //Send client/marketer a notification
 
                         _application.InvalidatePaymentonElps(
@@ -239,7 +240,7 @@ namespace GOTEX.Controllers
                     {
                         RRR = application.Reference,
                         AddedBy = application.LastAssignedUserId,
-                        Beneficiary = "DPR",
+                        Beneficiary = "NUPRC",
                         DateAdded = DateTime.UtcNow.AddHours(1),
                         FundingBank = "",
                         NetAmount = Convert.ToDouble(application.Fee + application.ServiceCharge),
@@ -256,7 +257,7 @@ namespace GOTEX.Controllers
                     
                     var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
 
-                    var res = _history.CreateNextProcessingPhase(application, "ConfirmPayment", model.feedback);
+                    var res = await _history.CreateNextProcessingPhase(application, "ConfirmPayment", model.feedback);
                     if (res)
                     {
                         var message = new Message
@@ -302,14 +303,16 @@ namespace GOTEX.Controllers
             return View(companies);
         }
 
-        public IActionResult Approve(ApprovalViewModel model)
+        public async Task<IActionResult> Approve(ApprovalViewModel model)
         {
             try
             {
                 var application = _application.FindById(model.APplicationId);
                 if (User.Identity.Name.Equals(application.LastAssignedUserId))
                 {
-                    _history.CreateNextProcessingPhase(application, model.Action, model.Report);
+                    if (User.IsInRole(Roles.CCE))
+                        model.Report = model.Action.ToLower().Equals("approve") ? "Final approval by CCE" : "Application rejected by CCE";
+                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report);
                     
                     var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
                     var message = new Message
@@ -322,7 +325,7 @@ namespace GOTEX.Controllers
                     _message.Insert(message);
                     var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
 
-                    if (User.IsInRole("OOD") || User.IsInRole("ACE") || User.IsInRole("CCE") && model.Action.Contains("Approve"))
+                    if (User.IsInRole("CCE") && model.Action.Contains("Approve"))
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
@@ -335,7 +338,7 @@ namespace GOTEX.Controllers
                                 _hostingEnvironment.WebRootPath,
                                 _emailSettings.Stringify().Parse<Dictionary<string, string>>());
                             TempData["message"] = "You have APPROVED this Application (" + application.Reference +
-                                                  ")  and Permit has been recommended for issuance. Permit No: " + permitnumber;
+                                                  ")  and Approval has issud with Approval No: " + permitnumber;
                         }                        
                         _message.Update(message);
                         Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(), application.LastAssignedUserId, message.Subject, message.Content);
@@ -396,22 +399,43 @@ namespace GOTEX.Controllers
             return RedirectToAction("Permits");
         }
 
-        public IActionResult ApplicationReport() => View();
+        public IActionResult ApplicationReport()
+        {
+            var chart = new List<ChartModel>();
+            var applications = AppReport();
+
+            chart = applications.GroupBy(x => new DateTime(x.Date.Year, x.Date.Month, x.Date.Day)).Select(y => new ChartModel
+            {
+                Date = y.Key.Date.ToShortDateString(),
+                Approved = y.Count(z => z.Status.Equals("Completed")),
+                Processing = y.Count(z => z.Status.Equals("Processing")),
+                Rejected = y.Count(x => x.Status.Equals("Rejected"))
+            }).ToList();
+
+            ViewData["Chart"] = chart;
+
+            return View(applications);
+        }
+
+        private List<Application> AppReport(string startDate = null, string endDate = null)
+        {
+            DateTime start = string.IsNullOrEmpty(startDate)
+                ? DateTime.Today.AddDays(-29).Date
+                : DateTime.ParseExact(startDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            DateTime end = string.IsNullOrEmpty(endDate)
+                ? DateTime.Today.AddDays(-29).Date
+                : DateTime.ParseExact(endDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+            return _application.GetAll()
+                .Where(x => x.Submitted && x.Date >= start && x.Date <= end)
+                .OrderByDescending(y => y.Date)
+                .ToList();
+        }
 
         [HttpPost]
         public IActionResult ApplicationReport(string startDate, string endDate)
         {
             var chart = new List<ChartModel>();
-            DateTime start = string.IsNullOrEmpty(startDate)
-                ? DateTime.Today.AddDays(-29).Date
-                : DateTime.Parse(startDate);
-            DateTime end = string.IsNullOrEmpty(endDate)
-                ? DateTime.Today.AddDays(-29).Date
-                : DateTime.Parse(endDate);
-            var applications = _application.GetAll()
-                .Where(x => x.Submitted && x.Date >= start && x.Date <= end)
-                .OrderByDescending(y => y.Date)
-                .ToList();
+            var applications = AppReport(startDate, endDate);
 
             chart = applications.GroupBy(x => new DateTime(x.Date.Year, x.Date.Month, x.Date.Day)).Select( y => new ChartModel
             {
@@ -420,7 +444,10 @@ namespace GOTEX.Controllers
                 Processing = y.Count(z => z.Status.Equals("Processing")),
                 Rejected = y.Count(x => x.Status.Equals("Rejected"))
             }).ToList();
-            return View(chart);
+
+            ViewData["Chart"] = chart;
+
+            return View(applications);
         }
 
         public IActionResult PaymentReport()
@@ -545,7 +572,18 @@ namespace GOTEX.Controllers
             return RedirectToAction("ApplicationTypes");
         }
 
-        public IActionResult StaffDesk() => View(_userManager.Users.ToList());
+        public IActionResult StaffDesk()
+        {
+            var users = new List<ApplicationUser>();
+            if (User.IsInRole(Roles.Planning))
+                users = _userManager.GetUsersInRoleAsync(Roles.Planning).Result.ToList();
+            else
+                users = _userManager.Users.Include(ur => ur.UserRoles).ThenInclude(r => r.Role)
+                            .Where(x => x.IsActive && !x.Email.Equals(User.Identity.Name) 
+                            && !x.UserRoles.FirstOrDefault().Role.Name.Equals("Support")
+                            && !x.UserRoles.FirstOrDefault().Role.Name.Contains("Admin")).ToList();
+            return View(users);
+        }
 
         public IActionResult Outbox()
         {
@@ -648,5 +686,52 @@ namespace GOTEX.Controllers
             return RedirectToAction("GasStreams");
         }
 
+        public async Task<IActionResult> StaffApps(string id)
+        {
+            if (!string.IsNullOrEmpty(id)) 
+            { 
+                var user = await _userManager.FindByIdAsync(id);
+                if(user != null)
+                {
+                    var apps = _application.GetStappApps(user.Email);
+                    ViewData["StaffEmail"] = apps?.FirstOrDefault().LastAssignedUserId;
+                    return View(apps);
+                }
+            }
+            return RedirectToAction("StaffDesk");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> StaffApps(string email, List<int> ApplicationId)
+        {
+            if(ApplicationId.Count > 0 && !string.IsNullOrEmpty(email))
+            {
+                var apps = _application.GetAll().Where(x => ApplicationId.Contains(x.Id) && x.LastAssignedUserId.Equals(email)).ToList();
+                if(apps.Any())
+                {
+                    var staff = _userManager.Users.Include(ur => ur.UserRoles).ThenInclude(r => r.Role).FirstOrDefault(e => e.Email.Equals(email));
+                    var list = await _userManager.GetUsersInRoleAsync(staff.UserRoles.FirstOrDefault().Role.Name);
+                    list = list.Where(x => x.IsActive && !x.Email.Equals(email)).ToList();
+                    if (list.Count > 0)
+                    {
+                        if (list.Count == 1)
+                            apps.ForEach(x => { x.LastAssignedUserId = list.FirstOrDefault().Email; });
+                        else
+                        {
+                            for(var i = 0; i < apps.Count; i++)
+                            {
+                                var user = list.OrderBy(l => l.LastJobDate).FirstOrDefault();
+                                apps[i].LastAssignedUserId = user.Email;
+                                user.LastJobDate = DateTime.UtcNow.AddHours(1);
+                                await _userManager.UpdateAsync(user);
+                            }
+                        }
+                        _application.UpdateList(apps);
+                        TempData["Message"] = "APplications on staff desk have been distributed accordingly.";
+                    }
+                }
+            }
+            return RedirectToAction("StaffDesk");
+        }
     }
 }

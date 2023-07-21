@@ -9,6 +9,7 @@
         public string Host { get; set; }
         public string Port { get; set; }
         public string WFile { get; set; }
+        public string ServicomEmail { get; set; }
     }
     public class ConstantDocument
     {

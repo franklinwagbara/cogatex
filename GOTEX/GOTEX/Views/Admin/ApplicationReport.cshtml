@@ -1,8 +1,10 @@
 ﻿@using GOTEX.Core.Utilities
-@model List<ChartModel>
+@model List<Application>
 
 @{
     ViewBag.Title = "Application Report";
+    int count = 0;
+    var chart = (List<ChartModel>)ViewData["Chart"];
 }
 <div class="card">
     <div class="card">
@@ -21,14 +23,48 @@
             }
         </div>
     </div>
+    <div class="card">
+        <table class="table table-striped appReport">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>App. Reference</th>
+                    <th>Company Name</th>
+                    <th>Terminal</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>F.O.B Value (USD)</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@item.Reference</td>
+                        <td>@item.User.Company.Name</td>
+                        <td>@item.Terminal.Name</td>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Quantity.ToString("#,##0.00")</td>
+                        <td>@item.ProductAmount.ToString("#,##0.00")</td>
+                        <td>@item.Date.ToString("MMM dd, yyyy hh:mm:ss")</td>
+                        <td>@item.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
      <div class="card">
-                <h2 class="alert alert-warning col-md-3">Report Chart</h2>
-                <div id="data" class="fade">@Model.Stringify()</div>
-                @* <div id="chartContainer" style="height: 370px; width: 100%;"></div> *@
-                @* <script src="~/Scripts/js/chart.js"></script> *@
-                @* *@
-                <div id="chartdiv"></div>
-            </div>
+        <h2 class="alert alert-warning col-md-3">Report Chart</h2>
+        <div id="data" class="fade">@chart.Stringify()</div>
+        @* <div id="chartContainer" style="height: 370px; width: 100%;"></div> *@
+        @* <script src="~/Scripts/js/chart.js"></script> *@
+        @* *@
+        <div id="chartdiv"></div>
+    </div>
 </div>
 <style>
 #chartdiv {
@@ -53,6 +89,8 @@
               startDate:null,
               endDate:null,
             });
+
+            $('.appReport').dataTable({ dom: 'Blfrtip' })
         });
 
     </script>

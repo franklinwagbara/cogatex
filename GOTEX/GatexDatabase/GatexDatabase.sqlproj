@@ -92,5 +92,7 @@
     <Build Include="dbo\Tables\Terminals_1.sql" />
     <Build Include="dbo\Tables\Products_1.sql" />
     <Build Include="dbo\Tables\Facilities.sql" />
+    <Build Include="dbo\Tables\Surveys.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
   </ItemGroup>
 </Project>

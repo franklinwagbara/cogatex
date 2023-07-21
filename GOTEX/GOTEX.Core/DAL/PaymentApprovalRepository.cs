@@ -46,12 +46,15 @@ namespace GOTEX.Core.DAL
                         ResponseCode = "01",
                         ResponseDescription = "Payment Completed",
                         RRR = "DPR-Bank-M",
-                        TransactionAmount = manual.NetAmount.ToString(),
+                        TransactionAmount = item.NetAmount.ToString(),
                         TransactionCurrency = "566",
                         TransactionDate = DateTime.UtcNow.AddHours(1).ToString(),
-                        Type = "Offline"
+                        Type = "Offline",
+                        UserId = application.UserId,
+                        PaymentLogId = "",
+                        WebpayReference = ""
                     });
-                    _context.RemitaPayments.Add(remita);
+                    //_context.RemitaPayments.Add(remita);
                     desc =  $" :: Amount Confirmed: {amount.ToString("N2")}, Comment: {feedback}. Done by: {application.User.Email}";
 
                 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
@@ -184,8 +185,17 @@ namespace GOTEX.Core.DAL
             }
             return item;
         }
-        public List<Application> Report() => 
-            GetAll().Where(x => x.Status.Equals(ApplicationStatus.Completed)).ToList();
+        public List<Application> Report() =>
+            _context.Applications
+            .Include("User.Company")
+            .Include("ApplicationType")
+            .Include("Quarter")
+            .Include("Terminal")
+            .Include("Product")
+            .Include(x => x.Facility)
+            .Include("PaymentEvidence")
+            .Include(p => p.Permit)
+            .Where(x => x.Status.Equals(ApplicationStatus.Completed)).ToList();
 
         public (bool status, string hash, string message)  ValidatePaymentEvidence(Dictionary<string, string> dic)
         {
@@ -240,9 +250,29 @@ namespace GOTEX.Core.DAL
             .Include("Product")
             .Include(x => x.Facility)
             .Include("PaymentEvidence")
+            .Include("Permit")
             .ToList();
+
+        public List<Application> GetStappApps(string id) => _context.Applications
+            .Include("User.Company")
+            .Include("ApplicationType")
+            .Include("Quarter")
+            .Include("Terminal")
+            .Include("Product")
+            .Include(x => x.Facility)
+            .Include("PaymentEvidence")
+            .Include(p => p.Permit)
+            .Where(x => x.LastAssignedUserId.Equals(id)).ToList();
         public List<Application> GetListByUserId(string id) 
-            => GetAll().Where(x => x.UserId == id).ToList();
+            => _context.Applications
+            .Include("User.Company")
+            .Include("ApplicationType")
+            .Include("Quarter")
+            .Include("Terminal")
+            .Include("Product")
+            .Include(x => x.Facility)
+            .Include("PaymentEvidence")
+            .Include("Permit").Where(x => x.UserId == id).ToList();
         public object GetApplicationFiles(int id)
         {
             var docs = new List<DocumentType>();
@@ -289,7 +319,15 @@ namespace GOTEX.Core.DAL
             return docs;
         }
         public Application FindById(int id) 
-            => GetAll().FirstOrDefault(x => x.Id == id);
+            => _context.Applications
+            .Include("User.Company")
+            .Include("ApplicationType")
+            .Include("Quarter")
+            .Include("Terminal")
+            .Include("Product")
+            .Include(x => x.Facility)
+            .Include("PaymentEvidence")
+            .Include(p => p.Permit).FirstOrDefault(x => x.Id == id);
         public Application FindByReference(string refno) 
             => GetAll().FirstOrDefault(x => x.Reference.Equals(refno));
         public List<Application> GetCompanyApplications(string email) 
@@ -348,7 +386,7 @@ namespace GOTEX.Core.DAL
                 {
                     var existingdocs = companyDocs.OrderByDescending(x => x.Id)
                         .FirstOrDefault(y => y.Document_Type_Id == docId && y.Id == addedDocuments.DocumentId && !y.Archived);
-                    if (existingdocs != null)
+                    if (existingdocs != null && docItem != null)
                     {
                         if (addedDocuments != null && addedDocuments.IsUploaded)
                         {
@@ -434,45 +472,13 @@ namespace GOTEX.Core.DAL
             }
             return false;
         }
-        public object ConfirmPayment(Application application, string appUrl, out bool res)
+        public async Task<object> ConfirmPayment(Application application, string appUrl, bool res)
         {
             res = false;
             var remita = _context.RemitaPayments.FirstOrDefault(x => x.OrderId == application.Reference);
             try
             {
-                // if (remita != null && !string.IsNullOrEmpty(remita.RRR))
-                // {
-                //     if (remita.RRR.ToLower().Equals("dpr-elps"))
-                //     {
-                //         application.Submitted = true;
-                //         if (application.Status == ApplicationStatus.PaymentNotSatisfied ||
-                //             application.Status == ApplicationStatus.NotSubmitted)
-                //             application.Status = ApplicationStatus.PaymentPending;
-                //         Update(application);
-                //     }  
-                // }
-                // else
-                // {
-                //     double fee = Convert.ToDouble(application.ServiceCharge + application.Fee);
-                //     //Create Invoice before redirecting
-                //     var invoice = _context.Invoices.FirstOrDefault(x => x.ApplicationId == application.Id) ??
-                //                   InitiateInvoice(application, fee);
-                //
-                //     var remitaConfigVal =
-                //         _remPartners.Stringify().Parse<Dictionary<string, string>>() ?? new Dictionary<string, string>();
-                //
-                //     var remitaPayload = GetRemitaSplit(application, appUrl, remitaConfigVal);
-                //     var applicationItems = new List<ApplicationItem>
-                //     {
-                //         new ApplicationItem {Group = "Export Permit", Name = application.ApplicationType.Name},
-                //         new ApplicationItem { Group = "Export Permit", Name = $"Payment Description: {application.Description}" }
-                //     };
-                //     remitaPayload.ApplicationItems = applicationItems;
-                //     var elpspayment = ElpsPostPayment(application.User.Company.ElpsId, remitaPayload).Stringify().Parse<PrePaymentResponse>();
-                //
-                //     remita = RecordRemitaTransaction(remita, fee, elpspayment, application);
-                // }
-                res = _history.CreateNextProcessingPhase(application, "SubmitPayment");
+                res = await _history.CreateNextProcessingPhase(application, "SubmitPayment");
             }
             catch (Exception ex)
             {

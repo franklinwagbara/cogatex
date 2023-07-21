@@ -140,7 +140,7 @@
                                 </tr>
                                                     
                                 <tr>
-                                    <td valign="top" style="padding-top: 10px;"><b>Estimated Price</b></td>
+                                    <td valign="top" style="padding-top: 10px;"><b>Estimated Price ($)</b></td>
                                     <td>
                                         <ul class="list-group">
                                             <li class="list-group-item">@Model.ProductAmount.ToString("N2")</li>
@@ -264,41 +264,45 @@
                                     {
                                         <tr>
                                             <td colspan="2">Payment evidence not available</td>
-                                        </tr>
+                                            </tr>
+                                        }
                                     }
-                                }
 
-                            </table>
-                        </div>
-                        <hr />
-                        <div class="pad">
-                            <div class="panel panel-info">
-                                <div class="panel-heading" style="padding-top: 1.5em; padding-bottom: 1.5em;">
-                                    <p class="panel-title" style=" color: #ffffff !important;">Application History (Last 5)</p>
-                                </div>
-                                <table class="table table-striped">
-
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Comment</th>
-                                    </tr>
-                                    @foreach (var item in ViewBag.History)
-                                    {
-                                        cnt++;
-                                        <tr>
-                                            <td>@cnt</td>
-                                            <td>@DisableBox(item.DateAssigned)</td>
-                                            <td>@item.Comment</td>
-                                        </tr>
-                                    }
-                                    <tr>
-                                        <td colspan="3">
-                                            <a href="#" data-toggle="modal" data-target="#modalHistory">See all History</a>
-                                        </td>
-                                    </tr>
                                 </table>
                             </div>
+                            <hr />
+                            <div class="pad">
+
+                                @if (!User.IsInRole("Company"))
+                                {
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading" style="padding-top: 1.5em; padding-bottom: 1.5em;">
+                                            <p class="panel-title" style=" color: #ffffff !important;">Application History (Last 5)</p>
+                                        </div>
+                                        <table class="table table-striped">
+
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Date</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            @foreach (var item in ViewBag.History)
+                                            {
+                                                cnt++;
+                                                <tr>
+                                                    <td>@cnt</td>
+                                                    <td>@DisableBox(item.DateAssigned)</td>
+                                                    <td>@item.Comment</td>
+                                                </tr>
+                                            }
+                                            <tr>
+                                                <td colspan="3">
+                                                    <a href="#" data-toggle="modal" data-target="#modalHistory">See all History</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                }
                         </div>
                     </div>
                     </div>
@@ -430,6 +434,8 @@
             .Where(x => 
                 x.ApplicationId == id && x.WorkFlowId == wkflowid )
             .OrderByDescending(x => x.Id).FirstOrDefault();
+            //if(User.IsInRole("Company"))
+            //history = _history.GetApplicationHistoriesById( id).Where(x => x.Application.User.Email.Equals(User.Identity.Name))
         return history;
     }
 

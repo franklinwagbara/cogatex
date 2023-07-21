@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GOTEX.Core.BusinessObjects;
 
 namespace GOTEX.Core.Repositories
@@ -6,6 +7,7 @@ namespace GOTEX.Core.Repositories
     public interface IApplication<T> where T : class
     {
         List<T> GetAll();
+        List<T> GetStappApps(string id);
         int GetCompanyElpsId(string username);
         List<T> GetSameQuarterApplication(string userid, int quarterid, int productid);
         T Insert(T item, bool latePayment);
@@ -17,7 +19,7 @@ namespace GOTEX.Core.Repositories
         T FindByReference(string refno);
         object GetRequiredDocs(int docId, int applicationId, List<CompanyDocument> companyDocs, List<DocumentType> allDocs);
         bool UpdateApplicationDoc(int applicationid, int docTypeId, int newdocid);
-        object ConfirmPayment(Application application, string appUrl, out bool res);
+        Task<object> ConfirmPayment(Application application, string appUrl, bool res);
         void InvalidatePaymentonElps(string webrootpath, Application application, string feedback, Dictionary<string, string> mailsettings);
         T Update(T item);
         List<T> Report();

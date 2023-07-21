@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rotativa.AspNetCore;
+using AutoMapper;
 
 
 namespace GOTEX
@@ -42,7 +43,7 @@ namespace GOTEX
             services.Configure<EmailSettings>(Configuration.GetSection("AppSettings").GetSection("EmailSettings"));
             services.Configure<ConstantDocument>(Configuration.GetSection("AppSettings").GetSection("ConstantDocument"));
             services.Configure<RemitaPartners>(Configuration.GetSection("AppSettings").GetSection("RemitaPartners"));
-            
+            services.AddAutoMapper(typeof(Startup));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSession(options =>
@@ -90,9 +91,7 @@ namespace GOTEX
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
-            
-            
+            app.UseAuthorization();           
 
             app.UseEndpoints(endpoints =>
             {

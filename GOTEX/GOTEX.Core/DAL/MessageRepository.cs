@@ -82,7 +82,10 @@ namespace GOTEX.Core.DAL
                     var msgBody = string.Format(body, subject, appInfo, msg.Id, mailtype, "https://cogatex.nuprc.gov.ng");
                     msg.Content = msgBody;
                     Update(msg);
-                    
+
+                    if (!string.IsNullOrEmpty(msg.Content) && msg.Content.Contains("DPR COTAGEX"))
+                        msg.Content = msg.Content.Replace("DPR COTAGEX", "NUPRC COGATEX");
+
                     Utils.SendMail(mailSettings, application.User.Email, subject, msgBody);
 
                 }
@@ -109,7 +112,7 @@ namespace GOTEX.Core.DAL
                 {
                     #region Resubmission
                     subject = "Application Re-submitted - Ref. No.: " + application.Reference;
-                    tk = string.Format("Your application has been re-submitted on DPR COGATEX portal. The process for your application with reference number: {0} will continue immediately.<br />", application.Reference);
+                    tk = string.Format("Your application has been re-submitted on NUPRC COGATEX portal. The process for your application with reference number: {0} will continue immediately.<br />", application.Reference);
                     desc = "Resubmit";
                     #endregion
                 }
