@@ -25,6 +25,7 @@ namespace GOTEX.Core.DAL
             services.AddTransient<IApplicationTypeDocs<ApplicationTypeDocuments>, AppTypeDocsRepository>();
             services.AddTransient<IRepository<PaymentEvidence>, PaymentEvidenceRepository>();
             services.AddTransient<IRepository<Survey>, SurveyRepository>();
+            services.AddTransient<IRepository<DeclarationForm>, DEclarationFormRepository>();
         }
     }
 }

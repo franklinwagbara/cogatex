@@ -417,7 +417,7 @@ namespace GOTEX.Controllers
             return View(applications);
         }
 
-        private List<Application> AppReport(string startDate = null, string endDate = null)
+        private List<Application> AppReport(string startDate = null, string endDate = null, string status = null)
         {
             DateTime start = string.IsNullOrEmpty(startDate)
                 ? DateTime.Today.AddDays(-29).Date
@@ -425,17 +425,20 @@ namespace GOTEX.Controllers
             DateTime end = string.IsNullOrEmpty(endDate)
                 ? DateTime.Today.AddDays(-29).Date
                 : DateTime.ParseExact(endDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-            return _application.GetAll()
+            var apps = _application.GetAll()
                 .Where(x => x.Date >= start && x.Date <= end)
                 .OrderByDescending(y => y.Date)
                 .ToList();
+            if(!string.IsNullOrEmpty(status) && apps.Count > 0)
+                apps = apps.Where(x => x.Status.ToLower().Contains(status.ToLower())).ToList();
+            return apps;
         }
 
         [HttpPost]
-        public IActionResult ApplicationReport(string startDate, string endDate)
+        public IActionResult ApplicationReport(string startDate, string endDate, string status)
         {
             var chart = new List<ChartModel>();
-            var applications = AppReport(startDate, endDate);
+            var applications = AppReport(startDate, endDate, status);
 
             chart = applications.GroupBy(x => new DateTime(x.Date.Year, x.Date.Month, x.Date.Day)).Select( y => new ChartModel
             {
