@@ -14,14 +14,30 @@
             {
 
                 <div class="input-group col-md-9">
-                    <input name="startDate" id="startDate" class="form-control datePicker col-md-5" placeholder="Start Date"/>
+                    <input name="startDate" id="startDate" class="form-control datePicker col-md-3" placeholder="Start Date"/>
                     <span class="input-group-addon">To</span>
-                    <input name="endDate" id="endDate" class="form-control datePicker col-md-5" placeholder="End Date"/>
+                    <input name="endDate" id="endDate" class="form-control datePicker col-md-3" placeholder="End Date"/>
+                    <select name="status" class="form-control col-md-3">
+                        <option disabled selected>Select status</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Payment Pending">Payment Pending</option>
+                        <option value="Not Submitted">Not Submitted</option>
+                    </select>
                     <input type="submit" value="Filter" class="col-md-2 btn btn-success input-append"/>
                 </div>
                 <div class="clear"></div>
             }
         </div>
+    </div>
+     <div class="card">
+        <h2 class="alert alert-warning col-md-3">Report Chart</h2>
+        <div id="data" class="fade">@chart.Stringify()</div>
+        @* <div id="chartContainer" style="height: 370px; width: 100%;"></div> *@
+        @* <script src="~/Scripts/js/chart.js"></script> *@
+        @* *@
+        <div id="chartdiv"></div>
     </div>
     <div class="card">
         <table class="table table-striped appReport">
@@ -39,7 +55,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model)
+                @foreach (var item in Model)
                 {
                     count++;
                     <tr>
@@ -56,14 +72,6 @@
                 }
             </tbody>
         </table>
-    </div>
-     <div class="card">
-        <h2 class="alert alert-warning col-md-3">Report Chart</h2>
-        <div id="data" class="fade">@chart.Stringify()</div>
-        @* <div id="chartContainer" style="height: 370px; width: 100%;"></div> *@
-        @* <script src="~/Scripts/js/chart.js"></script> *@
-        @* *@
-        <div id="chartdiv"></div>
     </div>
 </div>
 <style>

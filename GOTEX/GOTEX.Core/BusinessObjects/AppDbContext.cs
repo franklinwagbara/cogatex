@@ -13,6 +13,7 @@ namespace GOTEX.Core.BusinessObjects
     {
         public AppDbContext(DbContextOptions<AppDbContext> options): base(options){}
         public DbSet<Configuration> Configurations { get; set; }
+        public DbSet<DeclarationForm> DeclarationForms { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Facility> Facilities { get; set; }
