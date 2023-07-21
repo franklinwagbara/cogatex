@@ -12,7 +12,7 @@
 		</CustomData>
 		<CustomData Category="Reference" Type="Assembly">
 			<Metadata Name="LogicalName" Value="GatexDatabase.dll" />
-			<Metadata Name="FileName" Value="C:\USERS\SUPPO\DOCUMENTS\VISUAL STUDIO 2022\PROJECTS\NUPRC-GATEX\COGATEX\GOTEX\GATEXDATABASE\OBJ\DEBUG\GATEXDATABASE.DLL" />
+			<Metadata Name="FileName" Value="C:\USERS\ADMIN\SOURCE\REPOS\NNPC\COGATEX\GOTEX\GATEXDATABASE\OBJ\DEBUG\GATEXDATABASE.DLL" />
 			<Metadata Name="AssemblyName" Value="GatexDatabase" />
 			<Metadata Name="PermissionSet" Value="SAFE" />
 			<Metadata Name="Owner" Value="" />
@@ -20,7 +20,7 @@
 			<Metadata Name="IsVisible" Value="True" />
 			<Metadata Name="IsModelAware" Value="True" />
 			<Metadata Name="SkipCreationIfEmpty" Value="True" />
-			<Metadata Name="AssemblySymbolsName" Value="C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb" />
 		</CustomData>
 		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
 	</Header>

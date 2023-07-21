@@ -8,12 +8,6 @@ D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
 D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\predeploy.sql
 D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
 D:\Documents\Projects\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb
-C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dacpac
-C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dll
-C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.pdb
-C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.sqlproj.AssemblyReference.cache
-C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
-C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dacpac
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dll
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.pdb
@@ -24,3 +18,13 @@ C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\G
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\refactor.xml
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GatexDatabase\obj\Debug\predeploy.sql
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dacpac
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dll
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.pdb
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.sqlproj.AssemblyReference.cache
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\Model.xml
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\refactor.xml
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\predeploy.sql
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
+C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb

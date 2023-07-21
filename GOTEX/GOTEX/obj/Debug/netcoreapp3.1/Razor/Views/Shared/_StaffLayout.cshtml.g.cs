@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.BusinessObjects;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 5 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.Repositories;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 6 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
@@ -65,7 +65,7 @@ using Microsoft.AspNetCore.Identity;
         {
             WriteLiteral("<li class=\"nav-label\">Permit Approval(s)</li>\r\n<li>\r\n    <a href=\"/Admin/Permits\">\r\n        <i class=\"fa fa-file-archive-o text-warning\"> </i>\r\n        <span class=\"hide-menu\">All Approvals</span>\r\n    </a>\r\n</li>\r\n<hr />\r\n");
 #nullable restore
-#line 9 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
+#line 9 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
  if (!User.IsInRole("Inspector"))
 {
 
@@ -81,7 +81,7 @@ using Microsoft.AspNetCore.Identity;
         <ul aria-expanded=""false"" data-toggle=""collapse"" class=""collapse"" id=""myaccount"">
 ");
 #nullable restore
-#line 18 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
+#line 18 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
              if (!User.IsInRole("Planning"))
             {
 
@@ -91,7 +91,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("                <li>\r\n                    <a");
             BeginWriteAttribute("href", " href=\"", 706, "\"", 754, 1);
 #nullable restore
-#line 21 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
+#line 21 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
 WriteAttributeValue("", 713, Url.Action("ApplicationReport", "Admin"), 713, 41, false);
 
 #line default
@@ -100,7 +100,7 @@ WriteAttributeValue("", 713, Url.Action("ApplicationReport", "Admin"), 713, 41, 
             EndWriteAttribute();
             WriteLiteral(">\r\n                        <i class=\"fa fa-chart-line\"> </i>\r\n                        <span class=\"nav-label\"> Application Report</span>\r\n                    </a>\r\n                </li>\r\n");
 #nullable restore
-#line 26 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
+#line 26 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
             }
 
 #line default
@@ -109,7 +109,7 @@ WriteAttributeValue("", 713, Url.Action("ApplicationReport", "Admin"), 713, 41, 
             WriteLiteral("            <li>\r\n                <a");
             BeginWriteAttribute("href", " href=\"", 993, "\"", 1037, 1);
 #nullable restore
-#line 28 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
+#line 28 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Shared\_StaffLayout.cshtml"
 WriteAttributeValue("", 1000, Url.Action("PaymentReport", "Admin"), 1000, 37, false);
 
 #line default

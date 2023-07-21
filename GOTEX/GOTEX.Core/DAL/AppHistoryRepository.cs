@@ -146,6 +146,8 @@ namespace GOTEX.Core.DAL
 
         public async Task<ApplicationUser> GetNextProcessingOfficer(string rolename, string action, Application application, ApplicationUser currentuser)
         {
+            var use = "";
+            var role = "";
             var nextofficer = new ApplicationUser();
             try
             {

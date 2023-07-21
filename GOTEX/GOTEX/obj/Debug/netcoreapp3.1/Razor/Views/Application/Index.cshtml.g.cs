@@ -13,49 +13,49 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.BusinessObjects;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 5 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.Repositories;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 6 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 2 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 using Microsoft.AspNetCore.Components;
 
 #line default
@@ -110,7 +110,7 @@ using Microsoft.AspNetCore.Components;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 3 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
   
     ViewData["Title"] = "Apply";
 
@@ -131,7 +131,7 @@ using Microsoft.AspNetCore.Components;
                     
 ");
 #nullable restore
-#line 19 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 19 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                  if (ViewBag.Error != null)
                 {
 
@@ -143,7 +143,7 @@ using Microsoft.AspNetCore.Components;
                             <button type=""button"" class=""close"" data-dismiss=""alert""><span aria-hidden=""true"">&times;</span><span class=""sr-only"">Close</span></button>
                             <strong>Application Error!</strong> ");
 #nullable restore
-#line 24 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 24 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                            Write(ViewBag.Error);
 
 #line default
@@ -151,7 +151,7 @@ using Microsoft.AspNetCore.Components;
 #nullable disable
                 WriteLiteral("\r\n                        </div>\r\n                    </div>\r\n");
 #nullable restore
-#line 27 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 27 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                 }
 
 #line default
@@ -174,7 +174,7 @@ WriteAttributeValue("", 1321, Model.ApplicationTypeId, 1321, 24, false);
                             <div>
 ");
 #nullable restore
-#line 37 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 37 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                  foreach (var item in ViewBag.ApplicationTypes)
                                 {
 
@@ -193,7 +193,7 @@ WriteAttributeValue("", 1793, item.Id, 1793, 8, false);
                 EndWriteAttribute();
                 WriteLiteral(">");
 #nullable restore
-#line 39 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 39 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                        Write(item.Name);
 
 #line default
@@ -210,7 +210,7 @@ WriteAttributeValue("", 1793, item.Id, 1793, 8, false);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 40 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 40 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                               WriteLiteral(item.Id);
 
 #line default
@@ -220,7 +220,7 @@ WriteAttributeValue("", 1793, item.Id, 1793, 8, false);
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value = __tagHelperStringValueBuffer;
                 __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
 #nullable restore
-#line 40 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 40 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ApplicationTypeId);
 
 #line default
@@ -236,7 +236,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 41 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 41 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                 }
 
 #line default
@@ -249,7 +249,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 #nullable restore
-#line 43 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 43 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ApplicationTypeId);
 
 #line default
@@ -278,7 +278,7 @@ WriteAttributeValue("", 2297, Model.TerminalId, 2297, 17, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5099021bbad27b4aeca2ce073b3c81b0ac3bdde619007", async() => {
                     WriteLiteral("\r\n");
 #nullable restore
-#line 51 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 51 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                  foreach (var item in ViewBag.Terminals)
                                 {
 
@@ -288,7 +288,7 @@ WriteAttributeValue("", 2297, Model.TerminalId, 2297, 17, false);
                     WriteLiteral("                                    ");
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5099021bbad27b4aeca2ce073b3c81b0ac3bdde619657", async() => {
 #nullable restore
-#line 53 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 53 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                         Write(item.Name);
 
 #line default
@@ -300,7 +300,7 @@ WriteAttributeValue("", 2297, Model.TerminalId, 2297, 17, false);
                     __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                     BeginWriteTagHelperAttribute();
 #nullable restore
-#line 53 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 53 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                        WriteLiteral(item.Id);
 
 #line default
@@ -318,7 +318,7 @@ WriteAttributeValue("", 2297, Model.TerminalId, 2297, 17, false);
                     __tagHelperExecutionContext = __tagHelperScopeManager.End();
                     WriteLiteral("\r\n");
 #nullable restore
-#line 54 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 54 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                 }
 
 #line default
@@ -331,7 +331,7 @@ WriteAttributeValue("", 2297, Model.TerminalId, 2297, 17, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 50 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 50 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.TerminalId);
 
 #line default
@@ -352,7 +352,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 #nullable restore
-#line 56 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 56 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.TerminalId);
 
 #line default
@@ -385,7 +385,7 @@ WriteAttributeValue("", 3131, Model.Quantity, 3131, 15, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 63 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 63 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Quantity);
 
 #line default
@@ -409,7 +409,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 #nullable restore
-#line 65 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 65 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Quantity);
 
 #line default
@@ -475,7 +475,7 @@ WriteAttributeValue("", 3713, Model.GasStream, 3713, 16, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 69 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 69 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.GasStream);
 
 #line default
@@ -496,7 +496,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 #nullable restore
-#line 73 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 73 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.GasStream);
 
 #line default
@@ -528,7 +528,7 @@ WriteAttributeValue("", 4341, Model.QuarterId, 4341, 16, false);
                             <div>
 ");
 #nullable restore
-#line 84 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 84 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                  foreach (var item in ViewBag.Quarters)
                                 {
                                     var month = DateTime.Now;
@@ -552,7 +552,7 @@ WriteAttributeValue("", 5152, item.Title, 5152, 11, false);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"control-label alert alert-warning\">");
 #nullable restore
-#line 91 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 91 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                                                             Write(item.Name);
 
 #line default
@@ -568,7 +568,7 @@ WriteAttributeValue("", 5152, item.Title, 5152, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 92 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 92 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                            WriteLiteral(item.Id);
 
 #line default
@@ -582,7 +582,7 @@ WriteAttributeValue("", 5152, item.Title, 5152, 11, false);
                 __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
                 __tagHelperExecutionContext.AddHtmlAttribute("disabled", Html.Raw(__tagHelperStringValueBuffer), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.Minimized);
 #nullable restore
-#line 92 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 92 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -598,7 +598,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 93 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 93 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                         }
                                         else
                                         {
@@ -618,7 +618,7 @@ WriteAttributeValue("", 5557, item.Title, 5557, 11, false);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"control-label alert alert-warning\">");
 #nullable restore
-#line 96 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 96 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                                                             Write(item.Name);
 
 #line default
@@ -634,7 +634,7 @@ WriteAttributeValue("", 5557, item.Title, 5557, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 97 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 97 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                            WriteLiteral(item.Id);
 
 #line default
@@ -645,7 +645,7 @@ WriteAttributeValue("", 5557, item.Title, 5557, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
 #nullable restore
-#line 97 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 97 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -661,7 +661,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 98 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 98 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                         }
                                     }
                                     else
@@ -684,7 +684,7 @@ WriteAttributeValue("", 6089, item.Title, 6089, 11, false);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"control-label\">\r\n                                                ");
 #nullable restore
-#line 105 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 105 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                            Write(item.Name);
 
 #line default
@@ -692,7 +692,7 @@ WriteAttributeValue("", 6089, item.Title, 6089, 11, false);
 #nullable disable
                 WriteLiteral("\r\n                                            </label>\r\n");
 #nullable restore
-#line 107 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 107 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                             if (item.Id == 2 || item.Id == 3)
                                             {
 
@@ -709,7 +709,7 @@ WriteAttributeValue("", 6089, item.Title, 6089, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 109 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 109 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                WriteLiteral(item.Id);
 
 #line default
@@ -723,7 +723,7 @@ WriteAttributeValue("", 6089, item.Title, 6089, 11, false);
                 __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
                 __tagHelperExecutionContext.AddHtmlAttribute("disabled", Html.Raw(__tagHelperStringValueBuffer), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.Minimized);
 #nullable restore
-#line 109 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 109 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -739,7 +739,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 110 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 110 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                             }
                                             else
                                             {
@@ -757,7 +757,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 113 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 113 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                WriteLiteral(item.Id);
 
 #line default
@@ -768,7 +768,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
 #nullable restore
-#line 113 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 113 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -784,7 +784,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 114 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 114 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                             }
                                         }
                                         else if (month.Month > 6)
@@ -805,7 +805,7 @@ WriteAttributeValue("", 7047, item.Title, 7047, 11, false);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"control-label\">");
 #nullable restore
-#line 118 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 118 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                                         Write(item.Name);
 
 #line default
@@ -813,7 +813,7 @@ WriteAttributeValue("", 7047, item.Title, 7047, 11, false);
 #nullable disable
                 WriteLiteral("</label>\r\n");
 #nullable restore
-#line 119 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 119 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                             if(item.Id == 1 || item.Id == 2)
                                             {
 
@@ -830,7 +830,7 @@ WriteAttributeValue("", 7047, item.Title, 7047, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 121 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 121 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                WriteLiteral(item.Id);
 
 #line default
@@ -844,7 +844,7 @@ WriteAttributeValue("", 7047, item.Title, 7047, 11, false);
                 __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
                 __tagHelperExecutionContext.AddHtmlAttribute("disabled", Html.Raw(__tagHelperStringValueBuffer), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.Minimized);
 #nullable restore
-#line 121 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 121 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -860,7 +860,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 122 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 122 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                             }
                                             else
                                             {
@@ -878,7 +878,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 125 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 125 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                WriteLiteral(item.Id);
 
 #line default
@@ -889,7 +889,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
 #nullable restore
-#line 125 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 125 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -905,7 +905,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 126 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 126 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                             }
                                         }
                                         else if(month.Month > 3)
@@ -926,7 +926,7 @@ WriteAttributeValue("", 7907, item.Title, 7907, 11, false);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"control-label\">");
 #nullable restore
-#line 130 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 130 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                                         Write(item.Name);
 
 #line default
@@ -934,7 +934,7 @@ WriteAttributeValue("", 7907, item.Title, 7907, 11, false);
 #nullable disable
                 WriteLiteral("</label>\r\n");
 #nullable restore
-#line 131 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 131 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                            if(item.Id == 1)
                                            {
 
@@ -951,7 +951,7 @@ WriteAttributeValue("", 7907, item.Title, 7907, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 133 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 133 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                               WriteLiteral(item.Id);
 
 #line default
@@ -965,7 +965,7 @@ WriteAttributeValue("", 7907, item.Title, 7907, 11, false);
                 __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
                 __tagHelperExecutionContext.AddHtmlAttribute("disabled", Html.Raw(__tagHelperStringValueBuffer), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.Minimized);
 #nullable restore
-#line 133 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 133 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -981,7 +981,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 134 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 134 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                            }
                                            else
                                            {
@@ -999,7 +999,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 137 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 137 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                               WriteLiteral(item.Id);
 
 #line default
@@ -1010,7 +1010,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
 #nullable restore
-#line 137 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 137 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -1026,7 +1026,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 138 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 138 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                            }
                                         }
                                         else
@@ -1047,7 +1047,7 @@ WriteAttributeValue("", 8723, item.Title, 8723, 11, false);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"control-labelg\">");
 #nullable restore
-#line 142 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 142 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                                                          Write(item.Name);
 
 #line default
@@ -1063,7 +1063,7 @@ WriteAttributeValue("", 8723, item.Title, 8723, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 143 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 143 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                            WriteLiteral(item.Id);
 
 #line default
@@ -1074,7 +1074,7 @@ WriteAttributeValue("", 8723, item.Title, 8723, 11, false);
                 __tagHelperExecutionContext.AddTagHelperAttribute("value", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
 #nullable restore
-#line 143 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 143 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -1090,7 +1090,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n");
 #nullable restore
-#line 144 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 144 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                         }
                                     }
                                 }
@@ -1105,7 +1105,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 #nullable restore
-#line 147 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 147 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.QuarterId);
 
 #line default
@@ -1140,7 +1140,7 @@ WriteAttributeValue("", 9403, Model.ProductId, 9403, 16, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5099021bbad27b4aeca2ce073b3c81b0ac3bdde675233", async() => {
                     WriteLiteral("\r\n");
 #nullable restore
-#line 158 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 158 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                  foreach (var item in ViewBag.Products)
                                 {
 
@@ -1150,7 +1150,7 @@ WriteAttributeValue("", 9403, Model.ProductId, 9403, 16, false);
                     WriteLiteral("                                    ");
                     __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5099021bbad27b4aeca2ce073b3c81b0ac3bdde675883", async() => {
 #nullable restore
-#line 160 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 160 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                                         Write(item.Name);
 
 #line default
@@ -1162,7 +1162,7 @@ WriteAttributeValue("", 9403, Model.ProductId, 9403, 16, false);
                     __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                     BeginWriteTagHelperAttribute();
 #nullable restore
-#line 160 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 160 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                        WriteLiteral(item.Id);
 
 #line default
@@ -1180,7 +1180,7 @@ WriteAttributeValue("", 9403, Model.ProductId, 9403, 16, false);
                     __tagHelperExecutionContext = __tagHelperScopeManager.End();
                     WriteLiteral("\r\n");
 #nullable restore
-#line 161 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 161 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
                                 }
 
 #line default
@@ -1193,7 +1193,7 @@ WriteAttributeValue("", 9403, Model.ProductId, 9403, 16, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 157 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 157 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductId);
 
 #line default
@@ -1214,7 +1214,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper);
 #nullable restore
-#line 163 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 163 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationMessageTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductId);
 
 #line default
@@ -1253,7 +1253,7 @@ WriteAttributeValue("", 10332, Model.ProductAmount, 10332, 20, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 172 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
+#line 172 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Application\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductAmount);
 
 #line default
