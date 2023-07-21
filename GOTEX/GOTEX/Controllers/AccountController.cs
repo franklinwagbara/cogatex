@@ -58,8 +58,8 @@ namespace GOTEX.Controllers
             {
                 var hash = Utils.GenerateSHA512($"{_appConfig.GetAppId()}.{model.email}.{_appConfig.GetAppKey()}");
                 var user = new ApplicationUser();
-                if (Debugger.IsAttached || (!Debugger.IsAttached && hash.Equals(model.code)))
-                {
+                //if (Debugger.IsAttached || (!Debugger.IsAttached && hash.Equals(model.code)))
+                //{
                     //fetch email as company
                     var dic = _elps.GetCompanyDetailByEmail(model.email);
                     if (dic.Count > 0)
@@ -159,7 +159,7 @@ namespace GOTEX.Controllers
                         TempData["ErrorMessage"] = "An error occured, please contact Support/ICT.";
 
                     return await LogOff();
-                }
+                //}
             }
             catch (Exception ex)
             {
