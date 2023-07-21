@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.BusinessObjects;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 5 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.Repositories;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 6 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
@@ -87,7 +87,7 @@ using Microsoft.AspNetCore.Identity;
         {
             WriteLiteral("\r\n");
 #nullable restore
-#line 5 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 5 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
   
     ViewBag.Title = "Company Applications";
     int counter = 0; 
@@ -97,7 +97,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("<div class=\"card\">\r\n    <div style=\" background-color: green; color: yellow; padding: 1em;\"><h2>My Application(s)</h2></div>\r\n    <hr/>\r\n");
 #nullable restore
-#line 12 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 12 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
      if (ViewData["Message"] != null)
     {
 
@@ -106,7 +106,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("        <div class=\"alert alert-info alert-dismissable txtcenter\">\r\n            <span class=\"glyphicon glyphicon-exclamation-sign\"></span> \r\n            ");
 #nullable restore
-#line 16 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 16 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
        Write(ViewData["Message"]);
 
 #line default
@@ -114,7 +114,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("\r\n            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\r\n                <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n                \r\n        </div>\r\n");
 #nullable restore
-#line 22 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 22 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
     }
 
 #line default
@@ -136,7 +136,7 @@ using Microsoft.AspNetCore.Identity;
         <tbody>
 ");
 #nullable restore
-#line 37 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 37 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
          foreach (var item in Model)
         {
             string alertx, alertd = string.Empty;
@@ -161,7 +161,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("            <tr>\r\n                <td>\r\n                    ");
 #nullable restore
-#line 57 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 57 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                Write(counter);
 
 #line default
@@ -169,7 +169,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
 #nullable restore
-#line 60 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 60 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                Write(item.ApplicationType.FullName);
 
 #line default
@@ -177,7 +177,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral(" for ");
 #nullable restore
-#line 60 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 60 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                                   Write(item.Quarter.Name);
 
 #line default
@@ -185,7 +185,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("\r\n                </td>\r\n                <td>");
 #nullable restore
-#line 62 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 62 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                Write(item.Terminal.Name);
 
 #line default
@@ -193,7 +193,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("</td>\r\n                <td>");
 #nullable restore
-#line 63 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 63 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                Write(item.Product.Name);
 
 #line default
@@ -201,7 +201,7 @@ using Microsoft.AspNetCore.Identity;
 #nullable disable
             WriteLiteral("</td>\r\n                <td>\r\n                    ");
 #nullable restore
-#line 65 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 65 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                Write(Html.DisplayFor(modelItem => item.Reference));
 
 #line default
@@ -212,7 +212,7 @@ using Microsoft.AspNetCore.Identity;
             WriteAttributeValue("", 2519, "alert", 2519, 5, true);
             WriteAttributeValue(" ", 2524, "alert-mini", 2525, 11, true);
 #nullable restore
-#line 68 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 68 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
 WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 
 #line default
@@ -221,7 +221,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
             EndWriteAttribute();
             WriteLiteral(">\r\n");
 #nullable restore
-#line 69 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 69 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                          if(item.Status== "Payment Pending") { 
 
 #line default
@@ -229,7 +229,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 #nullable disable
             WriteLiteral("                            <strong>Payment Confirmation Pending</strong>\r\n");
 #nullable restore
-#line 71 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 71 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                         }
                         else if(item.Status== "Submitted") 
                         { 
@@ -239,7 +239,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 #nullable disable
             WriteLiteral("                        <strong>Application not submiited</strong>\r\n");
 #nullable restore
-#line 75 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 75 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                         }
                         else
                         {
@@ -249,7 +249,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 #nullable disable
             WriteLiteral("                            <strong>");
 #nullable restore
-#line 78 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 78 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                Write(Html.DisplayFor(model => item.Status));
 
 #line default
@@ -257,7 +257,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 #nullable disable
             WriteLiteral("</strong>\r\n");
 #nullable restore
-#line 79 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 79 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                         }
 
 #line default
@@ -265,7 +265,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 #nullable disable
             WriteLiteral("                    </div>\r\n                </td>\r\n                <td>\r\n                    ");
 #nullable restore
-#line 83 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 83 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                Write(item.Date.ToLongDateString());
 
 #line default
@@ -273,7 +273,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
 #nullable disable
             WriteLiteral("\r\n                </td>\r\n        \r\n                <td class=\"txtright\">\r\n");
 #nullable restore
-#line 87 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 87 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                      if (item.Status == ApplicationStatus.PaymentNotSatisfied || item.Status == ApplicationStatus.NotSubmitted)
                     {
                         if(item.Status == ApplicationStatus.PaymentNotSatisfied)
@@ -285,7 +285,7 @@ WriteAttributeValue(" ", 2535, alertx, 2536, 7, false);
             WriteLiteral("                            <a");
             BeginWriteAttribute("href", " \r\n                                href=\"", 3554, "\"", 3655, 1);
 #nullable restore
-#line 92 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 92 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
 WriteAttributeValue("", 3595, Url.Action("Resubmit", "Application", new { id = item.Id }), 3595, 60, false);
 
 #line default
@@ -295,7 +295,7 @@ WriteAttributeValue("", 3595, Url.Action("Resubmit", "Application", new { id = i
             WriteLiteral("\r\n                                class=\"btn btn-xs btn-warning\">Resubmit <i class=\"glyphicon glyphicon-folder-open\"></i></a>\r\n");
             WriteLiteral("                            <a \r\n                                href=\"#\" \r\n                                class=\"btn btn-xs btn-danger btnRejectComment\"\r\n                                data-comment=\"");
 #nullable restore
-#line 98 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 98 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                          Write(PaymentRejectReason(item.Id));
 
 #line default
@@ -303,7 +303,7 @@ WriteAttributeValue("", 3595, Url.Action("Resubmit", "Application", new { id = i
 #nullable disable
             WriteLiteral("\"\r\n                                data-target=\"#RejectModal\"\r\n                                data-toggle=\"modal\">See Why <i class=\"glyphicon glyphicon-question\"></i></a>\r\n");
 #nullable restore
-#line 101 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 101 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                         }
                         if (item.Status == ApplicationStatus.NotSubmitted)
                         {
@@ -315,7 +315,7 @@ WriteAttributeValue("", 3595, Url.Action("Resubmit", "Application", new { id = i
             BeginWriteAttribute("href", " \r\n                                    href=\"", 4593, "\"", 4686, 2);
             WriteAttributeValue("", 4638, "/Application/UploadApplicationDocuments/", 4638, 40, true);
 #nullable restore
-#line 106 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 106 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
 WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 
 #line default
@@ -330,7 +330,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
                                     id=""#""
                                     data-id=""");
 #nullable restore
-#line 112 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 112 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                         Write(item.Id);
 
 #line default
@@ -338,7 +338,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 #nullable disable
             WriteLiteral("\"\r\n                                    data-quantity=\"");
 #nullable restore
-#line 113 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 113 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                               Write(item.Quantity);
 
 #line default
@@ -346,7 +346,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 #nullable disable
             WriteLiteral("\"\r\n                                    data-apptype=\"");
 #nullable restore
-#line 114 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 114 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                              Write(item.ApplicationType.Name);
 
 #line default
@@ -354,7 +354,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 #nullable disable
             WriteLiteral("\"\r\n                                    data-quarter=\"");
 #nullable restore
-#line 115 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 115 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                              Write(item.Quarter.Name);
 
 #line default
@@ -362,7 +362,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 #nullable disable
             WriteLiteral("\"\r\n                                    data-product=\"");
 #nullable restore
-#line 116 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 116 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                              Write(item.Product.Name);
 
 #line default
@@ -370,7 +370,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 #nullable disable
             WriteLiteral("\"\r\n                                    data-terminal=\"");
 #nullable restore
-#line 117 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 117 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                               Write(item.Terminal.Name);
 
 #line default
@@ -378,7 +378,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
 #nullable disable
             WriteLiteral("\"\r\n                                    data-amount=\"");
 #nullable restore
-#line 118 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 118 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                             Write(item.ProductAmount);
 
 #line default
@@ -393,7 +393,7 @@ WriteAttributeValue("", 4678, item.Id, 4678, 8, false);
             BeginWriteAttribute("href", " href=\"", 5789, "\"", 5824, 2);
             WriteAttributeValue("", 5796, "/Application/Delete/", 5796, 20, true);
 #nullable restore
-#line 123 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 123 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
 WriteAttributeValue("", 5816, item.Id, 5816, 8, false);
 
 #line default
@@ -402,7 +402,7 @@ WriteAttributeValue("", 5816, item.Id, 5816, 8, false);
             EndWriteAttribute();
             WriteLiteral(" class=\"btn btn-xs btn-danger \"> Remove <i class=\"glyphicon glyphicon-remove\"></i></a>\r\n                            \r\n                            </div>\r\n");
 #nullable restore
-#line 126 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 126 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                         }                     
                         
                     }
@@ -414,7 +414,7 @@ WriteAttributeValue("", 5816, item.Id, 5816, 8, false);
 #nullable disable
             WriteLiteral("                        <div class=\"btn-group\">\r\n                            <a \r\n                                href=\"#\"\r\n                                id=\"UpdateApplication\"\r\n                                data-id=\"");
 #nullable restore
-#line 135 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
+#line 135 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Index.cshtml"
                                     Write(item.Id);
 
 #line default

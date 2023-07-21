@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.ViewModels;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.BusinessObjects;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 5 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using GOTEX.Core.Repositories;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
+#line 6 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
@@ -86,7 +86,7 @@ using Microsoft.AspNetCore.Identity;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 2 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 2 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
   
     ViewBag.Title = "Approvals";
     int count = 0;
@@ -128,7 +128,7 @@ using Microsoft.AspNetCore.Identity;
 
 ");
 #nullable restore
-#line 38 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 38 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
              foreach (var item in Model)
             {
                 var check = item.ExpiryDate.AddDays(-30);
@@ -151,7 +151,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("                <tr");
             BeginWriteAttribute("class", " class=\"", 1390, "\"", 1404, 1);
 #nullable restore
-#line 53 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 53 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
 WriteAttributeValue("", 1398, color, 1398, 6, false);
 
 #line default
@@ -160,7 +160,7 @@ WriteAttributeValue("", 1398, color, 1398, 6, false);
             EndWriteAttribute();
             WriteLiteral(">\r\n                    <td>");
 #nullable restore
-#line 54 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 54 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
                    Write(count);
 
 #line default
@@ -168,7 +168,7 @@ WriteAttributeValue("", 1398, color, 1398, 6, false);
 #nullable disable
             WriteLiteral("</td>\r\n                    <td>\r\n                        ");
 #nullable restore
-#line 56 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 56 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
                    Write(Html.DisplayFor(modelItem => item.PermitNumber));
 
 #line default
@@ -176,7 +176,7 @@ WriteAttributeValue("", 1398, color, 1398, 6, false);
 #nullable disable
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
 #nullable restore
-#line 59 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 59 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
                    Write(Html.DisplayFor(modelItem => item.ApplicationId));
 
 #line default
@@ -184,7 +184,7 @@ WriteAttributeValue("", 1398, color, 1398, 6, false);
 #nullable disable
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
 #nullable restore
-#line 62 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 62 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
                    Write(Html.DisplayFor(modelItem => item.LicenseName));
 
 #line default
@@ -192,7 +192,7 @@ WriteAttributeValue("", 1398, color, 1398, 6, false);
 #nullable disable
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
 #nullable restore
-#line 65 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 65 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
                    Write(item.DateIssued.ToShortDateString());
 
 #line default
@@ -200,7 +200,7 @@ WriteAttributeValue("", 1398, color, 1398, 6, false);
 #nullable disable
             WriteLiteral("\r\n                    </td>\r\n                    <td>\r\n                        ");
 #nullable restore
-#line 68 "C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
+#line 68 "C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\Views\Company\Permits.cshtml"
                    Write(item.ExpiryDate.ToShortDateString());
 
 #line default
