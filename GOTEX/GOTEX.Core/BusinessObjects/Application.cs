@@ -52,6 +52,10 @@ namespace GOTEX.Core.BusinessObjects
         public PaymentEvidence PaymentEvidence { get; set; }
         [ForeignKey("FacilityId")]
         public Facility Facility { get; set; }
+        public virtual Permit Permit { get; set; }
+
+        [NotMapped]
+        public string ViewType { get; set; }
 
         public string DateView => Date.ToLongDateString();
     }

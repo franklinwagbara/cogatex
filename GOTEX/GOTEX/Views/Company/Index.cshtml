@@ -133,13 +133,6 @@
                                 href="#"
                                 id="UpdateApplication"
                                 data-id="@item.Id"
-                                data-quantity="@item.Quantity"
-                                data-apptype="@item.ApplicationType.Name"
-                                data-quarter="@item.Quarter.Name"
-                                data-product="@item.Product.Name"
-                                data-terminal="@item.Terminal.Name"
-                                data-amount="@item.ProductAmount"
-                                data-gasstream="@item.GasStream"
                                 data-toggle="modal"
                                 data-target="#UpdateModal"
                                 class="btn btn-xs btn-primary btnUpdate"
@@ -198,46 +191,6 @@
                 </button>
             </div>
             <div class="modal-body" style="min-height: 280px;">
-                <form action="/Application/UpdateApplication" method="post" enctype="multipart/form-data" id="formUpdate">
-                    <input type="hidden" name="Id" id="Id"/>
-                    <div class="form-group">
-                        <label style="float:left">Application Type</label>
-                        <input type="text" class="form-control" id="ApplicationType" name="ApplicationType" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label style="float:left">Quarter Registration</label>
-                        <input type="text" class="form-control" id="Quarter" name="Quarter" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label style="float:left">Product Type</label>
-                        <input type="text" class="form-control" id="Product" name="Product" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label style="float:left">Terminal (Port of Export)</label>
-                        <input type="text" class="form-control" id="Terminal" name="Terminal" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label style="float:left">Quantity</label>
-                        <input type="text" class="form-control" id="Quantity" name="Quantity"/>
-                    </div>
-                    <div class="form-group">
-                        <label style="float:left">Equivalent Value ($)</label>
-                        <input type="text" class="form-control" id="Amount" name="Amount"/>
-                    </div>
-                    <div class="form-group">
-                        <label style="float:left">Measurement</label>
-                        <select type="text" class="form-control" id="gasstream" name="GasStream">
-                            
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <div class="modal-footer">
-                            <input type="submit" value="Update" class="btn btn-primary" name="Submit" id="UpdateBtn" />
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                
-                </form>
             </div>
         </div>
     </div>
@@ -280,30 +233,9 @@
         $(document).ready(function (){
             $(document).on('click', '.btnUpdate', function (e){
                 e.preventDefault();
-                var measure = $(this).data('gasstream');
-                $("#ApplicationType").val($(this).data('apptype'));
-                $("#Id").val($(this).data('id'));
-                $("#Quarter").val($(this).data('quarter'));
-                $("#Product").val($(this).data('product'));
-                $("#Terminal").val($(this).data('terminal'));
-                $("#Quantity").val($(this).data('quantity'));
-                $("#Amount").val($(this).data('amount'));
-                
-                if (measure === ""){
-                    $("#gasstream").append('<option value="MT">Metric Tonnes</option>');
-                    $("#gasstream").append('<option value="Barrels">Barrels</option>');
-                }
-                else{
-                    if (measure === "MT"){
-                        $("#gasstream").append('<option value="MT" selected>Metric Tonnes</option>');
-                        $("#gasstream").append('<option value="Barrels">Barrels</option>');
-                    }
-                    else{
-                        $("#gasstream").append('<option value="MT">Metric Tonnes</option>');
-                        $("#gasstream").append('<option value="Barrels" selected>Barrels</option>');
-                    }
-                    
-                }
+                $.get('/Application/UpdateApplication', { id: $(this).data('id') }, function(data){
+                    $(".modal-body").html(data);
+                });
             });
             
             $("#UpdateBtn").click(function (e){

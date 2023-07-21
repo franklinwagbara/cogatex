@@ -1,0 +1,171 @@
+﻿@model Survey
+
+@{
+    Layout = User.Identity.IsAuthenticated && User.IsInRole("Company") ? null : "_HomeLayout";
+    bool ro = User.Identity.IsAuthenticated && User.IsInRole("Company") ? false : true;
+}
+
+<div class="center" style="font-family: Candara; font-size: 12px;" id="surveyDiv">
+    <div class="text-center">
+        <img src="/images/NUPRC.png" width="150" />
+        <h2><b>NUPRC COTEX/GOTEX Permit Process Survey</b></h2>
+    </div>
+    <form action="@Url.Action("PostSurvey", "Company")" method="post" id="frmSurvey">
+        @Html.HiddenFor(m => m.PermitId)
+        <div class="form-group">
+            <label asp-for="Effectiveness" style="font-size: large;"></label><br />
+            <input type="radio" asp-for="Effectiveness" value="1" disabled=@ro /> 1
+            <input type="radio" asp-for="Effectiveness" value="2" disabled=@ro /> 2
+            <input type="radio" asp-for="Effectiveness" value="3" disabled=@ro /> 3
+            <input type="radio" asp-for="Effectiveness" value="4" disabled=@ro /> 4
+            <input type="radio" asp-for="Effectiveness" value="5" disabled=@ro /> 5<br />
+            <div>1 is very Bad, 5 is Very Good</div>
+        </div>
+        <div class="form-group">
+            <label style="font-size: large;">How satisfied are you on these items?</label><br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Not Satisfied</th>
+                        <th>Somewhat Satisfied</th>
+                        <th>Satisfied</th>
+                        <th>Very Satisfied</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label asp-for="IssuanceTime"></label>
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="IssuanceTime" value="1" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="IssuanceTime" value="2" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="IssuanceTime" value="3" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="IssuanceTime" value="4" disabled=@ro />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="PaymentProcess"></label>
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="PaymentProcess" value="1" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="PaymentProcess" value="2" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="PaymentProcess" value="3" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="PaymentProcess" value="4" disabled=@ro />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="DocumentUpload"></label>
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="DocumentUpload" value="1" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="DocumentUpload" value="2" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="DocumentUpload" value="3" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="DocumentUpload" value="4" disabled=@ro />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="KnowledgeGain"></label>
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="KnowledgeGain" value="1" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="KnowledgeGain" value="2" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="KnowledgeGain" value="3" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="KnowledgeGain" value="4" disabled=@ro />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="UserFriendly"></label>
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="UserFriendly" value="1" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="UserFriendly" value="2" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="UserFriendly" value="3" disabled=@ro />
+                        </td>
+                        <td>
+                            <input type="radio" asp-for="UserFriendly" value="4" disabled=@ro />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group" style="font-size: large;">
+            <label asp-for="PermitProcess"></label><br />
+            <input type="radio" asp-for="PermitProcess" value="1" disabled=@ro /> Yes
+            <input type="radio" asp-for="PermitProcess" value="2" disabled=@ro /> No
+            <input type="radio" asp-for="PermitProcess" value="3" disabled=@ro /> Maybe
+        </div>
+        <div class="form-group">
+            <label asp-for="Comment" style="font-size: large;"></label><br />
+            <textarea asp-for="Comment" rows="4" cols="80" class="form-group" disabled=@ro>
+                Pls share your comment here
+            </textarea>
+        </div>
+        @if(User.Identity.IsAuthenticated && User.IsInRole("Company"))
+        {
+            <div class="form-group">
+                <input type="submit" class="btn btn-success btn-xs btnPostSurvey" value="Add Survey" />
+            </div>
+        }        
+    </form>
+</div>
+<script src="~/scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //$(document).on('click', '.btnPostSurvey', function(e){
+        //    e.preventDefault();
+        //    $('#loading').show();
+        //    if ($('#frmSurvey').validate()) {
+        //        $('#frmSurvey').submit();
+        //    }
+            //var form = $('#frmSurvey').serialize();
+            //form += '&SurveyForm='+ $('#surveyDiv').html();
+            //$.post('/Company/PostSurvey', { survey : form }, function(data){
+            //    if(data.status)
+            //    {
+            //        alert(data.message);
+            //        window.location = "/Company/Permits";
+            //    }
+            //});
+        //    $('#loading').hide();
+        //});
+    });
+</script>

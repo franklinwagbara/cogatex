@@ -1883,3 +1883,7 @@ C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\G
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.dll
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.pdb
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.genruntimeconfig.cache
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Admin\StaffApps.cshtml.g.cs
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\AddSurvey.cshtml.g.cs
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\UpdateApplication.cshtml.g.cs

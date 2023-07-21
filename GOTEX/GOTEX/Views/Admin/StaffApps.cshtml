@@ -1,0 +1,56 @@
+﻿@model List<Application>
+@{
+    Layout = null;
+}
+
+<form action="@Url.Action("StaffApps", "Admin")" method="post">
+    <input type="hidden" value="@ViewData["StaffEmail"]" name="email" id="stfEmail" />
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>App. Reference</th>
+                    <th>Company Name</th>
+                    <th>Year</th>
+                    <th>Quarter</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var app in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="AppLicationId" value="@app.Id" />
+                        </td>
+                        <td>@app.Reference</td>
+                        <td>@app.User.Company.Name</td>
+                        <td>@app.Year</td>
+                        <td>@app.Quarter.Name</td>
+
+                    </tr>
+                }
+            </tbody>
+            <tfooter>
+                <tr>
+                    <td colspan="5"><input type="submit" value="Reroute" class="btn btn-info btn-xs" /></td>
+                </tr>
+            </tfooter>
+        </table>
+    </div>
+
+</form>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).on('click', '.btnViewStaffDesk', function (e) {
+            e.preventDefault();
+            $('.modal-title').html('Applications on Staff desk');
+            var user = $('#stfEmail').val();
+            $.get('/Admin/StaffApss?email=', {email : user }, function(data){
+
+            });
+        });
+    });
+</script>

@@ -51,7 +51,7 @@
             </tr>
             </thead>
            
-            @foreach (var item in Model)
+            @foreach (var item in Model.OrderByDescending(x => x.DateIssued))
             {
                 var check = item.ExpiryDate.AddDays(-30);
                 string color = string.Empty;
@@ -84,10 +84,10 @@
                         @item.ExpiryDate.ToLongDateString()
                     </td>
                     <td >
-                        <a href="/Application/License/@item.Id?type=view" target="_blank" class="btn btn-sm btn-primary">View</a>
+                        <a href="/Application/License/@item.ApplicationId?type=view" target="_blank" class="btn btn-sm btn-primary">Preview</a>
                         @if (!User.IsInRole("Company") && !User.IsInRole("ICT") && !User.IsInRole("Support"))
                         {
-                            <a href="/Application/License/@item.Id?type=print" target="_blank" class="btn btn-sm btn-success">Print</a>
+                            <a href="/Application/License/@item.ApplicationId?type=print" target="_blank" class="btn btn-sm btn-success">Print</a>
                         }
                         @if (item.DateIssued > new DateTime(2021, 10, 19, 23, 59, 59) && item.PermitNumber.StartsWith("DPR"))
                         {
@@ -100,9 +100,10 @@
         </table>
     </div>
 </center>
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('.dataTable').DataTable();
+    $(document).ready(function () {
+        $('.dataTable').dataTable({ dom: 'Blfrtip'});
     });
 </script>

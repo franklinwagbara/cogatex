@@ -34,6 +34,7 @@ namespace GOTEX.Core.BusinessObjects
         public DbSet<MailTemplate> MailTemplates { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<PaymentEvidence> PaymentEvidences { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder) 
         {

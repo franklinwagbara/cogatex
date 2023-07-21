@@ -1,34 +1,73 @@
 ﻿@model List<Application>
+@inject IRepository<Quarter> _quarter
+
 
 @{
-    ViewBag.Title = "All Approved Applications";
+    ViewData["Title"] = "All Approved Applications";
     int count = 0;
+    int currYear = DateTime.Now.Year - 2020;
+    var year = Enumerable.Range(2020, currYear + 1);
 }
 
 <center>
+    <h2 class="card">@ViewData["Title"]</h2>
+    <div class="card">
+        <form action="@Url.Action("Report", "Application")" method="post">
+            <div class="form-group">
+                <div class="input-group col-md-9">
+                    <select name="QuarterId" class="form-control">
+                        <option disabled selected>Select quarter</option>
+                        @foreach (var item in _quarter.GetAll())
+                        {
+                            <option value="@item.Id">@item.Name (@item.Title)</option>
+                        }
+                    </select>
+                    <select name="Year" class="form-control">
+                        <option disabled selected>Select year</option>
+                        @foreach (var item in year)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    <input type="submit" class="form-control btn btn-xs btn-warning col-md-2" style="font-size: large;" value="Filter" />
+                </div>                
+            </div>
+        </form>
+    </div>
     <div class="card" style="padding: 1em; margin-top: 2em;">
         <table class="table table-bordered dataTable">
             <thead>
             <tr>
                 <th>#</th>
+                <th>Permit/Approval Number</th>
                 <th>Company</th>
                 <th>Product</th>
                 <th>Quantity</th>
+                <th>Unit</th>
                 <th>F.O.B Value (USD)</th>
                 <th>Export Terminal</th>
+                <th>Year</th>
+                <th>Issued Date</th>
+                <th>Expiry Date</th>
             </tr>
             </thead>
             <tbody>
-            @foreach (var app in Model)
+            @foreach (var app in Model.OrderByDescending(x => x.Permit.DateIssued))
             {
                 count++;
                 <tr>
                     <td>@count</td>
+                    <td>@app.Permit.PermitNumber</td>
                     <td>@app.User.Company.Name</td>
                     <td>@app.Product.Name</td>
-                    <td>@app.Quantity</td>
-                    <td>@app.Fee.ToString("$ #,###,##0.00")</td>
+                        <td>@app.Quantity.ToString("#,###,##0.00")</td>
+                        <td>@app.GasStream</td>
+                    @*<td>@app.ProductAmount.ToString("$ #,###,##0.00")</td>*@
+                    <td>@app.ProductAmount.ToString("#,###,##0.00")</td>
                     <td>@app.Terminal.Name</td>
+                    <td>@app.Year</td>
+                    <td>@app.Permit.DateIssued.ToString("MMM dd yyyy hh:mm:ss")</td>
+                    <td>@app.Permit.ExpiryDate.ToString("MMM dd yyyy hh:mm:ss")</td>
                 </tr>
             }
             </tbody>
@@ -37,7 +76,7 @@
 </center>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('.dataTable').DataTable();
+    $(document).ready(function () {
+        $('.dataTable').dataTable({ dom: 'Blfrtip' });
     });
 </script>

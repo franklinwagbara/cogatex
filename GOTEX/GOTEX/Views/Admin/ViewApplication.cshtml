@@ -351,7 +351,7 @@
 
                         if (!Model.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
                         {
-                                if (!User.IsInRole("OOD") && !User.IsInRole("ACE") && !User.IsInRole("CCE"))
+                            if (!User.IsInRole("CCE"))
                             {
                                 <tr>
                                     <td>
@@ -412,10 +412,13 @@
                         <label for="@Model.Quantity" style="float:left" class="col-form-label">Quantity</label>
                         <input type="text" class="form-control" name="Quantity" readonly value="@Model.Quantity.ToString("N2") @Model.GasStream of @Model.Product.Name" required>
                     </div>
-                    <div class="form-group">
-                        <label style="float:left" class="col-form-label">Report</label>
-                        <textarea class="form-control comment" name="Report" placeholder="Kindly provide your reason for approval/rejection"  style="min-height: 100px !important;" required></textarea>
-                    </div>
+                    @if (!User.IsInRole("CCE"))
+                    {
+                        <div class="form-group">
+                            <label style="float:left" class="col-form-label">Report</label>
+                            <textarea class="form-control comment" name="Report" placeholder="Kindly provide your reason for approval/rejection" style="min-height: 100px !important;" required></textarea>
+                        </div>                        
+                    }
 
                     <div class="modal-footer">
                         @{ var cont = User.IsInRole("CCE") ? "Generate License/Approval" : "Approve";}
@@ -596,7 +599,7 @@
                 var messsge = $(".comment").val()
                 
                 if (messsge !== ""){
-                   $(".modal-body").addClass("Submitloader"); 
+                   $(".modal-content").addClass("Submitloader"); 
                    $("#modalApprove form").submit();
                 }
                 else{

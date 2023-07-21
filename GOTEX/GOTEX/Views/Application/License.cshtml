@@ -20,7 +20,11 @@
             <div style="border: 10px solid #fff; font-family: Candara; position: relative; height: 100%; box-sizing: border-box;">
             <div style="text-align:right">
                 CONFIDENTIAL (FORM-1)
-                <h4 style="margin-top: -5px;">Form-1 No:  @Model.PermitNumber</h4>
+                @if (!string.IsNullOrEmpty(Model.Application.ViewType) && Model.Application.ViewType.ToLower().Equals("print"))
+                {
+                    <h4 style="margin-top: -5px;">Form-1 No:  @Model?.PermitNumber</h4>
+                }
+                
             </div>
                 <div style="text-align: center;">
                     <img src="/Images/NUPRC.png" alt="Logo" style="height: 195px; display: block; margin: 0 auto 25px auto;" />
@@ -288,16 +292,21 @@
                             <tr style=" font-size: inherit;">
                                 <td>
                                     <div style="text-align: right; max-width: 390px;float: right; height: 150px; position: relative;">
+                                        
+                                    @if (!string.IsNullOrEmpty(Model.Application.ViewType) && Model.Application.ViewType.Equals("print"))
+                                    {
                                         <div style="position: relative; height: 130px; margin-right: 70px;">
                                             <img style="margin-left:-30px" src="~/Content/nDirectorSignature.PNG" width="260" alt="Director/CEO's Signature" />
                                         </div>
                                         <div style="font-size: 1.3em; text-align: center; margin-bottom: 0; width: 390px; right: 0;
                                         border-top: 2px dotted #888; position: absolute; bottom: 0;">
-                                        Engr. Gbenga Komolafe <small>FNSE</small> <br />
+                                            Engr. Gbenga Komolafe <small>FNSE</small> <br />
                                             Commission Chief Executive, NUPRC
                                             <br />
 
                                         </div>
+                                    }
+                                       
                                     </div>
                                     <div style="clear: both;"></div>
                                 </td>

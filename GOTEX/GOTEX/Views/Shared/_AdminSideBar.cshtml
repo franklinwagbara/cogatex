@@ -42,15 +42,7 @@
                         <span class="nav-label"> All Companies</span>
                     </a>
                 </li>
-                @if (!User.IsInRole("Support"))
-                {
-                    <li>
-                        <a href="@Url.Content("~/Application/Report")">
-                            <i class="fa fa-check text-gray"> </i>
-                            <span class="nav-label"> Approved App. Reports</span>
-                        </a>
-                    </li>
-                }
+                
             </ul>
         </li>
         <hr />

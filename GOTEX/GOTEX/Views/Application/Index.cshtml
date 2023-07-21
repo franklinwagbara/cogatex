@@ -6,7 +6,7 @@
 <div>
     <center>
         <div class="text-left">
-            <form method="post" role="form">
+            <form method="post" role="form" id="formApply">
 
                 <div style="color: yellow; padding: 1em;background-color: green;">
                     <h2> Gas Export Application </h2>
@@ -170,6 +170,7 @@
                                 Equivalent Value ($)
                             </label>
                             <input class="form-control" asp-for="ProductAmount" autocomplete="off" />
+                            <small style="color:red;">Disclaimer*: Please note that you're responsible for any value provided here.</small>
                         </div>
                         <span asp-validation-for="ProductAmount" class="text-danger"></span>
                     </div>
@@ -177,7 +178,7 @@
                 <hr />
                 <div class="col-md-6">
                     <div>
-                        <input type="submit" class="btn btn-primary" value="Submit and Continue"/>
+                        <input type="submit" class="btn btn-primary btnSubmitApp" value="Submit and Continue"/>
                     </div>
                 </div>
             </form>
@@ -186,6 +187,17 @@
 </div>
 @section Scripts {
    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+   <script type="text/javascript">
+       $(document).ready(function(){
+            $(document).on('click', '.btnSubmitApp', function(e){
+                e.preventDefault();
+                $("#loading").show();
+                $("#formApply").submit();
+            });
+       });
+   </script>
+
 }
 <script src="~/_framework/blazor.server.js"></script>
 @functions{

@@ -5,58 +5,72 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <center>
-    <div class="card" style="margin-top:  2em; padding: 1em;">
-        <div style="display: inline-flex; justify-content: center; padding-left: 1em; padding-right: 1em; color: white;">
-            <div class="card" style="width: 19em; margin-right: 3em;padding-top: 3em; background-color: #0b2e13;">
-                <div class="card-body">
-                    <div class="card-title">
-                        <span style="float: left;">@Model.MyDesk</span> <span style="float: right"><i class="fa fa-user"></i></span>
+    <div class="card" style="padding: 1em;">
+        <div style="justify-content: center; padding-right: 1em; color: white;">            
+            <div style="display: inline-flex;">
+                <div class="card" style="width: 18em; margin-right: 2em; padding-top: 3em; background-color: #0b2e13;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span style="float: left;">@Model.MyDesk</span> <span style="float: right"><i class="fa fa-user"></i></span>
+                        </div>
+                        <br />
+                        <p class="card-text" style="float: left;"><a style="color: greenyellow" href="/Admin">My Desk</a></p>
                     </div>
-                    <br/>
-                    <p class="card-text" style="float: left"><a href="/Admin">My Desk</a></p>
+                </div>
+                <div class="card" style="width: 18em; margin-right: 2em; padding-top: 3em; background-color: #0E963E;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span style="float: left">@Model.AppsTreated</span><span style="float: right"><i class="fa fa-inbox"></i></span>
+                        </div>
+                        <br />
+                        <p class="card-text" style="float: left; color: white !important;">
+                            <a style="color: whitesmoke" href="@Url.Action("Outbox", "Admin")">Total Application(s) worked on</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18em; padding-top: 3em; background-color: #8a1f11; margin-right: 2em;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span style="float: left">@Model.Declined</span><span style="float: right"><i class="fa fa-minus"></i></span>
+                        </div>
+                        <br />
+                        <p class="card-text" style="float: left; color: white !important;">Application(s) declined</p>
+                    </div>
+                </div>
+                <div class="card btn-info bg-aqua" style="width: 18em; padding-top: 2em;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span style="float: left">@Model.Approved</span><span style="float: right"><i class="fa fa-check"></i></span>
+                        </div>
+                        <br />
+                        <p class="card-text" style="float: left; color: white !important;">ALl Approved Approval(s)</p>
+                    </div>
                 </div>
             </div>
-            <div class="card" style="width: 19em; margin-right: 3em; padding-top: 3em; background-color: #242634;">
-                <div class="card-body">
-                    <div class="card-title">
-                        <span style="float: left;">@Model.All</span><span style="float: right"><i class="fa fa-box"></i></span>
+            <div style="display: inline-flex;">
+                <div class="card" style="width: 18em; margin-right: 2em; padding-top: 3em; background-color: #242634;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span style="float: left;">@Model.All</span><span style="float: right"><i class="fa fa-box"></i></span>
+                        </div>
+                        <br />
+                        <p class="card-text" style="float: left; color: white !important;"> All Application(s)</p>
                     </div>
-                    <br/>
-                    <p class="card-text" style="float: left; color: white !important;">Application(s)</p>
                 </div>
-            </div>
-            <div class="card" style="width: 19em; margin-right: 3em; padding-top: 3em; background-color: #0E566C;">
-                <div class="card-body">
-                    <div class="card-title">
-                        <span style="float: left">@Model.Processing</span><span style="float: right"><i class="fa fa-inbox"></i></span>
+                <div class="card" style="width: 18em; margin-right: 2em; padding-top: 3em; background-color: #0E566C;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span style="float: left">@Model.Processing</span><span style="float: right"><i class="fa fa-inbox"></i></span>
+                        </div>
+                        <br />
+                        <p class="card-text" style="float: left; color: white !important;">ALl Application(s) being processed</p>
                     </div>
-                    <br/>
-                    <p class="card-text" style="float: left; color: white !important;">Application(s) being processed</p>
                 </div>
-            </div>
-            <div class="card" style="width: 19em; padding-top: 3em; background-color: #8a1f11; margin-right: 3em;">
-                <div class="card-body">
-                    <div class="card-title">
-                        <span style="float: left">@Model.Declined</span><span style="float: right"><i class="fa fa-minus"></i></span>
-                    </div>
-                    <br/>
-                    <p class="card-text" style="float: left; color: white !important;">Application(s) declined</p>
-                </div>
-            </div>
-            <div class="card btn-info bg-aqua" style="width: 19em; padding-top: 3em;">
-                <div class="card-body">
-                    <div class="card-title">
-                        <span style="float: left">@Model.Approved</span><span style="float: right"><i class="fa fa-check"></i></span>
-                    </div>
-                    <br/>
-                    <p class="card-text" style="float: left; color: white !important;">Approved Approval(s)</p>
-                </div>
+
             </div>
         </div>
         <div>
-            @if (Model.Messages.Count > 0 && Model.Messages
-                .OrderByDescending(x => x.Id)
-                .FirstOrDefault(y => !y.IsRead) != null)
+            @if (Model.Messages.Count > 0 && Model.Messages.OrderByDescending(x => x.Id).FirstOrDefault(y => !y.IsRead) != null)
             {
                 <div class="alert alert-warning alert-dismissable">
                 <span class="glyphicon glyphicon-exclamation-sign"></span>
@@ -212,7 +226,7 @@
         <div class="modal-content">
             <div class="modal-body" id="modalBody">
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer">  
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -1,15 +1,19 @@
-﻿@model List<ApplicationUser>
+﻿@using System.Linq
+@using Microsoft.EntityFrameworkCore;
+@model List<ApplicationUser>
 @inject IApplication<Application> _application
 @inject UserManager<ApplicationUser> _userManager
+@inject RoleManager<ApplicationRole> _role
 
 @{
     ViewBag.Title = "Applications on STaff Desk";
     int count = 0;
+    var roles = _role.Roles.ToList();
 }
 
 <center>
     <div class=" card" style="margin-top: 2em; padding: 1em;">
-        <h2 class="card btn btn-warning col-md-5" style="font-size: x-large;">
+        <h2 class="card" style="font-size: x-large;">
             <b>Application(s) on Staff Desk</b>
         </h2>
         <table class="table table-striped dataTable">
@@ -20,6 +24,7 @@
                 <th>Email</th>
                 <th>User Role</th>
                 <th>Desk Count</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -35,9 +40,15 @@
                         <td>@user.LastName @user.FirstName</td>
                         <td>@user.Email</td>
                         <td>
-                            @GetUserRole(user.Email)
+                                @{
+                                    var role = GetUserRole(user.Email);
+                                }
+                                @role.DisplayName
                         </td>
                         <td class="text-center">@GetDeskCount(user.Email)</td>
+                        <td>
+                                <a href="#appModal" data-toggle="modal" class="btn btn-warning btn-xs btnViewStaffDesk" data-email="@user.Id">View Desk</a>
+                        </td>
                     </tr> 
                 }
             }
@@ -45,12 +56,24 @@
         </table>
     </div>
 </center>
+<div class="modal" role="dialog" tabindex="-1" id="appModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="text-center"><h3 class="modal-title"></h3></div>
+            <div class="modal-body" id="modalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @functions{
 
-    private string GetUserRole(string email)
+    private ApplicationRole GetUserRole(string email)
     {
-        var user = _userManager.FindByEmailAsync(email).Result;
-        return _userManager.GetRolesAsync(user).Result.FirstOrDefault();
+        var user = _userManager.Users.Include(ur => ur.UserRoles).ThenInclude(r => r.Role).FirstOrDefault(e => e.Email.Equals(email));
+        return user.UserRoles.FirstOrDefault().Role;
     }
 
     private int GetDeskCount(string email) => _application.GetAll().Count(x => x.LastAssignedUserId == email);
@@ -58,13 +81,22 @@
     private List<ApplicationUser> GetStaffRoleList(string email)
     {
         var role = GetUserRole(email);
-        return _userManager.GetUsersInRoleAsync(role).Result.ToList();
+        return _userManager.GetUsersInRoleAsync(role.Name).Result.ToList();
     }
 
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('.dataTable').DataTable();
+    $(document).ready(function () {
+        $('.dataTable').dataTable({ dom: 'Blfrtip'});
+
+        $(document).on('click', '.btnViewStaffDesk', function (e) {
+            e.preventDefault();
+            $('.modal-title').html('Applications on Staff desk');
+            var user = $(this).data('email');
+            $.get('/Admin/StaffApps', { id: user }, function (data) {
+                $('.modal-body').html(data);
+            });
+        });
     });
 </script>

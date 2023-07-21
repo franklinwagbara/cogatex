@@ -115,15 +115,13 @@ namespace GOTEX.Controllers
                 }
                 else
                 {
-                    var applications = _application.GetAll().Where(x
-                        => x.LastAssignedUserId.Equals(model.OldStaffEmail)).Take(model.AppNumber).ToList();
+                    var applications = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(model.OldStaffEmail)).Take(model.AppNumber).ToList();
 
                     if (applications.Count > 0)
                     {
                         foreach (var application in applications)
                         {
-                            var lasthistory = _history.GetApplicationHistoriesById(application.Id)
-                                .OrderByDescending(x => x.Id).FirstOrDefault();
+                            var lasthistory = _history.GetApplicationHistoriesById(application.Id).OrderByDescending(x => x.Id).FirstOrDefault();
                             
                             application.LastAssignedUserId = model.NewStaff;
                             _application.Update(application);
@@ -159,14 +157,15 @@ namespace GOTEX.Controllers
 
                     await _userManager.CreateAsync(user);
                     await _userManager.AddToRoleAsync(user, model.Role);
+
+                    TempData["alert"] = "alert-success";
+                    TempData["Message"] = "Staff created successfully";
                 }
             }
             catch (Exception ex)
             {
                 
             }
-            TempData["alert"] = "alert-success";
-            TempData["Message"] = "Staff created successfully";
             return RedirectToAction("All");
         }
 

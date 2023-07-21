@@ -24,8 +24,9 @@ namespace GOTEX.Controllers
         private readonly AppDbContext _context;
         private IRepository<Message> _message;
         private IApplication<Application> _appRepository;
-        private IApplication<Application> _application;
-        
+        private IApplication<Application> _application; 
+        private readonly IAppHistory<ApplicationHistory> _history;
+
         public DashBoardController(
             UserManager<ApplicationUser> userManager, 
             IElpsRepository elps, 
@@ -33,7 +34,8 @@ namespace GOTEX.Controllers
             AppDbContext context,
             IRepository<Message> message,
             IApplication<Application> appRepository,
-            IApplication<Application> application)
+            IApplication<Application> application,
+            IAppHistory<ApplicationHistory> history)
         {
             _userManager = userManager;
             _elps = elps;
@@ -42,6 +44,7 @@ namespace GOTEX.Controllers
             _message = message;
             _appRepository = appRepository;
             _application = application;
+            _history = history;
         }
         public async Task<IActionResult> Index(DashboardViewModel model)
         {
@@ -50,7 +53,26 @@ namespace GOTEX.Controllers
             int allApps = 0;
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var allapps = _appRepository.GetAll();
-            
+            var history = _history.SentApplications(User.Identity.Name);
+            var apps = history
+                .GroupBy(x => x.ApplicationId)
+                .Select(x => x.FirstOrDefault())
+                .OrderByDescending(x => x.DateAssigned)
+                .ThenByDescending(x => x.DateAssigned)
+                .Select(x => new SentItems
+                {
+                    DateApplied = x.Application.Date,
+                    CompanyName = x.Application.User.Company.Name,
+                    Reference = x.Application.Reference,
+                    AppType = x.Application.ApplicationType.Name,
+                    DateTreated = x.DateAssigned,
+                    Product = x.Application.Product.Name,
+                    Terminal = x.Application.Terminal.Name,
+                    Quarter = x.Application.Quarter.Name,
+                    Action = x.Action,
+                    Comment = x.Comment
+                }).ToList();
+
             if (User.IsInRole("Company"))
             {
                 var myapplications = allapps.Where(x => x.UserId == user.Id) .ToList();
@@ -69,11 +91,12 @@ namespace GOTEX.Controllers
                     return RedirectToAction("AceDesk", "DashBoard");
 
                 model.All = allapps.Count;
-                model.Processing = allapps.Count(x => x.Status.ToLower().Equals("processing"));
-                model.Declined = allapps.Count(x => x.Status.ToLower().Equals("rejected"));
+                model.Processing = allapps.Count(x => x.Status.ToLower().Equals("processing") || x.Status.ToLower().Equals("payment confirmed"));
+                model.Declined = apps.Count(x => x.Action.ToLower().Equals("reject"));
                 model.MyDesk = allapps.Count(x =>
                     x.LastAssignedUserId == user.Email && x.Status != ApplicationStatus.Completed);
                 model.Approved = allapps.Count(x => x.Status.ToLower().Equals("completed"));
+                model.AppsTreated = apps.Count(a => a.Action.ToLower().Equals("approve"));
             }
             model.Messages = _message.GetListByUserId(user.Id).OrderByDescending(x => x.Date).Take(5).ToList();
             return View(model);

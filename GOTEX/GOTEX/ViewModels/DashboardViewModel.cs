@@ -7,6 +7,7 @@ namespace GOTEX.ViewModels
     {
         public long All { get; set; }
         public long Approved { get; set; }
+        public long AppsTreated { get; set; }
         public long Processing { get; set; }
         public long Declined { get; set; }
         public long MyDesk { get; set; }

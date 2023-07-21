@@ -1,10 +1,10 @@
 <html>
-<body style="color: gray; font-size:14px; box-sizing: border-box; font-family: 'Segoe UI'; font-weight: 100; ">
+<body style="font-size:14px; box-sizing: border-box; font-family: 'Candara'; font-weight: 100; ">
     <table border="0" cellpadding="0" cellspacing="0" style="width:600px; background-color: #ece8d4; ">
         <thead>
             <tr>
                 <td style="border: 1px solid #ccc;">
-                    <img src="https://roms.dpr.gov.ng/Content/Images/mainlogo.png" alt="Logo" style="width: 100%;" />
+                    <img src="https://ogisp.nuprc.gov.ng/Content/Images/mainlogo.png" alt="Logo" style="width: 100%;" />
                 </td>
             </tr>
         </thead>
@@ -22,13 +22,6 @@
                         <p>
                             {3}
                         </p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div style="text-align: center; padding: 10px 0 10px 0;">
-                        Click <a href="https://gatex.nuprc.gov.ng" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px;">here</a> to get started.
                     </div>
                 </td>
             </tr>

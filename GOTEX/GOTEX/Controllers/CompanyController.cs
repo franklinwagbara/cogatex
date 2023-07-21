@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GOTEX.Core.BusinessObjects;
 using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
 using GOTEX.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace GOTEX.Controllers
@@ -19,14 +23,19 @@ namespace GOTEX.Controllers
     public class CompanyController : Controller
     {
         // GET
-        private UserManager<ApplicationUser> _userManager;
-        private IApplication<Application> _application;
-        private IElpsRepository _elps;
-        private AppDbContext _context;
-        private IAppConfiguration<Configuration> _appConfig;
-        private IPermit<Permit> _permit;
-        private IRepository<Message> _message;
-        
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IApplication<Application> _application;
+        private readonly IElpsRepository _elps;
+        private readonly AppDbContext _context;
+        private readonly IAppConfiguration<Configuration> _appConfig;
+        private readonly IPermit<Permit> _permit;
+        private readonly IRepository<Message> _message;
+        private readonly IRepository<Survey> _survey;
+        private readonly EmailSettings _emailSettings;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly IMapper _mapper;
+
+
         public CompanyController(
             UserManager<ApplicationUser> userManager, 
             IApplication<Application> application,
@@ -34,7 +43,11 @@ namespace GOTEX.Controllers
             AppDbContext context,
             IAppConfiguration<Configuration> appConfig,
             IRepository<Message> message,
-            IPermit<Permit> permit)
+            IPermit<Permit> permit,
+            IRepository<Survey> survey,
+            IOptions<EmailSettings> emailSettings,
+            IWebHostEnvironment hostingEnvironment,
+            IMapper mapper)
         {
             _userManager = userManager;
             _application = application;
@@ -43,6 +56,10 @@ namespace GOTEX.Controllers
             _appConfig = appConfig;
             _permit = permit;
             _message = message;
+            _survey = survey;
+            _emailSettings = emailSettings.Value;
+            _hostingEnvironment = hostingEnvironment;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
@@ -80,6 +97,7 @@ namespace GOTEX.Controllers
             }
             return View(model);
         }
+
         public IActionResult DocumentLibrary(string email, List<CompanyDocument> docs)
         {
             try
@@ -104,6 +122,7 @@ namespace GOTEX.Controllers
             }
             return View(docs);
         }
+
         public IActionResult MyDesk() => View(_application.GetAll().Where(x => x.LastAssignedUserId == User.Identity.Name && !x.Status.Equals(ApplicationStatus.Completed)).ToList());
         
         public IActionResult GetApplications()
@@ -177,5 +196,33 @@ namespace GOTEX.Controllers
         }
 
         public IActionResult ExportType() => View();
+
+        public IActionResult AddSurvey(int id) 
+        { 
+            var permit = _permit.FindById(id);
+            if(permit != null)
+                return View(new Survey { PermitId = id });
+
+            return RedirectToAction("Permits");
+        }
+
+        [HttpPost]
+        public IActionResult PostSurvey(SurveyViewModel model) 
+        {
+            if(ModelState.IsValid)
+            {
+                var survwy = _survey.Insert(_mapper.Map<Survey>(model));
+                var emailSettings = _emailSettings.Stringify().Parse<Dictionary<string, string>>();
+                emailSettings.Add("Portalbase", $"{Request.Scheme}://{Request.Host}/Validate/ViewSurvey/{survwy.Id}");
+                var app = _permit.FindById(model.PermitId);
+                if(app != null)
+                {
+                    _survey.SendApplicationSubmittedMail(app?.Application, emailSettings, _hostingEnvironment.WebRootPath);
+                    TempData["Message"] = "Survey form has been submitted successfully.";
+                }
+            }
+            return RedirectToAction("Permits");
+            //return Json(new { status = false, message = "An error occured, pls try again or contact support." });
+        }
     }
 }
