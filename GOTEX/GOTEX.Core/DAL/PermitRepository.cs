@@ -90,23 +90,22 @@ namespace GOTEX.Core.DAL
                         var sn = string.Format("NUPRC/GATEX/{0}/{1}", dt, application.User.Company.Id);
                         var body = Utils.ReadTextFile(webrootpath, "NDTs.txt");
                         string subject = "Export Permit Approval for your Company";
-                        var msgBody = string.Format(body, subject, application.User.Company.Name,
-                            permit.PermitNumber, permit.DateIssued.ToLongDateString(),
-                            permit.ExpiryDate.ToLongDateString(),
-                            $"{application.Quarter.Name} for {application.Quantity.ToString("N2")} " +
-                            $"Barrels of {application.Product.Name} ", DateTime.Now.Year,
-                            application.Quarter.Name);
+                        //var msgBody = string.Format(body, subject, application.User.Company.Name,
+                        //    permit.PermitNumber, permit.DateIssued.ToLongDateString(),
+                        //    permit.ExpiryDate.ToLongDateString(),
+                        //    $"{application.Quarter.Name} for {application.Quantity.ToString("###.##")} " +
+                        //    $"Barrels of {application.Product.Name} ", DateTime.Now.Year);
 
-                        Utils.SendMail(mailsettings, application.User.Email, subject, msgBody);
+                        //Utils.SendMail(mailsettings, application.User.Email, subject, msgBody);
 
-                        _message.Insert(new Message
-                        {
-                            Content = msgBody,
-                            Date = DateTime.UtcNow.AddHours(1),
-                            Subject = subject,
-                            User = application.User,
-                            ApplicationId = application.Id
-                        });
+                        //_message.Insert(new Message
+                        //{
+                        //    Content = msgBody,
+                        //    Date = DateTime.UtcNow.AddHours(1),
+                        //    Subject = subject,
+                        //    User = application.User,
+                        //    ApplicationId = application.Id
+                        //});
 
                         return permit.PermitNumber;
                     }

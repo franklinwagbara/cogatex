@@ -1,0 +1,43 @@
+﻿@model List<DeclarationForm>
+@inject IAppConfiguration<Configuration> _appConfig
+@using GOTEX.Core.Utilities
+
+@{
+    ViewData["Title"] = "All Feclaration forms";
+    int count = 0;
+    var q = _appConfig.GetQuarters().Stringify().Parse<List<Quarter>>();
+}
+<div class="card">
+    <div style="padding: 1em; color: yellow;background-color: green;">
+        <h2>
+            @ViewBag.CompanyName Document Library
+        </h2>
+    </div>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Quarter</th>
+                <th>Year</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>
+                        @q.FirstOrDefault(x => x.Id.Equals(item.QuarterId)).Title
+                    </td>
+                    <td>@item.Year</td>
+                    <td>
+                        <a href="@Url.Action("PrintDeclarationForm", "Application", new{ item.Id })" class="btn btn-xs btn-info">Print Form</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

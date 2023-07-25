@@ -651,6 +651,7 @@ namespace GOTEX.Controllers
         }
 
         public IActionResult PaymentEvidences() => View(_paymentEvidence.GetAll());
+
         public IActionResult EditPaymentEvidence(int id) => View(_paymentEvidence.FindById(id));
 
         [HttpPost]

@@ -40,77 +40,92 @@
     <div id="loading" style="width: 100%; height: 100%; top:0; left:0; position:fixed; display:block; opacity:0.7; background-color:#fff; z-index:99; text-align:center">
         <img id="loading-image" style="position:absolute; top:100px; left:50%; z-index:100" src="~/Images/spinning.gif" />
     </div>
+    @if (string.IsNullOrEmpty((string)ViewData["DFormPrintType"]))
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top shadow">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" style="padding-top: 2em !important;">
+                        <img class="img-circle" src="@Url.Content("~/Images/NUPRC.png")" width="80" height="67" alt="COGATEX" />
+                        <span style="color: white; font-weight: bold; font-size: x-large; margin-top: 10px !important;">GATEX</span>
+                    </a>
+                </div>
 
-    <div class="navbar navbar-inverse navbar-fixed-top shadow">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" style="padding-top: 2em !important;">
-                    <img class="img-circle" src="@Url.Content("~/Images/NUPRC.png")" width="80" height="67" alt="COGATEX"/>
-                    <span style="color: white; font-weight: bold; font-size: x-large; margin-top: 10px !important;">GATEX</span>
-                </a>
-            </div>
+                <div class="navbar-collapse collapse">
 
-            <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Dashboard", "Company")">&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
 
-                <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Dashboard", "Company")">&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Applications<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index", "Application")"><i class="fa fa-bookmark"></i>&nbsp;Apply For Approval(s)</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("Index", "Company")"><i class="fa fa-list"></i>&nbsp;My Applications</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("CompanyProfile", "DashBoard")"><i class="fa fa-user"></i>&nbsp;My Profile</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("DocumentLibrary", "Company")"><i class="fa fa-folder-open"></i>&nbsp;My Documents</a></li>
-                            @* <li><a href="@Url.Action("ChangePassword")"><i class="fas fa-key"></i>&nbsp;Change Password</a></li> *@
-                        </ul>
-                    </li>
-
-
-                    <li class="dropdown">
-                        <a href="/Company/Permits">Approved Forms</a>
-                    </li>
-                </ul>
-
-                <form action="@Url.Action("LogOff", "Account")" onsubmit="return confirm('Do You Want To Log Out From The Application Portal?');" class="navbar-right" id="logoutForm" method="post">
-                    @Html.AntiForgeryToken()
-                    <ul class="nav navbar-nav navbar-right" style="margin-top: 10px;">
-                        <li>
-                            <a href="#">Hello @User.Identity.Name</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Applications<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Index", "Application")"><i class="fa fa-bookmark"></i>&nbsp;Apply For Approval(s)</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Index", "Company")"><i class="fa fa-list"></i>&nbsp;My Applications</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("AllDeclarationnForms", "Company")"><i class="fa fa-list"></i>&nbsp;My Declaration Forms</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <button type="submit" class="initLogoff"><i class="fa fa-power-off fa-2x"  aria-hidden="true"></i></button>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("CompanyProfile", "DashBoard")"><i class="fa fa-user"></i>&nbsp;My Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("DocumentLibrary", "Company")"><i class="fa fa-folder-open"></i>&nbsp;My Documents</a></li>
+                                @* <li><a href="@Url.Action("ChangePassword")"><i class="fas fa-key"></i>&nbsp;Change Password</a></li> *@
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown">
+                            <a href="/Company/Permits">Approved Forms</a>
                         </li>
                     </ul>
-                </form>
 
+                    <form action="@Url.Action("LogOff", "Account")" onsubmit="return confirm('Do You Want To Log Out From The Application Portal?');" class="navbar-right" id="logoutForm" method="post">
+                        @Html.AntiForgeryToken()
+                        <ul class="nav navbar-nav navbar-right" style="margin-top: 10px;">
+                            <li>
+                                <a href="#">Hello @User.Identity.Name</a>
+                            </li>
+                            <li>
+                                <button type="submit" class="initLogoff"><i class="fa fa-power-off fa-2x" aria-hidden="true"></i></button>
+                            </li>
+                        </ul>
+                    </form>
+
+                </div>
             </div>
-        </div>
-    </div>
+        </div>        
+    }
     <div class="container" id="main">
         @RenderBody()
     </div>
-    <div class="">
+    @if (string.IsNullOrEmpty((string)ViewData["DFormPrintType"]))
+    {
+        <div class="">
+            <hr style="margin: 10px; padding: 0px;">
+            <div style="margin-top: 0px; text-align: center;" class="container">
+                <footer>
+                    <p>&copy; @DateTime.Today.Year NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION </p>
+                </footer>
+            </div>
+        </div>
+    }
+    @*<div class="">
         <hr style="margin: 10px; padding: 0px;">
         <div style="margin-top: 0px; text-align: center;" class="container">
             <footer>
                 <p>&copy; @DateTime.Today.Year NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION </p>
             </footer>
         </div>
-    </div>
+    </div>*@
 
     <script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>

@@ -373,12 +373,15 @@ namespace GOTEX.Core.DAL
                         });
                         _context.SaveChanges();
 
-                        docItem.Selected = true;
-                        docItem.Document_Id = existingdocs.Id;
-                        docItem.CoyFileId = existingdocs.Id;
-                        docItem.Source = existingdocs.Source;
-                        docItem.ParentSelected = existingdocs.Status;
-                        docs.Add(docItem);
+                        if(docItem != null)
+                        {
+                            docItem.Selected = true;
+                            docItem.Document_Id = existingdocs.Id;
+                            docItem.CoyFileId = existingdocs.Id;
+                            docItem.Source = existingdocs.Source;
+                            docItem.ParentSelected = existingdocs.Status;
+                            docs.Add(docItem);
+                        }                     
                     
                     }
                 }
