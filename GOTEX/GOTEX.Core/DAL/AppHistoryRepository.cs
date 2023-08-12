@@ -93,6 +93,7 @@ namespace GOTEX.Core.DAL
             }
             return false;
         }
+
         private string AppHistoryComment(WorkFlow flow)
         {
             var comment = string.Empty;

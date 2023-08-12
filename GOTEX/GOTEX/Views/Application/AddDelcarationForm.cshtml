@@ -1,0 +1,267 @@
+﻿@model DFormViewModel
+@{
+    ViewData["Title"] = "New Declaration Form";
+    ViewData["DFormPrintType"] =  Model?.PrintType;
+    var compname = (string)ViewData["CompName"] != null ? (string)ViewData["CompName"] : Model != null ? Model.CompanyName : "";
+}
+<div style="font-family: Candara; font-size: 1.5em; margin: 3em 2em 3em 2em; color: black">
+    <center>
+        <div>
+            <img src="/Images/NUPRC.png" width="250" /><br />
+            <span style="font-weight: bold;"><u>NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION</u></span>
+        </div>
+        <br />
+        <div>
+            <span style="font-weight: bold;"><u>CRUDE OIL EXPORT DECLARATION FORM</u></span>
+        </div>
+        <div>
+            <i>(Sections 7 (o), 7(ee), 8 (c) and 26 of the Petroleum Industry Act, 2021)</i>
+        </div>
+        <div>
+            <u><i>Section A</i></u>
+        </div>
+        <div class="text-left" style="margin-bottom: 5px;">
+            WE, <u> &nbsp;&nbsp; @compname &nbsp;&nbsp; </u>  (indicate the name of Crude Oil Export Company) (the “Applicant”) hereby states that we have obtained the approval
+            of the Board of the company to provide the following information, undertakings
+            and indemnities.
+        </div>
+        <div class="text-left">
+            <form method="post" role="form" id="dfFrm">
+                <div>
+                    <table class="table table-striped" style="color: black;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Question</th>
+                                <th>Response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    What volume of crude oil are you applying for
+                                    permit to Export?
+                                </td>
+                                <td>
+                                    <input asp-for="ExportVolume" type="number" step="0.01" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    Do you undertake that failure to inform the
+                                    Commission within 24 hours of any stealing,
+                                    diversion of crude or disappearance of an
+                                    approved Export Vessel automatically
+                                    invalidates the approval given?
+                                </td>
+                                <td>
+                                    <input asp-for="CrudeTheft" type="radio" value="1" /> Yes
+                                    <input asp-for="CrudeTheft" type="radio" value="2" /> No
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    Do you undertake to repatriate the export
+                                    proceeds within the time limits set by the
+                                    Central Bank of Nigeria or under any other
+                                    existing law, to its domiciliary account in
+                                    Nigeria?
+                                </td>
+                                <td>
+                                    <input asp-for="ExportProceedings" type="radio" value="1" /> Yes
+                                    <input asp-for="ExportProceedings" type="radio" value="2" /> No
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    Has any person/agent/representative of the
+                                    Commission acted in any manner which is
+                                    suggestive of seeking a bribe or conferring any
+                                    advantage or disadvantage on the Applicant?
+                                    <br />
+                                    <br />
+                                    If yes, please name such person(s) or discreetly
+                                    file a sealed report to the Commission not later
+                                    than 48 hours from today at Commission Chief
+                                    Executive’s Office.
+
+                                </td>
+                                <td>
+                                    <input asp-for="Bribe" type="radio" value="1" /> Yes
+                                    <input asp-for="Bribe" type="radio" value="2" /> No
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <textarea asp-for="StaffBribe" class="form-control" cols="10" rows="4" style="width: 20em;"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    Do you undertake that you should not be
+                                    allowed to Export if you owe any statutory
+                                    payments (oil & gas royalties, concession
+                                    rentals and gas flare payments) to the
+                                    Federation and in the case of any outstanding
+                                    payment to the Federation, you will be required
+                                    to load and anchor at no cost to the
+                                    Commission until all debts are defrayed?
+                                </td>
+                                <td>
+                                    <input asp-for="OutstandingFee" type="radio" value="1" /> Yes
+                                    <input asp-for="OutstandingFee" type="radio" value="2" /> No
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    Do you undertake that not abiding by the terms
+                                    of the export permit constitute an offence?
+                                </td>
+                                <td>
+                                    <input asp-for="Offence" type="radio" value="1" /> Yes
+                                    <input asp-for="Offence" type="radio" value="2" /> No
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>
+                                    Do you undertake that not abiding with the
+                                    provisions of this declaration constitutes a
+                                    violation of your licence and will result in the
+                                    withdrawal of your license/lease?
+                                </td>
+                                <td>
+                                    <input asp-for="Violation" type="radio" value="1" /> Yes
+                                    <input asp-for="Violation" type="radio" value="2" /> No
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    8. WE hereby undertake to:<br />
+                    <ol type="a" style="margin-left: 2em;">
+                        <li>
+                            <span>
+                                indemnify the Commission and/or the Federal Government of
+                                Nigeria against all liabilities, costs, expenses, damages and losses
+                                (including but not limited to any direct, indirect or consequential
+                                losses, loss of royalty, taxes or other revenue, loss of reputation and
+                                all interest, penalties and legal costs (calculated on a full indemnity
+                                basis) and all other costs and expenses)) suffered or incurred by the
+                                Commission and/or the Federal Government of Nigeria arising from
+                                the mishandling of crude, non-compliance with the conditions of
+                                our Crude Oil Export approval or false or fraudulent statements
+                                provided herein or as part of our application;
+                            </span>
+                        </li>
+                        <br />
+                        <li>
+                            <span>
+                                indemnify the Commission and its Commissioners, Directors, officers
+                                and employees (together the “Commission Indemnified Persons”)
+                                against all liabilities, costs, expenses, damages and losses (including
+                                but not limited to any direct, indirect or consequential losses, loss of
+                                reputation and all interest, penalties and legal costs (calculated on
+                                a full indemnity basis) and all other costs and expenses)) suffered or
+                                incurred by the Commission Indemnified Persons arising out of any
+                                act or omission to act, breach of the terms of the Crude Oil Export
+                                approval or false or fraudulent statements provided herein or as
+                                part of our application;
+                            </span>
+                        </li>
+                        <br />
+                        <li>
+                            <span>
+                                bear the liability for any damage or degradation to the
+                                environment, its aqua or fauna, arising from any spill leakages
+                                emanating from the Export Vessel or vessel operations of the
+                                company or our agents;
+                            </span>
+                        </li>
+                    </ol>
+                </div>
+                <br />
+                <div>
+                    9. WE understand that civil and/or criminal penalties including forfeiture and
+                    sale, may be imposed for making false or fraudulent statements herein,
+                    failing to provide the requested information or violating any of the extant
+                    laws governing the exportation of crude oil in Nigeria.
+                </div>
+                <div style="margin-top: 3em;">
+                    <span>Sign: _________________________</span><br /><br />
+                    <span>Designation: _________________________</span><br /><br />
+                    <span>Date: _________________________</span>
+                </div><br /><br /><br /><br /><br /><br /><br /><br />
+                <div class="text-center">
+                    <span style="font-weight: bold;"><u><i>Section B</i></u></span>
+                </div><br />
+                <div class="text-center">
+                    <span style="font-weight: bold;"><u><i>AFFIRMATION ON OATH</i></u></span>
+                </div>
+                <div class="text-left">
+                    <div>
+                        I……………………………………..(indicate full names of Company’s
+                        Representative) do hereby attest and affirm under oath that the information
+                        provided above to the Commission are true and correct in every respect.
+                    </div>
+                    <div style="margin-top:3em;">
+                        <span>Sign: _________________________</span><br /><br />
+                        <span>Deponent</span><br /><br /><br />
+                        <span>On the ____________ of ___________ @DateTime.Now.Year,  the above deponent appeared before me. </span><br /><br /><br />
+                        <span>__________________________________</span><br />
+                        <span><b>COMMISSIONER OF OATHS</b></span><br />
+                        <span>
+                            Federal High Court
+                        </span>
+                    </div>
+                </div><br /><br /><br /><br /><br /><br />
+                <div style="font-style:italic; font-weight: bold;" class="text-center">
+                    <u>Section C</u>
+                </div>
+                <div style="font-weight: bold" class="text-center">
+                    <u>VERIFICATION OF OATH (Official)</u>
+                </div>
+                <br />
+                <div class="text-left">
+                    <span>
+                        I, ______________________________________________, the Commission’s External Solicitor do hereby
+                        verify the Oath of the deponent in Section B above.
+                    </span><br /><br /><br />
+                    <span>Sign: _________________________</span><br /><br /><br />
+                    <span>Date: _________________________</span>
+                </div>
+                <br />
+                <br />
+                @if (string.IsNullOrEmpty(Model?.PrintType))
+                {
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-warning btnSubmitDF" value="Submit and Print Declaration form" />
+                    </div>
+                }
+                
+            </form>
+
+        </div>
+
+    </center>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        alert("You are required to fill a Declaration form for this quarter before you can apply.");
+        
+        $(document).on('click', '.btnSubmitDF', function(e){
+            e.preventDefault();
+            $('.btnSubmitDF').attr('disabled', 'true');
+            $('#dfFrm').submit();
+
+        });
+    });
+</script>

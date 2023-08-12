@@ -193,7 +193,7 @@ namespace GOTEX.Core.DAL
             .Include("Terminal")
             .Include("Product")
             .Include(x => x.Facility)
-            .Include("PaymentEvidence")
+            .Include("PaymentEvidence").Include("Histories")
             .Include(p => p.Permit)
             .Where(x => x.Status.Equals(ApplicationStatus.Completed)).ToList();
 
@@ -373,12 +373,15 @@ namespace GOTEX.Core.DAL
                         });
                         _context.SaveChanges();
 
-                        docItem.Selected = true;
-                        docItem.Document_Id = existingdocs.Id;
-                        docItem.CoyFileId = existingdocs.Id;
-                        docItem.Source = existingdocs.Source;
-                        docItem.ParentSelected = existingdocs.Status;
-                        docs.Add(docItem);
+                        if(docItem != null)
+                        {
+                            docItem.Selected = true;
+                            docItem.Document_Id = existingdocs.Id;
+                            docItem.CoyFileId = existingdocs.Id;
+                            docItem.Source = existingdocs.Source;
+                            docItem.ParentSelected = existingdocs.Status;
+                            docs.Add(docItem);
+                        }                     
                     
                     }
                 }

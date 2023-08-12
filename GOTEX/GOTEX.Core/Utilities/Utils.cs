@@ -105,7 +105,7 @@ namespace GOTEX.Core.Utilities
             return $"{random:D12}";
         }
 
-        public static void SendMail(Dictionary<string, string> mailsettings, string toEmail, string subject, string body, string bcc = null)
+        public static void SendMail(Dictionary<string, string> mailsettings, string toEmail, string subject, string body, string bcc = null, List<string> emailList = null)
         {
             var credentials = new NetworkCredential(mailsettings.GetValue("UserName"), mailsettings.GetValue("Password"));
             var smtp = new SmtpClient(mailsettings.GetValue("Host"), int.Parse(mailsettings.GetValue("Port")))
@@ -118,7 +118,12 @@ namespace GOTEX.Core.Utilities
 
 
             var mail = new MailMessage {From = new MailAddress(mailsettings.GetValue("Sender"))};
-            mail.To.Add(new MailAddress(toEmail));;
+            if(!string.IsNullOrEmpty(toEmail))
+                mail.To.Add(new MailAddress(toEmail));;
+
+            if (emailList != null && emailList.Count > 0)
+                foreach (var e in emailList)
+                    mail.To.Add(new MailAddress(e));
 
             if (!string.IsNullOrEmpty(bcc))
             {

@@ -37,6 +37,7 @@ namespace GOTEX.Controllers
         private readonly IPermit<Permit> _permit;
         private readonly IRepository<Facility> _fac;
         private readonly IRepository<Log> _log;
+        private readonly IRepository<DeclarationForm> _dform;
         private readonly EmailSettings _emailSettings;
         private readonly IMapper _mapper;
         
@@ -52,6 +53,7 @@ namespace GOTEX.Controllers
             IPermit<Permit> permit,
             IRepository<Log> log,
             IRepository<Facility> fac,
+            IRepository<DeclarationForm> dform,
             IOptionsMonitor<EmailSettings> optionsMonitor,
             IMapper mapper)
         {
@@ -65,10 +67,12 @@ namespace GOTEX.Controllers
             _elps = elps;
             _permit = permit;
             _log = log;
+            _dform = dform;
             _emailSettings = optionsMonitor.CurrentValue;
             _fac = fac;
             _mapper = mapper;
         }
+
         // GET
         public async Task<IActionResult> Index()
         {
@@ -79,16 +83,56 @@ namespace GOTEX.Controllers
             ViewBag.Error = TempData["Error"];
             ViewBag.ApplicationTypes = _appConfig.GetApplicationTypes();
             var quarters = _appConfig.GetQuarters().Stringify().Parse<List<Quarter>>();
-            
-            quarters = LatePaymentText(quarters);
-            
-            ViewBag.Quarters = quarters;
-            ViewBag.Terminals = _appConfig.GetTerminal().Stringify().Parse<List<Terminal>>();
-            ViewBag.Products = _appConfig.GetGasProducts().Stringify().Parse<List<Product>>();
-            
-            return View(new Application());
+
+            var dform = await VerifyDeclarationForm();
+
+            if (dform)
+            {
+                quarters = LatePaymentText(quarters);
+
+                ViewBag.Quarters = quarters;
+                ViewBag.Terminals = _appConfig.GetTerminal().Stringify().Parse<List<Terminal>>();
+                ViewBag.Products = _appConfig.GetGasProducts().Stringify().Parse<List<Product>>();
+
+                return View(new Application());
+            }
+            return RedirectToAction("AddDelcarationForm");
         }
-        
+
+        private async Task<bool> VerifyDeclarationForm()
+        {
+            int quarterid = GetQuarterId();
+            var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+            return _dform.GetAll().Any(x => x.QuarterId.Equals(quarterid) && x.Year.Equals(DateTime.Now.Year) && x.UserId.Equals(user.Id));
+        }
+
+        private int GetQuarterId()
+        {
+            int quarterid = 0;
+            switch (DateTime.Now.Month)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    quarterid = 1; break;
+                case 4:
+                case 5:
+                case 6:
+                    quarterid = 2; break;
+                case 7:
+                case 8:
+                case 9:
+                    quarterid = 3; break;
+                case 10:
+                case 11:
+                case 12:
+                    quarterid = 4; break;
+                default:
+                    break;
+            }
+            return quarterid;
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(Application model)
@@ -158,7 +202,61 @@ namespace GOTEX.Controllers
             }
             return RedirectToAction("Index", "DashBoard");
         }
-        
+
+        #region Declaration Form
+        public IActionResult AddDelcarationForm()
+        {
+            var model  = new DFormViewModel
+            {
+                CompanyName = _userManager.Users.Include(c => c.Company).FirstOrDefault(x => x.Email.Equals(User.Identity.Name))?.Company.Name
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddDelcarationForm(DFormViewModel model ) 
+        {
+            if (model.CrudeTheft != 1 || model.ExportProceedings != 1 || model.OutstandingFee != 1 || model.Offence != 1 || model.Violation != 1)
+            {
+                TempData["Message"] = "One or more item(s) selection was invalid. Kindly try again.";
+                return RedirectToAction("Dashboard", "Company");
+            }
+
+            var form = _dform.Insert(new DeclarationForm
+            {
+                Violation = model.Violation,
+                Bribe = model.Bribe,
+                OutstandingFee = model.OutstandingFee,
+                CrudeTheft = model.CrudeTheft,
+                ExportProceedings = model.ExportProceedings,
+                ExportVolume = model.ExportVolume,
+                Offence = model.Offence,
+                QuarterId = GetQuarterId(),
+                StaffBribe = model.StaffBribe,
+                Year = DateTime.Now.Year,
+                UserId = _userManager.Users.FirstOrDefault(x => x.Email.Equals(User.Identity.Name)).Id
+            });
+            TempData["Message"] = "Declaration form for this quarter have been saved successfully. You can proceed with your application";
+            return RedirectToAction("PrintDeclarationForm", new { form .Id });
+        }
+
+        public async Task<IActionResult> PrintDeclarationForm(int id) 
+        {
+            var dform = _dform.FindById(id);
+            var model = _mapper.Map<DFormViewModel>(dform);
+            model.PrintType = "print";
+            ViewData["DFormPrintType"] = "print";
+            model.CompanyName = _userManager.Users.Include(c => c.Company).FirstOrDefault(x => x.Email.Equals(User.Identity.Name))?.Company.Name;
+            var pdf = await new ViewAsPdf("AddDelcarationForm", model)
+            {
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                FileName = id + ".pdf"
+
+            }.BuildFile(ControllerContext);
+            return File(new MemoryStream(pdf), "application/pdf");
+        }
+        #endregion
+
         [HttpGet]
         public IActionResult UploadApplicationDocuments(int id)
         {
@@ -330,7 +428,7 @@ namespace GOTEX.Controllers
                 ViewBag.ApplicationDocs = _application.GetApplicationFiles(id);
                 ViewBag.History = _history.GetApplicationHistoriesById(id);
                 ViewData["Id"] = id;
-                ViewData["AppSubmit"] = $"Your application has been created.\n Please click the button below to submit application to Planning Department.";
+                ViewData["AppSubmit"] = $"Your application has been submitted.\n The uploaded payment evidence is being processed/confirmed by the Planning Department.";
                 
             }
             catch (Exception ex)
@@ -366,13 +464,13 @@ namespace GOTEX.Controllers
             var month = DateTime.Now;
             
             if (month.Month >= 1 && month.Month <= 3 && month >= new DateTime(month.Year - 1, 12, 1, 00, 00, 00))
-                quarters[0].Name = $"{quarters[0].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+                quarters[0].Name += " (Late Application Payment attracts a Fee of Extra $1000.00)";
             if(month.Month >= 4 && month.Month <= 6 && month >= new DateTime(month.Year, 3, 1, 00, 00, 00))
-                quarters[1].Name = $"{quarters[1].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+                quarters[1].Name += " (Late Application Payment attracts a Fee of Extra $1000.00)";
             if(month.Month >= 7 && month.Month <= 9 && month >= new DateTime(month.Year, 6, 1, 00, 00, 00))
-                quarters[2].Name = $"{quarters[2].Name} (Late Application Payment attracts a Fee of Extra $1000.00)>";
+                quarters[2].Name += " (Late Application Payment attracts a Fee of Extra $1000.00)>";
             if(month.Month >= 10 && month.Month <= 12 && month >= new DateTime(month.Year, 9, 1, 00, 00, 00))
-                quarters[3].Name = $"{quarters[3].Name} (Late Application Payment attracts a Fee of Extra $1000.00)";
+                quarters[3].Name += " (Late Application Payment attracts a Fee of Extra $1000.00)";
             
             return quarters;
         }

@@ -31,6 +31,7 @@ namespace GOTEX.Controllers
         private readonly IPermit<Permit> _permit;
         private readonly IRepository<Message> _message;
         private readonly IRepository<Survey> _survey;
+        private readonly IRepository<DeclarationForm> _dform;
         private readonly EmailSettings _emailSettings;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly IMapper _mapper;
@@ -45,6 +46,7 @@ namespace GOTEX.Controllers
             IRepository<Message> message,
             IPermit<Permit> permit,
             IRepository<Survey> survey,
+            IRepository<DeclarationForm> dform,
             IOptions<EmailSettings> emailSettings,
             IWebHostEnvironment hostingEnvironment,
             IMapper mapper)
@@ -57,6 +59,7 @@ namespace GOTEX.Controllers
             _permit = permit;
             _message = message;
             _survey = survey;
+            _dform = dform;
             _emailSettings = emailSettings.Value;
             _hostingEnvironment = hostingEnvironment;
             _mapper = mapper;
@@ -77,7 +80,7 @@ namespace GOTEX.Controllers
                 int allApps = 0;
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 var allapps = _application.GetAll();
-            
+                ViewData["Message"] = TempData["Message"];
                 if (User.IsInRole("Company"))
                 {
                     var myapplications = allapps.Where(x => x.UserId == user.Id) .ToList();
@@ -87,9 +90,17 @@ namespace GOTEX.Controllers
                     model.Processing = myapplications.Count(x => x.Status.ToLower().Equals("processing"));
                     model.Declined = myapplications.Count(x => x.Status.ToLower().Equals("rejected"));
                     model.Approved = myapplications.Count(x => x.Status.ToLower().Equals("completed"));
+                    var permits = _permit.GetCompanyPermits(user.Id).Select(x => x.Id);
+                    var surveys = _survey.GetAll();
+                    int sCnt = 0;
+                    foreach (var p in permits)
+                    {
+                        if(!surveys.Any(s => s.PermitId.Equals(p)))
+                            sCnt++;
+                    }
+                    ViewData["Survey"] = sCnt;
                 }
                 model.Messages = _message.GetListByUserId(user.Id).OrderByDescending(x => x.Date).Take(5).ToList();
-
             }
             catch (Exception ex)
             {
@@ -223,6 +234,13 @@ namespace GOTEX.Controllers
             }
             return RedirectToAction("Permits");
             //return Json(new { status = false, message = "An error occured, pls try again or contact support." });
+        }
+
+        public IActionResult AllDeclarationnForms() 
+        {
+            var user = _userManager.Users.FirstOrDefault(u => u.Email.Equals(User.Identity.Name));
+            var forms = _dform.GetListByUserId(user.Id);
+            return View(forms);
         }
     }
 }

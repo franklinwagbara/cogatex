@@ -304,9 +304,7 @@
     <script src="~/Scripts/DatatableJS/vfs_fonts.js"></script>
     <script src="~/Scripts/DatatableJS/buttons.html5.min.js"></script>
     <script src="~/Scripts/DatatableJS/buttons.print.min.js"> </script>
-
-
-                    <script src="~/Scripts/lpgscript.js"></script>
+    <script src="~/Scripts/lpgscript.js"></script>
     <script src="~/Scripts/bootbox.min.js"></script>
     <script src="~/Scripts/dataTables.checkboxes.min.js"></script>
 
@@ -353,57 +351,57 @@
                 }, Number(requestTimeout) * 1000);
                 console.log("Done with Interval Call");*@
         });
-        function CNGCompression(email) {
-            var msg = confirm("Are you sure you want to navigate to CNG compression portal?");
-            if (msg === true) {
-                window.location.href = "https://cngcompression.dpr.gov.ng/Account/Login?Email=" + email;
+    //    function CNGCompression(email) {
+    //        var msg = confirm("Are you sure you want to navigate to CNG compression portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://cngcompression.dpr.gov.ng/Account/Login?Email=" + email;
 
-            } else { return false }
-        }
-        function CNGDownloading(email) {
-            var msg = confirm("Are you sure you want to navigate to CNG downloading portal?");
-            if (msg === true) {
-                window.location.href = "https://cngdownloading.dpr.gov.ng/Account/Login?Email=" + email;
+    //        } else { return false }
+    //    }
+    //    function CNGDownloading(email) {
+    //        var msg = confirm("Are you sure you want to navigate to CNG downloading portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://cngdownloading.dpr.gov.ng/Account/Login?Email=" + email;
 
-            } else { return false }
-        }
-        function CNGRefueling(email) {
-            var msg = confirm("Are you sure you want to navigate to CNG refueling portal?");
-            if (msg === true) {
-                window.location.href = "https://cngrefueling.dpr.gov.ng/Account/Login?Email=" + email;
+    //        } else { return false }
+    //    }
+    //    function CNGRefueling(email) {
+    //        var msg = confirm("Are you sure you want to navigate to CNG refueling portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://cngrefueling.dpr.gov.ng/Account/Login?Email=" + email;
 
-            } else { return false }
-        }
-        function LPGStorage(email) {
-            var msg = confirm("Are you sure you want to navigate to LPG storage (category A) portal?");
-            if (msg === true) {
-                window.location.href = "https://lpgstorage.dpr.gov.ng/Account/Login?Email=" + email;
+    //        } else { return false }
+    //    }
+    //    function LPGStorage(email) {
+    //        var msg = confirm("Are you sure you want to navigate to LPG storage (category A) portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://lpgstorage.dpr.gov.ng/Account/Login?Email=" + email;
 
-            } else { return false }
-        }
-        function LPGPlant(email) {
-            var msg = confirm("Are you sure you want to navigate to LPG refilling plant portal?");
-            if (msg === true) {
-                window.location.href = "https://lpgplant.dpr.gov.ng/Account/Login?Email=" + email;
+    //        } else { return false }
+    //    }
+    //    function LPGPlant(email) {
+    //        var msg = confirm("Are you sure you want to navigate to LPG refilling plant portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://lpgplant.dpr.gov.ng/Account/Login?Email=" + email;
 
-            } else { return false }
-        }
-        function LPGDepot(email) {
-            var msg = confirm("Are you sure you want to navigate to LPG depot portal?");
-            if (msg === true) {
-                window.location.href = "https://lpgdepot.dpr.gov.ng/Auth/UserAuth?email=" + email;
+    //        } else { return false }
+    //    }
+    //    function LPGDepot(email) {
+    //        var msg = confirm("Are you sure you want to navigate to LPG depot portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://lpgdepot.dpr.gov.ng/Auth/UserAuth?email=" + email;
 
-            } else { return false}
-        }
-        function LPGRetailer(email) {
-            var msg = confirm("Are you sure you want to navigate to LPG retailer (Category D) portal?");
-            if (msg === true) {
-                window.location.href = "https://lpgretailer.dpr.gov.ng/Account/Login?Email=" + email;
+    //        } else { return false}
+    //    }
+    //    function LPGRetailer(email) {
+    //        var msg = confirm("Are you sure you want to navigate to LPG retailer (Category D) portal?");
+    //        if (msg === true) {
+    //            window.location.href = "https://lpgretailer.dpr.gov.ng/Account/Login?Email=" + email;
 
-            } else { return false }
-        }
+    //        } else { return false }
+    //    }
 
-    </script>
+    //</script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

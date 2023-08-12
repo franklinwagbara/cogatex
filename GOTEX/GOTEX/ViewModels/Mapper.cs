@@ -9,6 +9,7 @@ namespace GOTEX.ViewModels
         {
             CreateMap<SurveyViewModel, Survey>().ReverseMap();
             CreateMap<ApplicationViewModel, Application>().ReverseMap();
+            CreateMap<DFormViewModel, DeclarationForm>().ReverseMap();
         }
     }
 }

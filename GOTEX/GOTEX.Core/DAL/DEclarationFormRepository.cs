@@ -2,6 +2,7 @@
 using GOTEX.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GOTEX.Core.DAL
@@ -20,24 +21,17 @@ namespace GOTEX.Core.DAL
             throw new NotImplementedException();
         }
 
-        public DeclarationForm FindById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public DeclarationForm FindById(int id) =>_context.DeclarationForms.FirstOrDefault(f => f.Id == id);
 
-        public List<DeclarationForm> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public List<DeclarationForm> GetAll() => _context.DeclarationForms.ToList();
 
-        public List<DeclarationForm> GetListByUserId(string id)
-        {
-            throw new NotImplementedException();
-        }
+        public List<DeclarationForm> GetListByUserId(string id) => _context.DeclarationForms.Where(x => x.UserId.Equals(id)).ToList();
 
         public DeclarationForm Insert(DeclarationForm item)
         {
-            throw new NotImplementedException();
+            _context.DeclarationForms.Add(item);
+            _context.SaveChanges();
+            return item;
         }
 
         public void Remove(int id)

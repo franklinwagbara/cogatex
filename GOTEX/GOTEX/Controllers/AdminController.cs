@@ -338,7 +338,7 @@ namespace GOTEX.Controllers
                                 _hostingEnvironment.WebRootPath,
                                 _emailSettings.Stringify().Parse<Dictionary<string, string>>());
                             TempData["message"] = "You have APPROVED this Application (" + application.Reference +
-                                                  ")  and Approval has issud with Approval No: " + permitnumber;
+                                                  ")  and Approval has been issued with Approval No: " + permitnumber;
                         }                        
                         _message.Update(message);
                         Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(), application.LastAssignedUserId, message.Subject, message.Content);
@@ -651,6 +651,7 @@ namespace GOTEX.Controllers
         }
 
         public IActionResult PaymentEvidences() => View(_paymentEvidence.GetAll());
+
         public IActionResult EditPaymentEvidence(int id) => View(_paymentEvidence.FindById(id));
 
         [HttpPost]

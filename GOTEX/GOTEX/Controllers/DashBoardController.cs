@@ -74,15 +74,7 @@ namespace GOTEX.Controllers
                 }).ToList();
 
             if (User.IsInRole("Company"))
-            {
-                var myapplications = allapps.Where(x => x.UserId == user.Id) .ToList();
-                model.All = myapplications.Count;
-                model.MyDesk = allapps.Count(x =>
-                    x.LastAssignedUserId == user.Email && x.Status != ApplicationStatus.Completed);
-                model.Processing = myapplications.Count(x => x.Status.ToLower().Equals("processing"));
-                model.Declined = myapplications.Count(x => x.Status.ToLower().Equals("rejected"));
-                model.Approved = myapplications.Count(x => x.Status.ToLower().Equals("completed"));
-            }
+                return RedirectToAction("Dashboard", "Company");
             else
             {
                 if (User.IsInRole("Planning"))
