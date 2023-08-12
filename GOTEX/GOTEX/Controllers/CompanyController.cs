@@ -90,7 +90,7 @@ namespace GOTEX.Controllers
                     model.Processing = myapplications.Count(x => x.Status.ToLower().Equals("processing"));
                     model.Declined = myapplications.Count(x => x.Status.ToLower().Equals("rejected"));
                     model.Approved = myapplications.Count(x => x.Status.ToLower().Equals("completed"));
-                    var permits = _permit.GetCompanyPermits(user.Id).Select(x => x.Id);
+                    var permits = _permit.GetCompanyPermits(user.Id).Where(x => x.DateIssued > new DateTime(2023, 07, 01, 00, 00, 00)).Select(x => x.Id);
                     var surveys = _survey.GetAll();
                     int sCnt = 0;
                     foreach (var p in permits)
