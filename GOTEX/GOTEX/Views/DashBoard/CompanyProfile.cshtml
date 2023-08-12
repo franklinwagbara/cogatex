@@ -120,7 +120,7 @@
                             &nbsp;<span class="req">*</span>
                             <small><i>(Tax Identification Number)</i></small>
                             <div class="">
-                                @Html.TextBoxFor(model => model.Company.tin_Number, new {@class = "form-control", required = "required"})
+                                @Html.TextBoxFor(model => model.Company.tin_Number, new {@class = "form-control", required = "required", @maxlength="16"})
                             </div>
                         </div>
                         @if (User.IsInRole("Company"))
