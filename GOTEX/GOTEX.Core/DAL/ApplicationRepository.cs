@@ -193,7 +193,7 @@ namespace GOTEX.Core.DAL
             .Include("Terminal")
             .Include("Product")
             .Include(x => x.Facility)
-            .Include("PaymentEvidence")
+            .Include("PaymentEvidence").Include("Histories")
             .Include(p => p.Permit)
             .Where(x => x.Status.Equals(ApplicationStatus.Completed)).ToList();
 

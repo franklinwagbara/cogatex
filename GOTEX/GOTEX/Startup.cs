@@ -14,7 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rotativa.AspNetCore;
 using AutoMapper;
-
+using GOTEX.HostedServices;
 
 namespace GOTEX
 {

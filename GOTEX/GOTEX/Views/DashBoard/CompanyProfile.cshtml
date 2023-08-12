@@ -110,8 +110,9 @@
                             <label class="control-label" for="Company_Year_Incorporated">Year Incorporated</label>
                             &nbsp;<span class="req">*</span>
                             <div class="input-group">
-                                @Html.TextBoxFor(model => model.Company.year_Incorporated, new {@class = "form-control", required = "required"})
                                 <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+                                @*@Html.TextBoxFor(model => model.Company.year_Incorporated, new {@class = "form-control", required = "required", @id="datepicker"})*@
+                                <input type="text" name="Company.year_Incorporated" value="@Model.Company.year_Incorporated" class="form-control" required id="datepicker" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -265,12 +266,17 @@
     </div>
     
 </div>
+<style>
+    .ui-datepicker-calendar {
+    display: none;
+    }
+</style>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="@Url.Content("/Scripts/js/vendor/jquery.ui.widget.js")" type="text/javascript"></script>
 <script src="@Url.Content("/Scripts/js/jquery.iframe-transport.js")" type="text/javascript"></script>
 <script src="@Url.Content("/Scripts/js/jquery.fileupload.js")" type="text/javascript"></script>
-
+<script src="~/Scripts/DateTimePicker/jquery.datetimepicker.js"></script>x
 <script type="text/javascript">
     $(document).ready(function () {
         $('#updateProfile').click(function (e) {
@@ -356,81 +362,107 @@
                 }
             });
         });
+
+
     });
     
     $(function () {
-                if (''.length > 0) {
-                    $("ul.nav-tabs > li").addClass("disabled").find("a").attr("disabled", "disabled");
-                    if ('Directors'.length > 0) {
-                        //Remove all active views 1st
+        var nowD = new Date();
+        $("#datepicker").datepicker({
+            dateFormat: 'yy',
+            yearRange: "c-100:c",
+            changeYear: true,
+            changeMonth: false,
+            showButtonPanel: false,
+            minViewMode: 2,
+            onClose: function (dateText, inst) {
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).val($.datepicker.formatDate('yy', new Date(year, 1, 1)));
+            }
+        });
+
+        $("#datepicker").on('change', function(){
+            var dateObject = new Date($(this).datepicker('getDate')).toISOString();
+            var date = parseInt(dateObject.split('-')[0]) + 1;
+            if(date > new Date().getFullYear())
+            {
+                date = new Date().getFullYear();
+            }
+            $(this).val(date);
+        });
+
+        if (''.length > 0) {
+            $("ul.nav-tabs > li").addClass("disabled").find("a").attr("disabled", "disabled");
+            if ('Directors'.length > 0) {
+                //Remove all active views 1st
     
-                        $(".tab-content div").each(function () {
-                            $(this).removeClass("active");
-                        });
-    
-                        $("ul.nav-tabs li").each(function () {
-                            $(this).removeClass("active");
-                        });
-    
-                        var view = 'div#Directors';
-                        var lnk = '#li' + 'Directors';
-                        $(lnk).addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
-                        $(view).addClass("active");
-    
-                        switch ('Directors') {
-                            case "Profile":
-                                break;
-                            case "Address":
-                                $("#liProfile").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
-                                break;
-                            case "KeyStaffs":
-                                $("#liProfile").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
-                                $("#liAddress").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
-                                $("#liDirectors").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
-                                break;
-                            default:
-    
-                        }
-                    }
-                    else {
-                        $("div#Profile").addClass("active");
-                        $("#liProfile").addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
-                    }
-                }
-                else {
-                    $("div#Profile").addClass("active");
-                    $("#liProfile").addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
-                }
-    
-                $("ul.nav-tabs > li > a[disabled='disabled']").click(function (e) {
-                    e.preventDefault();
-                    if ($(this).parent("li").hasClass("tab-done")) {
-                        //Do nothing
-                    }
-                    else {
-                        $("#modalPopup").on('show.bs.modal', function () {
-                            var modal = $(this);
-                            modal.find('.modal-title').text('Alert');
-                            modal.find('.modal-body').text('Please Complete this step before proceeding. Use the button(s) below to Proceed.');
-                            modal.find('.modal-footer').html('<button class="btn btn-default" data-dismiss="modal">Close</button>');
-                        });
-                        $("#modalPopup").modal('show');
-    
-                        return false;
-                    }
+                $(".tab-content div").each(function () {
+                    $(this).removeClass("active");
                 });
     
-    
-                $(".imgSilent").click(function (e) {
-                    e.preventDefault();
-                    var url = $(this).data("url");
-    
-                    $(".modal-content").html(Loading());
-                    $.get(url, function (data) {
-                        $(".modal-content").html(data);
-                    });
+                $("ul.nav-tabs li").each(function () {
+                    $(this).removeClass("active");
                 });
     
+                var view = 'div#Directors';
+                var lnk = '#li' + 'Directors';
+                $(lnk).addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
+                $(view).addClass("active");
+    
+                switch ('Directors') {
+                    case "Profile":
+                        break;
+                    case "Address":
+                        $("#liProfile").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                        break;
+                    case "KeyStaffs":
+                        $("#liProfile").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                        $("#liAddress").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                        $("#liDirectors").addClass("tab-done").removeClass("disabled").find("a").removeClass("disabled").append(' <i class="fa fa-check-circle"></i>');
+                        break;
+                    default:
+    
+                }
+            }
+            else {
+                $("div#Profile").addClass("active");
+                $("#liProfile").addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
+            }
+        }
+        else {
+            $("div#Profile").addClass("active");
+            $("#liProfile").addClass("active").removeClass("disabled").find("a").removeAttr("disabled");
+        }
+    
+        $("ul.nav-tabs > li > a[disabled='disabled']").click(function (e) {
+            e.preventDefault();
+            if ($(this).parent("li").hasClass("tab-done")) {
+                //Do nothing
+            }
+            else {
+                $("#modalPopup").on('show.bs.modal', function () {
+                    var modal = $(this);
+                    modal.find('.modal-title').text('Alert');
+                    modal.find('.modal-body').text('Please Complete this step before proceeding. Use the button(s) below to Proceed.');
+                    modal.find('.modal-footer').html('<button class="btn btn-default" data-dismiss="modal">Close</button>');
+                });
+                $("#modalPopup").modal('show');
+    
+                return false;
+            }
+        });
+    
+    
+        $(".imgSilent").click(function (e) {
+            e.preventDefault();
+            var url = $(this).data("url");
+    
+            $(".modal-content").html(Loading());
+            $.get(url, function (data) {
+                $(".modal-content").html(data);
             });
+        });
+    
+    });
 </script>
 

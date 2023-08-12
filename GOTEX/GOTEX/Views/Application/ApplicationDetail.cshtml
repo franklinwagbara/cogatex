@@ -2,6 +2,7 @@
 @inject IAppHistory<ApplicationHistory> _history
 @inject IApplication<Application> _application
 @inject IPayment<PaymentApproval> _payment
+@using GOTEX.Core.Utilities
 
 @{
     ViewBag.Title = "Application details for  " + Model.ApplicationType.Name + " Phase: " + Model.ApplicationType.ShortName + " Permit";
@@ -9,11 +10,12 @@
     int cnt = 0;
     int count = 0;
     var AppDocs = (List<DocumentType>)ViewBag.ApplicationDocs;
-    
+
     if (Model.Status.ToLower() == "approved" || Model.Status.ToLower() == "completed") { alertx = "label-success"; }
     else if (Model.Status.ToLower() == "processing" || Model.Status.ToLower() == "payment confirmed") { alertx = "label-info"; }
     else if (Model.Status.ToLower() == "pending" || Model.Status.ToLower() == "payment pending") { alertx = "label-warning"; }
     else { alertx = "label-danger"; }
+    string back = User.IsInRole(Roles.Company) ? Url.Action("Index", "Company") : Url.Action("All", "Application");
 }
 
 <center>
@@ -22,7 +24,7 @@
             <span style="float: left;">
                 <h2>Application Information: Reference No:- @Model.Reference</h2>
             </span>
-            <span style="float: right;"><a href="#" class="btn btn-primary"><i class="fa fa-backward">Back</i></a></span>
+            <span style="float: right;"><a href="@back" class="btn btn-primary"><i class="fa fa-backward">Back</i></a></span>
         </div>
     <hr/>
     @if (ViewData["AppSubmit"] != null)

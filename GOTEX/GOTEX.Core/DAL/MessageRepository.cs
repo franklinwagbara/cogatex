@@ -83,8 +83,8 @@ namespace GOTEX.Core.DAL
                     msg.Content = msgBody;
                     Update(msg);
 
-                    if (!string.IsNullOrEmpty(msg.Content) && msg.Content.Contains("DPR COTAGEX"))
-                        msg.Content = msg.Content.Replace("DPR COTAGEX", "NUPRC COGATEX");
+                    if (!string.IsNullOrEmpty(msg.Content) && msg.Content.Contains("DPR COGATEX"))
+                        msg.Content = msg.Content.Replace("DPR COGATEX", "NUPRC COGATEX");
 
                     Utils.SendMail(mailSettings, application.User.Email, subject, msgBody);
 

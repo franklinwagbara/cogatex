@@ -26,9 +26,9 @@
             and indemnities.
         </div>
         <div class="text-left">
-            <form method="post" role="form">
+            <form method="post" role="form" id="dfFrm">
                 <div>
-                    <table class="table table-striped">
+                    <table class="table table-striped" style="color: black;">
                         <thead>
                             <tr>
                                 <th></th>
@@ -97,7 +97,7 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <input asp-for="StaffBribe" class="form-control" />
+                                    <textarea asp-for="StaffBribe" class="form-control" cols="10" rows="4" style="width: 20em;"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -221,7 +221,7 @@
                             Federal High Court
                         </span>
                     </div>
-                </div><br /><br /><br /><br /><br />
+                </div><br /><br /><br /><br /><br /><br />
                 <div style="font-style:italic; font-weight: bold;" class="text-center">
                     <u>Section C</u>
                 </div>
@@ -242,7 +242,7 @@
                 @if (string.IsNullOrEmpty(Model?.PrintType))
                 {
                     <div class="form-group text-center">
-                        <input type="submit" class="btn btn-warning" value="Submit and Print Declaration form" />
+                        <input type="submit" class="btn btn-warning btnSubmitDF" value="Submit and Print Declaration form" />
                     </div>
                 }
                 
@@ -252,3 +252,16 @@
 
     </center>
 </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        alert("You are required to fill a Declaration form for this quarter before you can apply.");
+        
+        $(document).on('click', '.btnSubmitDF', function(e){
+            e.preventDefault();
+            $('.btnSubmitDF').attr('disabled', 'true');
+            $('#dfFrm').submit();
+
+        });
+    });
+</script>

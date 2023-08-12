@@ -47,7 +47,7 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>RRR</th>
+                @*<th>RRR</th>*@
                 <th>Company Name</th>
                 <th>Application Reference</th>
                 <th>Amount paid</th>
@@ -64,7 +64,7 @@
                 count++;
                 <tr>
                     <td>@count</td>
-                    <td>@payment.PaymentId</td>
+                    @*<td>@payment.PaymentId</td>*@
                     <td>@payment.Application.User.Company.Name</td>
                     <td>@payment.Application.Reference</td>
                     <td>@payment.Application.PaymentEvidence?.Amount</td>

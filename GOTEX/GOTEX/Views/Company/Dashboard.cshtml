@@ -259,7 +259,7 @@
     $(document).ready(function (){
         var survey = $("#newSurvey").val();
         if(survey > 0){
-            $(".modal-body").html("Survey form have not been submitted for " + survey + " approval(s). Kindly fill and submit for review.");
+            $(".modal-body").html("<h2 class='text-center'>Attention!!!</h3><p>Survey form have not been submitted for " + survey + " approval(s). <br/>We would appreciate you fill the survey form, this would help us serve you better.</p>");
             $("#msgModal").show();
         }
         $(".msgmodal").click(function (e){

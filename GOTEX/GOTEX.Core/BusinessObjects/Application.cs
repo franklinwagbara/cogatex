@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -53,6 +55,7 @@ namespace GOTEX.Core.BusinessObjects
         [ForeignKey("FacilityId")]
         public Facility Facility { get; set; }
         public virtual Permit Permit { get; set; }
+        public virtual ICollection<ApplicationHistory> Histories { get; set; }
 
         [NotMapped]
         public string ViewType { get; set; }

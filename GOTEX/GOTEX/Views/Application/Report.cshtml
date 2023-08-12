@@ -1,7 +1,6 @@
 ﻿@model List<Application>
 @inject IRepository<Quarter> _quarter
 
-
 @{
     ViewData["Title"] = "All Approved Applications";
     int count = 0;
@@ -47,8 +46,9 @@
                 <th>F.O.B Value (USD)</th>
                 <th>Export Terminal</th>
                 <th>Year</th>
-                <th>Issued Date</th>
+                <th>Date Approved</th>
                 <th>Expiry Date</th>
+                <th>Date Submitted</th>
             </tr>
             </thead>
             <tbody>
@@ -68,6 +68,7 @@
                     <td>@app.Year</td>
                     <td>@app.Permit.DateIssued.ToString("MMM dd yyyy hh:mm:ss")</td>
                     <td>@app.Permit.ExpiryDate.ToString("MMM dd yyyy hh:mm:ss")</td>
+                        <td>@app.Histories.FirstOrDefault(x => !x.ProcessingUserRole.Equals("Company")).DateAssigned.ToString("MMM dd yyyy hh:mm:ss")</td>
                 </tr>
             }
             </tbody>

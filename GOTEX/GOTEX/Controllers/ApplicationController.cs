@@ -203,6 +203,7 @@ namespace GOTEX.Controllers
             return RedirectToAction("Index", "DashBoard");
         }
 
+        #region Declaration Form
         public IActionResult AddDelcarationForm()
         {
             var model  = new DFormViewModel
@@ -235,7 +236,7 @@ namespace GOTEX.Controllers
                 Year = DateTime.Now.Year,
                 UserId = _userManager.Users.FirstOrDefault(x => x.Email.Equals(User.Identity.Name)).Id
             });
-            TempData["Message"] = "Declaration form for this quaretr have been saved successfully. You can proceed with your application";
+            TempData["Message"] = "Declaration form for this quarter have been saved successfully. You can proceed with your application";
             return RedirectToAction("PrintDeclarationForm", new { form .Id });
         }
 
@@ -254,6 +255,7 @@ namespace GOTEX.Controllers
             }.BuildFile(ControllerContext);
             return File(new MemoryStream(pdf), "application/pdf");
         }
+        #endregion
 
         [HttpGet]
         public IActionResult UploadApplicationDocuments(int id)
@@ -426,7 +428,7 @@ namespace GOTEX.Controllers
                 ViewBag.ApplicationDocs = _application.GetApplicationFiles(id);
                 ViewBag.History = _history.GetApplicationHistoriesById(id);
                 ViewData["Id"] = id;
-                ViewData["AppSubmit"] = $"Your application has been created.\n Please click the button below to submit application to Planning Department.";
+                ViewData["AppSubmit"] = $"Your application has been submitted.\n The uploaded payment evidence is being processed/confirmed by the Planning Department.";
                 
             }
             catch (Exception ex)

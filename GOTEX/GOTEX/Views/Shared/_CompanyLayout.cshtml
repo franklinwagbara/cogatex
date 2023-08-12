@@ -44,19 +44,19 @@
     {
         <div class="navbar navbar-inverse navbar-fixed-top shadow">
             <div class="container">
-                <div class="navbar-header">
+                <span class="navbar-header" style="margin-top: 0.7em !important;">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="#" style="padding-top: 2em !important;">
-                        <img class="img-circle" src="@Url.Content("~/Images/NUPRC.png")" width="80" height="67" alt="COGATEX" />
+                    <a href="#" style="padding-top: 5em !important;">
+                        <img class="img-circle" src="@Url.Content("~/Images/NUPRC.png")" width="70" alt="COGATEX" />
                         <span style="color: white; font-weight: bold; font-size: x-large; margin-top: 10px !important;">GATEX</span>
                     </a>
-                </div>
+                </span>
 
-                <div class="navbar-collapse collapse">
+                <span class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav">
                         <li><a href="@Url.Action("Dashboard", "Company")">&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
@@ -92,7 +92,7 @@
                         @Html.AntiForgeryToken()
                         <ul class="nav navbar-nav navbar-right" style="margin-top: 10px;">
                             <li>
-                                <a href="#">Hello @User.Identity.Name</a>
+                                <a href="#">Hello @User.Identity.Name!</a>
                             </li>
                             <li>
                                 <button type="submit" class="initLogoff"><i class="fa fa-power-off fa-2x" aria-hidden="true"></i></button>
@@ -100,7 +100,7 @@
                         </ul>
                     </form>
 
-                </div>
+                </span>
             </div>
         </div>        
     }
