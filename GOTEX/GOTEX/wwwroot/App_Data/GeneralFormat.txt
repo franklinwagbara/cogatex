@@ -17,7 +17,7 @@
                     {1}
                 </div>
                 <div style="text-align: center; padding: 10px 0 10px 0;">
-                    Click <a href="https://gatex.nuprc.gov.ng" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px;">here</a> to get started.
+                    Click <a href="https://gatex.nuprc.gov.ng" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px;">here</a> to view application.
                 </div>
                 <p>
                     NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION<br />

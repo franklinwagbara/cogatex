@@ -58,7 +58,7 @@
                     </table>
                 </p>
                 <p>
-                    Please <a href="https://epa.dpr.gov.ng">Login</a> to Depot portal to review your application and resubmit it
+                    Please <a href="https://gatex.nuprc.gov.ng">Login</a> to GATEX portal to review your application and resubmit it
                 </p>
 
                 <p>
