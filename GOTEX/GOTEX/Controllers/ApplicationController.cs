@@ -109,6 +109,9 @@ namespace GOTEX.Controllers
         private int GetQuarterId()
         {
             int quarterid = 0;
+            var date = DateTime.UtcNow.AddDays(1);
+            var month = date.Month;
+
             switch (DateTime.Now.Month)
             {
                 case 1:
@@ -130,6 +133,9 @@ namespace GOTEX.Controllers
                 default:
                     break;
             }
+
+            //if(month >= 2 |)
+
             return quarterid;
         }
 

@@ -17,7 +17,7 @@
                     {1}
                 </div>
                 <div style="text-align: center; padding: 10px 0 10px 0;">
-                    Click <a href="{4}" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px; text-decoration: none;">here</a> to get started.
+                    Click <a href="{4}" style=" color: #FFFFFF; background-color: #5cb85c; padding: 10px; text-decoration: none;">here</a> to view application.
                 </div>
                 <p>
                     NIGERIAN UPSTREAM PETROLEUM REGULATORY COMMISSION<br />
