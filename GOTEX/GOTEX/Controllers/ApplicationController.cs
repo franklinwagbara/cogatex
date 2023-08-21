@@ -117,19 +117,23 @@ namespace GOTEX.Controllers
                 case 1:
                 case 2:
                 case 3:
-                    quarterid = 1; break;
+                        quarterid = 2;
+                    break;
                 case 4:
                 case 5:
                 case 6:
-                    quarterid = 2; break;
+                        quarterid = 3;
+                    break;
                 case 7:
                 case 8:
                 case 9:
-                    quarterid = 3; break;
+                        quarterid = 4;
+                    break;
                 case 10:
                 case 11:
                 case 12:
-                    quarterid = 4; break;
+                        quarterid = 1;
+                    break;
                 default:
                     break;
             }
