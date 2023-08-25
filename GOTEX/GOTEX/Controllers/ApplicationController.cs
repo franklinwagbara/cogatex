@@ -84,19 +84,20 @@ namespace GOTEX.Controllers
             ViewBag.ApplicationTypes = _appConfig.GetApplicationTypes();
             var quarters = _appConfig.GetQuarters().Stringify().Parse<List<Quarter>>();
 
-            var dform = await VerifyDeclarationForm();
+            //var dform = await VerifyDeclarationForm();
 
-            if (dform)
-            {
-                quarters = LatePaymentText(quarters);
+            //if (dform)
+            //{
+                
+            //}
+            quarters = LatePaymentText(quarters);
 
-                ViewBag.Quarters = quarters;
-                ViewBag.Terminals = _appConfig.GetTerminal().Stringify().Parse<List<Terminal>>();
-                ViewBag.Products = _appConfig.GetGasProducts().Stringify().Parse<List<Product>>();
+            ViewBag.Quarters = quarters;
+            ViewBag.Terminals = _appConfig.GetTerminal().Stringify().Parse<List<Terminal>>();
+            ViewBag.Products = _appConfig.GetGasProducts().Stringify().Parse<List<Product>>();
 
-                return View(new Application());
-            }
-            return RedirectToAction("AddDelcarationForm");
+            return View(new Application());
+            //return RedirectToAction("AddDelcarationForm");
         }
 
         private async Task<bool> VerifyDeclarationForm()
