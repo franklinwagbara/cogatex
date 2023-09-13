@@ -178,7 +178,12 @@ namespace GOTEX.Core.DAL
                         users = users.Where(x => x.IsActive).ToList();
 
                     if (users.Count > 1)
-                        nextofficer = users.OrderBy(x => x.LastJobDate).FirstOrDefault();
+                    {
+                        if (users.Any(u => u.LastJobDate == null))
+                            nextofficer = users.FirstOrDefault(u => u.LastJobDate == null);
+                        else
+                            nextofficer = users.OrderBy(x => x.LastJobDate).FirstOrDefault();
+                    }
                     else if(users.Count == 1)
                         nextofficer = users.FirstOrDefault(x => x.IsActive);
                 }
