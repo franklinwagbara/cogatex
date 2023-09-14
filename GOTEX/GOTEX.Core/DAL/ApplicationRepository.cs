@@ -263,6 +263,7 @@ namespace GOTEX.Core.DAL
             .Include("PaymentEvidence")
             .Include(p => p.Permit)
             .Where(x => x.LastAssignedUserId.Equals(id)).ToList();
+
         public List<Application> GetListByUserId(string id) 
             => _context.Applications
             .Include("User.Company")
@@ -272,7 +273,7 @@ namespace GOTEX.Core.DAL
             .Include("Product")
             .Include(x => x.Facility)
             .Include("PaymentEvidence")
-            .Include("Permit").Where(x => x.UserId == id).ToList();
+            .Include("Permit").Where(x => !string.IsNullOrEmpty(x.LastAssignedUserId) && x.UserId == id).ToList();
         public object GetApplicationFiles(int id)
         {
             var docs = new List<DocumentType>();
