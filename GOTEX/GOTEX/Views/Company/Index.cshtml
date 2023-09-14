@@ -140,7 +140,7 @@
                             <a href="/Application/ViewHistory/@item.Id" class="btn btn-xs btn-warning "> View History <i class="glyphicon glyphicon-remove"></i></a>
                         </div>
                     }
-                    else if (item.Status == ApplicationStatus.Rejected)
+                    else if (item.Status == ApplicationStatus.Rejected && item.LastAssignedUserId.Equals(User.Identity.Name))
                     {
                         <div class="btn-group">
         

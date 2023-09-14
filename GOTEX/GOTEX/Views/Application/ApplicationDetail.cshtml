@@ -313,7 +313,7 @@
         </div>
         
             
-        @if (Model.Status.Equals(ApplicationStatus.Rejected))
+        @if (Model.Status.Equals(ApplicationStatus.Rejected) && Model.LastAssignedUserId.Equals(Model.User.Email))
         {
             <div>
                 <a class="btn btn-sm btn-warning" href="/Application/Resubmit/@Model.Id">Continue</a>
