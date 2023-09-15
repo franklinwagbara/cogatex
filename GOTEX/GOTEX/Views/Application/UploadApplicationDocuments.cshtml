@@ -9,6 +9,7 @@
     string baseDocUpload = "";
 }
 <center>
+    <div id="frmDocUpload">
         <form action="/Application/UploadApplicationDocuments" method="post" enctype="multipart/form-data" id="frmUpload">
             <div>
                 <input type="hidden" id="companyId" name="companyId" value="@ViewBag.companyId" />
@@ -54,7 +55,9 @@
                             var editDoc = "editDoc" + i;
                             var complete = "complete" + i;
                             var fl = "filebtn" + i;
-                            var source = Model[i].Source.StartsWith("http") ? Model[i].Source : _appConfig.GetElpsUrl() + Model[i].Source.Replace("~", ""); //"http://localelps.dpr.gov.ng"
+                            var fd = "facDoc_" + i;
+                                var met = "POST";
+                                var source = Model[i].Source.StartsWith("http") ? Model[i].Source : _appConfig.GetElpsUrl() + Model[i].Source.Replace("~", ""); //"http://localelps.dpr.gov.ng"
                 
                             <tr class="form-group">
                                 <td>@index</td>
@@ -62,6 +65,16 @@
                                     <input type="hidden" name="@application_id" value="@ViewBag.appId" />
                                     <input type="hidden" name="@document_id" value="@Model[i].CoyFileId" id="@did" />
                                     <input type="hidden" name="@document_type_id" value="@Model[i].Id" />
+                                    @if (!Model[i].Type.ToLower().Equals("facility"))
+                                    {
+                                            <input type="hidden" name="facDoc" id="@fd" value="false" />
+                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/UploadCompanyDoc/" + Model[i].Id + "/" + ViewBag.companyId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512(); met = "PUT";
+                                        }
+                                    else
+                                    {
+                                        <input type="hidden" name="facDoc" id="@fd" value="true" />
+                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
+                                        }
                 
                                     @if (Model[i].Name.ToLower() == "other document")
                                     {
@@ -96,7 +109,8 @@
                                         <input type="file" id="@fl" class="docEdit" data-doctypeid="@Model[i].Id"
                                                data-compid="@ViewBag.companyId" data-docOwner="@Model[i].Type"
                                                accept="image/gif, image/png, image/jpeg, application/pdf" data-i="@i"
-                                               data-docid="@Model[i].CoyFileId" data-status="@Model[i].ParentSelected" />
+                                                   data-docid="@Model[i].CoyFileId" data-location="@baseDocUpload" 
+                                                   data-status="@Model[i].ParentSelected" data-met="@met" />
                 
                                     </div>
                                 </td>
@@ -246,6 +260,7 @@
             </div>
         
         </form>
+    </div>
 </center>
 
 @section scripts{
@@ -302,7 +317,6 @@
                  //         $('#frmUpload').submit();
                  //      }
                  //  });
-                $("#frmUpload").addClass("Submitloader");
                 $('#frmUpload').submit();
                //$("#frmUpload").removeClass("Submitloader");
                //$(this).removeAttr("disabled");
@@ -325,21 +339,23 @@
                     url: loc,
                     done: function (e, data) {
                         var file = data.result
-                        $('#document' + i).val(file.FileId);
+                        //$('#document' + i).val(file.FileId);
                         $(this).removeAttr("required").css("display", "none");
                         //alert(JSON.stringify(file));//prefix +
                         var str = file.source.replace("~", "");
-                        var src = str.match('.pdf$') ? '/Content/Images/pdf-icon.png' :  str;
+                        var src = str.match('.pdf$') ? '/Images/pdficon.png' :  str;
                         var respContent = '<div style="float: left; width: 48%;"><img src="' + src + '" class="thumbnail" style="height: 80px;" />';
                         respContent += '</div><br />';
                         respContent += '<a href="#" class="btn btn-xs btn-danger delFile" data-i="' + i + '" data-toggle="modal" data-target="#modalPopup" data-fileid="' + file.FileId + '"><i class="fa fa-times"></i> Delete</a>';
                         respContent += '</div><div class="clearfix"></div>';
                         $("#extFileName-" + i).html(respContent);
+                        $("#frmDocUpload").removeClass('Submitloader');
                         // $.get('/application/updateappdoc?docTypeId=' + docTypeId + '&appid=' + appId + '&docId=' + file.FileId, function (e) {
                         //     //alert(e);
                         // });
                     },
                     fail: function (e, data) {
+                        $("#frmDocUpload").removeClass('Submitloader');
                         $(this).css("display", "block");
                         $.each(data.messages, function (index, error) {
                             console.log(error);
@@ -361,6 +377,7 @@
                         ).text("");
                     },
                     progressall: function (e, data) {
+                        $("#frmDocUpload").addClass('Submitloader');
                         //alert(uid);
                         var progress = parseInt(data.loaded / data.total * 100, 10);
                         var progBox = '#extProgress-' + i + ' .progress-bar';
@@ -386,43 +403,38 @@
             $(document.body).on("click", '.docEdit', function () {
                 var compId = $(this).attr("data-compid");
                 var docTypeId = $(this).attr("data-doctypeid");
-                @*var docId = $(this).attr("data-docid");
-                var i = $(this).attr("data-i");
-
-                var loc = '@ELPSAPIHelper.ApiBaseUrl' + 'UpdateDocument/' + docId + '/' + status + '/' + '@ELPSAPIHelper.ApiEmail' + '/' + '@ELPSAPIHelper.ApiHash';
-                //var loc = '@ELPSAPIHelper.ApiBaseUrl' + 'CompanyDocument/UpdateFile/' + docId + '/@ViewBag.CompanyId' + '?docid=' + docId;
-                var prefix = '@ConfigurationManager.AppSettings["elpsBaseUrl"]';*@
-
+                
                 var docId = $(this).attr("data-docid");
                 var docOwner = $(this).attr("data-docOwner");
                 var i = $(this).attr("data-i");
-                //docOwner = docOwner.length > 0 ? docOwner : 'Company';
-
-                //var loc = 'ELPSAPIHelper.ApiBaseUrl' + 'UpdateDocument/' + docId + '/' + status + '/' + 'ELPSAPIHelper.ApiEmail' + '/' + 'ELPSAPIHelper.ApiHash';
-                var loc = '@_appConfig.GetElpsUrl()' + '/api/CompanyDocument/UpdateFile/' + docId + '/@ViewBag.companyId' + '/' + docOwner + '/?docid=' + docId;
-                var prefix = '@_appConfig.GetElpsUrl()';
                 
+                //var loc = '@_appConfig.GetElpsUrl()' + '/api/CompanyDocument/UpdateFile/' + docId + '/@ViewBag.companyId' + '/' + docOwner + '/?docid=' + docId;
+                var prefix = '@_appConfig.GetElpsUrl()';
+                var loc = $(this).attr("data-location");
+                var method = $(this).attr("data-met");
 
                 //alert(loc);
                 $(this).fileupload({
                     dataType: 'json',
                     url: loc,
-                    //method: 'PUT',
+                    //method: method,
                     done: function (e, data) {
                         var file = data.result
-                        $('#document' + i).val(file.FileId);
+                        //$('#document' + i).val(file.FileId);
                         $(this).removeAttr("required").css("display", "none");
                         //alert(JSON.stringify(file)); //prefix +
                         var str = file.source.replace("~", "");
-                        var src = str.match('.pdf$') ? '/Content/Images/pdf-icon.png' : str;
+                        var src = str.match('.pdf$') ? '/Images/pdficon.png' : str;
                         var respContent = '<div style="float: left; width: 48%;"><img src="' + src + '" class="thumbnail" style="height: 80px;" />';
                         respContent += '</div><br />';
                         respContent += '<a href="#" class="btn btn-xs btn-danger delFile" data-i="' + i + '" data-toggle="modal" data-target="#modalPopup" data-fileid="' + file.FileId + '"><i class="fa fa-times"></i> Delete</a>';
                         respContent += '</div><div class="clearfix"></div>';
                         $("#extFileName-" + i).html(respContent);
+                        $("#frmDocUpload").removeClass('Submitloader');
 
                     },
                     fail: function (e, data) {
+                        $("#frmDocUpload").removeClass('Submitloader');
                         $(this).css("display", "block");
                         $.each(data.messages, function (index, error) {
                            // alert(data.messages);
@@ -444,6 +456,7 @@
                         ).text("");
                     },
                     progressall: function (e, data) {
+                        $("#frmDocUpload").addClass('Submitloader');
                         //alert(uid);
                         var progress = parseInt(data.loaded / data.total * 100, 10);
                         var progBox = '#extProgress-' + i + ' .progress-bar';
@@ -529,7 +542,6 @@
                     }
                 });
             });
-
         });
     </script>
 

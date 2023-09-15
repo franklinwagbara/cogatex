@@ -330,6 +330,7 @@ namespace GOTEX.Controllers
                 bool res = false;
                 var mailmessage = _elps.GetMailMessages();
                 var application = _application.FindById(id);
+                var docs = _application.GetApplicationFiles(id).Stringify().Parse<List<DocumentType>>();
                 if (application.Status.Equals("Rejected"))
                 {
                     res = await _history.CreateNextProcessingPhase(application, "ResubmitApplication");
