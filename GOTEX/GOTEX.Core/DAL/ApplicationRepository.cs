@@ -389,7 +389,7 @@ namespace GOTEX.Core.DAL
                 else
                 {
                     var existingdocs = companyDocs.OrderByDescending(x => x.Id)
-                        .FirstOrDefault(y => y.Document_Type_Id == docId && y.Id == addedDocuments.DocumentId && !y.Archived);
+                        .FirstOrDefault(y => y.Document_Type_Id == docId && !y.Archived);
                     if (existingdocs != null && docItem != null)
                     {
                         if (addedDocuments != null && addedDocuments.IsUploaded)
