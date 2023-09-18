@@ -58,6 +58,7 @@
                             var fd = "facDoc_" + i;
                                 var met = "POST";
                                 var source = Model[i].Source.StartsWith("http") ? Model[i].Source : _appConfig.GetElpsUrl() + Model[i].Source.Replace("~", ""); //"http://localelps.dpr.gov.ng"
+
                 
                             <tr class="form-group">
                                 <td>@index</td>
@@ -68,12 +69,14 @@
                                     @if (!Model[i].Type.ToLower().Equals("facility"))
                                     {
                                             <input type="hidden" name="facDoc" id="@fd" value="false" />
-                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/UploadCompanyDoc/" + Model[i].Id + "/" + ViewBag.companyId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512(); met = "PUT";
+                                            @*baseDocUpload = _appConfig.GetElpsUrl() + "/api/CompanyDocument/UpdateFile/" + Model[i].Document_Id + "/" + ViewBag.companyId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512(); met = "PUT";*@
+                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/CompanyDocument/UpdateFile/" + Model[i].Document_Id + "/" + ViewBag.companyId + "/Company?docid=" + Model[i].Document_Id;
                                         }
                                     else
                                     {
                                         <input type="hidden" name="facDoc" id="@fd" value="true" />
-                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();
+                                            @*baseDocUpload = _appConfig.GetElpsUrl() + "/api/Facility/UploadFile/" + Model[i].Id + "/" + ViewBag.companyId + "/" + ViewBag.FacilityId + "/" + _appConfig.GetAppEmail() + "/" + $"{_appConfig.GetAppEmail()}{_appConfig.GetAppKey()}".GenerateSHA512();*@
+                                            baseDocUpload = _appConfig.GetElpsUrl() + "/api/CompanyDocument/UpdateFile/" + Model[i].Document_Id + "/" + ViewBag.companyId + "/Facility?docid=" + Model[i].Document_Id;
                                         }
                 
                                     @if (Model[i].Name.ToLower() == "other document")
