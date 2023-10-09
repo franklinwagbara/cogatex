@@ -114,20 +114,17 @@ namespace GOTEX
                 Roles.Inspector,
                 Roles.Supervisor,
                 Roles.CTO,
-                Roles.HDS,
                 Roles.OOD,
                 Roles.Support,
                 Roles.Admin,
                 Roles.Staff,
                 Roles.ICT,
-                Roles.HGMR,
-                Roles.ACE,
                 Roles.ACE_STA,
-                Roles.ED_STA,
                 Roles.CCE,
                 Roles.ADCOGTO,
                 Roles.ECDP,
-                Roles.CCE_STA
+                Roles.CCE_STA,
+                Roles.OOCCE
             };
             foreach(var role in roles)
             {

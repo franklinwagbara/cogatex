@@ -308,11 +308,11 @@ namespace GOTEX.Controllers
             try
             {
                 var application = _application.FindById(model.APplicationId);
-                if (User.Identity.Name.Equals(application.LastAssignedUserId))
+                if (User.Identity.Name.Equals(application.LastAssignedUserId) || User.IsInRole(Roles.OOCCE))
                 {
                     if (User.IsInRole(Roles.CCE))
                         model.Report = model.Action.ToLower().Equals("approve") ? "Final approval by CCE" : "Application rejected by CCE";
-                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report);
+                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report, User.Identity.Name);
                     
                     var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
                     var message = new Message
@@ -325,11 +325,11 @@ namespace GOTEX.Controllers
                     _message.Insert(message);
                     var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
 
-                    if (User.IsInRole("CCE") && model.Action.Contains("Approve"))
+                    if ((User.IsInRole("CCE") || User.IsInRole("OOCCE")) && model.Action.Contains("Approve"))
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
-                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc..gov.ng/account/login?email={application.LastAssignedUserId}");
+                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
                         
                         application = _application.FindById(model.APplicationId);
                         if (application.Status.Equals(ApplicationStatus.Completed))

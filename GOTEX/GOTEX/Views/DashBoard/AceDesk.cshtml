@@ -42,7 +42,17 @@
                         <td>@app.Product.Name</td>
                         <td>@app.Status</td>
                         <td>@app.DateView</td>
-                        <td><a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a></td>
+                        <td>
+                            @if (User.IsInRole("OOCCE"))
+                            {
+                                <a href="/Admin/ViewApplication/@app.Id" class="btn btn-sm btn-info">View</a>
+                            }
+                            else
+                            {
+                                <a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a>
+                            }
+                            
+                        </td>
                     </tr>
                 }
                 </tbody>
