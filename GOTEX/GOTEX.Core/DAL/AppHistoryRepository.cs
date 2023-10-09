@@ -23,7 +23,8 @@ namespace GOTEX.Core.DAL
             _context = context;
             _userManager = userManager;
         }
-        public async Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null)
+
+        public async Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null, string loggedinUser = null)
         {
             try
             {
@@ -47,7 +48,7 @@ namespace GOTEX.Core.DAL
                         Status = !action.ToLower().Contains("approve")
                             ? nextaction.Status
                             : nextaction.Status + GetApplicationStatus(action, processingUser.UserRoles.FirstOrDefault().Role.Name),
-                        CurrentUser = processingUser.UserName,
+                        CurrentUser = await _userManager.IsInRoleAsync(processingUser, Roles.CCE) && !string.IsNullOrEmpty(loggedinUser) && !processingUser.Email.Equals(loggedinUser) ? loggedinUser : processingUser.Email,
                         CurrentUserRole = processingUser.UserRoles.FirstOrDefault().Role.Name,
                         DateAssigned = DateTime.UtcNow.AddHours(1),
                         DateTreated = DateTime.UtcNow.AddHours(1),
