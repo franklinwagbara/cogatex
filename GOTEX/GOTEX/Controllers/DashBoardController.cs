@@ -80,7 +80,7 @@ namespace GOTEX.Controllers
                 if (User.IsInRole("Planning"))
                     return RedirectToAction("Index", "Admin");
                 else if(User.IsInRole("ACE_STA") || User.IsInRole("ED_STA") || User.IsInRole(Roles.OOCCE) || User.IsInRole(Roles.CCE_STA))
-                    return RedirectToAction("AceDesk", "DashBoard");
+                    return RedirectToAction("CceDesk", "DashBoard");
 
                 model.All = allapps.Count;
                 model.Processing = allapps.Count(x => x.Status.ToLower().Equals("processing") || x.Status.ToLower().Equals("payment confirmed"));
@@ -244,7 +244,7 @@ namespace GOTEX.Controllers
             }
         }
 
-        public IActionResult AceDesk()
+        public IActionResult CceDesk()
         {
             ViewData["Title"] = "ECDP's Desk";
             var user = _userManager.Users

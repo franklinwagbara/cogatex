@@ -1892,3 +1892,4 @@ C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOT
 >>>>>>> cf33fc4a46b441a5a82de4c46357faccc86fc5d9
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\AddDelcarationForm.cshtml.g.cs
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Company\AllDeclarationnForms.cshtml.g.cs
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\CceDesk.cshtml.g.cs
