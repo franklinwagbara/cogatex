@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GOTEX.Core.BusinessObjects;
 
@@ -22,7 +23,7 @@ namespace GOTEX.Core.Repositories
         Task<object> ConfirmPayment(Application application, string appUrl, bool res);
         void InvalidatePaymentonElps(string webrootpath, Application application, string feedback, Dictionary<string, string> mailsettings);
         T Update(T item);
-        List<T> Report();
+        List<T> Report(DateTime min, DateTime max);
         (bool status, string hash, string message) ValidatePaymentEvidence(Dictionary<string, string> dic);
         bool UpdateList(List<T> itemList);
     }

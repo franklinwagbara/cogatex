@@ -185,7 +185,7 @@ namespace GOTEX.Core.DAL
             }
             return item;
         }
-        public List<Application> Report() =>
+        public List<Application> Report(DateTime min, DateTime max) =>
             _context.Applications
             .Include("User.Company")
             .Include("ApplicationType")
@@ -195,7 +195,7 @@ namespace GOTEX.Core.DAL
             .Include(x => x.Facility)
             .Include("PaymentEvidence").Include("Histories")
             .Include(p => p.Permit)
-            .Where(x => x.Status.Equals(ApplicationStatus.Completed)).ToList();
+            .Where(x => x.Status.Equals(ApplicationStatus.Completed) && x.Permit.DateIssued >= min && x.Permit.DateIssued <= max).ToList();
 
         public (bool status, string hash, string message)  ValidatePaymentEvidence(Dictionary<string, string> dic)
         {

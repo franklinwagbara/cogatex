@@ -5,12 +5,16 @@
             <span class="hide-menu">Desk </span>
         </a>
         <ul id="desk" class="collapse" data-toggle="collapse" aria-expanded="False">
+        @if (!User.IsInRole("OOCCE"))
+        {
             <li>
                 <a href="@Url.Content("~/Admin")">
-                    <i class="fa fa-home text-gray"> </i> 
+                    <i class="fa fa-home text-gray"> </i>
                     <span class="nav-label"> My Desk</span>
                 </a>
             </li>
+        }
+            
             <li>
                 <a href="@Url.Content("~/Admin/StaffDesk")">
                     <i class="fa fa-user text-gray"> </i> 
