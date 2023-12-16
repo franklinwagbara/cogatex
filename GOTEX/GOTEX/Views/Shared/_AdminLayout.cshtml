@@ -168,7 +168,7 @@
         <div class="navbar-header">
             <div class="navbar-brand">
                 <a href="#">
-                    <img src="@Url.Content("~/Images/lpgplant.PNG")" />
+                    @* <img src="@Url.Content("~/Images/lpgplant.PNG")" /> *@
                 </a>
             </div>
             <div class="navbar-left">
@@ -200,49 +200,6 @@
                 </ul>
                 @Html.AntiForgeryToken()
             </form>
-            
-            <ul class="nav navbar-nav pull-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sapn class="glyphicon glyphicon-transfer"></sapn> AGS Portal Navigation<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            @* <a href="#" id="Compression" onclick="CNGCompression('@userMaster.UserId')" >CNG Compression Station</a> *@
-                            <a href="#" id="Compression" onclick="CNGCompression('')" >CNG Compression Station</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @* <a href="#" id="CNGRefueling" onclick="CNGRefueling('@userMaster.UserId')">CNG Refueling</a> *@
-                            <a href="#" id="CNGRefueling" onclick="CNGRefueling('')">CNG Refueling</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @* <a href="#" id="Downloading" onclick="CNGDownloading('@userMaster.UserId')" >CNG Downloading Station</a> *@
-                            <a href="#" id="Downloading" onclick="CNGDownloading('')" >CNG Downloading Station</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @* <a href="#" id="Storage" onclick="LPGStorage('@userMaster.UserId')" >LPG Storage (Category A)</a> *@
-                            <a href="#" id="Storage" onclick="LPGStorage('')" >LPG Storage (Category A)</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @* <a href="#" id="Depot" onclick="LPGDepot('@userMaster.UserId')" >LPG Depot</a> *@
-                            <a href="#" id="Depot" onclick="LPGDepot('')" >LPG Depot</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            @* <a href="#" onclick="LPGPlant('@userMaster.UserId')" id="Plant">LPG Refilling Plant</a> *@
-                            <a href="#" onclick="LPGPlant('')" id="Plant">LPG Refilling Plant</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#" id="Retailers" onclick="LPGRetailer('')" >LPG Retailer (Category D)</a>
-                        </li>
-
-                    </ul>
-                </li>
-            </ul>
 
         </div>
     </div>

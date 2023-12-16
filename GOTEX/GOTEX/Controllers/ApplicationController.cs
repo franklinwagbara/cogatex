@@ -558,21 +558,28 @@ namespace GOTEX.Controllers
             }.BuildFile(ControllerContext);
             return File(new MemoryStream(pdf), "application/pdf");
         }
-        
-        public IActionResult Report() => View(_application.Report());
+
+        public IActionResult Report()
+        {
+            var min = DateTime.UtcNow.AddHours(1).AddDays(-29);
+            var max = DateTime.UtcNow.AddHours(1);
+            return View(_application.Report(min, max));
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Report(int QuarterId, int Year) 
+        public async Task<IActionResult> Report(int QuarterId, int Year, DateTime? MinApprovalDate, DateTime? MaxApprovalDate) 
         {
             var apps = new List<Application>();
+            var min = MinApprovalDate == null ? DateTime.UtcNow.AddHours(1).AddDays(-29) : MinApprovalDate.Value;
+            var max = MaxApprovalDate == null ? DateTime.UtcNow.AddHours(1) : MaxApprovalDate.Value;
             if (QuarterId > 0 && Year > 0)
-                apps = _application.Report().Where(x => x.QuarterId == QuarterId && x.Year == Year).ToList();
+                apps = _application.Report(min, max).Where(x => x.QuarterId == QuarterId && x.Year == Year).ToList();
             else if (QuarterId > 0 && Year == 0)
-                apps = _application.Report().Where(x => x.QuarterId == QuarterId).ToList();
+                apps = _application.Report(min, max).Where(x => x.QuarterId == QuarterId).ToList();
             else if (QuarterId == 0 && Year > 0)
-                apps = _application.Report().Where(x => x.Year == Year).ToList();
+                apps = _application.Report(min, max).Where(x => x.Year == Year).ToList();
             else
-                apps = _application.Report();
+                apps = _application.Report(min, max);
             return View(apps);
         }
 

@@ -584,7 +584,7 @@ namespace GOTEX.Controllers
                 users = _userManager.Users.Include(ur => ur.UserRoles).ThenInclude(r => r.Role)
                             .Where(x => x.IsActive && !x.Email.Equals(User.Identity.Name) 
                             && !x.UserRoles.FirstOrDefault().Role.Name.Equals("Support")
-                            && !x.UserRoles.FirstOrDefault().Role.Name.Contains("Admin")).ToList();
+                            && !x.UserRoles.FirstOrDefault().Role.Name.Contains("Admin") && x.IsActive).ToList();
             return View(users);
         }
 

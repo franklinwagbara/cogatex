@@ -5,22 +5,28 @@
     ViewData["Title"] = "All Approved Applications";
     int count = 0;
     int currYear = DateTime.Now.Year - 2020;
-    var year = Enumerable.Range(2020, currYear + 1);
+    var year = Enumerable.Range(2020, currYear + 2);
 }
 
 <center>
     <h2 class="card">@ViewData["Title"]</h2>
     <div class="card">
         <form action="@Url.Action("Report", "Application")" method="post">
-            <div class="form-group">
-                <div class="input-group col-md-9">
-                    <select name="QuarterId" class="form-control">
-                        <option disabled selected>Select quarter</option>
-                        @foreach (var item in _quarter.GetAll())
-                        {
-                            <option value="@item.Id">@item.Name (@item.Title)</option>
-                        }
-                    </select>
+            <div class="form-group col-md-3" style="display: inline-block;">
+                <label>Quarter</label>
+
+                <select name="QuarterId" class="form-control">
+                    <option disabled selected>Select quarter</option>
+                    @foreach (var item in _quarter.GetAll())
+                    {
+                        <option value="@item.Id">@item.Name (@item.Title)</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group col-md-3" style="display: inline-block;">
+                <label>Year</label>
+
+                <div class="">
                     <select name="Year" class="form-control">
                         <option disabled selected>Select year</option>
                         @foreach (var item in year)
@@ -28,8 +34,25 @@
                             <option value="@item">@item</option>
                         }
                     </select>
-                    <input type="submit" class="form-control btn btn-xs btn-warning col-md-2" style="font-size: large;" value="Filter" />
-                </div>                
+                </div>
+            </div>
+            <br />
+            <div class="form-group col-md-3" style="display: inline-block;">
+                <label>Start Approval Date</label>
+                <div class="">
+                    <input type="date" name="MinApprovalDate" class="form-control" />
+                </div>
+                
+            </div>
+            <div class="form-group col-md-3" style="display: inline-block;">
+                <label>End Approval Date</label>
+
+                <div class="">
+                    <input type="date" name="MaxApprovalDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-xs btn-warning col-md-2" style="font-size: large;" value="Filter" />
             </div>
         </form>
     </div>

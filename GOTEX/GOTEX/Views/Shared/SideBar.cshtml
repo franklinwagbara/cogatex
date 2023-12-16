@@ -41,19 +41,25 @@
                     </li>
 
                     <hr/>
+                   @*  @if (User.IsInRole("OOCCE"))
+                    {
+                        <li>
+                            <a href="@Url.Content("~/Admin/StaffDesk")">
+                                <i class="fa fa-user text-gray"> </i>
+                                <span class="nav-label"> Staff Desk</span>
+                            </a>
+                        </li>
+                    } *@
                 }
-                else
-                {
-                    <partial name="_AdminSideBar"/>
-                    <li class="nav-label">My Work(s)</li>
-                    <li>
-                        <a href="@Url.Action("Outbox", "Admin")">
-                            <i class="fa fa-list text-warning"> </i>
-                            <span class="hide-menu">My Work(s)</span>
-                        </a>
-                    </li>
-                    <hr />
-                }
+                <partial name="_AdminSideBar" />
+                <li class="nav-label">My Work(s)</li>
+                <li>
+                    <a href="@Url.Action("Outbox", "Admin")">
+                        <i class="fa fa-list text-warning"> </i>
+                        <span class="hide-menu">My Work(s)</span>
+                    </a>
+                </li>
+                <hr />
             </ul>
             <br />
 
