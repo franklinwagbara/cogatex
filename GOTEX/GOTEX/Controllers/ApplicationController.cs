@@ -535,7 +535,7 @@ namespace GOTEX.Controllers
                 FileName = "Approval.pdf"
             }.BuildFile(ControllerContext);
             ViewData["viewType"] = type;
-            if(!string.IsNullOrEmpty(type) && type.ToLower().Equals("print"))
+            if(!string.IsNullOrEmpty(type) && type.ToLower().Equals("print") && !permit.Permit.Printed)
             {
                 permit.Permit.Printed = true;
                 _application.Update(permit);
@@ -570,7 +570,7 @@ namespace GOTEX.Controllers
             var max = DateTime.UtcNow.AddHours(1);
             var apps = _application.Report(min, max, 0, DateTime.Now.Year);
             ViewData["ReportTitle"] = $"Approved Application report from {min.ToString("MMM dd, yyyy")} to {max.ToString("MMM dd, yyyy")}";
-            return View();
+            return View(apps);
         }
 
         [HttpPost]
