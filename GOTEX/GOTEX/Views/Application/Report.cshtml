@@ -57,6 +57,7 @@
         </form>
     </div>
     <div class="card" style="padding: 1em; margin-top: 2em;">
+        <h3>@ViewData["ReportTitle"]</h3>
         <table class="table table-bordered dataTable">
             <thead>
             <tr>
@@ -66,12 +67,13 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Unit</th>
-                <th>F.O.B Value (USD)</th>
+                <th>F.O.B Value <br />(USD)</th>
                 <th>Export Terminal</th>
                 <th>Year</th>
                 <th>Date Approved</th>
                 <th>Expiry Date</th>
                 <th>Date Submitted</th>
+                <th>Printed</th>
             </tr>
             </thead>
             <tbody>
@@ -91,7 +93,8 @@
                     <td>@app.Year</td>
                     <td>@app.Permit.DateIssued.ToString("MMM dd yyyy hh:mm:ss")</td>
                     <td>@app.Permit.ExpiryDate.ToString("MMM dd yyyy hh:mm:ss")</td>
-                        <td>@app.Histories.FirstOrDefault(x => !x.ProcessingUserRole.Equals("Company")).DateAssigned.ToString("MMM dd yyyy hh:mm:ss")</td>
+                    <td>@app.Histories.FirstOrDefault(x => !x.ProcessingUserRole.Equals("Company")).DateAssigned.ToString("MMM dd yyyy hh:mm:ss")</td>
+                    <td>@app.Permit.Printed</td>
                 </tr>
             }
             </tbody>

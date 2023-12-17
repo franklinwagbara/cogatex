@@ -23,7 +23,7 @@ namespace GOTEX.Core.Repositories
         Task<object> ConfirmPayment(Application application, string appUrl, bool res);
         void InvalidatePaymentonElps(string webrootpath, Application application, string feedback, Dictionary<string, string> mailsettings);
         T Update(T item);
-        List<T> Report(DateTime min, DateTime max);
+        List<T> Report(DateTime? MinApprovalDate, DateTime? MaxApprovalDate, int QuarterId, int Year);
         (bool status, string hash, string message) ValidatePaymentEvidence(Dictionary<string, string> dic);
         bool UpdateList(List<T> itemList);
     }
