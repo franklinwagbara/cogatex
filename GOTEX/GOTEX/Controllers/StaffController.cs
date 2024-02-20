@@ -17,6 +17,7 @@ namespace GOTEX.Controllers
     public class StaffController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private IApplication<Application> _application;
         private IAppHistory<ApplicationHistory> _history;
         private IElpsRepository _elps;
@@ -24,12 +25,14 @@ namespace GOTEX.Controllers
         
         public StaffController(
             UserManager<ApplicationUser> userManager,
+            RoleManager<ApplicationRole> roleManager,
             IApplication<Application> applicataion,
             IAppHistory<ApplicationHistory>  history,
             IElpsRepository elps,
             IRepository<Message> message)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _application = applicataion;
             _history = history;
             _elps = elps;
@@ -48,7 +51,7 @@ namespace GOTEX.Controllers
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             var role = _userManager.GetRolesAsync(user).Result.FirstOrDefault();
-            var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
+            var apps = _application.GetAll().Where(x => !string.IsNullOrEmpty(x.LastAssignedUserId) && x.LastAssignedUserId.Equals(user.Email)).ToList();
             if (apps.Count > 0 && apps.Any(x => x.Status != ApplicationStatus.Completed) && !model.IsActive)
             {
                 TempData["Message"] = $"User cannot be disabled, {apps.Count} application(s) currently on staff's desk";
@@ -71,31 +74,9 @@ namespace GOTEX.Controllers
             TempData["Message"] = "User updated successfully";
             return RedirectToAction("All");
         }
-        public IActionResult GetRoles()
+        public async Task<IActionResult> GetRoles()
         {
-            var roles = new[]
-            {
-                Roles.Company,
-                Roles.Planning,
-                Roles.Inspector,
-                Roles.Supervisor,
-                Roles.CTO,
-                Roles.HDS,
-                Roles.HGMR,
-                Roles.ACE,
-                Roles.OOD,
-                Roles.Support,
-                Roles.Admin,
-                Roles.Staff,
-                Roles.ICT,
-                Roles.ACE_STA,
-                Roles.ED_STA,
-                Roles.ECDP,
-                Roles.CCE,
-                Roles.CCE_STA,
-                Roles.ADCOGTO,
-                Roles.ExternalView,
-            };
+            var roles = await _roleManager.Roles.Where(x => !x.Name.Equals(Roles.Admin)).Select(x => x.Name).ToListAsync();
             return Json(new { roles });
         }
         public async Task<IActionResult> GetStaffRoleList(string email)

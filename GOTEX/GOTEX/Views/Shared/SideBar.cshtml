@@ -13,7 +13,7 @@
                 </li>
                 <hr/>
                 <li class="nav-devider"></li>
-                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA") && !User.IsInRole("ExternalView"))
+                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA") && !User.IsInRole("ExternalView") && !User.IsInRole("OOCCE"))
                 {
                     <li class="nav-label"> Dashboard </li>
 
@@ -28,13 +28,13 @@
                     
                 }
                 
-                @if (User.IsInRole("ED_STA") || User.IsInRole("CCE_STA"))
+                @if (User.IsInRole("ED_STA") || User.IsInRole("CCE_STA") || User.IsInRole("OOCCE"))
                 {
-                    var display = User.IsInRole("ED_STA") ? "ED's Desk" : "CCE's Desk";
+                    var display = User.IsInRole("ED_STA") ? "EC's Desk" : "CCE's Desk";
                     <li class="nav-label"> @display </li>
 
                     <li class="">
-                        <a class="" href="@Url.Action("AceDesk", "Dashboard")" aria-expanded="false">
+                        <a class="" href="@Url.Action("CceDesk", "Dashboard")" aria-expanded="false">
                             <i class="fas fa-tachometer-alt text-warning"></i><span class="hide-menu"> View @display </span>
                         </a>
 

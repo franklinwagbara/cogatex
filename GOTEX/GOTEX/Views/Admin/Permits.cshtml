@@ -61,6 +61,9 @@
                 <th>
                     Expiry Date
                 </th>
+                <th>
+                    Printed
+                </th>
                 <th></th>
             </tr>
             </thead>
@@ -96,6 +99,9 @@
                     </td>
                     <td>
                         @item.ExpiryDate.ToLongDateString()
+                    </td>
+                    <td>
+                        @item.Printed
                     </td>
                     <td >
                         <a href="/Application/License/@item.ApplicationId?type=view" target="_blank" class="btn btn-sm btn-primary">Preview</a>

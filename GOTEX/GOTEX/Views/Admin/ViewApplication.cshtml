@@ -1,4 +1,5 @@
 ﻿@model Application
+@using GOTEX.Core.Utilities
 @inject IAppConfiguration<Configuration> _appConfig
 @inject IAppHistory<ApplicationHistory> _history
 @inject IApplication<Application> _application
@@ -351,7 +352,7 @@
 
                         if (!Model.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase))
                         {
-                            if (!User.IsInRole("CCE"))
+                            if (!User.IsInRole(Roles.CCE) && !User.IsInRole(Roles.OOCCE))
                             {
                                 <tr>
                                     <td>

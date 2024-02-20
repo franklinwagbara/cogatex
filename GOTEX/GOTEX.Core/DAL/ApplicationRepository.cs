@@ -11,10 +11,11 @@ using GOTEX.Core.Repositories;
 using GOTEX.Core.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GOTEX.Core.DAL
 {
-    public class ApplicationRepository : IApplication<Application>
+    public class ApplicationRepository : IApplication<BusinessObjects.Application>
     {
         private readonly AppDbContext _context;
         private IElpsRepository _elps;
@@ -46,14 +47,16 @@ namespace GOTEX.Core.DAL
         }
         public int GetCompanyElpsId(string username) 
             => _context.Users.Include("Company").FirstOrDefault(x => x.Email == username).Company.ElpsId;
-        public List<Application> GetSameQuarterApplication(string userid, int quarterid, int productid) => _context.Applications
+
+        public List<BusinessObjects.Application> GetSameQuarterApplication(string userid, int quarterid, int productid) => _context.Applications
             .Include(x => x.ApplicationType)
             .Where(x => x.UserId == userid 
                         && x.QuarterId == quarterid 
                         && x.ProductId == productid
                         && x.Year.Equals(DateTime.Now.Year))
             .ToList();
-        public Application Insert(Application item, bool latePayment)
+
+        public BusinessObjects.Application Insert(BusinessObjects.Application item, bool latePayment)
         {
             decimal fee = 0.00m;
             try
@@ -88,7 +91,7 @@ namespace GOTEX.Core.DAL
             return item;
         }
 
-        public bool Delete(Application item)
+        public bool Delete(BusinessObjects.Application item)
         {
             try
             {
@@ -110,7 +113,7 @@ namespace GOTEX.Core.DAL
             return false;
         }
 
-        public void InvalidatePaymentonElps(string webrootpath, Application application, string feedback, Dictionary<string, string> mailsettings)
+        public void InvalidatePaymentonElps(string webrootpath, BusinessObjects.Application application, string feedback, Dictionary<string, string> mailsettings)
         {
             try
             {
@@ -166,7 +169,7 @@ namespace GOTEX.Core.DAL
             }
         }
 
-        public Application Update(Application item)
+        public BusinessObjects.Application Update(BusinessObjects.Application item)
         {
             try
             {
@@ -185,17 +188,77 @@ namespace GOTEX.Core.DAL
             }
             return item;
         }
-        public List<Application> Report() =>
-            _context.Applications
-            .Include("User.Company")
-            .Include("ApplicationType")
-            .Include("Quarter")
-            .Include("Terminal")
-            .Include("Product")
-            .Include(x => x.Facility)
-            .Include("PaymentEvidence").Include("Histories")
-            .Include(p => p.Permit)
-            .Where(x => x.Status.Equals(ApplicationStatus.Completed)).ToList();
+
+        public List<BusinessObjects.Application> Report(DateTime? MinApprovalDate, DateTime? MaxApprovalDate, int QuarterId, int Year)
+        {
+            var min = new DateTime?();
+            var max = new DateTime?();
+            var apps = new List<BusinessObjects.Application>();
+
+            if (MinApprovalDate == null && MaxApprovalDate == null && (QuarterId == 0 && Year == 0))
+            {
+                min = DateTime.UtcNow.AddHours(1).AddDays(-29);
+                max = DateTime.UtcNow.AddHours(1);
+            }
+
+            if (MinApprovalDate != null && MaxApprovalDate != null)
+            {
+                min = MinApprovalDate;
+                max = MaxApprovalDate;
+            }
+
+            if (QuarterId > 0 && Year > 0)
+                apps = _context.Applications
+                        .Include("User.Company")
+                        .Include("ApplicationType")
+                        .Include("Quarter")
+                        .Include("Terminal")
+                        .Include("Product")
+                        .Include(x => x.Facility)
+                        .Include("PaymentEvidence").Include("Histories")
+                        .Include(p => p.Permit)
+                        .Where(x => x.Status.Equals(ApplicationStatus.Completed) && x.QuarterId == QuarterId && x.Year == Year)
+                        .ToList();
+            if (QuarterId > 0 && Year == 0)
+                apps = _context.Applications
+                        .Include("User.Company")
+                        .Include("ApplicationType")
+                        .Include("Quarter")
+                        .Include("Terminal")
+                        .Include("Product")
+                        .Include(x => x.Facility)
+                        .Include("PaymentEvidence").Include("Histories")
+                        .Include(p => p.Permit)
+                        .Where(x => x.Status.Equals(ApplicationStatus.Completed) && x.QuarterId == QuarterId)
+                        .ToList();
+            if (QuarterId == 0 && Year > 0)
+                apps = _context.Applications
+                        .Include("User.Company")
+                        .Include("ApplicationType")
+                        .Include("Quarter")
+                        .Include("Terminal")
+                        .Include("Product")
+                        .Include(x => x.Facility)
+                        .Include("PaymentEvidence").Include("Histories")
+                        .Include(p => p.Permit)
+                        .Where(x => x.Status.Equals(ApplicationStatus.Completed) && x.Year == Year)
+                        .ToList();
+            if(min != null && max != null)
+            {
+                apps = _context.Applications
+                        .Include("User.Company")
+                        .Include("ApplicationType")
+                        .Include("Quarter")
+                        .Include("Terminal")
+                        .Include("Product")
+                        .Include(x => x.Facility)
+                        .Include("PaymentEvidence").Include("Histories")
+                        .Include(p => p.Permit)
+                        .Where(x => x.Status.Equals(ApplicationStatus.Completed) && x.Permit.DateIssued >= min.Value && x.Permit.DateIssued <= max.Value)
+                        .ToList();
+            }
+            return apps;
+        }
 
         public (bool status, string hash, string message)  ValidatePaymentEvidence(Dictionary<string, string> dic)
         {
@@ -242,7 +305,7 @@ namespace GOTEX.Core.DAL
             return (resp, string.Empty, message);
         }
 
-        public List<Application> GetAll() => _context.Applications
+        public List<BusinessObjects.Application> GetAll() => _context.Applications
             .Include("User.Company")
             .Include("ApplicationType")
             .Include("Quarter")
@@ -253,7 +316,7 @@ namespace GOTEX.Core.DAL
             .Include("Permit")
             .ToList();
 
-        public List<Application> GetStappApps(string id) => _context.Applications
+        public List<BusinessObjects.Application> GetStappApps(string id) => _context.Applications
             .Include("User.Company")
             .Include("ApplicationType")
             .Include("Quarter")
@@ -264,7 +327,7 @@ namespace GOTEX.Core.DAL
             .Include(p => p.Permit)
             .Where(x => x.LastAssignedUserId.Equals(id)).ToList();
 
-        public List<Application> GetListByUserId(string id) 
+        public List<BusinessObjects.Application> GetListByUserId(string id) 
             => _context.Applications
             .Include("User.Company")
             .Include("ApplicationType")
@@ -274,6 +337,7 @@ namespace GOTEX.Core.DAL
             .Include(x => x.Facility)
             .Include("PaymentEvidence")
             .Include("Permit").Where(x => !string.IsNullOrEmpty(x.LastAssignedUserId) && x.UserId == id).ToList();
+
         public object GetApplicationFiles(int id)
         {
             var docs = new List<DocumentType>();
@@ -319,7 +383,8 @@ namespace GOTEX.Core.DAL
             }
             return docs;
         }
-        public Application FindById(int id) 
+
+        public BusinessObjects.Application FindById(int id) 
             => _context.Applications
             .Include("User.Company")
             .Include("ApplicationType")
@@ -329,10 +394,13 @@ namespace GOTEX.Core.DAL
             .Include(x => x.Facility)
             .Include("PaymentEvidence")
             .Include(p => p.Permit).FirstOrDefault(x => x.Id == id);
-        public Application FindByReference(string refno) 
+
+        public BusinessObjects.Application FindByReference(string refno) 
             => GetAll().FirstOrDefault(x => x.Reference.Equals(refno));
-        public List<Application> GetCompanyApplications(string email) 
+
+        public List<BusinessObjects.Application> GetCompanyApplications(string email) 
             => GetAll().Where(x => x.User.Email == email).ToList();
+
         public object GetRequiredDocs(int docId, int applicationId, List<CompanyDocument> companyDocs, List<DocumentType> allDocs)
         {
             var application = FindById(applicationId);
@@ -434,6 +502,7 @@ namespace GOTEX.Core.DAL
 
             return docs;
         }
+
         public bool UpdateApplicationDoc(int applicationid, int docTypeId, int newDocId)
         {
             var application = FindById(applicationid);
@@ -476,7 +545,8 @@ namespace GOTEX.Core.DAL
             }
             return false;
         }
-        public async Task<object> ConfirmPayment(Application application, string appUrl, bool res)
+
+        public async Task<object> ConfirmPayment(BusinessObjects.Application application, string appUrl, bool res)
         {
             res = false;
             var remita = _context.RemitaPayments.FirstOrDefault(x => x.OrderId == application.Reference);
@@ -496,7 +566,8 @@ namespace GOTEX.Core.DAL
             }
             return remita;
         }
-        private RemitaPayment RecordRemitaTransaction(RemitaPayment remita, double fee, PrePaymentResponse elpspayment, Application application, string paymentYpe =  "Online")
+
+        private RemitaPayment RecordRemitaTransaction(RemitaPayment remita, double fee, PrePaymentResponse elpspayment, BusinessObjects.Application application, string paymentYpe =  "Online")
         {
             if (remita == null)
             {
@@ -545,7 +616,8 @@ namespace GOTEX.Core.DAL
 
             return remita;
         }
-        private Invoice InitiateInvoice(Application application, double fee)
+
+        private Invoice InitiateInvoice(BusinessObjects.Application application, double fee)
         {
             var invoice = new Invoice
             {
@@ -562,7 +634,8 @@ namespace GOTEX.Core.DAL
             
             return invoice;
         }
-        private RemitaSplit GetRemitaSplit(Application application, string appUrl, Dictionary<string, string> remitaConfigVal)
+
+        private RemitaSplit GetRemitaSplit(BusinessObjects.Application application, string appUrl, Dictionary<string, string> remitaConfigVal)
         {
             var remitaPayload = new RemitaSplit
             {
@@ -593,6 +666,7 @@ namespace GOTEX.Core.DAL
 
             return remitaPayload;
         }
+
         private object ElpsPostPayment(int elpsId, RemitaSplit remita)
         {
             try
@@ -615,7 +689,8 @@ namespace GOTEX.Core.DAL
             }
             return null;
         }
-        public bool UpdateList(List<Application> itemlist)
+
+        public bool UpdateList(List<BusinessObjects.Application> itemlist)
         {
             try
             {

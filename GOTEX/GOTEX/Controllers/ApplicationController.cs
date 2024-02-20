@@ -535,6 +535,11 @@ namespace GOTEX.Controllers
                 FileName = "Approval.pdf"
             }.BuildFile(ControllerContext);
             ViewData["viewType"] = type;
+            if(!string.IsNullOrEmpty(type) && type.ToLower().Equals("print") && !permit.Permit.Printed)
+            {
+                permit.Permit.Printed = true;
+                _application.Update(permit);
+            }
             return File(new MemoryStream(pdf), "application/pdf");
         }
         
@@ -558,21 +563,21 @@ namespace GOTEX.Controllers
             }.BuildFile(ControllerContext);
             return File(new MemoryStream(pdf), "application/pdf");
         }
-        
-        public IActionResult Report() => View(_application.Report());
+
+        public IActionResult Report()
+        {
+            var min = DateTime.UtcNow.AddHours(1).AddDays(-29);
+            var max = DateTime.UtcNow.AddHours(1);
+            var apps = _application.Report(min, max, 0, DateTime.Now.Year);
+            ViewData["ReportTitle"] = $"Approved Application report from {min.ToString("MMM dd, yyyy")} to {max.ToString("MMM dd, yyyy")}";
+            return View(apps);
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Report(int QuarterId, int Year) 
+        public async Task<IActionResult> Report(int QuarterId, int Year, DateTime? MinApprovalDate, DateTime? MaxApprovalDate) 
         {
-            var apps = new List<Application>();
-            if (QuarterId > 0 && Year > 0)
-                apps = _application.Report().Where(x => x.QuarterId == QuarterId && x.Year == Year).ToList();
-            else if (QuarterId > 0 && Year == 0)
-                apps = _application.Report().Where(x => x.QuarterId == QuarterId).ToList();
-            else if (QuarterId == 0 && Year > 0)
-                apps = _application.Report().Where(x => x.Year == Year).ToList();
-            else
-                apps = _application.Report();
+            var apps = _application.Report(MinApprovalDate, MaxApprovalDate, QuarterId, Year);
+            ViewData["ReportTitle"] = $"Approved Application report from {apps.Min(m => m.Permit.DateIssued).ToString("MMM dd, yyyy")} to {apps.Max(m => m.Permit.DateIssued).ToString("MMM dd, yyyy")}";
             return View(apps);
         }
 

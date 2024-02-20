@@ -272,6 +272,7 @@ C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\G
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.csproj.CoreCompileInputs.cache
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.dll
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.pdb
+<<<<<<< HEAD
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\GOTEX.Core.deps.json
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\GOTEX.Core.dll
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\bin\Debug\netcoreapp3.1\GOTEX.Core.pdb
@@ -546,3 +547,6 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netc
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.csproj.CoreCompileInputs.cache
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.dll
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.pdb
+=======
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX.Core\obj\Debug\netcoreapp3.1\GOTEX.Core.sourcelink.json
+>>>>>>> 46fa1df79118ea5d140c59eda73101c07829311d

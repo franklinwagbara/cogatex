@@ -426,10 +426,11 @@ namespace GOTEX.Controllers
                     _message.Insert(message);
                     var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
 
-                    if (User.IsInRole("CCE") && model.Action.Contains("Approve"))
+                    if ((User.IsInRole("CCE") || User.IsInRole("OOCCE")) && model.Action.Contains("Approve"))
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
+                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
                         message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
                         
                         application = _application.FindById(model.APplicationId);
@@ -777,7 +778,7 @@ namespace GOTEX.Controllers
                 users = _userManager.Users.Include(ur => ur.UserRoles).ThenInclude(r => r.Role)
                             .Where(x => x.IsActive && !x.Email.Equals(User.Identity.Name) 
                             && !x.UserRoles.FirstOrDefault().Role.Name.Equals("Support")
-                            && !x.UserRoles.FirstOrDefault().Role.Name.Contains("Admin")).ToList();
+                            && !x.UserRoles.FirstOrDefault().Role.Name.Contains("Admin") && x.IsActive).ToList();
             return View(users);
         }
 

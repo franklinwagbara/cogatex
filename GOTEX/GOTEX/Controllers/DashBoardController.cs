@@ -79,8 +79,8 @@ namespace GOTEX.Controllers
             {
                 if (User.IsInRole("Planning"))
                     return RedirectToAction("Index", "Admin");
-                else if(User.IsInRole("ACE_STA") || User.IsInRole("ED_STA"))
-                    return RedirectToAction("AceDesk", "DashBoard");
+                else if(User.IsInRole("ACE_STA") || User.IsInRole("ED_STA") || User.IsInRole(Roles.OOCCE) || User.IsInRole(Roles.CCE_STA))
+                    return RedirectToAction("CceDesk", "DashBoard");
 
                 model.All = allapps.Count;
                 model.Processing = allapps.Count(x => x.Status.ToLower().Equals("processing") || x.Status.ToLower().Equals("payment confirmed"));
@@ -244,30 +244,25 @@ namespace GOTEX.Controllers
             }
         }
 
-        public IActionResult AceDesk()
+        public IActionResult CceDesk()
         {
-                        
-           
-                ViewData["Title"] = "ECDP's Desk";
-                var user = _userManager.Users
-                    .Include(x => x.UserRoles)
-                    .ThenInclude(x => x.Role)
-                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("ECDP"));
-         
+            ViewData["Title"] = "ECDP's Desk";
+            var user = _userManager.Users
+                .Include(x => x.UserRoles)
+                .ThenInclude(x => x.Role)
+                .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("ECDP"));         
             
-            if (User.IsInRole("CCE_STA"))
+            if (User.IsInRole("CCE_STA") || User.IsInRole("OOCCE"))
             {
                 ViewData["Title"] = "CCE's Desk";
                  user = _userManager.Users
                     .Include(x => x.UserRoles)
                     .ThenInclude(x => x.Role)
-                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("CCE"));
-                
+                    .FirstOrDefault(x => x.UserRoles.FirstOrDefault().Role.Name.Equals("CCE"));                
             }
 
-            var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
+            var apps = _application.GetAll().Where(x => !string.IsNullOrEmpty(x.LastAssignedUserId) && x.LastAssignedUserId.Equals(user.Email)).ToList();
             return View(apps);
-
         }
     }
 }
