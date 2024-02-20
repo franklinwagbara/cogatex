@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GOTEX.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee322ee22660dff7287a07e091812dfa1b67b9ea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("GOTEX.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GOTEX.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

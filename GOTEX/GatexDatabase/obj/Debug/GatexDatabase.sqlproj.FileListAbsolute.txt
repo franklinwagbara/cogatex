@@ -32,5 +32,9 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\bin\Debug\G
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.dll
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\bin\Debug\GatexDatabase.pdb
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.sqlproj.AssemblyReference.cache
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\Model.xml
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\refactor.xml
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\postdeploy.sql
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\predeploy.sql
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.dll
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GatexDatabase\obj\Debug\GatexDatabase.pdb

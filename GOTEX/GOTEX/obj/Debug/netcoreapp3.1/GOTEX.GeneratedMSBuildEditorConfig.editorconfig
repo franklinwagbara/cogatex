@@ -1,9 +1,3 @@
 is_global = true
 build_property.RootNamespace = GOTEX
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\
-=======
-build_property.ProjectDir = C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
->>>>>>> 46fa1df79118ea5d140c59eda73101c07829311d

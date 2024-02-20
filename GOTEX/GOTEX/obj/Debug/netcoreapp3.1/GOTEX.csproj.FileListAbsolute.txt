@@ -1885,7 +1885,8 @@ C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOT
 C:\Users\admin\source\repos\NNPC\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.genruntimeconfig.cache
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\AddDelcarationForm.cshtml.g.cs
 C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Company\AllDeclarationnForms.cshtml.g.cs
-<<<<<<< HEAD
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\CceDesk.cshtml.g.cs
+C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.sourcelink.json
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\bin\Debug\netcoreapp3.1\GOTEX.exe
@@ -2350,11 +2351,14 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreap
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Company\List.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Company\MyDesk.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Company\Permits.cshtml.g.cs
-C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\AceDesk.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\CceDesk.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\CompanyProfile.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\Index.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\Create.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\Index.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\LeaveRequest.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\AddSurvey.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Footer.cshtml.g.cs
@@ -2383,10 +2387,3 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreap
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.dll
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.pdb
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.genruntimeconfig.cache
-C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\Index.cshtml.g.cs
-C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\Create.cshtml.g.cs
-C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\LeaveRequest.cshtml.g.cs
-=======
-C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\CceDesk.cshtml.g.cs
-C:\Users\suppo\Documents\Visual Studio 2022\Projects\nuprc-gatex\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.sourcelink.json
->>>>>>> 46fa1df79118ea5d140c59eda73101c07829311d
