@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj": {}
+    "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj": {
+    "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
+        "projectUniqueName": "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
         "projectName": "DPR_COGATEX",
-        "projectPath": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\source\\repos\\NNPC\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\obj\\",
+        "projectPath": "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\DPR_COGATEX.csproj",
+        "packagesPath": "C:\\Users\\BrandOneTech\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\DPR_COGATEX\\DPR_COGATEX\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\BrandOneTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -72,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

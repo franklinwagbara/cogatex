@@ -36,6 +36,8 @@ namespace GOTEX.Core.BusinessObjects
         public DbSet<Log> Logs { get; set; }
         public DbSet<PaymentEvidence> PaymentEvidences { get; set; }
         public DbSet<Survey> Surveys { get; set; }
+        public DbSet<Leave> Leaves { get; set; }
+        public DbSet<LeaveRequest> LeaveRequests { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder) 
         {

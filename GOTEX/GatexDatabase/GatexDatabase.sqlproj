@@ -95,5 +95,7 @@
     <Build Include="dbo\Tables\Surveys.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
     <Build Include="dbo\Tables\DeclarationForms.sql" />
+    <Build Include="dbo\Tables\Leaves.sql" />
+    <Build Include="dbo\Tables\LeaveRequests.sql" />
   </ItemGroup>
 </Project>

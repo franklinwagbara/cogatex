@@ -6170,11 +6170,12 @@
       ]
     },
     "System.Xml.XmlSerializer/4.3.0": {
-      "sha512": "VShQJhOxgD/5M2Z1IWm1vMaSqlbjo1zdFf8H7Ahte6bTvSUhUko/gDpAVVhGgGgTDeue4QyNg1fu1Zz2GKSEuQ==",
+      "sha512": "MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "type": "package",
       "path": "system.xml.xmlserializer/4.3.0",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -6250,34 +6251,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\suppo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Users\\BrandOneTech\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\suppo\\Documents\\Visual Studio 2022\\Projects\\nuprc-gatex\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+      "projectUniqueName": "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
       "projectName": "GOTEX.Core",
-      "projectPath": "C:\\Users\\suppo\\Documents\\Visual Studio 2022\\Projects\\nuprc-gatex\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
-      "packagesPath": "C:\\Users\\suppo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\suppo\\Documents\\Visual Studio 2022\\Projects\\nuprc-gatex\\COGATEX\\GOTEX\\GOTEX.Core\\obj\\",
+      "projectPath": "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\GOTEX\\GOTEX.Core\\GOTEX.Core.csproj",
+      "packagesPath": "C:\\Users\\BrandOneTech\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\BrandOneTech\\source\\repos\\GOTEX\\COGATEX\\GOTEX\\GOTEX.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\suppo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\BrandOneTech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6333,7 +6333,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

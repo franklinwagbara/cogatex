@@ -37,6 +37,7 @@ namespace GOTEX.Controllers
         private readonly IRepository<WorkFlow> _workFlow;
         private readonly IRepository<PaymentEvidence> _paymentEvidence;
         private readonly IRepository<Product> _product;
+        private readonly IRepository<Leave> _leaveRepo;
 
 
         public AdminController(
@@ -55,6 +56,7 @@ namespace GOTEX.Controllers
             IApplicationTypeDocs<ApplicationTypeDocuments> applicationTypeDocs,
             IRepository<ApplicationType> appTypes,
             IRepository<WorkFlow> workFlow,
+            IRepository<Leave> leaveRepo,
             IRepository<PaymentEvidence> paymentEvidence)
         {
             _application = application;
@@ -73,6 +75,7 @@ namespace GOTEX.Controllers
             _workFlow = workFlow;
             _paymentEvidence = paymentEvidence;
             _product = product;
+            _leaveRepo = leaveRepo;
         }
 
         public IActionResult Index()
@@ -84,14 +87,14 @@ namespace GOTEX.Controllers
             return View();
         }
 
-        public IActionResult MyDesk()
+        public async Task<IActionResult> MyDesk()
         {
-            IEnumerable<Application> allApplications = _application.GetAll();
-
-            allApplications = allApplications.Where(a => a.LastAssignedUserId == User.Identity.Name); //&& a.Submitted
-
             try
             {
+                IEnumerable<Application> allApplications = _application.GetAll();
+
+                var appOnMyDesk = allApplications.Where(a => a.LastAssignedUserId == User.Identity.Name); //&& a.Submitted
+
                 var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
 
                 // Skip number of Rows count  
@@ -117,25 +120,16 @@ namespace GOTEX.Controllers
 
                 int recordsTotal = 0;
 
-                // getting all Customer data  
-                // var customerData = (from tempcustomer in _context.CustomerTB  
-                //                     select tempcustomer);  
-                //Sorting  
-                // if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))  
-                // {  
-                //     allApplications = allApplications.OrderBy(sortColumn + " " + sortColumnDirection);  
-                // }  
-                //Search  
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    allApplications = allApplications.Where(m => m.Reference == searchValue
+                    appOnMyDesk = appOnMyDesk.Where(m => m.Reference == searchValue
                                                                  || m.User.Company.Name.StartsWith(searchValue));
                 }
 
                 //total number of rows counts   
-                recordsTotal = allApplications.Count();
+                recordsTotal = appOnMyDesk.Count();
                 //Paging   
-                var data = allApplications.Skip(skip).Take(pageSize).ToList();
+                var data = appOnMyDesk.Skip(skip).Take(pageSize).ToList();
                 //Returning Json Data  
                 return Json(new
                     {draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data});
@@ -152,6 +146,105 @@ namespace GOTEX.Controllers
             }
 
             return Json(new {draw = "", recordsFiltered = 0, recordsTotal = 0, data = ""});
+        }
+
+        public async Task<IActionResult> LeaverDesk()
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                var leaveEntry = _leaveRepo.GetAll().Where(x => x.ActingStaffId == user.Id).FirstOrDefault();
+
+                IEnumerable<Application> allApplications = _application.GetAll();
+
+                IEnumerable<Application> appOnLeaverDesk = new List<Application>();
+                ApplicationUser userOnLeave = null;
+
+                if (leaveEntry != null)
+                {
+                    userOnLeave = await _userManager.FindByIdAsync(leaveEntry.StaffId);
+                    appOnLeaverDesk = allApplications.Where(x => x.LastAssignedUserId == userOnLeave.Email);
+                }
+
+                var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
+
+                // Skip number of Rows count  
+                var start = Request.Form["start"].FirstOrDefault();
+
+                // Paging Length 10,20  
+                var length = Request.Form["length"].FirstOrDefault();
+
+                // Sort Column Name  
+                var sortColumn = Request
+                    .Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+
+                // Sort Column Direction (asc, desc)  
+                var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+
+                // Search Value from (Search box)  
+                var searchValue = Request.Form["search[value]"].FirstOrDefault();
+
+                //Paging Size (10, 20, 50,100)  
+                int pageSize = length != null ? Convert.ToInt32(length) : 0;
+
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+
+                int recordsTotal = 0;
+ 
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    appOnLeaverDesk = appOnLeaverDesk.Where(m => m.Reference == searchValue
+                                                                 || m.User.Company.Name.StartsWith(searchValue));
+                }
+
+                //total number of rows counts   
+                recordsTotal = appOnLeaverDesk.Count();
+                //Paging   
+                var data = appOnLeaverDesk.Skip(skip).Take(pageSize).ToList();
+                //Returning Json Data  
+                return Json(new
+                { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
+            }
+            catch (Exception ex)
+            {
+                _log.Insert(new Log
+                {
+                    Action = "Get Applications on staff's on leave desk",
+                    Date = DateTime.UtcNow.AddHours(1),
+                    Error = $"{ex.Message}\n{ex.InnerException}\n{ex.StackTrace}",
+                    UserId = User.Identity.Name
+                });
+            }
+
+            return Json(new { draw = "", recordsFiltered = 0, recordsTotal = 0, data = "" });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetLeaverInfo()
+        {
+            try
+            {
+                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                var leaveEntry = _leaveRepo.GetAll().Where(x => x.ActingStaffId == user.Id).FirstOrDefault();
+                ApplicationUser userOnLeave = null;
+
+                if (leaveEntry != null)
+                    userOnLeave = await _userManager.FindByIdAsync(leaveEntry.StaffId);
+
+                return Json(new { data = userOnLeave });
+            }
+            catch (Exception ex)
+            {
+                _log.Insert(new Log
+                {
+                    Action = "Get Applications on staff's on leave desk",
+                    Date = DateTime.UtcNow.AddHours(1),
+                    Error = $"{ex.Message}\n{ex.InnerException}\n{ex.StackTrace}",
+                    UserId = User.Identity.Name
+                });
+            }
+
+            return Json(new { data = "" });
         }
 
         public IActionResult ViewApplication(int id)
@@ -308,10 +401,18 @@ namespace GOTEX.Controllers
             try
             {
                 var application = _application.FindById(model.APplicationId);
+                var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                var leave = _leaveRepo.GetAll().FirstOrDefault(x => x.ActingStaffId == user.Id && x.IsApproved == true && x.IsDeleted == false);
+                ApplicationUser leaver = null;
+
+                if (leave != null)
+                    leaver = await _userManager.Users.Include(x => x.UserRoles).Where(x => x.Id == leave.StaffId).FirstOrDefaultAsync();
+
                 if (User.Identity.Name.Equals(application.LastAssignedUserId))
                 {
                     if (User.IsInRole(Roles.CCE))
                         model.Report = model.Action.ToLower().Equals("approve") ? "Final approval by CCE" : "Application rejected by CCE";
+
                     var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report);
                     
                     var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
@@ -329,7 +430,7 @@ namespace GOTEX.Controllers
                     { 
                         var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
                                $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
-                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc..gov.ng/account/login?email={application.LastAssignedUserId}");
+                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
                         
                         application = _application.FindById(model.APplicationId);
                         if (application.Status.Equals(ApplicationStatus.Completed))
@@ -347,6 +448,73 @@ namespace GOTEX.Controllers
                     {
                         SendMail(application, model.Report, message.Subject, body, model.Action, mailtype, message);
                         if(model.Action.ToLower().Equals("approve"))
+                            TempData["message"] =                                                                    
+                                "Application has been pushed to the next processing officer for appropriate action";
+                        else if(model.Action.ToLower().Equals("reject"))
+                        {
+                            TempData["message"] =
+                                "Application has been rejected to the immediate processing officer for appropriate action";
+                            if (application.LastAssignedUserId.Equals(application.UserId))
+                                TempData["message"] =
+                                    "Application has been rejected to the marketer for appropriate action";
+                        }
+                    }
+                }
+                else if (leaver != null && leaver.Email.Equals(application.LastAssignedUserId))
+                {
+                    if(_userManager.IsInRoleAsync(leaver, Roles.CCE).Result)
+                        model.Report = model.Action.ToLower().Equals("approve") ? "Final approval by CCE" : "Application rejected by CCE";
+
+                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report);
+                    
+                    var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
+                    var message = new Message
+                    {
+                        Date = DateTime.UtcNow.AddHours(1),
+                        Subject = $"Application for {mailtype}",
+                        ApplicationId = application.Id,
+                        User = _userManager.FindByEmailAsync(application.LastAssignedUserId).Result
+                    };
+                    _message.Insert(message);
+
+                    var messageToActingStaff = new Message
+                    {
+                        Date = DateTime.UtcNow.AddHours(1),
+                        Subject = $"Application for {mailtype}",
+                        ApplicationId = application.Id,
+                        User = await _userManager.FindByIdAsync(leave.ActingStaffId)
+                    };
+                    _message.Insert(messageToActingStaff);
+
+                    var body = Utils.ReadTextFile(_hostingEnvironment.WebRootPath, "GeneralFormat.txt");
+
+                    if (_userManager.IsInRoleAsync(leaver, Roles.CCE).Result && model.Action.Contains("Approve"))
+                    { 
+                        var tk = $"Application for {mailtype} with reference: {application.Reference} on NUPRC Gas Export Permit portal (GATEX) has been approved: " +
+                               $"<br /> {model.Report}. <br/> PLease await further actions concerning your approved Application Form.";
+                        message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
+                        messageToActingStaff.Content = string.Format(body, messageToActingStaff.Subject, tk, messageToActingStaff.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={User.Identity.Name}");
+
+                        application = _application.FindById(model.APplicationId);
+                        if (application.Status.Equals(ApplicationStatus.Completed))
+                        {
+                            var permitnumber = _permit.CreatePermit(application.Id,
+                                _hostingEnvironment.WebRootPath,
+                                _emailSettings.Stringify().Parse<Dictionary<string, string>>());
+                            TempData["message"] = "You have APPROVED this Application (" + application.Reference +
+                                                  ")  and Approval has been issued with Approval No: " + permitnumber;
+                        }                        
+                        _message.Update(message);
+                        _message.Update(messageToActingStaff);
+                        Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(), application.LastAssignedUserId, message.Subject, message.Content);
+                        Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(), User.Identity.Name, messageToActingStaff.Subject, messageToActingStaff.Content);
+                    }
+                    else
+                    {
+                        SendMail(application, model.Report, message.Subject, body, model.Action, mailtype, message);
+                        SendMail(application, model.Report, messageToActingStaff.Subject, body, model.Action, mailtype, messageToActingStaff, User.Identity.Name);
+
+                        if (model.Action.ToLower().Equals("approve"))
                             TempData["message"] =                                                                    
                                 "Application has been pushed to the next processing officer for appropriate action";
                         else if(model.Action.ToLower().Equals("reject"))
@@ -479,9 +647,34 @@ namespace GOTEX.Controllers
         
         private List<PaymentApproval> GetPayments() => _paymentApproval.GetAll();
 
-        public IActionResult FilterPermit()
+        [HttpPost]
+        public IActionResult FilterPermit(DateRangeFilterViewModel Model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var permits = _permit.All();
+                if(ModelState.IsValid)
+                {
+                    permits = permits.Where(x => x.DateIssued <= Model.End && x.DateIssued >= Model.Start).ToList();
+                    return View("Permits", permits);
+                }
+                else
+                {
+                    TempData["Error"] = "You must select both start and end datetime to filter.";
+                    return RedirectToAction("Permits");
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Insert(new Log
+                {
+                    Action = "Filter Approved Applications.",
+                    Date = DateTime.UtcNow.AddHours(1),
+                    Error = $"{ex.Message}\n{ex.InnerException}\n{ex.StackTrace}",
+                    UserId = User.Identity.Name
+                });
+            }
+            return RedirectToAction("Permits");
         }
 
         public IActionResult ApplicationTypes()
@@ -614,16 +807,29 @@ namespace GOTEX.Controllers
 
         public IActionResult ApplicationFlow() => View(_workFlow.GetAll());
 
-        private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message)
+        private void SendMail(Application application, string comment, string subject, string body, string action, string mailtype, Message message, string ActingStaffEmail = null)
         {
             var tk = $"Application for {mailtype} with reference: {application.Reference} on <br/>NUPRC Gas Export Permit portal (GATEX) has been sent to you for further action: " +
                      $"<br /> {comment}. <br/>";
-            message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
-            
-            _message.Update(message);
-            Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
-                application.LastAssignedUserId, 
-                message.Subject, message.Content);
+
+            if(ActingStaffEmail != null)
+            {
+                message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={ActingStaffEmail}");
+
+                _message.Update(message);
+                Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
+                    ActingStaffEmail,
+                    message.Subject, message.Content);
+            }
+            else
+            {
+                message.Content = string.Format(body, message.Subject, tk, message.Id, DateTime.Now.Year, $"https://gatex.nuprc.gov.ng/account/login?email={application.LastAssignedUserId}");
+
+                _message.Update(message);
+                Utils.SendMail(_emailSettings.Stringify().Parse<Dictionary<string, string>>(),
+                    application.LastAssignedUserId,
+                    message.Subject, message.Content);
+            }
         }
 
         public IActionResult EditFlow(int id) => View(_workFlow.GetAll().FirstOrDefault(x => x.Id == id));

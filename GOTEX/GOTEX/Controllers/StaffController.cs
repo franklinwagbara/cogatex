@@ -93,7 +93,8 @@ namespace GOTEX.Controllers
                 Roles.ECDP,
                 Roles.CCE,
                 Roles.CCE_STA,
-                Roles.ADCOGTO
+                Roles.ADCOGTO,
+                Roles.ExternalView,
             };
             return Json(new { roles });
         }

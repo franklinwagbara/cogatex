@@ -159,7 +159,7 @@ namespace GOTEX.Controllers
                         TempData["Success"] = "APplication type is allowed";
                     else if (prevApplication.Count > 0 && model.ApplicationTypeId != 3)
                     {
-                        TempData["Error"] = "Sorry but non-supplementary application for a product type in the sane quarter is not allowed";
+                        TempData["Error"] = "Sorry but non-supplementary application for a product type in the same quarter is not allowed";
                         return RedirectToAction("Index");
                     }
                     var lateApp = LatePayment(model.QuarterId);

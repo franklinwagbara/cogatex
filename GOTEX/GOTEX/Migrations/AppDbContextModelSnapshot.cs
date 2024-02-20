@@ -313,6 +313,9 @@ namespace GOTEX.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("LastJobDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -437,6 +440,53 @@ namespace GOTEX.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Configurations");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.DeclarationForm", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Bribe")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CrudeTheft")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExportProceedings")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ExportVolume")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Offence")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OutstandingFee")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuarterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StaffBribe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Violation")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuarterId");
+
+                    b.ToTable("DeclarationForms");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Facility", b =>
@@ -765,7 +815,8 @@ namespace GOTEX.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationId");
+                    b.HasIndex("ApplicationId")
+                        .IsUnique();
 
                     b.ToTable("Permits");
                 });
@@ -885,6 +936,48 @@ namespace GOTEX.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("RemitaPayments");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.Survey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DocumentUpload")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Effectiveness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IssuanceTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KnowledgeGain")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaymentProcess")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PermitId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PermitProcess")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserFriendly")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermitId");
+
+                    b.ToTable("Surveys");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Terminal", b =>
@@ -1087,7 +1180,7 @@ namespace GOTEX.Migrations
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationHistory", b =>
                 {
                     b.HasOne("GOTEX.Core.BusinessObjects.Application", "Application")
-                        .WithMany()
+                        .WithMany("Histories")
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1132,6 +1225,17 @@ namespace GOTEX.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.DeclarationForm", b =>
+                {
+                    b.HasOne("GOTEX.Core.BusinessObjects.Quarter", "Quarter")
+                        .WithMany()
+                        .HasForeignKey("QuarterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quarter");
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Facility", b =>
@@ -1201,8 +1305,8 @@ namespace GOTEX.Migrations
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.Permit", b =>
                 {
                     b.HasOne("GOTEX.Core.BusinessObjects.Application", "Application")
-                        .WithMany()
-                        .HasForeignKey("ApplicationId")
+                        .WithOne("Permit")
+                        .HasForeignKey("GOTEX.Core.BusinessObjects.Permit", "ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1216,6 +1320,15 @@ namespace GOTEX.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.Survey", b =>
+                {
+                    b.HasOne("GOTEX.Core.BusinessObjects.Permit", null)
+                        .WithMany("Survey")
+                        .HasForeignKey("PermitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.WorkFlow", b =>
@@ -1265,6 +1378,13 @@ namespace GOTEX.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.Application", b =>
+                {
+                    b.Navigation("Histories");
+
+                    b.Navigation("Permit");
+                });
+
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -1273,6 +1393,11 @@ namespace GOTEX.Migrations
             modelBuilder.Entity("GOTEX.Core.BusinessObjects.ApplicationUser", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("GOTEX.Core.BusinessObjects.Permit", b =>
+                {
+                    b.Navigation("Survey");
                 });
 #pragma warning restore 612, 618
         }

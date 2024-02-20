@@ -13,7 +13,7 @@
                 </li>
                 <hr/>
                 <li class="nav-devider"></li>
-                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA"))
+                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA") && !User.IsInRole("ExternalView"))
                 {
                     <li class="nav-label"> Dashboard </li>
 
@@ -45,6 +45,10 @@
                 else
                 {
                     <partial name="_AdminSideBar"/>
+                }
+
+                @if (!User.IsInRole("ExternalView") && User.IsInRole("Staff"))
+                {
                     <li class="nav-label">My Work(s)</li>
                     <li>
                         <a href="@Url.Action("Outbox", "Admin")">
@@ -53,7 +57,7 @@
                         </a>
                     </li>
                     <hr />
-                }
+                 }
             </ul>
             <br />
 

@@ -21,5 +21,6 @@
         public const string ECDP = "ECDP";
         public const string ADCOGTO = "ADCOGTO";
         public const string CCE_STA = "CCE_STA";
+        public const string ExternalView = "ExternalView";
     }
 }

@@ -18,5 +18,7 @@ namespace GOTEX.Core.BusinessObjects
         public DateTime? LastJobDate { get; set; }
         public ICollection<ApplicationUserRole> UserRoles { get; set; }
 
+        [NotMapped]
+        public string FullName => $"{FirstName}, {LastName}";
     }
 }

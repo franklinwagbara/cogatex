@@ -3,10 +3,31 @@
     ViewBag.Title = "My Desk";
 }
 
+<style>
+    .table-title{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table-title h2{
+        color: white;
+        font-weight: bolder;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        margin: 1rem;
+        border-radius: 10px;
+        background-color: dodgerblue;
+        min-width: 30rem;
+    }
+</style>
+
 <center>
     <div class="card" style="border-radius: 5px;; margin-top: 2em; padding: 1em;">
         
-        <h2 class="btn btn-success col-md-3"><b>Application(s) on my Desk</b></h2>
+        <div class="table-title">
+            <h2>Application(s) on My Desk</h2>
+        </div>
         @if (ViewBag.Message != null)
         {
             <div class="col-md-12">
@@ -16,7 +37,7 @@
                 </div>
             </div>
         }
-        <table id="example" class="table table-striped">
+        <table id="table1" class="table table-striped">
             <thead>
             <tr>
                 <th>Id</th>
@@ -29,6 +50,40 @@
                 <th>Date Applied</th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <div id="leaver-desk" class="card" style="border-radius: 5px; margin-top: 2em; padding: 1em;">
+
+        <div class="table-title">
+            <h2 id="leaver-table-title">Application(s) on Leaver's Desk</h2>
+        </div>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="col-md-12">
+                <div class="alert alert-info" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    @ViewBag.Message
+                </div>
+            </div>
+        }
+        <table id="table2" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Company Name</th>
+                    <th>
+                        Reference
+                    </th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Date Applied</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody></tbody>
         </table>
@@ -46,7 +101,7 @@
     <script src="~/ela/js/dataTables.buttons.min.js"></script>
     <script>
         $(document).ready(function() {  
-            $("#example").dataTable({  
+            $("#table1").dataTable({  
                 "processing": true, // for show progress bar    
                 "serverSide": true, // for process server side    
                 "filter": true, // this is for disable filter (search box)    
@@ -73,7 +128,57 @@
                     },  
                 ]  
       
-            });  
+            });
+
+            $("#table2").dataTable({
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "ajax": {
+                    "url": "/Admin/LeaverDesk",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columnDefs": [{
+                    "targets": [0],
+                    "visible": true,
+                    "searchable": false
+                }],
+                "columns": [
+                    { "data": "id", "name": "Id", "autoWidth": true },
+                    { "data": "user.company.name", "name": "Company Name", "autoWidth": true },
+                    { "data": "reference", "name": "Reference", "autoWidth": true },
+                    { "data": "product.name", "name": "Product", "autoWidth": true },
+                    { "data": "status", "name": "Status", "autoWidth": true },
+                    { "data": "dateView", "name": "Date Applied", "autoWidth": true },
+                    {
+                        "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="@Url.Content("/Admin/ViewApplication/")' + full.id + '">View</a>'; }
+                    },
+                ]
+
+            });
+
+            $.ajax({
+                url: '@Url.Action("GetLeaverInfo", "Admin")', // URL to the controller action
+                type: 'GET',
+                success: function (data) {
+                    // Handle success
+                    //$("#dataContainer").html("Name: " + data.Name + ", Age: " + data.Age);
+                    console.log("data: ", data);
+                    if(data.data == null)
+                        $("#leaver-desk").hide();
+                    else{
+                        $("#leaver-table-title").html(data.data.fullName + "'s Desk");
+                    }
+                },
+                error: function (e) {
+                    console.log("error: ", e);
+
+                    // Handle error
+                    //$("#dataContainer").html("Error occurred while fetching data.");
+                }
+            });
         });  
     </script>
 }
