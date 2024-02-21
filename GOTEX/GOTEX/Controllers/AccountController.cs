@@ -112,6 +112,12 @@ namespace GOTEX.Controllers
                             if(user == null)
                                 user = _userManager.Users.FirstOrDefault(x => x.ELPSId == staff.Id);
 
+                            if(user != null && user.ELPSId == null)
+                            {
+                                user.ELPSId = staff.Id;
+                                await _userManager.UpdateAsync(user);
+                            }
+
                             if (user != null && !user.Email.Equals(model.email))
                             {
                                 //fetch apps
