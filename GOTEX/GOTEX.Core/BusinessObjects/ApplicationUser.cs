@@ -11,6 +11,7 @@ namespace GOTEX.Core.BusinessObjects
         public int? CompanyId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int? ELPSId { get; set; }
         public bool ProfileComplete { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }

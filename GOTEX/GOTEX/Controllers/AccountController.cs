@@ -108,6 +108,10 @@ namespace GOTEX.Controllers
                         {
                             var str = model.email.Split('@');
                             user = _userManager.Users.FirstOrDefault(x => x.Email.StartsWith(str.FirstOrDefault()));
+
+                            if(user == null)
+                                user = _userManager.Users.FirstOrDefault(x => x.ELPSId == staff.Id);
+
                             if (user != null && !user.Email.Equals(model.email))
                             {
                                 //fetch apps
@@ -125,6 +129,7 @@ namespace GOTEX.Controllers
                                 
                                 user.Email = model.email;
                                 user.UserName = model.email;
+                                user.ELPSId = staff.Id;
 
                                 await _userManager.UpdateAsync(user);
                                 
@@ -159,7 +164,6 @@ namespace GOTEX.Controllers
                         TempData["ErrorMessage"] = "An error occured, please contact Support/ICT.";
 
                     return await LogOff();
-                //}
             }
             catch (Exception ex)
             {

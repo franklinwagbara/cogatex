@@ -20,6 +20,7 @@
     [CompanyId]            INT                NULL,
     [IsActive]             BIT                CONSTRAINT [DF__AspNetUse__IsAct__778AC167] DEFAULT (CONVERT([bit],(0))) NOT NULL,
     [LastJobDate]          DATETIME           CONSTRAINT [DF_AspNetUsers_LastJobDate] DEFAULT (getdate()) NULL,
+    [ELPSId] INT NULL DEFAULT null, 
     CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_AspNetUsers_Companies_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Companies] ([Id])
 );

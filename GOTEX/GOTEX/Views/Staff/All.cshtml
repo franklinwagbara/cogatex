@@ -89,7 +89,7 @@
                           data-pnumber = "@user.PhoneNumber"
                            data-userrole = "@user.UserRoles.FirstOrDefault()?.Role.Name"
                         >Edit</a>
-                        @if (user.UserRoles.Count > 0 && !user.UserRoles.FirstOrDefault().Role.Name.Equals("Company", StringComparison.OrdinalIgnoreCase))
+                            @if (user.UserRoles.Count > 0 && !user.UserRoles.FirstOrDefault().Role.Name.Equals("Company", StringComparison.OrdinalIgnoreCase) && !User.IsInRole("OOCCE"))
                         {
                             if(apps > 0)
                             {
