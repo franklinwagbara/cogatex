@@ -94,7 +94,9 @@
             e.preventDefault();
             $('.modal-title').html('Applications on Staff desk');
             var user = $(this).data('email');
+            console.log("befoe...", user);
             $.get('/Admin/StaffApps', { id: user }, function (data) {
+                console.log("data...", data);
                 $('.modal-body').html(data);
             });
         });

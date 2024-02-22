@@ -23,7 +23,7 @@ namespace GOTEX.Core.DAL
         public LeaveRequest FindById(int id) => _context.LeaveRequests.FirstOrDefault(e => e.Id == id);
 
         public List<LeaveRequest> GetAll() => _context.LeaveRequests
-            .Include(x => x.Leave).Include(x => x.ApprovingStaff).ToList();
+            .Include(x => x.ApprovingStaff).Include(x => x.Leave).ThenInclude(x => x.Staff).Include(x => x.Leave).ThenInclude(x => x.ActingStaff).ToList();
 
         public List<LeaveRequest> GetListByUserId(string id)
         {

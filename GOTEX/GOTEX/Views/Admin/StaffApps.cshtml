@@ -14,6 +14,7 @@
                     <th>Company Name</th>
                     <th>Year</th>
                     <th>Quarter</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +28,7 @@
                         <td>@app.User.Company.Name</td>
                         <td>@app.Year</td>
                         <td>@app.Quarter.Name</td>
-
+                        <td colspan="5"><input type="submit" value="View" asp-controller="Admin" asp-action="ViewApplication" asp-route-id="@app.Id" class="btn btn-primary" /></td>
                     </tr>
                 }
             </tbody>

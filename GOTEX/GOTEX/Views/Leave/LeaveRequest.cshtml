@@ -6,11 +6,43 @@
     int count = 0;
 }
 
-<h1>LeaveRequest</h1>
+<style>
+    .approved-status{
+        padding: 0.5rem 1rem;
+        background-color: limegreen;
+        color: white;
+        width: fit-content;
+        border-radius: 10px;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    .disapproved-status {
+        padding: 0.5rem 1rem;
+        background-color: orangered;
+        color: white;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .title{
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+        width: 100%;
+    }
+
+    .title h1{
+        width: fit-content;
+        padding: 1rem 2rem;
+        background-color: royalblue;
+        border-radius: 10px;
+        color: white;
+        font-family: 'Sans Serif Collection';
+    }
+</style>
+
+<div class="title">
+    <h1>LEAVE REQUEST APPLICATIONS</h1>
+</div>
 
 <table class="table">
     <thead>
@@ -54,7 +86,15 @@
                 @item.DateCreated
             </td>
             <td>
-                @item.IsApproved == true? "Yes": "No"
+
+                @if(item.IsApproved == true)
+                {
+                   <p class="approved-status">Approved</p>   
+                }
+                else
+                {
+                   <p class="disapproved-status">Not Approved</p>
+                }
             </td>
             <td>
                 @item.DateApproved

@@ -44,6 +44,27 @@
 
                     @if (User.IsInRole("OOCCE"))
                     {
+                        <li class="nav-label">Desk</li>
+                        <li>
+                            <a href="#desk" aria-expanded="false" data-toggle="collapse">
+                                <i class="fas fa-people-carry text-warning"></i>
+                                <span class="hide-menu">Staff Desk </span>
+                            </a>
+                            <ul id="desk" class="collapse" data-toggle="collapse" aria-expanded="False">
+                                <li>
+                                    <a href="@Url.Content("~/Admin/StaffDesk")">
+                                        <i class="fa fa-user text-gray"> </i> 
+                                        <span class="nav-label"> Staff Desk</span>
+                                    </a>
+                                </li>
+        
+                            </ul>
+                        </li>
+                        <hr />                        
+                    }
+
+                    @if (User.IsInRole("OOCCE"))
+                    {
                         <li class="nav-label">Permit Approval(s)</li>
                         <li>
                             <a href="/Admin/Permits">
