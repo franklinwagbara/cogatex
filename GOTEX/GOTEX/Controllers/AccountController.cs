@@ -70,9 +70,9 @@ namespace GOTEX.Controllers
                         {
                             if (!await _userManager.IsInRoleAsync(user, Roles.Company))
                             {
-                                var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
-                                var history1 = (from h in _history.All() where h.CurrentUser.Equals(user.Email) select h).ToList();
-                                var history2 = (from h in _history.All() where h.ProcessingUser.Equals(user.Email) select h).ToList();
+                                var apps = _application.GetAll().Where(x => x.LastAssignedUserId != null && x.LastAssignedUserId.Equals(user.Email)).ToList();
+                                var history1 = (from h in _history.All() where h.CurrentUser != null && h.CurrentUser.Equals(user.Email) select h).ToList();
+                                var history2 = (from h in _history.All() where h.ProcessingUser != null && h.ProcessingUser.Equals(user.Email) select h).ToList();
 
                                 apps.ForEach(x => x.LastAssignedUserId = model.email);
 
@@ -121,14 +121,14 @@ namespace GOTEX.Controllers
                             if (user != null && !user.Email.Equals(model.email))
                             {
                                 //fetch apps
-                                var apps = _application.GetAll().Where(x => x.LastAssignedUserId.Equals(user.Email)).ToList();
+                                var apps = _application.GetAll().Where(x => x.LastAssignedUserId != null && x.LastAssignedUserId.Equals(user.Email)).ToList();
                                 apps.ForEach(x => x.LastAssignedUserId = model.email);
                                 //fetch apphistory
-                                var apphistory1 = _history.All().Where(x => x.ProcessingUser.Equals(user.Email)).ToList();
+                                var apphistory1 = _history.All().Where(x => x.ProcessingUser != null && x.ProcessingUser.Equals(user.Email)).ToList();
                                 if(apphistory1.Count > 0)
                                     apphistory1.ForEach(x => x.ProcessingUser = model.email);
                                 
-                                var apphistory2 = _history.All().Where(x => x.CurrentUser.Equals(user.Email)).ToList();
+                                var apphistory2 = _history.All().Where(x => x.CurrentUser != null && x.CurrentUser.Equals(user.Email)).ToList();
                                 if(apphistory2.Count > 0)
                                     apphistory2.ForEach(x => x.CurrentUser = model.email);
 

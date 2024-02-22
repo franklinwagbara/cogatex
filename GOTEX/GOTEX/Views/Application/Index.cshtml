@@ -3,6 +3,21 @@
 @{
     ViewData["Title"] = "Apply";
 }
+
+<style>
+    .radio-group{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .radio-hor{
+        display: flex;
+        flex-direction: row;
+        font-size: smaller;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
 <div>
     <center>
         <div class="text-left">
@@ -80,7 +95,7 @@
                                 Quarter Registration 
                                 <i class="text-danger fa-sm  fa fa-asterisk" style="font-size:6px;"></i>
                             </label>
-                            <div>
+                            <div class="radio-group">
                                 @foreach (var item in ViewBag.Quarters)
                                 {
                                     var month = DateTime.Now;
@@ -88,59 +103,71 @@
                                     {
                                         if (month.Month > 6 && item.Name.Contains("First") || item.Name.Contains("Second"))
                                         {
-                                            <label title="@item.Title" class="control-label alert alert-warning">@item.Name</label>
-                                            <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                            <div class="radio-hor">
+                                                <label title="@item.Title" class="control-label alert alert-warning">@item.Name</label>
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                            </div>
                                         }
                                         else
                                         {
-                                            <label title="@item.Title" class="control-label alert alert-warning">@item.Name</label>
-                                            <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                            <div class="radio-hor">
+                                                <label title="@item.Title" class="control-label alert alert-warning">@item.Name</label>
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                            </div>
                                         }
                                     }
                                     else
                                     {
                                         if (month.Month > 9)
                                         {
-                                            <label title="@item.Title" class="control-label">
-                                                @item.Name
-                                            </label>
-                                            if (item.Id == 2 || item.Id == 3)
-                                            {
-                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
-                                            }
-                                            else
-                                            {
-                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
-                                            }
+                                            <div class="radio-hor">
+                                                <label title="@item.Title" class="control-label">
+                                                    @item.Name
+                                                </label>
+                                                if (item.Id == 2 || item.Id == 3)
+                                                {
+                                                    <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                                }
+                                            </div>
                                         }
                                         else if (month.Month > 6)
                                         {
-                                            <label title="@item.Title" class="control-label">@item.Name</label>
-                                            if(item.Id == 1 || item.Id == 2)
-                                            {
-                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
-                                            }
-                                            else
-                                            {
-                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
-                                            }
+                                            <div class="radio-hor">
+                                                <label title="@item.Title" class="control-label">@item.Name</label>
+                                                if(item.Id == 1 || item.Id == 2)
+                                                {
+                                                    <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                                }
+                                            </div>
                                         }
                                         else if(month.Month > 3)
                                         {
-                                            <label title="@item.Title" class="control-label">@item.Name</label>
-                                           if(item.Id == 1)
-                                           {
-                                               <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
-                                           }
-                                           else
-                                           {
-                                               <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
-                                           }
+                                            <div class="radio-hor">
+                                                <label title="@item.Title" class="control-label">@item.Name</label>
+                                               if(item.Id == 1)
+                                               {
+                                                   <input type="radio" value="@item.Id" style="margin-right: 1em;" disabled asp-for="QuarterId"/>
+                                               }
+                                               else
+                                               {
+                                                   <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                               }
+                                           </div>
                                         }
                                         else
                                         {
-                                            <label title="@item.Title" class="control-labelg">@item.Name</label>
-                                            <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                            <div class="radio-hor">
+                                                <label title="@item.Title" class="control-labelg">@item.Name</label>
+                                                <input type="radio" value="@item.Id" style="margin-right: 1em;" asp-for="QuarterId"/>
+                                            </div>
                                         }
                                     }
                                 }

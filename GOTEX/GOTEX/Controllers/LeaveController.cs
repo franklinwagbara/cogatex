@@ -85,6 +85,8 @@ namespace GOTEX.Controllers
                     End = model.Leave.End
                 };
 
+                _leaveRepo.Insert(leave);
+
                 if (User.IsInRole(Roles.Planning) || User.IsInRole(Roles.Inspector))
                 {
                     var leaveRequest = new LeaveRequest()
@@ -104,7 +106,7 @@ namespace GOTEX.Controllers
                     return View();
                 }
 
-                ViewBag["Message"] = "Leave application creation failed.";
+                ViewBag.Message = "Leave application creation failed.";
                 return View("Index", model);
             }
             catch (System.Exception e)
@@ -133,11 +135,12 @@ namespace GOTEX.Controllers
         {
             if(User.IsInRole(Roles.Inspector))
             {
-                return _userManager.Users.Where(x => x.UserRoles.Any(x => x.Role.Name.Equals(Roles.Inspector)) && x.Id == user.Id).ToList();
+                return _userManager.Users.Where(x => x.UserRoles.Any(x => x.Role.Name.Equals(Roles.Inspector)) && x.Id != user.Id).ToList();
             }
             else if(User.IsInRole(Roles.Planning))
             {
-                return _userManager.Users.Where(x => x.UserRoles.Any(x => x.Role.Name.Equals(Roles.Planning)) && x.Id == user.Id).ToList();
+                //return _userManager.GetUsersInRoleAsync(Roles.Planning).Result;
+                return _userManager.Users.Where(x => x.UserRoles.Any(x => x.Role.Name.Equals(Roles.Planning)) && x.Id != user.Id).ToList();
             }
             else if (User.IsInRole(Roles.Supervisor))
             {
