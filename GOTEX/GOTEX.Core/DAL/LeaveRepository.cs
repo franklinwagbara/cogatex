@@ -4,6 +4,7 @@ using GOTEX.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using GOTEX.Core.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace GOTEX.Core.DAL
 {
@@ -25,11 +26,11 @@ namespace GOTEX.Core.DAL
             else return false;
         }
 
-        public Leave FindById(int id) => _context.Leaves.FirstOrDefault(x => x.Id == id);
+        public Leave FindById(int id) => _context.Leaves.Include(x => x.Staff).Include(x => x.ActingStaff).FirstOrDefault(x => x.Id == id);
 
-        public List<Leave> GetAll() => _context.Leaves.ToList();
+        public List<Leave> GetAll() => _context.Leaves.Include(x => x.Staff).Include(x => x.ActingStaff).ToList();
 
-        public List<Leave> GetListByUserId(string id) => _context.Leaves.Where(x => x.StaffId == id).ToList();
+        public List<Leave> GetListByUserId(string id) => _context.Leaves.Include(x => x.Staff).Include(x => x.ActingStaff).ToList();
 
         public Leave Insert(Leave item)
         {

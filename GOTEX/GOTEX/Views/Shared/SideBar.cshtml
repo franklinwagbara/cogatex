@@ -41,6 +41,78 @@
                     </li>
 
                     <hr/>
+
+                    @if (User.IsInRole("OOCCE"))
+                    {
+                        <li class="nav-label">Permit Approval(s)</li>
+                        <li>
+                            <a href="/Admin/Permits">
+                                <i class="fa fa-file-archive-o text-warning"> </i>
+                                <span class="hide-menu">All Approvals</span>
+                            </a>
+                        </li>
+                        <hr />                        
+                    }
+
+                    @if (User.IsInRole("OOCCE"))
+                    {
+                        <li class="nav-label">Report</li>
+                        <li>
+                            <a data-toggle="collapse" href="#myaccount" aria-expanded="false">
+                                <i class="fa fa-chart-bar text-warning"> </i>
+                                <span class="hide-menu">Report</span>
+                            </a>
+                            <ul aria-expanded="false" data-toggle="collapse" class="collapse" id="myaccount">
+                                @if (!User.IsInRole("Planning"))
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ApplicationReport", "Admin")">
+                                            <i class="fa fa-chart-line"> </i>
+                                            <span class="nav-label"> Application Report</span>
+                                        </a>
+                                    </li>
+                                }
+                                <li>
+                                    <a href="@Url.Action("PaymentReport", "Admin")">
+                                        <i class="fa fa-chart-line"> </i>
+                                        <span class="nav-label"> Payment Report</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Content("~/Application/Report")">
+                                        <i class="fa fa-check text-gray"> </i>
+                                        <span class="nav-label"> Approved App. Reports</span>
+                                    </a>
+                                </li>
+                                @* <li> *@
+                                @*     <a href="@Url.Action("PermitReport", "Admin")"> *@
+                                @*         <i class="fa fa-chart-pie"> </i> <span>Approval Report</span> *@
+                                @*     </a> *@
+                                @* </li> *@
+                            </ul>
+                        </li>
+                        <hr />
+                    }
+
+                    @if (User.IsInRole("OOCCE"))
+                    {
+                        <li class="nav-label">Staff Management</li>
+                        <li>
+                            <a data-toggle="collapse" href="#staff" aria-expanded="false">
+                                <i class="fa fa-user-check text-warning"> </i>
+                                <span class="hide-menu"> Staff Management</span>
+                            </a>
+                            <ul aria-expanded="false" data-toggle="collapse" class="collapse" id="staff">
+                                <li>
+                                    <a href="/Staff/All">
+                                        <i class="fa fa-users text-success"> </i>
+                                        <span class="nav-label"> All Users</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <hr />
+                    }
                 }
                 else
                 {
