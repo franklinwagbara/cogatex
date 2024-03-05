@@ -28,7 +28,7 @@ namespace GOTEX.Core.DAL
 
         public Leave FindById(int id) => _context.Leaves.Include(x => x.Staff).Include(x => x.ActingStaff).FirstOrDefault(x => x.Id == id);
 
-        public List<Leave> GetAll() => _context.Leaves.Include(x => x.Staff).Include(x => x.ActingStaff).ToList();
+        public List<Leave> GetAll() => _context.Leaves.Include(x => x.ActingStaff).Include(x => x.Staff).Include(x => x.Staff.UserRoles).ToList();
 
         public List<Leave> GetListByUserId(string id) => _context.Leaves.Include(x => x.Staff).Include(x => x.ActingStaff).ToList();
 
@@ -61,9 +61,11 @@ namespace GOTEX.Core.DAL
 
         public Leave Update(Leave item)
         {
-            var newLeave = _context.Leaves.Update(item);
+            var found = _context.Leaves.FirstOrDefault(x => x.Id == item.Id) ?? throw new NotFoundException($"Could not find LeaveRequest with Id={item.Id}");
+
+            _context.Leaves.Update(item);
             _context.SaveChanges();
-            return newLeave.Entity;
+            return item;
         }
     }
 }

@@ -28,6 +28,7 @@ namespace GOTEX.Core.DAL
             services.AddTransient<IRepository<DeclarationForm>, DEclarationFormRepository>();
             services.AddTransient<IRepository<Leave>, LeaveRepository>();
             services.AddTransient<IRepository<LeaveRequest>, LeaveRequestRepository>();
+            services.AddTransient<IRepository<InspectorRejection>, InspectionRejectionRepository>();
         }
     }
 }

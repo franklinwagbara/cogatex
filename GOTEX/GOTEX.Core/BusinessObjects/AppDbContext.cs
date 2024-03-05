@@ -38,6 +38,7 @@ namespace GOTEX.Core.BusinessObjects
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Leave> Leaves { get; set; }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
+        public DbSet<InspectorRejection> InspectorRejections { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder) 
         {

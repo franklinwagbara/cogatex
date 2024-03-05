@@ -249,7 +249,7 @@ namespace GOTEX.Controllers
 
         public IActionResult ViewApplication(int id)
         {
-            var application = _application.FindById(id);
+            Application application = _application.FindById(id);
             try
             {
                 if (application == null)
@@ -408,12 +408,12 @@ namespace GOTEX.Controllers
                 if (leave != null)
                     leaver = await _userManager.Users.Include(x => x.UserRoles).Where(x => x.Id == leave.StaffId).FirstOrDefaultAsync();
 
-                if (User.Identity.Name.Equals(application.LastAssignedUserId))
+                if (User.Identity.Name.Equals(application.LastAssignedUserId) || User.IsInRole(Roles.OOCCE))
                 {
                     if (User.IsInRole(Roles.CCE))
                         model.Report = model.Action.ToLower().Equals("approve") ? "Final approval by CCE" : "Application rejected by CCE";
 
-                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report);
+                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report, null, model.IsPaymentRelated);
                     
                     var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
                     var message = new Message
@@ -466,7 +466,7 @@ namespace GOTEX.Controllers
                     if(_userManager.IsInRoleAsync(leaver, Roles.CCE).Result)
                         model.Report = model.Action.ToLower().Equals("approve") ? "Final approval by CCE" : "Application rejected by CCE";
 
-                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report);
+                    var res = await _history.CreateNextProcessingPhase(application, model.Action, model.Report, null, model.IsPaymentRelated);
                     
                     var mailtype = $"{application.ApplicationType.Name} {application.Quarter.Name}";
                     var message = new Message

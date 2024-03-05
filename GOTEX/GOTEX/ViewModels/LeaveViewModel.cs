@@ -10,6 +10,7 @@ namespace GOTEX.ViewModels
     {
         public LeaveForm Leave { get; set; }
         public List<ApplicationUser> Users { get; set; }
+        public bool HasLeaveRequest { get; set; }
     }
 
     public class LeaveForm

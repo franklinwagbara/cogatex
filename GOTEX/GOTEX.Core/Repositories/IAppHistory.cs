@@ -6,7 +6,7 @@ namespace GOTEX.Core.Repositories
 {
     public interface IAppHistory<T> where T: class
     {
-        Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null, string loggedinUser = null);
+        Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null, string loggedinUser = null, bool IsPaymentRelated = false);
         Task<ApplicationUser> GetNextProcessingOfficer(string rolename, string action, Application application, ApplicationUser currentuser);
         List<T> GetApplicationHistoriesById(int applicationid);
         void Update(ApplicationHistory item);

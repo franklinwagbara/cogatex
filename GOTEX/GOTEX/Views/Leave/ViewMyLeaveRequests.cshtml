@@ -1,0 +1,122 @@
+﻿@model IEnumerable<GOTEX.Core.BusinessObjects.Leave>
+
+@{
+    ViewData["Title"] = "ViewMyLeaveRequests";
+    int count = 0;
+}
+
+<style>
+    .approved-status{
+        padding: 0.5rem 1rem;
+        background-color: limegreen;
+        color: white;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .disapproved-status {
+        padding: 0.5rem 1rem;
+        background-color: orangered;
+        color: white;
+        width: fit-content;
+        border-radius: 10px;
+    }
+
+    .title{
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+        width: 100%;
+    }
+
+    .title h2{
+        width: fit-content;
+        padding: 1rem 2rem;
+        background-color: royalblue;
+        border-radius: 10px;
+        color: white;
+        font-family: 'Sans Serif Collection';
+            }
+
+    .view
+    {
+        padding: 0.5rem 1rem;
+        color: white;
+        background-color: dodgerblue;
+        border-radius: 3px;
+    }
+</style>
+
+<div class="title">
+    <h2>MY LEAVE REQUEST</h2>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Staff Name
+            </th>
+            <th>
+                Staff Standing-In
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Approval Status
+            </th>
+            <th>
+                Active Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            count++;
+            <tr>
+            <td>
+                @count
+            </td>
+            <td>
+                @item.Staff.FullName
+            </td>
+            <td>
+                @item.ActingStaff.FullName
+            </td>
+            <td>
+                @item.Start
+            </td>
+            <td>
+                @item.End
+            </td>
+            <td>
+                @if (item.IsApproved == true)
+                {
+                    <p class="approved-status">Approved</p>
+                }
+                else
+                {
+                    <p class="disapproved-status">Not Approved</p>
+                }
+            </td>
+            <td>
+                @if (item.IsDeleted == false)
+                {
+                    <p class="approved-status">Active</p>
+                }
+                else
+                {
+                    <p class="disapproved-status">In-Active</p>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

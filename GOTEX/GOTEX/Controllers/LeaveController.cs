@@ -16,12 +16,14 @@ namespace GOTEX.Controllers
         private readonly IRepository<Leave> _leaveRepo;
         private readonly IRepository<LeaveRequest> _leaveRequestRepo;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IRepository<Log> _logger;
 
-        public LeaveController(IRepository<Leave> leaveRepo, UserManager<ApplicationUser> userManager, IRepository<LeaveRequest> leaveRequestRepo)
+        public LeaveController(IRepository<Leave> leaveRepo, UserManager<ApplicationUser> userManager, IRepository<LeaveRequest> leaveRequestRepo, IRepository<Log> logger)
         {
             _leaveRepo = leaveRepo;
             _userManager = userManager;
-            _leaveRequestRepo = leaveRequestRepo;   
+            _leaveRequestRepo = leaveRequestRepo;  
+            _logger = logger;
         }
 
         [HttpGet]
@@ -30,7 +32,8 @@ namespace GOTEX.Controllers
 
             var user = await _userManager.FindByEmailAsync(User.Identity.Name);
             var actingStaffs = await GetActingStaffs(user);
-
+            var leaves = _leaveRepo.GetAll();
+            var hasRunningLeaveRequest = leaves.FirstOrDefault(x => x.Staff.Email == User.Identity.Name && x.IsDeleted == false) != null? true: false;
 
             var viewModel = new LeaveFormViewModel
             {
@@ -39,7 +42,8 @@ namespace GOTEX.Controllers
                     StaffId = user.Id,
                     StaffName = $"{user.FirstName}, {user.LastName}",
                 },
-                Users = actingStaffs
+                Users = actingStaffs,
+                HasLeaveRequest = hasRunningLeaveRequest
             };
 
             return View(viewModel);
@@ -62,7 +66,21 @@ namespace GOTEX.Controllers
             return View(viewModel);
         }
 
-        
+        [HttpGet]
+        public IActionResult ViewMyLeaveRequests()
+        {
+            var leaves = _leaveRepo.GetAll();
+            leaves = leaves.Where(x => x.Staff.Email == User.Identity.Name).ToList();   
+
+            return View(leaves);
+        }
+
+        [HttpGet]
+        public IActionResult ViewRequest(int Id)
+        {
+            var leave = _leaveRequestRepo.FindById(Id);
+            return View(leave);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(LeaveFormViewModel model)
@@ -115,6 +133,37 @@ namespace GOTEX.Controllers
                 return View("Index", model);
             }
             
+        }
+
+        public IActionResult ApproveRequest(int Id)
+        {
+            try
+            {
+                var leaveRequest = _leaveRequestRepo.FindById(Id);
+                leaveRequest.IsApproved = true;
+                leaveRequest.DateApproved = DateTime.Now;
+                _leaveRequestRepo.Update(leaveRequest);
+
+                leaveRequest.Leave.IsApproved = true;
+                _leaveRepo.Update(leaveRequest.Leave);
+
+                ViewBag.Message = "Leave Application Approval was successfull!";
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.Insert(new Log
+                {
+                    Action = "Approve Leave Request",
+                    Date = DateTime.UtcNow.AddHours(1),
+                    Error = $"{ex.Message}\n{ex.InnerException}\n{ex.StackTrace}",
+                    UserId = User.Identity.Name
+                });
+
+                ViewBag.Error = "Leave Application Approval failed!";
+                return View();
+            }
         }
 
         private string GetNextProcessingLeaveSupervisor()

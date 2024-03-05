@@ -15,16 +15,22 @@ namespace GOTEX.Core.DAL
     {
         private AppDbContext _context;
         private UserManager<ApplicationUser> _userManager;
+        private IRepository<Leave> _leaveRepo;
+        private IRepository<InspectorRejection> _inspectorRejectionRepo;
         
         public AppHistoryRepository(
             AppDbContext context,  
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IRepository<Leave> leaveRepo,
+            IRepository<InspectorRejection> inspectionRejectionRepo)
         {
             _context = context;
             _userManager = userManager;
+            _leaveRepo = leaveRepo;
+            _inspectorRejectionRepo = inspectionRejectionRepo;
         }
 
-        public async Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null, string loggedinUser = null)
+        public async Task<bool> CreateNextProcessingPhase(Application application, string action, string comment = null, string loggedinUser = null, bool IsPaymentRelated = false)
         {
             try
             {
@@ -34,6 +40,19 @@ namespace GOTEX.Core.DAL
                 var nextaction = _context.WorkFlows.FirstOrDefault(x =>
                     x.Action.ToLower().Contains(action) && x.TriggeredByRole.ToLower().Equals(processingUser.UserRoles.FirstOrDefault().Role.Name.ToLower()));
                 var nextprocofficer = nextaction.TargetRole.Equals("Company") ? application.User : await GetNextProcessingOfficer(nextaction.TargetRole, action, application, processingUser);
+
+                //If Planning is approving; check if the inspectorRejection table to check if the application was originally rejected by an inspector
+                if (action.ToLower().Contains("confirmpayment") && processingUser.UserRoles.Any(x => x.Role.Name.Equals(Roles.Planning)))
+                {
+                    var inspectorRejection = _inspectorRejectionRepo.GetAll().Where(x => x.AppId == application.Id && x.IsDeleted == false).FirstOrDefault();
+
+                    if(inspectorRejection != null)
+                    {
+                        var inspector = _userManager.FindByIdAsync(inspectorRejection.InspectorId).Result;
+                        nextprocofficer = inspector;
+                    }
+                }
+
                 if (nextprocofficer != null)
                 {
                     if(await _userManager.IsInRoleAsync(nextprocofficer, Roles.ECDP))
@@ -62,6 +81,19 @@ namespace GOTEX.Core.DAL
                     };
                     _context.ApplicationHistories.Add(history);
                     application.LastAssignedUserId = nextprocofficer.Email;
+
+                    //Update the Inspector Rejection table only if the rejection was made by an Inspector
+                    if(IsPaymentRelated && action.ToLower().Contains("reject") && processingUser.UserRoles.Any(x => x.Role.Name.Equals(Roles.Inspector)))
+                    {
+                        var inspectorRejection = new InspectorRejection()
+                        {
+                            AppId = application.Id,
+                            InspectorId = processingUser.Id,
+                            TargetUserId = application.UserId,
+                        };
+                        _inspectorRejectionRepo.Insert(inspectorRejection);
+                    }
+
                     application.StageId = nextaction.Id;
                     if (action.Equals("submitapplication", StringComparison.OrdinalIgnoreCase)
                         || action.Equals("resubmitpayment", StringComparison.OrdinalIgnoreCase)
@@ -187,6 +219,15 @@ namespace GOTEX.Core.DAL
                     }
                     else if(users.Count == 1)
                         nextofficer = users.FirstOrDefault(x => x.IsActive);
+                }
+
+                var lowerOfficerRoles = new List<string> { Roles.Inspector.ToLower(), Roles.Planning.ToLower() };
+                var leavers = _leaveRepo.GetAll();
+
+                if (nextofficer != null && nextofficer.UserRoles.Any(x => lowerOfficerRoles.Contains(x.Role.Name.ToLower())))
+                {
+                    var leave = leavers.FirstOrDefault(x => x.Staff.Email == nextofficer.Email);
+                    nextofficer = leave != null ? leave.ActingStaff : nextofficer;
                 }
             }
             catch (Exception ex)

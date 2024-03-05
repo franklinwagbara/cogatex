@@ -413,10 +413,19 @@
                         <label for="@Model.Quantity" style="float:left" class="col-form-label">Quantity</label>
                         <input type="text" class="form-control" name="Quantity" readonly value="@Model.Quantity.ToString("N2") @Model.GasStream of @Model.Product.Name" required>
                     </div>
+
+                    @if(User.IsInRole("Inspector"))
+                    {
+                        <div class="form-group" style="display: flex; gap: 20px; align-items: center; padding: 15px;">
+                            <label for="IsPaymentRelated">Is Payment Related?</label>
+                            <input type="checkbox" class="form-check-input" id="IsPaymentRelated" name="IsPaymentRelated" value="true">
+                        </div>                        
+                    }
+
                     @if (!User.IsInRole("CCE"))
                     {
                         <div class="form-group">
-                            <label style="float:left" class="col-form-label">Report</label>
+                            <label class="col-form-label">Report</label>
                             <textarea class="form-control comment" name="Report" placeholder="Kindly provide your reason for approval/rejection" style="min-height: 100px !important;" required></textarea>
                         </div>                        
                     }

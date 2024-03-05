@@ -20,7 +20,7 @@ namespace GOTEX.Core.DAL
             throw new System.NotImplementedException();
         }
 
-        public LeaveRequest FindById(int id) => _context.LeaveRequests.FirstOrDefault(e => e.Id == id);
+        public LeaveRequest FindById(int id) => _context.LeaveRequests.Include(x => x.ApprovingStaff).Include(x => x.Leave).ThenInclude(x => x.Staff).Include(x => x.Leave).ThenInclude(x => x.ActingStaff).FirstOrDefault(e => e.Id == id);
 
         public List<LeaveRequest> GetAll() => _context.LeaveRequests
             .Include(x => x.ApprovingStaff).Include(x => x.Leave).ThenInclude(x => x.Staff).Include(x => x.Leave).ThenInclude(x => x.ActingStaff).ToList();
@@ -55,7 +55,11 @@ namespace GOTEX.Core.DAL
 
         public LeaveRequest Update(LeaveRequest item)
         {
-            throw new System.NotImplementedException();
+            var found = _context.LeaveRequests.FirstOrDefault(x => x.Id == item.Id) ?? throw new NotFoundException($"Could not find LeaveRequest with Id={item.Id}");
+
+            _context.LeaveRequests.Update(item);
+            _context.SaveChanges();
+            return item;
         }
     }
 }

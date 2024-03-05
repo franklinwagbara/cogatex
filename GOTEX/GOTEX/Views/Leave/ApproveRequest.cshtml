@@ -1,0 +1,73 @@
+﻿<style>
+    .container{
+        margin: auto;
+        width: 400px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3rem;
+        gap: 2rem;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+
+    .green-container{
+        border: 1px solid seagreen;
+    }
+
+    .red-container {
+        border: 1px solid seagreen;
+    }
+
+    .success
+    {
+        background-color: seagreen;
+        padding: 1rem 2rem;
+        width: fit-content;
+        border-radius: 5px;
+    }
+
+    .success h3{
+        color: white;
+        font-size: x-large;
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    .error
+    {
+        background-color: darkred;
+        padding: 1rem 2rem;
+        width: fit-content;
+        border-radius: 5px;
+    }
+
+    .error h3{
+        color: white;
+        font-size: x-large;
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    .message p {
+        color: white;
+        font-size: x-large;
+        text-align: center;
+    }
+</style>
+
+@if(ViewBag.Message != null)
+{
+    <div class="container green-container">
+        <div class="success"><h3>Successfull!</h3></div> 
+        <div class="message"><p>@ViewBag.Message</p></div>
+    </div>
+}
+else
+{
+    <div class="container red-container">
+        <div class="error"><h3>Success</h3></div>
+        <div class="message"><p>@ViewBag.Error</p></div>
+    </div>
+}

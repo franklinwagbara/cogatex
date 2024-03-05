@@ -4,7 +4,7 @@
     <ShowAllFiles>true</ShowAllFiles>
     <NameOfLastUsedPublishProfile>GATEXX - Web Deploy</NameOfLastUsedPublishProfile>
     <ActiveDebugProfile>GOTEX</ActiveDebugProfile>
-    <View_SelectedScaffolderID>RazorViewScaffolder</View_SelectedScaffolderID>
+    <View_SelectedScaffolderID>RazorViewEmptyScaffolder</View_SelectedScaffolderID>
     <View_SelectedScaffolderCategoryPath>root/Common/MVC/View</View_SelectedScaffolderCategoryPath>
     <WebStackScaffolding_ViewDialogWidth>650</WebStackScaffolding_ViewDialogWidth>
     <Controller_SelectedScaffolderID>MvcControllerEmptyScaffolder</Controller_SelectedScaffolderID>

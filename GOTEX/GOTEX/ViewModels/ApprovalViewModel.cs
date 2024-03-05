@@ -6,5 +6,6 @@
         public string Reference { get; set; }
         public string Report { get; set; }
         public string Action { get; set; }
+        public bool IsPaymentRelated { get; set; } = false;
     }
 }

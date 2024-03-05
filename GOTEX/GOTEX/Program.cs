@@ -18,6 +18,7 @@ namespace GOTEX
             .ConfigureServices(services =>
             {
                 services.AddHostedService<ApplicationDelayService>();
+                services.AddHostedService<LeaveOverService>();
             });
     }
 }

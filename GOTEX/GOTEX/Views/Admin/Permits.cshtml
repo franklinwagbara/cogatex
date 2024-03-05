@@ -104,7 +104,7 @@
                         @item.Printed
                     </td>
                     <td >
-                        <a href="/Application/License/@item.ApplicationId?type=view" target="_blank" class="btn btn-sm btn-primary">Preview</a>
+                        <a href="/Application/PreviewLicense/@item.ApplicationId?type=view" target="_blank" class="btn btn-sm btn-primary">Preview</a>
                         @if (!User.IsInRole("Company") && !User.IsInRole("ICT") && !User.IsInRole("Support"))
                         {
                             <a href="/Application/License/@item.ApplicationId?type=print" target="_blank" class="btn btn-sm btn-success">Print</a>

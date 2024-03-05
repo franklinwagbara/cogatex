@@ -38,6 +38,14 @@
         color: white;
         font-family: 'Sans Serif Collection';
     }
+
+    .view
+    {
+        padding: 0.5rem 1rem;
+        color: white;
+        background-color: dodgerblue;
+        border-radius: 3px;
+    }
 </style>
 
 <div class="title">
@@ -69,40 +77,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.LeaveRequests) {
-            count++;
+    @foreach (var item in Model.LeaveRequests) {
+                count++;
 
-            <tr>
-            <td>
-                @count
-            </td>
-            <td>
-                @item.Leave.Staff.FullName
-            </td>
-            <td>
-                @item.Leave.ActingStaff.FullName
-            </td>
-            <td>
-                @item.DateCreated
-            </td>
-            <td>
+                <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @item.Leave.Staff.FullName
+                </td>
+                <td>
+                    @item.Leave.ActingStaff.FullName
+                </td>
+                <td>
+                    @item.DateCreated
+                </td>
+                <td>
 
-                @if(item.IsApproved == true)
-                {
-                   <p class="approved-status">Approved</p>   
-                }
-                else
-                {
-                   <p class="disapproved-status">Not Approved</p>
-                }
-            </td>
-            <td>
-                @item.DateApproved
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">View Request</a> |
-            </td>
-        </tr>
-}
+                    @if(item.IsApproved == true)
+                    {
+                       <p class="approved-status">Approved</p>   
+                    }
+                    else
+                    {
+                       <p class="disapproved-status">Not Approved</p>
+                    }
+                </td>
+                <td>
+                    @item.DateApproved
+                </td>
+                <td>
+                    <a class="view" asp-controller="Leave" asp-action="ViewRequest" asp-route-id="@item.Id">View Request</a>
+                </td>
+            </tr>
+    }
     </tbody>
 </table>

@@ -97,5 +97,6 @@
     <Build Include="dbo\Tables\DeclarationForms.sql" />
     <Build Include="dbo\Tables\Leaves.sql" />
     <Build Include="dbo\Tables\LeaveRequests.sql" />
+    <Build Include="dbo\Tables\InspectorRejections.sql" />
   </ItemGroup>
 </Project>

@@ -2338,6 +2338,7 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreap
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\Index.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\License.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\Messages.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\PreviewLicense.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\PrintLicense.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\Report.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\Resubmit.cshtml.g.cs
@@ -2356,9 +2357,12 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreap
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\Index.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\ApproveRequest.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\Create.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\Index.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\LeaveRequest.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\ViewMyLeaveRequests.cshtml.g.cs
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Leave\ViewRequest.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\AddSurvey.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Footer.cshtml.g.cs

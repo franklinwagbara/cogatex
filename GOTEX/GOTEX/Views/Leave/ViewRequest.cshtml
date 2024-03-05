@@ -1,0 +1,177 @@
+﻿@model GOTEX.Core.BusinessObjects.LeaveRequest
+
+@{
+    ViewData["Title"] = "ViewRequest";
+}
+
+<style>
+    .approved-status {
+        padding: 0.25rem 0.5rem;
+        background-color: limegreen;
+        color: white;
+        width: fit-content;
+        border-radius: 10px;
+        font-size: smaller;
+    }
+
+    .disapproved-status {
+        padding: 0.25rem 0.5rem;
+        background-color: orangered;
+        color: white;
+        width: fit-content;
+        border-radius: 10px;
+        font-size: smaller;
+    }
+
+    .title {
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+        width: 100%;
+        font-size: x-large;
+    }
+
+    .title h2 {
+        width: fit-content;
+        padding: 1rem 2rem;
+        background-color: royalblue;
+        border-radius: 10px;
+        color: white;
+        font-family: 'Sans Serif Collection';
+    }
+
+    .wrapper
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        width: fit-content;
+        box-shadow: 0px 0px 6px 2px gray;
+        min-height: 400px;
+        border-radius: 5px;
+    }
+
+    .action-group{
+        
+    }
+
+    .action-group a{
+        padding: 1rem 2rem;
+        margin: 1rem 2rem;
+        background-color: lightseagreen;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .item-title {
+        background-color: steelblue;
+        color: white;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        display: inline;
+        width: fit-content;
+        border-radius: 3px;
+        font-size: larger;
+    }
+
+    .item {
+        background-color: ghostwhite;
+        border: 1px solid gray;
+        padding: 0.5px 1rem;
+        margin: 0.25rem;
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        border-radius: 3px;
+        color: black;
+        font-size: larger;
+    }
+
+    .item-group{
+        display: flex;
+    }
+
+    .item-container{
+        min-height: fit-content;
+    }
+</style>
+
+<div class="title">
+    <h2>LEAVE REQUEST DETAILS</h2>
+</div>
+
+<div class="wrapper">
+    <div class="container">
+        <hr />
+        <div class="item-container">
+            <div class="item-group">
+                <dt class="item-title">
+                    @Html.DisplayNameFor(model => model.Leave.Staff)
+                </dt>
+                <dd class="item">
+                    @Html.DisplayFor(model => model.Leave.Staff.FullName)
+                </dd>
+            </div>
+            <div class="item-group">
+                <dt class="item-title">
+                    @Html.DisplayNameFor(model => model.Leave.ActingStaff)
+                </dt>
+                <dd class="item">
+                    @Html.DisplayFor(model => model.Leave.ActingStaff.FullName)
+                </dd>
+            </div>
+            <div class="item-group">
+                <dt class="item-title">
+                    @Html.DisplayNameFor(model => model.Leave.Start)
+                </dt>
+                <dd class="item">
+                    @Html.DisplayFor(model => model.Leave.Start)
+                </dd>
+            </div>
+            <div class="item-group">
+                <dt class="item-title">
+                    @Html.DisplayNameFor(model => model.Leave.End)
+                </dt>
+                <dd class="item">
+                    @Html.DisplayFor(model => model.Leave.End)
+                </dd>
+            </div>
+            <div class="item-group">
+                <dt class="item-title">
+                    @Html.DisplayNameFor(model => model.Leave.IsApproved)
+                </dt>
+                <dd class="item">
+                    @if (Model.Leave.IsApproved == true)
+                    {
+                        <p class="approved-status">Approved</p>
+                    }
+                    else
+                    {
+                        <p class="disapproved-status">Not Approved</p>
+                    }
+                </dd>
+            </div>
+        </div>
+
+        <div class="action-group">
+            @if(Model.IsApproved == false)
+            {
+                <a asp-action="ApproveRequest" asp-route-id="@Model.Id">Approve Request</a>
+            }
+        </div>
+    </div>
+    <div>
+        
+        <a asp-action="LeaveRequest">Back to List</a>
+    </div>
+</div>

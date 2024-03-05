@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GOTEX.Core.BusinessObjects
@@ -13,9 +14,11 @@ namespace GOTEX.Core.BusinessObjects
         public bool IsApproved { get; set; } = false;
         public bool IsDeleted { get; set; } = false;
 
+        [DisplayName("Staff")]
         [ForeignKey(nameof(StaffId))]
         public ApplicationUser Staff { get; set; }
 
+        [DisplayName("Acting Staff")]
         [ForeignKey(nameof(ActingStaffId))]
         public ApplicationUser ActingStaff { get; set; }
     }

@@ -555,7 +555,7 @@ namespace GOTEX.Controllers
                 PermitNumber = "",
                 
             };
-            var pdf = await new ViewAsPdf("License", permit)
+            var pdf = await new ViewAsPdf("PreviewLicense", permit)
             {
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 FileName = "LicensePreview",
