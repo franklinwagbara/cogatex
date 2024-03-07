@@ -19,5 +19,6 @@
         public const string CCE_STA = "CCE_STA";
         public const string ExternalView = "ExternalView";
         public const string OOCCE = "OOCCE";
+        public const string DP = "D&P";
     }
 }

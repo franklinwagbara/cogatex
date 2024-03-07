@@ -1,25 +1,28 @@
     @if(!User.IsInRole("ExternalView"))
     {
-        <li class="nav-label">Desk</li>
-        <li>
-            <a href="#desk" aria-expanded="false" data-toggle="collapse">
-                <i class="fas fa-people-carry text-warning"></i>
-                <span class="hide-menu">Desk </span>
-            </a>
-            <ul id="desk" class="collapse" data-toggle="collapse" aria-expanded="False">
+    <li class="nav-label">Desk</li>
+    <li>
+        <a href="#desk" aria-expanded="false" data-toggle="collapse">
+            <i class="fas fa-people-carry text-warning"></i>
+            <span class="hide-menu">Desk </span>
+        </a>
+        <ul id="desk" class="collapse" data-toggle="collapse" aria-expanded="False">
+            @if (!User.IsInRole("D&P"))
+            {
                 <li>
                     <a href="@Url.Content("~/Admin")">
-                        <i class="fa fa-home text-gray"> </i> 
+                        <i class="fa fa-home text-gray"> </i>
                         <span class="nav-label"> My Desk</span>
                     </a>
                 </li>
-                <li>
-                    <a href="@Url.Content("~/Admin/StaffDesk")">
-                        <i class="fa fa-user text-gray"> </i> 
-                        <span class="nav-label"> Staff Desk</span>
-                    </a>
-                </li>
-        
+            }
+                
+            <li>
+                <a href="@Url.Content("~/Admin/StaffDesk")">
+                    <i class="fa fa-user text-gray"> </i> 
+                    <span class="nav-label"> Staff Desk</span>
+                </a>
+            </li>
             </ul>
         </li>
         <hr />

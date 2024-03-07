@@ -50,7 +50,7 @@
                     <td>@app.Date</td>
                     <td>
                         <a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a>
-                        @if (!User.IsInRole("Company") && !User.IsInRole("Admin") && !User.IsInRole("Staff") && !User.IsInRole("OOCCE"))
+                        @if (!User.IsInRole("Company") && !User.IsInRole("Admin") && !User.IsInRole("Staff") && !User.IsInRole("OOCCE") && !User.IsInRole("D&P"))
                         {
                             <a
                                 href="#"

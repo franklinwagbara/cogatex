@@ -299,7 +299,7 @@
             <div class="x_content">
                 <table class="table table-striped">
                     
-                    @if (User.IsInRole("Planning") && Model.Status.Equals(ApplicationStatus.PaymentPending, StringComparison.OrdinalIgnoreCase))
+                    @if (User.IsInRole(Roles.Planning) && Model.Status.Equals(ApplicationStatus.PaymentPending, StringComparison.OrdinalIgnoreCase))
                     {
                         <form action="/Admin/ConfirmPayment" method="post">
                             <input type="hidden" name="refno" value="@Model.Reference"/>
@@ -347,7 +347,7 @@
                             </tr>
                         </form>
                     }
-                    @if (!User.IsInRole("Planning") && !User.IsInRole("Company") && !User.IsInRole("Support"))
+                    @if (!User.IsInRole(Roles.Planning) && !User.IsInRole(Roles.Company) && !User.IsInRole(Roles.Support) && !User.IsInRole(Roles.DP))
                     {
 
                         if (!Model.Status.Equals("Completed", StringComparison.OrdinalIgnoreCase))

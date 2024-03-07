@@ -1,5 +1,6 @@
 ﻿@inject RoleManager<ApplicationRole> _roleManager
 @inject UserManager<ApplicationUser> _userManager
+
 <div class="left-sidebar" style="background: #001a33; overflow: scroll;" id="SB" >
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar" >
@@ -13,7 +14,7 @@
                 </li>
                 <hr/>
                 <li class="nav-devider"></li>
-                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA") && !User.IsInRole("ExternalView") && !User.IsInRole("OOCCE"))
+                @if (!User.IsInRole("Staff") && !User.IsInRole("Support") && !User.IsInRole("Admin") && !User.IsInRole("ICT") && !User.IsInRole("ED_STA") && !User.IsInRole("ACE_STA") && !User.IsInRole("CCE_STA") && !User.IsInRole("ExternalView") && !User.IsInRole("OOCCE") && !User.IsInRole("D&P"))
                 {
                     <li class="nav-label"> Dashboard </li>
 
@@ -61,10 +62,7 @@
                             </ul>
                         </li>
                         <hr />                        
-                    }
 
-                    @if (User.IsInRole("OOCCE"))
-                    {
                         <li class="nav-label">Permit Approval(s)</li>
                         <li>
                             <a href="/Admin/Permits">
@@ -73,10 +71,7 @@
                             </a>
                         </li>
                         <hr />                        
-                    }
 
-                    @if (User.IsInRole("OOCCE"))
-                    {
                         <li class="nav-label">Report</li>
                         <li>
                             <a data-toggle="collapse" href="#myaccount" aria-expanded="false">
@@ -113,10 +108,7 @@
                             </ul>
                         </li>
                         <hr />
-                    }
 
-                    @if (User.IsInRole("OOCCE"))
-                    {
                         <li class="nav-label">Staff Management</li>
                         <li>
                             <a data-toggle="collapse" href="#staff" aria-expanded="false">
