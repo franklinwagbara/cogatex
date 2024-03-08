@@ -60,6 +60,26 @@
         </li>
         <hr />
 
+        @if (User.IsInRole("Planning"))
+        {
+            <li class="nav-label">Application</li>
+            <li>
+                <a data-toggle="collapse" href="#submenu1" aria-expanded="false">
+                    <i class="far fa-folder-open text-warning"> </i>
+                    <span class="nav-label ">Application (s) </span>
+                </a>
+                <ul id="submenu1" class="collapse" data-toggle="collapse" aria-expanded="False">
+                    <li>
+                    <a href="@Url.Content("~/Admin/Outbox")">
+                            <i class="far fa-clone text-gray"> </i>
+                            <span class="nav-label"> Processed By Me</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <hr />
+        }
+
         @if (!User.IsInRole("Planning"))
         {
             <li class="nav-label">Application</li>
@@ -73,6 +93,12 @@
                         <a href="@Url.Content("~/Application/All")">
                             <i class="far fa-clone text-gray"> </i>
                             <span class="nav-label"> All Applications</span>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="@Url.Content("~/Application/AppsApprovedByMe")">
+                            <i class="far fa-clone text-gray"> </i>
+                            <span class="nav-label"> Processed By Me</span>
                         </a>
                     </li>
                     <li>

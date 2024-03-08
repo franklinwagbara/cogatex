@@ -1,0 +1,218 @@
+﻿@using GOTEX.Core.Utilities
+@model List<Application>
+@inject IAppConfiguration<Configuration> _appConfig
+
+@{
+    ViewBag.Title = "All Applications Processed By Me";
+    int count = 0;
+}
+
+<center>
+
+    <div class="card" style="margin-top: 2em; padding: 1em;">
+        <h2 class="btn btn-success col-md-3">All Application(s)</h2>
+        <input type="hidden" id="productlist" value="@_appConfig.GetGasProducts().Stringify()" />
+        <input type="hidden" id="terminallist" value="@_appConfig.GetTerminal().Stringify()" />
+        <input type="hidden" id="quarterlist" value="@_appConfig.GetQuarters().Stringify()" />
+        @if (ViewData["Message"] != null)
+        {
+            <div class="alert alert-info alert-dismissable txtcenter">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                @ViewData["Message"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        }
+        <table class="table table-striped dataTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Company Name</th>
+                    <th>Reference</th>
+                    <th>Product Type</th>
+                    <th>Status</th>
+                    <th>Date Applied</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var app in Model)
+                {
+                    count++;
+                    <tr>
+                        <td>@count</td>
+                        <td>@app.User.Company.Name</td>
+                        <td>@app.Reference</td>
+                        <td>@app.Product.Name</td>
+                        <td>@app.Status</td>
+                        <td>@app.Date</td>
+                        <td>
+                            <a href="/Application/ApplicationDetail/@app.Id" class="btn btn-sm btn-info">View</a>
+                            @if (!User.IsInRole("Company") && !User.IsInRole("Admin") && !User.IsInRole("Staff") && !User.IsInRole("OOCCE") && !User.IsInRole("D&P"))
+                            {
+                                <a href="#"
+                           data-id="@app.Id"
+                           data-quantity="@app.Quantity"
+                           data-apptype="@app.ApplicationType.Name"
+                           data-quarter="@app.Quarter.Id"
+                           data-product="@app.Product.Id"
+                           data-terminal="@app.Terminal.Id"
+                           data-amount="@app.ProductAmount"
+                           data-gasstream="@app.GasStream"
+                           data-flowid="@app.StageId"
+                           data-user="@app.LastAssignedUserId"
+                           data-status="@app.Status"
+                           data-toggle="modal"
+                           data-target="#EditModal"
+                           class="btn btn-sm btn-success editBtn">Update App</a>
+                                <a href="/Application/License/@app.Id?type=preview" target="_blank" class="btn btn-sm btn-warning">Preview Approval</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</center>
+
+<div class="modal" role="dialog" tabindex="-1" id="EditModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Application Update</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="min-height: 280px;">
+                <form action="/Application/UpdateApplication" method="post" enctype="multipart/form-data" id="formUpdate">
+                    <input type="hidden" name="Id" id="Id" />
+                    <div class="form-group">
+                        <label style="float:left">Application Type</label>
+                        <input type="text" class="form-control" id="ApplicationType" name="ApplicationType" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Quarter Registration</label>
+                        @* <input type="text" class="form-control" id="Quarter" name="Quarter" readonly/> *@
+                        <select class="form-control" id="Quarter" name="Quarter"></select>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Product Type</label>
+                        <select class="form-control" id="Product" name="Product"></select>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Terminal (Port of Export)</label>
+                        @* <input type="text" class="form-control" id="Terminal" name="Terminal" readonly/> *@
+                        <select class="form-control" id="Terminal" name="Terminal"></select>
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Quantity</label>
+                        <input type="text" class="form-control" id="Quantity" name="Quantity" />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Equivalent Value ($)</label>
+                        <input type="text" class="form-control" id="Amount" name="Amount" />
+                    </div>
+                    <div class="form-group">
+                        <label style="float:left">Measurement</label>
+                        <select class="form-control" id="gasstream" name="GasStream">
+                        </select>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="form-group">
+                            <label style="float:left">Flow Stage ID</label>
+                            <input type="number" class="form-control" id="stageid" name="StageId" />
+                        </div>
+                        <div>
+                            <label style="float:left">Current User</label>
+                            <input type="text" class="form-control" id="currentuser" name="LastAssignedUserId" />
+                        </div>
+                        <div>
+                            <label style="float:left">Status</label>
+                            <input type="text" class="form-control" id="status" name="Status" />
+                        </div>
+                    }
+                    <div class="form-group">
+                        <div class="modal-footer">
+                            <input type="submit" value="Update" class="btn btn-primary" name="Submit" id="UpdateBtn" />
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.dataTable').DataTable();
+
+        $(document.body).on('click', '.editBtn', function (e) {
+            var measure = $(this).data('gasstream');
+            $("#ApplicationType").val($(this).data('apptype'));
+            $("#Id").val($(this).data('id'));
+            $("#Product").html('');
+            var prod = $(this).data('product');
+            var term = $(this).data('terminal');
+            var quart = $(this).data('quarter');
+            $("#Terminal").val('');
+            $("#Quarter").val('');
+            $("#Quantity").val($(this).data('quantity'));
+            $("#Amount").val($(this).data('amount'));
+            $("#stageid").val($(this).data('flowid'));
+            $("#currentuser").val($(this).data('user'));
+            $("#status").val($(this).data('status'));
+
+            var products = JSON.parse($("#productlist").val());
+            var terminals = JSON.parse($("#terminallist").val());
+            var quarters = JSON.parse($("#quarterlist").val());
+            $.each(products, function (key, val) {
+                if (val.Id === prod) {
+                    $("#Product").append('<option value="' + val.Id + '" selected>' + val.Name + '</option>');
+                }
+                else {
+                    $("#Product").append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                }
+            });
+
+            $.each(terminals, function (key, val) {
+                if (val.Id === term) {
+                    $("#Terminal").append('<option value="' + val.Id + '" selected>' + val.Name + '</option>');
+                }
+                else {
+                    $("#Terminal").append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                }
+            });
+
+            $.each(quarters, function (key, val) {
+                if (val.Id === quart) {
+                    $("#Quarter").append('<option value="' + val.Id + '" selected>' + val.Name + '</option>');
+                }
+                else {
+                    $("#Terminal").append('<option value="' + val.Id + '">' + val.Name + '</option>');
+                }
+            });
+
+            if (measure === "") {
+                $("#gasstream").append('<option value="MT">Metric Tonnes</option>');
+                $("#gasstream").append('<option value="Barrels">Barrels</option>');
+            }
+            else {
+                if (measure === "MT") {
+                    $("#gasstream").append('<option value="MT" selected>Metric Tonnes</option>');
+                    $("#gasstream").append('<option value="Barrels">Barrels</option>');
+                }
+                else {
+                    $("#gasstream").append('<option value="MT">Metric Tonnes</option>');
+                    $("#gasstream").append('<option value="Barrels" selected>Barrels</option>');
+                }
+
+            }
+        });
+    });
+</script>

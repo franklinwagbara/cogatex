@@ -505,7 +505,18 @@ namespace GOTEX.Controllers
             ViewData["Message"] = TempData["Message"];
             return View(_application.GetAll().Stringify().Parse<List<Application>>());
         }
-        
+
+        public IActionResult AppsApprovedByMe()
+        {
+            ViewData["Message"] = TempData["Message"];
+            var apps = _history.All().Where(x => x.CurrentUser == User.Identity.Name).Select(x => x.Application).ToList();
+            var map = new Dictionary<int, Application>();
+
+            apps.ForEach(a => map.Add(a.Id, a));
+            apps = map.Values.ToList();
+            return View(apps.Stringify().Parse<List<Application>>());
+        }
+
         public IActionResult ApplicationDetail(int id)
         {
             var appdocs = _application.GetApplicationFiles(id)?.Stringify().Parse<List<DocumentType>>();

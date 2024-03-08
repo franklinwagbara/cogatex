@@ -2391,3 +2391,4 @@ C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreap
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.dll
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.pdb
 C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\GOTEX.genruntimeconfig.cache
+C:\Users\BrandOneTech\source\repos\GOTEX\COGATEX\GOTEX\GOTEX\obj\Debug\netcoreapp3.1\Razor\Views\Application\AppsApprovedByMe.cshtml.g.cs
